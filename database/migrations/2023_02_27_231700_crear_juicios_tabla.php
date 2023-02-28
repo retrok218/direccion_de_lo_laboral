@@ -14,7 +14,7 @@ class CrearJuiciosTabla extends Migration
     public function up()
     {
         Schema::create('juicios', function(Blueprint $table){
-            $table->id('id_juicio');
+            $table->bigIncrements('id_juicio');
 
             $table->string('id_abogado_responsable'); //cambiar a foranea para abogados
 
