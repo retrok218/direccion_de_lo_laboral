@@ -16,7 +16,7 @@ class CrearJuiciosTabla extends Migration
         Schema::create('juicios', function(Blueprint $table){
             $table->bigIncrements('id_juicio');
 
-            $table->string('id_abogado_responsable'); //cambiar a foranea para abogados
+            $table->unsignedBigInteger('id_abogado_responsable'); //cambiar a foranea para abogados
 
             $table->date('presentacion_de_demanda');
             $table->string('salajnta',50) ;
@@ -27,7 +27,7 @@ class CrearJuiciosTabla extends Migration
             $table->string('tipo',50) ;
             $table->string('accion',50) ;
             
-            $table->
+            $table->foreign('id_abogado_responsable')->references('id_abogado')->on('abogados');
             
             $table->timestamps();
         });
