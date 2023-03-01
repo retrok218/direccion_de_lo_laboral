@@ -42,6 +42,7 @@ class CrearJuiciosTabla extends Migration
             $table->unsignedBigInteger('')->nullable();
             $table->unsignedBigInteger('')->nullable();
             $table->unsignedBigInteger('')->nullable();
+            
 
 
         });
