@@ -1,13 +1,17 @@
-@extends('home')
- 
+@extends('home') 
 @section('content')
 <h1> Tabla de juicios  </h1>
-<div class="button_plus">
-    
-</div>
 
+
+
+ 
+<div class="row justify-content-end" >    
+    <a href="/registro_Juicio" class="btn btn-success">Agregar Juicio</a>    
+</div> 
+<div class="form-row">
 <link href="{{ URL::asset('assets/css/demo1/alerta.css')}}" rel="stylesheet" type="text/css" />
-<div class="col-sm-12">       
+<div class="col-sm-12">
+      
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
@@ -45,7 +49,40 @@
                     <tr>
                         <td><a href="">002</a>  </td>
                         <td>Transferido</td>
-                        <td></td>
+                        <td>10/08/2022</td>
+                        <td>10/09/2023</td>
+                        <td>2a</td>
+                        <td>2805</td>
+                        <td>2009</td>
+                        <td>2009</td>
+                        <td>83</td>
+                        <td>DEMANDA</td>
+                        <td>Reinstalación</td>
+                        <td>LOPEZ HERNANDEZ ELIA ARTEMISA</td>
+                        
+                    </tr>
+
+                    <tr>
+                        <td><a href="">003</a>  </td>
+                        <td>nnn/n</td>
+                        <td>05/07/2024</td>
+                        <td>06/10/2023</td>
+                        <td>2a</td>
+                        <td>2805</td>
+                        <td>2009</td>
+                        <td>2009</td>
+                        <td>83</td>
+                        <td>DEMANDA</td>
+                        <td>Reinstalación</td>
+                        <td>LOPEZ HERNANDEZ ELIA ARTEMISA</td>
+                        
+                    </tr>
+
+                    
+                    <tr>
+                        <td><a href="">003</a>  </td>
+                        <td>ooo/lsd</td>
+                        <td>12/02/2024</td>
                         <td></td>
                         <td>2a</td>
                         <td>2805</td>
@@ -60,6 +97,8 @@
                                                
                 </tbody>
         </table>
-    
+    </div>
+</div>
+
 @include('layouts/scripts/scripts_dttb')
 @endsection

@@ -16,20 +16,34 @@ class CrearJuiciosTabla extends Migration
         Schema::create('juicios', function(Blueprint $table){
             $table->bigIncrements('id_juicio');
 
-            $table->unsignedBigInteger('id_abogado_responsable'); //cambiar a foranea para abogados
+            $table->unsignedBigInteger('id_abogado_responsable')->nullable(); 
+            $table->foreign('id_abogado_responsable')->references('id_abogado')->on('abogados'); //foranea de abogado responsable 
 
-            $table->date('presentacion_de_demanda');
-            $table->string('salajnta',50) ;
-            $table->integer('expediente') ;
-            $table->year('año_juicio') ;
-            $table->year('clasificacion_año') ;
-            $table->integer('clasificacion_exp') ;
-            $table->string('tipo',50) ;
-            $table->string('accion',50) ;
-            
-            $table->foreign('id_abogado_responsable')->references('id_abogado')->on('abogados');
-            
+            $table->date('presentacion_de_demanda')->nullable();
+            $table->string('salajnta',50)->nullable() ;
+            $table->integer('expediente')->nullable() ;
+            $table->year('año_juicio') ->nullable();
+            $table->year('clasificacion_año') ->nullable();
+            $table->integer('clasificacion_exp')->nullable() ;
+            $table->string('tipo',50)->nullable() ;
+            $table->string('accion',50)->nullable() ;                                   
             $table->timestamps();
+
+            //externas con llave foranea
+
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+            $table->unsignedBigInteger('')->nullable();
+
+
         });
     }
 

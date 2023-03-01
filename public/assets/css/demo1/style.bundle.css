@@ -50192,3 +50192,35 @@ tr.shown td.details-control {
   transition: 0.2s;
 }
 
+.input-wrapper {
+    position: relative;
+    width: 271px; 
+ }
+  
+ .input_dinero {
+    box-sizing: border-box;
+    color: #191919;
+    padding: 14px 0px 13px 23px;
+    width: 100%;
+ }
+  
+ .input.password {
+    padding: 15px 35px 15px 15px;
+ }
+  
+ .input-icon {
+    color: #191919;
+    position: absolute;
+    width: 14px;
+    height: 13px;
+    left: 8px;
+    top: 62%;
+    transform: translateY(-50%);
+ }
+  
+ .input-icon.password {
+    left: unset;
+    right: 12px;
+ }
+
+ 

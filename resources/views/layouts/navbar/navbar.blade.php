@@ -38,7 +38,8 @@
                <i class="kt-menu__section-icon flaticon-more-v2"></i>
             </li>
 
-            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+               <a href="javascript:;" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                            <rect id="bound" x="0" y="0" width="24" height="24" />
                            <rect id="Rectangle-7" fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
@@ -49,7 +50,7 @@
                <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
                   <ul class="kt-menu__subnav">
                      <ul class="kt-menu__subnav">                     
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/area_inicio') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Construccion </span></a></li>                      
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/juicios') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Jucios </span></a></li>                      
                      </ul>
                   </ul>
                </div>  
@@ -66,7 +67,7 @@
                <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
                   <ul class="kt-menu__subnav">
                      <ul class="kt-menu__subnav">                     
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/area_inicio') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">XD </span></a></li>                      
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/area_inicio') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text"></span></a></li>                      
                      </ul>
                   </ul>
                </div>  
