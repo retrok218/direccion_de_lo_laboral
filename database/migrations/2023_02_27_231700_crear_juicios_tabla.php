@@ -16,8 +16,8 @@ class CrearJuiciosTabla extends Migration
         Schema::create('juicios', function(Blueprint $table){
             $table->bigIncrements('id_juicio');
 
-            $table->unsignedBigInteger('id_abogado_responsable')->nullable(); 
-            $table->foreign('id_abogado_responsable')->references('id_abogado')->on('abogados'); //foranea de abogado responsable 
+            $table->unsignedBigInteger('id_abogadojuicio')->nullable(); 
+            $table->foreign('id_abogadojuicio')->references('id_abogadojuicio')->on('abogadojuicio'); //foranea de abogado responsable 
 
             $table->date('presentacion_de_demanda')->nullable();
             $table->string('salajnta',50)->nullable() ;
@@ -42,7 +42,6 @@ class CrearJuiciosTabla extends Migration
             $table->unsignedBigInteger('')->nullable();
             $table->unsignedBigInteger('')->nullable();
             $table->unsignedBigInteger('')->nullable();
-            
 
 
         });
