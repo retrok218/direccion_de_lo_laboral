@@ -1,0 +1,100 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\abogado;
+use Illuminate\Http\Request;
+
+class AbogadoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $abogados['abogados']=abogado::paginate(5);
+        return view('abogados.index', $abogados);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('abogados.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //$datosabogado = request()->all();
+        $datosabogado = request()->except('_token');
+        abogado::insert($datosabogado);
+       // return response()->json($datosabogado);
+       return redirect()->route('abogado.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\abogado  $abogado
+     * @return \Illuminate\Http\Response
+     */
+    public function show(abogado $abogado)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\abogado  $abogado
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(abogado $abogado)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\abogado  $abogado
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, abogado $abogado)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\abogado  $abogado
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id_abogado)
+    {
+
+        //dd($id_abogado);
+        $aeliminar = abogado::find($id_abogado);
+        if($aeliminar){
+            $aeliminar->delete();
+            return redirect()->route('abogado');
+        }
+
+
+
+        // abogado::destroy($id_abogado);
+        // return redirect ('abogado');
+    }
+}

@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class abogado extends Model
 {
+    protected $primaryKey = 'id_abogado';
     use HasFactory;
-    public function juicio(){
-        return $this->belongsToMany('App\Models\juicio');
-    }
 }

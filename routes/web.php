@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbogadoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard_Controller;
 use App\Http\Controllers\table_juicios_controller;
@@ -25,5 +26,11 @@ Route::get('/agregar1',[table_juicios_controller::class,'agregarjuicio1']);
 Route::get('/agregar2',[table_juicios_controller::class,'agregarjuicio2']);
 Route::get('/datos_rel_laboral',[table_juicios_controller::class,'datos_rel_laboral']);
 Route::get('/registro_Juicio',[table_juicios_controller::class,'registro']);
+
+
+// Route::get('/abogados',[AbogadoController::class,'index']);
+// Route::get('/abogado/create',[AbogadoController::class,'create']);
+
+Route::resource('abogado', AbogadoController::class);
 
 
