@@ -13,7 +13,7 @@ class AbogadoController extends Controller
      */
     public function index()
     {
-        $abogados['abogados']=abogado::paginate(5);
+        $abogados['abogados']=abogado::paginate();
         return view('abogados.index', $abogados);
     }
 
@@ -59,10 +59,23 @@ class AbogadoController extends Controller
      * @param  \App\Models\abogado  $abogado
      * @return \Illuminate\Http\Response
      */
-    public function edit(abogado $abogado)
+    public function edit($id_abogado)
     {
         //
+        $abogadod =abogado::findOrFail($id_abogado);
+
+        return view('abogados.edit', compact('abogadod'));
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -71,9 +84,16 @@ class AbogadoController extends Controller
      * @param  \App\Models\abogado  $abogado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, abogado $abogado)
+    
+    public function update(Request $request, $id_abogado)
     {
         //
+        $datosabogado = request()->except(['_token','_method']);
+        abogado::where('id_abogado','=',$id_abogado)->update($datosabogado);
+        
+        //regresando a lista de abogados  
+        return redirect()->route('abogado.index');
+
     }
 
     /**
@@ -89,7 +109,7 @@ class AbogadoController extends Controller
         $aeliminar = abogado::find($id_abogado);
         if($aeliminar){
             $aeliminar->delete();
-            return redirect()->route('abogado');
+            return redirect()->route('abogado.index');
         }
 
 

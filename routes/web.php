@@ -32,5 +32,3 @@ Route::get('/registro_Juicio',[table_juicios_controller::class,'registro']);
 // Route::get('/abogado/create',[AbogadoController::class,'create']);
 
 Route::resource('abogado', AbogadoController::class);
-
-

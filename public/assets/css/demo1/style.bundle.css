@@ -50223,4 +50223,55 @@ tr.shown td.details-control {
     right: 12px;
  }
 
+ .btn-agregar-abogado{
+    position: relative;
+    color: #ccb68b;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    /* letter-spacing: 1px; */
+    border: 2px solid #cab487;
+    border-radius: 1000px;
+    padding: 9px 9px;
+    margin: 0% 1% 1% 85%;
+    box-shadow: 0 2px 5px 0 rgba(208 188 148);
+    transition: .5s all ease-in-out; 
+    font-weight: 800;   
+    font-size: 10px;
+
+  }
+
+  .btn-agregar-abogado:hover {
+    cursor: pointer;
+    background: #d4c19d40;
+    color: #9d1f3eab;
+    animation: none;
+    animation-play-state: paused;
+    border-color: #9d1f3e7d;
+    font-weight: 900;
+    
+  }
+  
+
+  .button-pulse {
+    animation: pulse 2s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+    box-shadow: 0 0 0 0 rgb( #fff, #fff, #fff);
+  }
+  @keyframes pulse {
+    to {
+      box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); 
+    }
+  }
+
+
+  .botonargegar{
+    
+    margin: 10px auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  
+  }
+
  

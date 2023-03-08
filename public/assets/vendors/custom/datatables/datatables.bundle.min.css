@@ -1144,3 +1144,7 @@ table {
     border-spacing: 2px;
     font-variant: normal;
   }
+
+  a .mas{
+    width: 20px;
+  }
