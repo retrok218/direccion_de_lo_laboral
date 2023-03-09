@@ -20,7 +20,7 @@ class CreateJuiciosTable extends Migration
             $table->bigIncrements('id_juicio');
            
             $table->date('presentacion_de_demanda')->nullable();
-            $table->string('salajnta',50)->nullable() ;
+            
             $table->integer('expediente')->nullable() ;
             $table->year('año_juicio') ->nullable();
             $table->year('clasificacion_año') ->nullable();
@@ -31,7 +31,11 @@ class CreateJuiciosTable extends Migration
             $table->timestamps();
 
             //foraneas
-              
+
+
+            $table->unsignedBigInteger('sala')->nullable() ;
+            $table->foreign('id_sala')->references('id_sala')->on('sala'); 
+
             $table->unsignedBigInteger('id_actores')->nullable(); 
             $table->foreign('id_actores')->references('id_actores')->on('actores');  
 

@@ -50,7 +50,8 @@
                <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
                   <ul class="kt-menu__subnav">
                      <ul class="kt-menu__subnav">                     
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/juicios') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Jucios </span></a></li>                      
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/juicios') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Jucios </span></a></li>    
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/abogado') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Abogados </span></a></li>                  
                      </ul>
                   </ul>
                </div>  

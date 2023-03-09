@@ -13,7 +13,7 @@ class AbogadoController extends Controller
      */
     public function index()
     {
-        $abogados['abogados']=abogado::paginate();
+        $abogados['abogados']=abogado::Paginate();
         return view('abogados.index', $abogados);
     }
 
