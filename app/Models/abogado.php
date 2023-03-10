@@ -9,4 +9,8 @@ class abogado extends Model
 {
     protected $primaryKey = 'id_abogado';
     use HasFactory;
+
+    public function salas(){
+        return $this->belongsToMany('App\Models\salas');
+    }
 }

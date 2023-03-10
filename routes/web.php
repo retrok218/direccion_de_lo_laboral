@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard_Controller;
 use App\Http\Controllers\table_juicios_controller;
 use App\Http\Controllers\Juicios2Controller;
+use App\Http\Controllers\SalasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +33,5 @@ Route::get('/registro_Juicio',[table_juicios_controller::class,'registro']);
 // Route::get('/abogado/create',[AbogadoController::class,'create']);
 
 Route::resource('abogado', AbogadoController::class);
-
 Route::resource('juicios', Juicios2Controller::class);
+Route::resource('sala', SalasController::class);

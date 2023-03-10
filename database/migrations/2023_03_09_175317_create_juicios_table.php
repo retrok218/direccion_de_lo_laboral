@@ -13,14 +13,10 @@ class CreateJuiciosTable extends Migration
      */
     public function up()
     {
-
-       
         Schema::create('juicios', function (Blueprint $table) {
-            
             $table->bigIncrements('id_juicio');
-           
-            $table->date('presentacion_de_demanda')->nullable();
-            
+                       
+            $table->date('presentacion_de_demanda')->nullable();            
             $table->integer('expediente')->nullable() ;
             $table->year('año_juicio') ->nullable();
             $table->year('clasificacion_año') ->nullable();
@@ -33,8 +29,7 @@ class CreateJuiciosTable extends Migration
             //foraneas
 
 
-            $table->unsignedBigInteger('sala')->nullable() ;
-            $table->foreign('id_sala')->references('id_sala')->on('sala'); 
+            
 
             $table->unsignedBigInteger('id_actores')->nullable(); 
             $table->foreign('id_actores')->references('id_actores')->on('actores');  
@@ -54,22 +49,15 @@ class CreateJuiciosTable extends Migration
             $table->unsignedBigInteger('id_concluido')->nullable();
             $table->foreign('id_concluido')->references('id_concluido')->on('concluido');
 
+            $table->unsignedBigInteger('id_sala')->nullable() ;
+            $table->foreign('id_sala')->references('id_sala')->on('salas'); 
+
+
+
+
+
 
         });
-
-        Schema::create('juicioabogado', function (Blueprint $table) {
-            $table->bigIncrements('id_juicioabogado');
-
-            $table->unsignedBigInteger('id_juicio')->nullable(); 
-            $table->unsignedBigInteger('id_abogado')->nullable();
-            
-            $table->foreign('id_juicio')->references('id_juicio')->on('juicios')->onDelete('cascade');
-            $table->foreign('id_abogado')->references('id_abogado')->on('abogados')->onDelete('cascade');  
-            $table->timestamps();
-
-        });
-
-        
     }
 
     /**
@@ -80,6 +68,5 @@ class CreateJuiciosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('juicios');
-        Schema::dropIfExists('juicioabogado');
     }
 }

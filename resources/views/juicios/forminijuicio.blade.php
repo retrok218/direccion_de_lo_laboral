@@ -71,11 +71,11 @@
         <label for="validationDefault03">Tipo</label>      
         <select class="custom-select" id="validationDefault04" required>
           <option selected disabled value="">Tipo</option>
-          <option>DEMANDA</option>
-          <option>DEMANDA SEGOB</option>
-          <option>BENEF</option>
           <option>CESE</option>    
-          <option>COLECTIVO</option>      
+          <option>COLECTIVO</option> 
+          <option>BENEF</option>
+          <option>DEMANDA</option>
+          <option>DEMANDA SEGOB</option>                         
         </select>
       </div>
       <div class="col-md-3 mb-3">
