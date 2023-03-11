@@ -1,7 +1,7 @@
 <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationCustom01">Ingresa el Nombre de la Sala</label>
-      <input type="text" class="form-control" id="nombre"  name="nombre" placeholder="Nombre" value="{{isset($abogadod->nombre)?$abogadod->nombre:'' }}" required>
+      <input type="text" class="form-control" id="nombre"  name="nombre_sala" placeholder="Nombre"  required>
       <div class="valid-feedback">
         Correcto!
       </div>
@@ -12,16 +12,17 @@
   <div class="form-row">
 
     <div class="col-md-3 mb-3">
-        <label for="validationDefault04">Selecciona el Abogado</label>                            
+        <label >Selecciona el Abogado</label>                            
           @foreach ($abogados as $abogado)
+          {{-- solo muestras las iniciales del abogado --}}
              @php
                 $nabogado = Str::substr($abogado->nombre, 0, 1). Str::substr($abogado->apellidoP, 0, 1).Str::substr($abogado->apellidoM, 0, 1)
              @endphp
+
                  <div class="col-md-3 mb-3">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" aria-label="Checkbox for following text input" name="{{$abogado->id_abogado}}">
-                            
+                            <input type="checkbox" aria-label="Checkbox for following text input" name="abogadosid[]" value="{{$abogado->id_abogado}}" >                            
                         </div>
                         <div class="input-group-text">
                             <label class="form-check-label"  >{{$nabogado }}</label>
@@ -36,20 +37,11 @@
           @endforeach
 
 
-          <div class="col-md-3 mb-3">
-            <div class="input-group-prepend">
-                <div class="input-group-text">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                    
-                </div>
-                <div class="input-group-text">
-                    <label class="form-check-label" for="inlineCheckbox2">Transferido</label>
-                </div>
-                
-            </div>                    
-        </div>
+          
        
       </div>
+
+      
 
   </div>
 

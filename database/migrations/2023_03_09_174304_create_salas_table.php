@@ -21,16 +21,17 @@ class CreateSalasTable extends Migration
 
 
 
-        Schema::create('salaabogados', function (Blueprint $table) {
-
-            $table->bigIncrements('id_salaabogados');
+        Schema::create('abogados_salas', function (Blueprint $table) {
+           
 
             $table->unsignedBigInteger('id_sala'); 
             $table->unsignedBigInteger('id_abogado');
         
-            $table->foreign('id_sala')->references('id_sala')->on('salas')->onDelete('cascade');
-            $table->foreign('id_abogado')->references('id_abogado')->on('abogados')->onDelete('cascade');  
-            $table->timestamps();
+            $table->foreign('id_sala'
+            )->references('id_sala')->on('salas')->nullable()->onDelete('cascade');           
+            $table->foreign('id_abogado')
+            ->references('id_abogado')->on('abogados')->nullable()->onDelete('cascade');  
+            
         });
     }
 
@@ -42,6 +43,6 @@ class CreateSalasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('salas');
-        Schema::dropIfExists('salaabogados');
+        Schema::dropIfExists('abogados_salas');
     }
 }

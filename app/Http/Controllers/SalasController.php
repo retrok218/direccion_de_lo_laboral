@@ -26,6 +26,7 @@ class SalasController extends Controller
     {
         //
         $abogados=abogado::all();
+
         return view('salas.create')->with([            
             'abogados'=> $abogados
          ]);
@@ -40,10 +41,20 @@ class SalasController extends Controller
      */
     public function store(Request $request)
     {
+        $sala = new salas;
+        $sala->nombre_sala = $request->input('nombre_sala');
+        $sala->created_at = now();
+        $sala->updated_at = now();
+        $sala->save();
+
+
+
         //
         $datossala =request()->except('_token');
-        
-        dd( $datossala);
+        $abogadosSeleccionados = $request->input('abogadosid');
+
+        $sala->abogados()->attach($abogadosSeleccionados);
+       
        // return response()->json($datossala);
     }
 
