@@ -14,7 +14,11 @@ class SalasController extends Controller
      */
     public function index()
     {
-        return view('salas.index');
+        $salasconabogados= salas::with('abogados')->get(); 
+        
+       //dd($salasconabogados);
+        
+        return view('salas.index',compact('salasconabogados'));
     }
 
     /**
@@ -46,15 +50,16 @@ class SalasController extends Controller
         $sala->created_at = now();
         $sala->updated_at = now();
         $sala->save();
+        //Se ingresa la sala 
 
 
 
-        //
+        
         $datossala =request()->except('_token');
         $abogadosSeleccionados = $request->input('abogadosid');
 
         $sala->abogados()->attach($abogadosSeleccionados);
-       
+        return redirect()->route('sala.index');
        // return response()->json($datossala);
     }
 

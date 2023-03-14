@@ -21,7 +21,7 @@ class CreateSalasTable extends Migration
 
 
 
-        Schema::create('abogados_salas', function (Blueprint $table) {
+        Schema::create('abogado_salas', function (Blueprint $table) {
            
 
             $table->unsignedBigInteger('id_sala'); 

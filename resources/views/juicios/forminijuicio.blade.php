@@ -8,10 +8,10 @@
                 $nabogado = Str::substr($abogado->nombre, 0, 1). Str::substr($abogado->apellidoP, 0, 1).Str::substr($abogado->apellidoM, 0, 1)
              @endphp
             <option value="">{{$nabogado}}</option>
-          @endforeach
-          <option value="">Transferido</option>
+          @endforeach          
         </select>
       </div>
+
       <div class="col-md-3 mb-3">
         <label for="validationDefault01">Notificacion de  Demanda</label>
         <input type="date" class="form-control" id="validationDefault01" value="Mark" required>
@@ -26,12 +26,13 @@
         <label for="validationDefault03">Sala/Jta</label>      
         <select class="custom-select" id="validationDefault04" required>
           <option selected disabled value="">Sala</option>
-          <option>4a</option>
-          <option>3a</option>
-          <option>7a</option>
-          <option>2a</option>
-          <option>J.F. 11</option>
-          <option>6a</option>
+          
+          @foreach($salas as $sala)
+            <option value="{{$sala->nombre_sala}}">{{$sala->nombre_sala}}</option>
+          @endforeach
+
+
+
         </select>
       </div>
      
@@ -106,18 +107,26 @@
         <label for="validationDefault03">Adscripcion</label>      
         <select class="custom-select" id="validationDefault04" required>
           <option selected disabled value="">Selecicona la Adscripcion</option>
-          <option>Talleres Gráficos de México</option>
-          <option>TFCA</option>
-          <option>INM</option>
-          <option>Unidad General de Asuntos Jurídicos</option>  
-          <option>Dirección General de Recursos Humanos</option>
-          <option>Coordinación General de la Comisión Mexicana de Ayuda a Refugiados</option>  
-          <option>Dirección General de Juegos y Sorteos</option> 
-          <option>CNI (antes CISEN)</option> 
-          <option>Oficina del C. Secretario</option>
-          <option>Unidad para el Desarrollo Político</option>
-          <option>Dirección General de Comunicación Social</option>
-          <option>Dirección General de Radio, Televisión y Cinematografía</option>
+          <option value="Archivo General de la Nación">Archivo General de la Nación</option>
+          <option value="Centro de Producción de Programas Informativos y Especiales">Centro de Producción de Programas Informativos y Especiales</option>
+          <option value="Centro Nacional de Prevención de Desastres">Centro Nacional de Prevención de Desastres</option>
+          <option value="CFE">CFE</option>
+          <option value="CNI (antes CISEN)">CNI (antes CISEN)</option>
+          <option value="COMISION EJECUTIVA DE ATENCION A VICTIMAS Y OTROS">COMISION EJECUTIVA DE ATENCION A VICTIMAS Y OTROS</option>
+          <option value="Comisión Nacional para Prevenir y Erradicar la Violencia Contra las Mujeres">Comisión Nacional para Prevenir y Erradicar la Violencia Contra las Mujeres</option>
+          <option value="Comisión para el Diálogo con los Pueblos Indígenas de México">Comisión para el Diálogo con los Pueblos Indígenas de México</option>
+          <option value="Consejo de Menores">Consejo de Menores</option>
+          <option value="Coordinación General de la Comisión Mexicana de Ayuda a Refugiados">Coordinación General de la Comisión Mexicana de Ayuda a Refugiados</option>
+          <option value="Coordinación General de Protección Civil">Coordinación General de Protección Civil</option>
+          <option value="Coordinación para la Atención Integral de la Migración en la Frontera Sur">Coordinación para la Atención Integral de la Migración en la Frontera Sur</option>
+          <option value="DATOS DE LA RELACIÓN LABORAL">DATOS DE LA RELACIÓN LABORAL</option>
+          <option value="DESPLEGABLE CON MODIFICACIÓN">DESPLEGABLE CON MODIFICACIÓN</option>
+          <option value="Diario Oficial">Diario Oficial</option>
+          <option value="Dirección General De Acuerdos Políticos">Dirección General De Acuerdos Políticos</option>
+          <option value="Dirección general de Análisis y Prospectiva para la Poítica de Interior">Dirección general de Análisis y Prospectiva para la Poítica de Interior</option>
+          <option value="Dirección General de Asociaciones Religiosas">Dirección General de Asociaciones Religiosas</option>
+          <option value="Dirección General de Compilación y Consulta del Orden Jurídico Nacional">Dirección General de Compilación y Consulta del Orden Jurídico Nacional</option>
+          <option value="Dirección General de Comunicación Social">Dirección General de Comunicación Social</option>
         </select>
       </div>
   

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\abogado;
+use App\Models\salas;
 use App\Models\Juicios2;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,8 @@ class Juicios2Controller extends Controller
     {        
         $añoactual = date('Y');
         $abogados=abogado::all();
+        $salas=salas::all(); 
+
         $añosseleccionables=[];
         while($añoactual >= 1950){
             $añosseleccionables[]=$añoactual;
@@ -36,7 +39,8 @@ class Juicios2Controller extends Controller
         return view('juicios.create')->with([
            'añoactual'=> $añoactual,
            'añosseleccionables'=>$añosseleccionables,
-           'abogados'=> $abogados
+           'abogados'=> $abogados,
+           'salas'=>$salas
         ]) ;
 
     }

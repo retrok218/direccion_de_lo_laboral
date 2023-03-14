@@ -7,7 +7,7 @@
 
 
 <div class="botonargegar">    
-    <a href="{{URL::asset('abogado/create')}}" class="btn-agregar-abogado button-pulse"> + Agregar Abogado</a>
+    <a href="{{URL::asset('abogado/create')}}" class="btn-agregar-abogado button-pulse"> <i class="flaticon-user-add"> </i> Agregar Abogado</a>
 </div>
 
     <table id="example" class="table table-striped table-bordered" style="width:100%">

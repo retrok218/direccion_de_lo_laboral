@@ -11,6 +11,7 @@ class abogado extends Model
     use HasFactory;
 
     public function salas(){
-        return $this->belongsToMany('App\Models\salas');
+        // return $this->belongsToMany('App\Models\salas');
+        return $this->belongsToMany(Salas::class, 'abogado_salas', 'id_sala', 'id_abogado');
     }
 }

@@ -50334,4 +50334,12 @@ tr.shown td.details-control {
   }
 
 
+.card-header-salas{
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgb(205 183 140);
+    border-bottom: 4px solid rgb(157 31 62);
+    color: #9d1f3e;
+    
+}
   
