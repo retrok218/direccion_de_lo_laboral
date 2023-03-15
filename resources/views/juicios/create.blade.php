@@ -3,7 +3,7 @@
 
 <h1>Creacion de juisicios con DB</h1>
 
-<form>
+<form action="{{url('juicios')}}"class="needs-validation" method="post">
     @csrf
     @include('juicios.forminijuicio')
     

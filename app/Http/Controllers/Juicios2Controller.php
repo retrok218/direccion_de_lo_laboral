@@ -54,6 +54,11 @@ class Juicios2Controller extends Controller
     public function store(Request $request)
     {
         //
+
+        $juicio = request()->except('_token');
+        dd($juicio);
+        Juicios2::insert($juicio);
+        
     }
 
     /**

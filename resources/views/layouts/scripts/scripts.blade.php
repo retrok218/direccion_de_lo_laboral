@@ -10,8 +10,8 @@
 <script src="{{ URL::asset('assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/popper.js/dist/umd/popper.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/jquery-validation/dist/jquery.validate.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/vendors/general/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/vendors/general/bootstrap-switch/dist/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
+{{-- <script src="{{ URL::asset('assets/vendors/general/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/vendors/general/bootstrap-switch/dist/js/bootstrap-switch.min.js')}}" type="text/javascript"></script> --}}
 <script src="{{ URL::asset('assets/vendors/custom/datatables/datatables.bundle.min.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/dropzone/dist/dropzone.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
@@ -25,7 +25,7 @@
 <script src="{{ URL::asset('js/general.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/sweetalert2/dist/sweetalert2.min.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/js/demo1/bootstrap-session-timeout.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+{{-- <script src="{{ URL::asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script> --}}
 
 
 <!-- Scrips para generar graficas   -->

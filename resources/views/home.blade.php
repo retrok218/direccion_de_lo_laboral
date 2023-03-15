@@ -10,11 +10,15 @@
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sistema | General</title>
+     
+    {{-- jquery de forma local --}}
+    <script src="{{URL::asset('jquery/jquery-3.6.4.js')}}"></script>    
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('assets/media/logos/favicon.ico') }}" sizes="48X16">
     <!--begin::Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
     <!--end::Fonts -->
+
     @include('layouts/css/css')
     @yield('styles')
 </head>
@@ -74,7 +78,10 @@
     @include('layouts/scripts/scripts')
     
     <script src="{{ URL::asset('js/layout.js') }}" type="text/javascript"></script>
+    
+
     <script type="text/javascript">
+   
         // var global URL
         var url = '{!! URL::asset('') !!}';
 
