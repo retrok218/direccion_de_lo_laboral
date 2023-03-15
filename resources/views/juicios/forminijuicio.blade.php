@@ -399,8 +399,32 @@
       </div>
   </div>
   <button class="btn btn-primary" type="submit">Crear Juicio</button>
+  <label for="idioma">Selecciona un idioma:</label>
+<select id="idioma">
+  <option value="es">Español</option>
+  <option value="en">Inglés</option>
+</select>
+
+<label for="mensaje">Mensaje de bienvenida:</label>
+<input type="text" id="mensaje" readonly>
   
     <script>
+
+
+$("#idioma").change(actualizarMensaje);
+
+// Función para actualizar el mensaje de bienvenida
+function actualizarMensaje() {
+  // Obtener el valor del input principal
+  const idioma = $("#idioma").val();
+  
+  // Actualizar el valor del input dependiente
+  if (idioma === "es") {
+    $("#mensaje").val("¡Bienvenido!");
+  } else if (idioma === "en") {
+    $("#mensaje").val("Welcome!");
+  }
+}
       
 
 
