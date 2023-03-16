@@ -51,8 +51,7 @@
                   <ul class="kt-menu__subnav">
                      <ul class="kt-menu__subnav">                     
                         <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/juicios') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Jucios </span></a></li>    
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/abogado') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Abogados </span></a></li>                  
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/sala') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Salas </span></a></li>           
+                       
                      </ul>
                   </ul>
                </div>  
@@ -65,11 +64,13 @@
                            <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
                         </g>
                      </svg></span>
-            <span class="kt-menu__link-text" style="font-weight: 600">Juicios2</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+            <span class="kt-menu__link-text" style="font-weight: 600">Integrantes</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
                   <ul class="kt-menu__subnav">
                      <ul class="kt-menu__subnav">                     
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/area_inicio') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text"></span></a></li>                      
+                                       
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/abogado') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Abogados </span></a></li>                  
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('/sala') }}" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Salas </span></a></li>           
                      </ul>
                   </ul>
                </div>  

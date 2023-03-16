@@ -105,4 +105,9 @@ class Juicios2Controller extends Controller
     {
         //
     }
+
+
+    public function juicios_datos(Request $request){
+        dd($request);
+    }
 }

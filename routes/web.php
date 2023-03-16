@@ -33,5 +33,10 @@ Route::get('/registro_Juicio',[table_juicios_controller::class,'registro']);
 // Route::get('/abogado/create',[AbogadoController::class,'create']);
 
 Route::resource('abogado', AbogadoController::class);
+
 Route::resource('juicios', Juicios2Controller::class);
+Route::post('juicios/form', [Juicios2Controller::class,'juicios_datos'])->name('jucios.form');
+
 Route::resource('sala', SalasController::class);
+
+Route::post('/ejecontro', [Juicios2Controller::class,'ejempcontroller'])->name('eje.control');
