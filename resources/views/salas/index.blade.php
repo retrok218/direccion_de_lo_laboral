@@ -29,8 +29,13 @@
                             </ul>                                                                    
                          @endforeach  
                     </div>
+                    
                 </div>
+                
             </div>
+        </div>
+        <div class="botonargegar">    
+            <a href="{{URL::asset('#')}}" class="btn-agregar-abogado button-pulse"> Eliminar</a>
         </div>
     </div>
 </div>
