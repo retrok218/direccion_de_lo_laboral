@@ -12,7 +12,7 @@
             @endforeach          
         </select>       --}}
         
-        <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" >
+        <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala"  readonly >
       </div>
 
       <div class="col-md-3 mb-3">

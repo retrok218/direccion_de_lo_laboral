@@ -28,6 +28,7 @@ class Actores extends Migration
             $table->date('exp_personal_rh_solicitud')->nullable();
             $table->date('exp_personal_rh_devolucion')->nullable();
             $table->string('fojas')->nullable();
+            
             $table->date('exp_adscripcion_solicitud')->nullable();
             $table->date('exp_adscripcion_devolucion')->nullable();
             $table->string('audiencia')->nullable();
