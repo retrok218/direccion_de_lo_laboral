@@ -111,10 +111,5 @@ class AbogadoController extends Controller
             $aeliminar->delete();
             return redirect()->route('abogado.index');
         }
-
-
-
-        // abogado::destroy($id_abogado);
-        // return redirect ('abogado');
     }
 }

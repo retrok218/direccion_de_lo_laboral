@@ -35,7 +35,7 @@
                         <form action="{{ url('abogado/'.$abogado->id_abogado ) }}" method="POST">
                             @csrf
                             {{method_field('DELETE')}}
-                        <input type="submit" onclick="return confirm('¿Quieres borrar el registro?')" value="Borrar">
+                            <input type="submit" onclick="return confirm('¿Quieres borrar el registro?')" value="Borrar">
                         </form>
                     </td>
                                        

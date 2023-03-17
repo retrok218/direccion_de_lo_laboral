@@ -14,10 +14,7 @@ class SalasController extends Controller
      */
     public function index()
     {
-        $salasconabogados= salas::with('abogados')->get(); 
-        
-      
-        
+        $salasconabogados= salas::with('abogados')->get();                       
         return view('salas.index',compact('salasconabogados'));
     }
 
@@ -100,8 +97,13 @@ class SalasController extends Controller
      * @param  \App\Models\salas  $salas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(salas $salas)
+    public function destroy($id_sala)
     {
-        //
-    }
+           
+        $eliminandosala = salas::find($id_sala);
+        if ($eliminandosala) {
+            $eliminandosala->delete();
+            return redirect()->route('sala.index');
+        }
+     }
 }

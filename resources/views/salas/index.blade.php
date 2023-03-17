@@ -35,7 +35,12 @@
             </div>
         </div>
         <div class="botonargegar">    
-            <a href="{{URL::asset('#')}}" class="btn-agregar-abogado button-pulse"> Eliminar</a>
+           
+            <form action="{{ url('sala/'.$sala->id_sala ) }}" method="POST">
+                @csrf
+                {{method_field('DELETE')}}
+                <input type="submit" class="btn-agregar-abogado button-pulse" onclick="return confirm('¿Quieres borrar el registro?')" value="Eliminar">
+            </form>
         </div>
     </div>
 </div>
