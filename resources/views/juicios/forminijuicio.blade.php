@@ -1,10 +1,8 @@
 <div class="form-row">
-
-
     <div class="col-md-3 mb-3">
-        <label for="validationDefault04">Selecciona el Abogado1</label>
+        <label for="validationDefault04">Abogados Asignados a la Sala</label>
         
-        <select class="custom-select" id="juicio_abogado" name="abogado">
+        {{-- <select class="custom-select" id="juicio_abogado" name="abogado">
           <option selected disabled value="">Abogado</option>
            @foreach ($abogados as $abogado)
               @php
@@ -12,7 +10,9 @@
               @endphp
               <option value="{{$nabogado}}" name = "{{$nabogado}}">{{$nabogado}}</option>
             @endforeach          
-        </select>        
+        </select>       --}}
+        
+        <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" >
       </div>
 
       <div class="col-md-3 mb-3">
@@ -32,9 +32,9 @@
         <label for="validationDefault03">Sala/Jta</label>     
 
         <select class="custom-select" id="juicio_sala_seleccionada" name="juicio_sala_seleccionada" >
-          <option selected disabled value="">Sala</option>        
+          <option selected disabled value="Sala">Sala</option>        
           @foreach($salas as $sala)
-            <option value="{{$sala->nombre_sala}}">{{$sala->nombre_sala}}</option>
+          <option value="{{$sala->id_sala}}">{{$sala->nombre_sala}}</option>
           @endforeach
         </select>
       </div>

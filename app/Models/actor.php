@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class actor extends Model
 {
+    protected $table = 'acotres';
+    protected $primaryKey = 'id_actores';
     use HasFactory;
+
+    public function juicios(){
+        return $this->hasMany(juicio::class);
+    }
 
     
 }

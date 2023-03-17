@@ -15,7 +15,7 @@ class CreateJuiciosTable extends Migration
     {
         Schema::create('juicios', function (Blueprint $table) {
             $table->bigIncrements('id_juicio');
-                       
+            $table->date('noti_demanda')->nullable();
             $table->date('presentacion_de_demanda')->nullable();            
             $table->integer('expediente')->nullable() ;
             $table->year('año_juicio') ->nullable();

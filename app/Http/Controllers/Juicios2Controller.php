@@ -108,6 +108,20 @@ class Juicios2Controller extends Controller
 
 
     public function juicios_datos(Request $request){
-        dd($request);
+
+     $id_sala = $request->input('valor');     
+     $sala = salas::find($id_sala);
+     $abogados = $sala->abogados;
+     $abogadesdesalas = array('success' => true, 'abogados'=> $abogados);
+
+     return $abogadesdesalas;
+
+
+
+       
+
+     
+             
+   
     }
 }

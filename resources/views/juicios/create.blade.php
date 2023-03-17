@@ -1,16 +1,16 @@
 @extends('home') 
+
 @section('content')
 <script src="https:://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"></script>
 
+
 <h1>Creacion de juicios</h1>
 
-<form action="{{url('juicios')}}"class="needs-validation" method="post" id="form-juicios">
-    @csrf
-    
-        @include('juicios.forminijuicio')
-  
-      
-        
+<form action="{{url('juicios')}}" class="kt-form kt-form--label-right" method="post" id="form-juicios">
+    <div class="kt-portlet__body">
+    @csrf    
+        @include('juicios.forminijuicio')     
+    </div>           
 </form>
 
 
@@ -28,29 +28,41 @@
 
 
 <script>
-    $()
-
-    $('#form-juicios').submit(function(e) {
-        e.preventDefault();
-        var nombre = $('#nombre'),val();
-        var _token = $("input[name_token]").val();
-
+$(function() {
+    $("#juicio_sala_seleccionada").change(function() {
+        
+        let data = {"valor":$(this).val()};
+        
         $.ajax({
-            url:"{{ route('eje.control') }}",
-            type: "POST",
-            data: $("#form-juicios").serialize(),
-            dataType: 'json',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            
+            
+            url: url+"juicios/data",
+            dataType : 'json',
+            type: 'POST',
+            data:  data ,
+            success: function(abogadesdesalas) {
+                if (abogadesdesalas.success == true) {
 
-
-            success:function(response){
-                if (response) {
-                    $('#formulario_pru')[0].reset();
-                    toastr.success('El registro se ingreso','Nuevo registro',{timeOut:3000});
+                    const abogadoss=[];
+                    abogadesdesalas.abogados.forEach(element => {
+                        abogadoss.push(element.nombre);                                               
+                   });
+                   
+                   $("#abogados_asignados").val(abogadoss.join(","));
+                        
+                    
                     
                 }
-            }
-        });
+             
+
+                 
+            },
+        })
+        
     });
+});
+
 
 </script>
 
