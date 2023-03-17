@@ -13,7 +13,7 @@ class salas extends Model
 
     public function abogados(){
         // return $this->belongsToMany('App\Models\abogado')->withPivot('id_sala');
-        return $this->belongsToMany(Abogado::class, 'abogado_salas', 'id_sala', 'id_abogado');
+        return $this->belongsToMany(abogado::class, 'abogado_salas', 'id_sala', 'id_abogado');
 
     }
 }
