@@ -156,7 +156,7 @@
           <option value="Dirección General para la Protección de Personas Defensoras de Derechos Humanos y Periodistas">Dirección General para la Protección de Personas Defensoras de Derechos Humanos y Periodistas</option>
           <option value="Ecoblue de México, S.A. de C.V.">Ecoblue de México, S.A. de C.V.</option>
           <option value="Entonces Registro Federal de Electores">Entonces Registro Federal de Electores</option>
-          <option value="GUAIDA, S A DE C.V. Y/O"></option>
+          <option value="GUAIDA, S A DE C.V. Y/O">GUAIDA, S A DE C.V. Y/O</option>
           <option value="INM">INM</option>
           <option value="Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado">Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado</option>
           <option value="Instituto Estatal de Educación Pública">Instituto Estatal de Educación Pública</option>
@@ -347,8 +347,8 @@
       <div class="col-md-3 mb-2 input-wrapper">
         <label for="validationDefault05">Salario Mensual</label>
         
-        <input type="number" class="form-control input_dinero" name="juicion_salmensual" id="juicion_salmensual" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="1000,000.00">
-           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi    bi-currency-dollar input-icon" viewBox="0 0 16 16">
+        <input type="text" class="form-control input_dinero" name="juicion_salmensual" id="juicion_salmensual"   data-type="currency" placeholder="1000,000.00">
+           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar input-icon" viewBox="0 0 16 16">
                   <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
           </svg>
       </div>
@@ -403,20 +403,7 @@
 <script>
 
 
-$("#idioma").change(actualizarMensaje);
 
-// Función para actualizar el mensaje de bienvenida
-function actualizarMensaje() {
-  // Obtener el valor del input principal
-  const idioma = $("#idioma").val();
-  
-  // Actualizar el valor del input dependiente
-  if (idioma === "es") {
-    $("#mensaje").val("¡Bienvenido!");
-  } else if (idioma === "en") {
-    $("#mensaje").val("Welcome!");
-  }
-}
 
 
 
@@ -426,7 +413,7 @@ function actualizarMensaje() {
       
 
 
-      $("input[data-type='currency']").on({keyup: function() {formatCurrency($(this));},
+      $("#juicion_salmensual").on({keyup: function() {formatCurrency($(this));},
     blur: function() { 
       formatCurrency($(this), "blur");
     }

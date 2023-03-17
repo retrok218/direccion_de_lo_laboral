@@ -115,13 +115,5 @@ class Juicios2Controller extends Controller
      $abogadesdesalas = array('success' => true, 'abogados'=> $abogados);
 
      return $abogadesdesalas;
-
-
-
-       
-
-     
-             
-   
     }
 }
