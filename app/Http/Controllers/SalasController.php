@@ -16,7 +16,7 @@ class SalasController extends Controller
     {
         $salasconabogados= salas::with('abogados')->get(); 
         
-       //dd($salasconabogados);
+      
         
         return view('salas.index',compact('salasconabogados'));
     }
@@ -28,13 +28,10 @@ class SalasController extends Controller
      */
     public function create()
     {
-        //
+        
         $abogados=abogado::all();
 
-        return view('salas.create')->with([            
-            'abogados'=> $abogados
-         ]);
-
+        return view('salas.create')->with(['abogados'=> $abogados]);
     }
 
     /**
@@ -60,7 +57,7 @@ class SalasController extends Controller
 
         $sala->abogados()->attach($abogadosSeleccionados);
         return redirect()->route('sala.index');
-       // return response()->json($datossala);
+       
     }
 
     /**
