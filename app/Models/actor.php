@@ -12,7 +12,7 @@ class actor extends Model
     use HasFactory;
 
     public function juicios(){
-        return $this->hasMany(juicio::class);
+        return $this->belongsTo(juicio::class);
     }
 
     

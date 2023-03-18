@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\abogado;
 use App\Models\salas;
 use App\Models\Juicios2;
+use App\Models\actor;
 use Illuminate\Http\Request;
 
 class Juicios2Controller extends Controller
@@ -53,11 +54,28 @@ class Juicios2Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $juicio = new Juicios2;
+        $juicio->noti_demanda = $request->input('notidemanda');
+        $juicio->presentacion_de_demanda= $request->input('presentacion_de_demanda');
+        $juicio->expediente= $request->input('expediente');
+        $juicio->año_juicio= $request->input('año_juicio');
+        $juicio->clasificacion_año= $request->input('clasificacion_año');
+        $juicio->clasificacion_exp= $request->input('clasificacion_exp');
+        $juicio->tipo= $request->input('tipo');
+        $juicio->accion= $request->input('accion');
 
-        $juicio = request()->except('_token');
         dd($juicio);
-        Juicios2::insert($juicio);
+        $juicio->save();
+        
+
+    
+
+        // return redirect()->route('juicios.index');
+
+        
+       // dd($juicio);
+       // Juicios2::insert($juicio);
         
     }
 

@@ -17,13 +17,13 @@
 
       <div class="col-md-3 mb-3">
         <label for="validationDefault01">Notificacion de Demanda</label>
-        <input type="date" class="form-control" id="noti-dem" value="Mark"  name="noti-dem">
+        <input type="date" class="form-control" id="notidemanda" value="Mark"  name="notidemanda">
       </div>
 
       <div class="col-md-3 mb-3">
         <label for="validationDefault02">Presentacion de Demanda</label>
 
-        <input type="date" class="form-control" id="presentacion_demanda" name="presentacion_demanda" value="Otto" >
+        <input type="date" class="form-control" id="presentacion_de_demanda" name="presentacion_de_demanda" value="Otto" >
       </div>
     </div>
 
@@ -41,12 +41,12 @@
      
       <div class="col-md-3 mb-3">
         <label for="validationDefault05">Expediente</label>
-        <input type="text" class="form-control" id="juicio_expediente" name="juicio_expediente" placeholder="Ingrese el Numero de Expediente" >
+        <input type="text" class="form-control" id="expediente" name="expediente" placeholder="Ingrese el Numero de Expediente" >
       </div>
   
       <div class="col-md-2 mb-3">
-          <label for="validationDefault05">AÑO</label>
-            <select class="custom-select" name="juicio_ano" id="juicio_ano">
+          <label for="validationDefault05">Año</label>
+            <select class="custom-select" name="año_juicio" id="año_juicio">
                 @foreach($añosseleccionables as $año)
                 <option value="{{$año}}">{{$año}}</option>               
                 @endforeach
@@ -54,8 +54,8 @@
          
       </div>
       <div class="col-md-2 mb-3">
-        <label for="validationDefault05">CLASIFICACIÓN/AÑO</label>
-            <select class="custom-select" name="juicio_clas_ano" id="juicio_clas_ano">               
+        <label for="validationDefault05">Clasificacion/Año</label>
+            <select class="custom-select" name="clasificacion_año" id="clasificacion_año">               
                 @foreach($añosseleccionables as $año)
                     <option value="{{$año}}">{{$año}}</option>               
                 @endforeach
@@ -65,7 +65,7 @@
 
       <div class="col-md-2 mb-3">
           <label for="validationDefault05">Clasificacion/EXP</label>
-          <input type="number" class="form-control" id="juicio_exp_ano" name="juicio_exp_ano" placeholder="---" >
+          <input type="number" class="form-control" id="clasificacion_exp" name="clasificacion_exp" placeholder="----" >
       </div>
   
     </div>
@@ -73,7 +73,7 @@
     <div class="form-row">    
       <div class="col-md-3 mb-3">
         <label for="validationDefault03">Tipo</label>      
-        <select class="custom-select" id="juicio_tipo" name="juicio_tipo" >
+        <select class="custom-select" id="tipo" name="tipo" >
           <option selected disabled value="">Tipo</option>
           <option>CESE</option>    
           <option>COLECTIVO</option> 
@@ -84,7 +84,7 @@
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationDefault03">Accion</label>      
-        <select class="custom-select" id="juicio_accion" name="juicio_accion" >
+        <select class="custom-select" id="accion" name="accion" >
           <option selected disabled value="">Selecicona la Accion</option>
           <option>Reinstalación</option>
           <option>Indemnización </option>
@@ -103,12 +103,12 @@
     <div class="form-row">
       <div class="col-md-3 mb-3">
         <label for="validationDefault05">Nombre Completo</label>
-        <input type="text" class="form-control" id="juicion_nombre" name="juicion_nombre" placeholder="Ingresa El Nombre Completo" >
+        <input type="text" class="form-control" id="nombre_completo" name="nombre_completo" placeholder="Ingresa El Nombre Completo" >
       </div>
   
       <div class="col-md-3 mb-3">
         <label for="validationDefault03">Adscripcion</label>      
-        <select class="custom-select" id="juicio_adscripcion" name="juicio_adscripcion" >
+        <select class="custom-select" id="adscripcion" name="adscripcion" >
           <option selected disabled value="">Selecicona la Adscripcion</option>
           <option value="Archivo General de la Nación">Archivo General de la Nación</option>
           <option value="Centro de Producción de Programas Informativos y Especiales">Centro de Producción de Programas Informativos y Especiales</option>
@@ -209,7 +209,7 @@
   
       <div class="col-md-3 mb-3">
       <label for="validationDefault03">UR</label>      
-        <select class="custom-select" id="juicio_ur" name="juicio_ur" >
+        <select class="custom-select" id="ur" name="ur" >
           <option selected disabled value="">Selecicona el UR</option>
           <option value="100">100</option>
           <option value="111">111</option>
@@ -272,7 +272,7 @@
   
       <div class="col-md-3 mb-3">
       <label for="validationDefault03">Denominacion</label>      
-        <select class="custom-select" id="juicio_denominacion" name="juicio_denominacion">
+        <select class="custom-select" id="denominacion" name="denominacion">
           <option selected disabled value="">Selecicona la Denominacion</option>
           <option value="Base">Base</option>
           <option value="Confianza">Confianza</option>
@@ -290,7 +290,7 @@
       <div class="col-md-3 mb-3">
         
       <label for="validationDefault03">Puesto</label>  
-      <input type="text" list="puestoitem" class="form-control"  placeholder="Ingresa El Puesto" id="juicio_puesto" name="juicio_puesto">  
+      <input type="text" list="puestoitem" class="form-control"  placeholder="Ingresa El Puesto" id="puesto" name="puesto">  
 
         <datalist class="custom-datalist" id="puestoitem" >
           <option selected disabled value="">Selecicona El Puesto</option>
@@ -334,7 +334,7 @@
       </div>
       <div class="col-md-2 mb-2">
         <label for="validationDefault05">Nivel</label>
-        <input type="text" class="form-control" id="juicio_nivel" list="listnivel" placeholder="Ingresa el Nivel" name="juicio_nivel">
+        <input type="text" class="form-control" id="nivel" list="listnivel" placeholder="Ingresa el Nivel" name="nivel">
         <datalist id="listnivel">
           <option value="Enlace">Enlace</option>
           <option value="K11">K11</option>
@@ -347,7 +347,7 @@
       <div class="col-md-3 mb-2 input-wrapper">
         <label for="validationDefault05">Salario Mensual</label>
         
-        <input type="text" class="form-control input_dinero" name="juicion_salmensual" id="juicion_salmensual"   data-type="currency" placeholder="1000,000.00">
+        <input type="text" class="form-control input_dinero" name="salarioMen" id="salarioMen"   data-type="currency" placeholder="1000,000.00">
            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar input-icon" viewBox="0 0 16 16">
                   <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
           </svg>

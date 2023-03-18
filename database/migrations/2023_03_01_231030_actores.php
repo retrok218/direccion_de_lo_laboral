@@ -15,6 +15,7 @@ class Actores extends Migration
     {
         Schema::create('actores',function(Blueprint $table){
             $table->bigIncrements('id_actores');
+            $table->unsignedBigInteger('juicio_id');
             $table->string('nombre_completo',50)->nullable();
             $table->string('adscripcion')->nullable();
             $table->string('ur')->nullable();            

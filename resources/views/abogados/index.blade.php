@@ -29,13 +29,21 @@
                     <td>{{$abogado->apellidoP}}</td>
                     <td>{{$abogado->apellidoM}}</td>
                     <td>
-                        <a href="{{url('/abogado/'.$abogado->id_abogado.'/edit' ) }}"> Editar | </a>
+                        <button type="button" class="btn btn-primary btn-xs dt-edit" style="margin-right:16px;">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs dt-delete">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        
+
+                        <a class="btn btn-outline-success" href="{{url('/abogado/'.$abogado->id_abogado.'/edit' ) }}">Editar</a>
                        
 
                         <form action="{{ url('abogado/'.$abogado->id_abogado ) }}" method="POST">
                             @csrf
                             {{method_field('DELETE')}}
-                            <input type="submit" onclick="return confirm('¿Quieres borrar el registro?')" value="Borrar">
+                            <input class="btn btn-outline-danger" type="submit" onclick="return confirm('¿Quieres borrar el registro?')" value="Borrar">
                         </form>
                     </td>
                                        
