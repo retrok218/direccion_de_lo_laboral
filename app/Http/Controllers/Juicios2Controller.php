@@ -64,14 +64,32 @@ class Juicios2Controller extends Controller
         $juicio->clasificacion_exp= $request->input('clasificacion_exp');
         $juicio->tipo= $request->input('tipo');
         $juicio->accion= $request->input('accion');
-
-        dd($juicio);
+        //dd($juicio);
         $juicio->save();
-        
 
-    
 
-        // return redirect()->route('juicios.index');
+        $actor = new actor;
+        $actor->juicio_id = $juicio->id_juicio;
+        $actor->nombre_completo = $request->input('nombre_completo');
+        $actor->adscripcion  = $request->input('adscripcion');
+        $actor->ur  = $request->input('ur');
+        $actor->denominacion  = $request->input('denominacion');
+        $actor->puesto  = $request->input('puesto');
+        $actor->nivel  = $request->input('nivel');
+        $actor->salarioMen  = $request->input('salarioMen');
+        $actor->inicio_rellab  = $request->input('juicio_in_rellaboral');
+        $actor->terminacion_rellab  = $request->input('juicio_term_rellaboral');
+        $actor->exp_personal_rh_solicitud  = $request->input('Solicitud');
+        $actor->exp_personal_rh_devolucion  = $request->input('Devolucion');
+        $actor->fojas  = $request->input('Fojas');
+        $actor->  = $request->input();
+        $actor->  = $request->input();
+
+
+
+    dd($actor);
+
+         return redirect()->route('juicios.index');
 
         
        // dd($juicio);

@@ -287,11 +287,9 @@
     </div>
   
     <div class="form-row">
-      <div class="col-md-3 mb-3">
-        
+      <div class="col-md-3 mb-3">        
       <label for="validationDefault03">Puesto</label>  
       <input type="text" list="puestoitem" class="form-control"  placeholder="Ingresa El Puesto" id="puesto" name="puesto">  
-
         <datalist class="custom-datalist" id="puestoitem" >
           <option selected disabled value="">Selecicona El Puesto</option>
           <option value="Abogado penitenciario">Abogado penitenciario </option>

@@ -17,7 +17,7 @@ class CreateJuiciosTable extends Migration
             $table->bigIncrements('id_juicio');
             $table->date('noti_demanda')->nullable();
             $table->date('presentacion_de_demanda')->nullable();            
-            $table->integer('expediente')->nullable() ;
+            $table->string('expediente',50)->nullable() ;
             $table->year('año_juicio') ->nullable();
             $table->year('clasificacion_año') ->nullable();
             $table->integer('clasificacion_exp')->nullable() ;
