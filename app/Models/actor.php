@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class actor extends Model
 {
-    protected $table = 'acotres';
+    protected $table = 'actores';
     protected $primaryKey = 'id_actores';
+    public $timestamps = false;
     use HasFactory;
 
     public function juicios(){
-        return $this->belongsTo(juicio::class);
+        return $this->belongsTo(juicio::class,'id_actores');
     }
 
     

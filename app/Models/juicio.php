@@ -10,11 +10,14 @@ class juicio extends Model
     protected $table = 'juicios';
     protected $primaryKey = 'id_juicio';
     use HasFactory;
+
     public function abogado(){
         return $this->belongsToMany('App\Models\abogado');
     }
 
     public function actor(){
-        return $this->belongsTo(actor::class);
+        return $this->hasMany(actor::class, 'id_actores' );
     }
+
+    
 }

@@ -22,19 +22,19 @@ class Actores extends Migration
             $table->string('denominacion')->nullable();
             $table->string('puesto')->nullable();
             $table->string('nivel')->nullable();            
-            $table->integer('salarioMen')->nullable();
+            $table->string('salarioMen' , 150)->nullable();
             $table->date('inicio_rellab')->nullable();
-            $table->date('terminacion_rellab')->nullable();
-
+            $table->date('terminacion_rellab')->nullable();            
             $table->date('exp_personal_rh_solicitud')->nullable();
             $table->date('exp_personal_rh_devolucion')->nullable();
             $table->string('fojas')->nullable();
             
             $table->date('exp_adscripcion_solicitud')->nullable();
             $table->date('exp_adscripcion_devolucion')->nullable();
-            $table->string('audiencia')->nullable();
+
+            $table->date('audiencia')->nullable();
             $table->string('descripcion')->nullable();
-            $table->string('cierredeinstruccion',200)->nullable();
+            $table->date('cierredeinstruccion',200)->nullable();
 
 
 

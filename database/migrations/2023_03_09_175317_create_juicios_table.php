@@ -23,6 +23,7 @@ class CreateJuiciosTable extends Migration
             $table->integer('clasificacion_exp')->nullable() ;
             $table->string('tipo',50)->nullable() ;
             $table->string('accion',50)->nullable() ;
+            $table->string('etapa',30)->nullable();
             //$table->string('comentario',500)->nullable();
             $table->timestamps();
 
@@ -34,28 +35,19 @@ class CreateJuiciosTable extends Migration
             $table->unsignedBigInteger('id_actores')->nullable(); 
             $table->foreign('id_actores')->references('id_actores')->on('actores');  
 
-            $table->unsignedBigInteger('id_etapa')->nullable(); 
-            $table->foreign('id_etapa')->references('id_etapa')->on('etapa');  
+          
 
             $table->unsignedBigInteger('id_laudo')->nullable(); 
             $table->foreign('id_laudo')->references('id_laudo')->on('laudo'); 
 
             $table->unsignedBigInteger('id_amparo')->nullable(); 
-            $table->foreign('id_amparo')->references('id_amparo')->on('amparo');  
-
-            $table->unsignedBigInteger('id_etapaejecucion')->nullable();
-            $table->foreign('id_etapaejecucion')->references('id_etapaejecucion')->on('etapaejecucion');
+            $table->foreign('id_amparo')->references('id_amparo')->on('amparo');             
 
             $table->unsignedBigInteger('id_concluido')->nullable();
             $table->foreign('id_concluido')->references('id_concluido')->on('concluido');
 
             $table->unsignedBigInteger('id_sala')->nullable() ;
             $table->foreign('id_sala')->references('id_sala')->on('salas'); 
-
-
-
-
-
 
         });
     }

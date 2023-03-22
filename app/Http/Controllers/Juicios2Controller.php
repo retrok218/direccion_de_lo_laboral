@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\abogado;
 use App\Models\salas;
-use App\Models\Juicios2;
+use App\Models\Juicios2;  //a eliminar
 use App\Models\actor;
+use App\Models\juicio;
 use Illuminate\Http\Request;
 
 class Juicios2Controller extends Controller
@@ -16,6 +17,9 @@ class Juicios2Controller extends Controller
      */
     public function index()
     {
+        $juicio_actor= juicio::with('actor')->get();
+      
+        dd($juicio_actor);
         return view('juicios.index');
     }
 
@@ -53,9 +57,8 @@ class Juicios2Controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
-        $juicio = new Juicios2;
+    {        
+        $juicio = new juicio;
         $juicio->noti_demanda = $request->input('notidemanda');
         $juicio->presentacion_de_demanda= $request->input('presentacion_de_demanda');
         $juicio->expediente= $request->input('expediente');
@@ -66,7 +69,6 @@ class Juicios2Controller extends Controller
         $juicio->accion= $request->input('accion');
         //dd($juicio);
         $juicio->save();
-
 
         $actor = new actor;
         $actor->juicio_id = $juicio->id_juicio;
@@ -82,18 +84,14 @@ class Juicios2Controller extends Controller
         $actor->exp_personal_rh_solicitud  = $request->input('Solicitud');
         $actor->exp_personal_rh_devolucion  = $request->input('Devolucion');
         $actor->fojas  = $request->input('Fojas');
-        $actor->  = $request->input();
-        $actor->  = $request->input();
+        $actor->exp_adscripcion_solicitud = $request->input('exp_adscripcion_solicitud');
+        $actor->exp_adscripcion_devolucion = $request->input('exp_adscripcion_devolucion');
+        $actor->audiencia = $request->input('audiencia');
+        $actor->descripcion = $request->input('addescripcion');
+        $actor->cierredeinstruccion = $request->input('Cierre_de_Instruccion');
+        $actor->save();
 
-
-
-    dd($actor);
-
-         return redirect()->route('juicios.index');
-
-        
-       // dd($juicio);
-       // Juicios2::insert($juicio);
+        return redirect()->route('juicios.index');      
         
     }
 
