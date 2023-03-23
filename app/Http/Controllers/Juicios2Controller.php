@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use Yajra\DataTables\DataTables;
 use App\Models\abogado;
 use App\Models\salas;
 use App\Models\Juicios2;  //a eliminar
 use App\Models\actor;
 use App\Models\juicio;
 use Illuminate\Http\Request;
+use Illuminate\Session\SessionManager;
+
+
 
 class Juicios2Controller extends Controller
 {
@@ -18,9 +22,16 @@ class Juicios2Controller extends Controller
     public function index()
     {
         $juicio_actor= juicio::with('actor')->get();
-      
-        dd($juicio_actor);
-        return view('juicios.index');
+        //   $r=[];
+        //  foreach ($juicio_actor as $jactor) {
+        //     $r[]=$jactor->noti_demanda;
+        //     foreach($jactor->actor as $datoactor){
+        //         $r[]= $datoactor->nombre_completo;
+        //     }          
+        // }       
+       return view('juicios.index')->with([
+        'juicio_actor' => $juicio_actor
+       ]);
     }
 
     /**
@@ -56,7 +67,7 @@ class Juicios2Controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,SessionManager $sessionManager)
     {        
         $juicio = new juicio;
         $juicio->noti_demanda = $request->input('notidemanda');
@@ -90,6 +101,8 @@ class Juicios2Controller extends Controller
         $actor->descripcion = $request->input('addescripcion');
         $actor->cierredeinstruccion = $request->input('Cierre_de_Instruccion');
         $actor->save();
+
+        $sessionManager->flash('mensaje', 'Este es el mensaje');
 
         return redirect()->route('juicios.index');      
         
@@ -149,5 +162,10 @@ class Juicios2Controller extends Controller
      $abogadesdesalas = array('success' => true, 'abogados'=> $abogados);
 
      return $abogadesdesalas;
+    }
+
+    public function juiciosdatosajax(){
+        $juicio_actor= juicio::with('actor')->get();
+        return Datatables::of($juicio_actor)->toJson();
     }
 }

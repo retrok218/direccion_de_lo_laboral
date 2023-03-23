@@ -6,6 +6,11 @@
 
 require("./bootstrap");
 
+
+
+
+
+
 window.Vue = require("vue");
 
 /**
@@ -33,3 +38,6 @@ Vue.component(
 const app = new Vue({
     el: "#app"
 });
+
+//confirmar eliminar
+window.Swal = require('sweetalert2')

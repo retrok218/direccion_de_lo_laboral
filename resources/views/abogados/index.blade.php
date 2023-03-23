@@ -1,16 +1,14 @@
 @extends('home') 
 @section('content')
 
-@if(Session::has('mensaje'))
-{{Session::get('mesaje') }}
-@endif
+
 
 
 <div class="botonargegar">    
     <a href="{{URL::asset('abogado/create')}}" class="btn-agregar-abogado button-pulse"> <i class="flaticon-user-add"> </i> Agregar Abogado</a>
 </div>
 
-    <table id="example" class="table table-striped table-bordered" style="width:100%">
+    <table id="" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>Id-Abogado</th>
@@ -59,4 +57,5 @@
 
 
 @include('layouts/scripts/scripts_dttb')
+
 @endsection

@@ -1,4 +1,6 @@
 <div class="form-row">
+ 
+
     <div class="col-md-3 mb-3">
         <label for="abogados_asignados">Abogados Asignados a la Sala</label>
         
@@ -421,7 +423,7 @@
   </div>
   <button class="btn btn-primary" type="submit">Crear Juicio</button>
   
-
+  @include('layouts/scripts/scripts_dttb')
   
 <script>
 
@@ -520,4 +522,3 @@ function formatCurrency(input, blur) {
 
     </script>
 
-@include('layouts/scripts/scripts_dttb')

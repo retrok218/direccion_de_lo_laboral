@@ -1,7 +1,6 @@
 <!-- begin:: Footer -->
 
 
-<link href="{{ URL::asset('assets/css/demo1/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 
  <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop kt-footer--fixed" id="kt_footer">
      <div class="kt-container  kt-container--fluid ">

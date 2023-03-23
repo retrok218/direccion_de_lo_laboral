@@ -36,6 +36,7 @@ Route::resource('abogado', AbogadoController::class);
 
 Route::resource('juicios', Juicios2Controller::class);
 Route::post('juicios/data', [Juicios2Controller::class,'juicios_datos'])->name('jucios.data');
+Route::get('data/juicios',[Juicios2Controller::class,'juiciosdatosajax']);
 
 Route::resource('sala', SalasController::class);
 

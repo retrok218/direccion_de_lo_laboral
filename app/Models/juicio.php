@@ -16,7 +16,8 @@ class juicio extends Model
     }
 
     public function actor(){
-        return $this->hasMany(actor::class, 'id_actores' );
+        return $this->hasMany(actor::class, 'juicio_id' );
+        
     }
 
     
