@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
 var table = $('#example').DataTable({
     "pageLength": 6,   
     "lengthChange": true,
@@ -96,5 +95,8 @@ var table = $('#example').DataTable({
         {data:'actor.0.nombre_completo', name: 'actor.nombre_completo'},
         {data: 'actor.0.puesto', name: 'actor.puesto'}
     ],
+
+
     });
 });
+

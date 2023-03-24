@@ -41,3 +41,25 @@ const app = new Vue({
 
 //confirmar eliminar
 window.Swal = require('sweetalert2')
+
+
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
+
+// Agrega los iconos que deseas utilizar en Swal a la biblioteca de Font Awesome
+library.add(faCheck, faTimes);
+
+// Configura Swal para utilizar los iconos de Font Awesome
+Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success mx-2',
+        cancelButton: 'btn btn-danger mx-2',
+    },
+    buttonsStyling: false,
+    iconHtml: '<i class="fa-lg"></i>',
+    showCloseButton: true,
+});
+
+// Actualiza el DOM para mostrar los iconos de Font Awesome
+dom.watch();
