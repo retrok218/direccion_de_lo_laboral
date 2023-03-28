@@ -4,7 +4,7 @@ var table = $('#example').DataTable({
     "pageLength": 6,   
     "lengthChange": true,
     "searching": true,
-    "ordering": false,
+    
     "info": true,
     // responsive: true,
     "autoWidth": false,      
@@ -86,7 +86,12 @@ var table = $('#example').DataTable({
     },
 
     columns:[
-        {data:'id_juicio', name:'id_juicio'},
+        
+        {"mRender": function(data, type, row){
+            var ligajuicio=row.id_juicio;                
+             return '<button class="button2"> <span> <a href="'+url+'desgloce_juicio/'+ ligajuicio +'" target="_blank" title="Ir en busca del TKT en OTRS" ;>'+row.id_juicio+'</a> <span> </button>';
+                                                }
+        },
         {data:'noti_demanda', name:'noti_demanda'},
         {data:'presentacion_de_demanda', name:'presentacion_de_demanda'},
         {data:'expediente',name:'expediente'},

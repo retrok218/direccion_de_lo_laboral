@@ -35,6 +35,6 @@
 <link rel="stylesheet" href="{{ asset('assets/css/card.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}" />
 <!--CSS para monitoreo de Tikets -->
-<link rel="stylesheet" href="{{ asset('assets\css\demo1\estilos-gestortkts.css') }}" />
+{{-- <link rel="stylesheet" href="{{ asset('assets\css\demo1\estilos-gestortkts.css') }}" /> --}}
 
 

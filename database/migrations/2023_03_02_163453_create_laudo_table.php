@@ -15,6 +15,7 @@ class CreateLaudoTable extends Migration
     {
         Schema::create('laudo', function (Blueprint $table) {
             $table->bigIncrements('id_laudo');
+            $table->unsignedBigInteger('laudo_id_juicio');
             $table->date('lau_fecha')->nullable();
             $table->string('sentido')->nullable();
             $table->string('reinstalacion')->nullable();

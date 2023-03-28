@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConcluidoTable extends Migration
+class Observaciones extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateConcluidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('concluido', function (Blueprint $table) {
-            $table->bigIncrements('id_concluido');
-            $table->unsignedBigInteger('id_segobconclusion_juicio');
-            $table->string('mesdegobconclusion',150)->nullable();
-            $table->date('fecha_conclusion')->nullable();
+        Schema::create('observaciones',function(Blueprint $table){
+            $table->bigIncrements('id_observaciones');
+            $table->unsignedBigInteger('id_observaciones_juicio');
+            $table->string('comentario',800)->nullable();
             $table->timestamps();
+
         });
     }
 
@@ -29,6 +29,7 @@ class CreateConcluidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('concluido');
+        //
+        Schema::dropIfExists('observaciones');
     }
 }

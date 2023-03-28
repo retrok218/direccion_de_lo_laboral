@@ -20,7 +20,7 @@ Swal.fire({
   color: '#716add',
   border: '3px solid #a5dc86',
   timerProgressBar: true,
-  timer: 2000,
+  //timer: 2000,
   showConfirmButton: false,
    background: '#fff ',
   backdrop: `

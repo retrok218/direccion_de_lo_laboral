@@ -15,6 +15,7 @@ class CreateAmparoTable extends Migration
     {
         Schema::create('amparo', function (Blueprint $table) {
             $table->bigIncrements('id_amparo');
+            $table->unsignedBigInteger('id_amparo_juicio');
             $table->string('parte',50)->nullable();
             $table->string('dir_indir',25)->nullable();
             $table->string('ad_dt',10)->nullable();

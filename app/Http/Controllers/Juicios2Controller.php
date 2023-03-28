@@ -7,9 +7,14 @@ use App\Models\salas;
 use App\Models\Juicios2;  //a eliminar
 use App\Models\actor;
 use App\Models\juicio;
+use App\Models\amparo;
+use App\Models\etapaejecucion;
+use App\Models\concluido;
+use App\Models\User;
+use App\Models\laudo;
 use Illuminate\Http\Request;
 use Illuminate\Session\SessionManager;
-
+use Illuminate\Support\Facades\DB;
 
 
 class Juicios2Controller extends Controller
@@ -102,6 +107,29 @@ class Juicios2Controller extends Controller
         $actor->cierredeinstruccion = $request->input('Cierre_de_Instruccion');
         $actor->save();
 
+        $laudo = new laudo;
+        $laudo-> laudo_id_juicio = $juicio->id_juicio;
+        $laudo->save();
+
+        $amparo = new amparo;
+        $amparo-> id_amparo_juicio =  $juicio->id_juicio;
+        $amparo->save(); 
+
+        $etapajuicios =new etapaejecucion;
+        $etapajuicios->id_etapaejecucion_juicio = $juicio->id_juicio;
+        $etapajuicios->save();
+
+
+        $concluido = new concluido;
+        $concluido->id_segobconclusion_juicio = $juicio->id_juicio;
+        $concluido->created_at = now();
+        $concluido->updated_at = now();
+        $concluido->save();
+
+
+
+
+        //mensaje de confirmacion guardado 
         $sessionManager->flash('mensaje', 'Este es el mensaje');
 
         return redirect()->route('juicios.index');      
@@ -167,5 +195,26 @@ class Juicios2Controller extends Controller
     public function juiciosdatosajax(){
         $juicio_actor= juicio::with('actor')->get();
         return Datatables::of($juicio_actor)->toJson();
+    }
+
+    public function desglocejuicio($id){
+        
+        $datosjuicio = juicio::where('id_juicio',$id)->with('actor')->firstOrFail();     //selecciona todos los datos tanto de juicio como de actor    
+
+        $juicios2 = DB::table('juicios')
+                  ->select('juicios.id_juicio', 'juicios.noti_demanda', 'actores.nombre_completo')
+                  ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+                  ->where('juicios.id_juicio', $id)
+                  ->get(); 
+
+        $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion')
+        ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        ->where('juicios.id_juicio', $id)
+        ->get();
+
+       
+//dd( $juicio3);
+         
+        return view('juicios.desgloce_juicio')->with(['juicio3'=>$juicio3]);
     }
 }

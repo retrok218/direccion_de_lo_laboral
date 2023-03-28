@@ -14,7 +14,8 @@ class CreateEtapaejecucionTable extends Migration
     public function up()
     {
         Schema::create('etapaejecucion', function (Blueprint $table) {
-            $table->bigIncrements('id_etapaejecucion');            
+            $table->bigIncrements('id_etapaejecucion');
+            $table->unsignedBigInteger('id_etapaejecucion_juicio');            
             $table->date('fechacumpreinstalacion')->nullable();
             $table->date('notf2')->nullable();
             $table->string('r_h',50)->nullable();
