@@ -84,6 +84,7 @@ class Juicios2Controller extends Controller
         $juicio->clasificacion_exp= $request->input('clasificacion_exp');
         $juicio->tipo= $request->input('tipo');
         $juicio->accion= $request->input('accion');
+        $juicio->id_sala=$request->input('juicio_sala_seleccionada');        
         //dd($juicio);
         $juicio->save();
 
@@ -200,7 +201,12 @@ class Juicios2Controller extends Controller
 
     public function desglocejuicio($id){
         
-        $datosjuicio = juicio::where('id_juicio',$id)->with('actor')->firstOrFail();     //selecciona todos los datos tanto de juicio como de actor    
+        $datosjuicio = juicio:: 
+        where('id_juicio',$id)->with('actor','sala')->firstOrFail();     //selecciona todos los datos tanto de juicio como de actor    
+dd($datosjuicio->sala);
+
+
+
 
         $juicios2 = DB::table('juicios')
                   ->select('juicios.id_juicio', 'juicios.noti_demanda', 'actores.nombre_completo')

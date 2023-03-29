@@ -16,4 +16,10 @@ class salas extends Model
         return $this->belongsToMany(abogado::class, 'abogado_salas', 'id_sala', 'id_abogado');
 
     }
+
+    public function juicios(){
+        return $this->belongsToMany(abogado::class, 'abogado_salas', 'id_sala', 'id_abogado');
+    }
+
+
 }

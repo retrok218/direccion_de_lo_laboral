@@ -40,6 +40,13 @@ class juicio extends Model
         
     }
 
+    public function sala(){
+        return $this->hasMany(salas::class, 'id_sala','id_sala' );
+        
+    }
+    
+
+
 
 
 
