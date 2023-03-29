@@ -34,6 +34,7 @@ class Juicios2Controller extends Controller
         //         $r[]= $datoactor->nombre_completo;
         //     }          
         // }       
+        //dd($juicio_actor);
        return view('juicios.index')->with([
         'juicio_actor' => $juicio_actor
        ]);
@@ -208,13 +209,13 @@ class Juicios2Controller extends Controller
                   ->get(); 
 
         $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion')
+        
         ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
         ->where('juicios.id_juicio', $id)
-        ->get();
+        ->get('juicios.id_juicio');
 
-       
-//dd( $juicio3);
+//var_dump($juicio3);
          
-        return view('juicios.desgloce_juicio')->with(['juicio3'=>$juicio3]);
+        return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3]);
     }
 }

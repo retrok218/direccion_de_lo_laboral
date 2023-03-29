@@ -50343,3 +50343,17 @@ tr.shown td.details-control {
     
 }
   
+.kt-badge.kt-badge--pasado {
+    color: #fff;
+    background: #fd397a
+}
+
+.kt-badge.kt-badge--outline.kt-badge--pasado {
+    background: 0 0;
+    color: #9d8bbb;
+    border: 1px solid #fd397a
+}
+
+.kt-badge.kt-badge--outline.kt-badge--pasado.kt-badge--outline-2x {
+    border: 2px solid #9d8bbb
+}
