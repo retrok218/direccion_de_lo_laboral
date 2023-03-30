@@ -45,7 +45,7 @@ class juicio extends Model
         
     }
     
-
+    
 
 
 

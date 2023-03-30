@@ -201,9 +201,13 @@ class Juicios2Controller extends Controller
 
     public function desglocejuicio($id){
         
-        $datosjuicio = juicio:: 
-        where('id_juicio',$id)->with('actor','sala')->firstOrFail();     //selecciona todos los datos tanto de juicio como de actor    
-dd($datosjuicio->sala);
+        $datoseje = juicio::all();
+
+        $datosjuicio = juicio::where('id_juicio',$id)->with('actor','sala.abogados')->firstOrFail();     
+        $nombres_abogados = $datosjuicio->sala;
+        //selecciona todos los datos tanto de juicio como de actor    
+// dd($datosjuicio->sala[0]->abogados);
+dd($nombres_abogados);
 
 
 
