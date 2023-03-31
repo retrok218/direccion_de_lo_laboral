@@ -39,8 +39,10 @@ Swal.fire({
 @endif
 {{-- <script src="public/js/datatable.js"></script> --}}
 
-<div class="botonargegar">        
-    <a href="{{URL::asset('juicios/create')}}" class="btn-agregar-abogado button-pulse"> + Agregar Juicio</a>
+<div class="botonargegar">    
+        
+    <a href="{{URL::asset('juicios/create')}}" class="btn-agregar-abogado button-pulse"> +     <span>Agregar Juicio</span> </a>
+
 </div>
 
 {{-- 

@@ -200,15 +200,12 @@ class Juicios2Controller extends Controller
     }
 
     public function desglocejuicio($id){
-        
-        $datoseje = juicio::all();
+        //se obtienen los nombres de los abogados dependiendo de la seleccion del id se realiza la consulta en el modelo
+        $j=juicio::find($id);
+        $nombreabogados = $j->obteniendonombresdearea($id);
 
-        $datosjuicio = juicio::where('id_juicio',$id)->with('actor','sala.abogados')->firstOrFail();     
-        $nombres_abogados = $datosjuicio->sala;
-        //selecciona todos los datos tanto de juicio como de actor    
-// dd($datosjuicio->sala[0]->abogados);
-dd($nombres_abogados);
-
+       
+    //dd($nombreabogados[0]); 
 
 
 
@@ -218,7 +215,7 @@ dd($nombres_abogados);
                   ->where('juicios.id_juicio', $id)
                   ->get(); 
 
-        $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion')
+        $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion')
         
         ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
         ->where('juicios.id_juicio', $id)
@@ -226,6 +223,6 @@ dd($nombres_abogados);
 
 //var_dump($juicio3);
          
-        return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3]);
+        return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados ]);
     }
 }

@@ -43,10 +43,17 @@ class juicio extends Model
     public function sala(){
         return $this->hasMany(salas::class, 'id_sala','id_sala' );
         
-    }
-    
-    
+    }  
 
+    public function obteniendonombresdearea($id){
+        $datosjuicio = juicio::where('id_juicio',$id)->with('actor','sala.abogados')->firstOrFail();     
+        $nombres_abogados = $datosjuicio->sala[0]->abogados;            
+        $nombres=[];
+        foreach ($nombres_abogados as $nombre ) {
+            $nombres[]=$nombre->nombre;
+        }
+        return [$nombres,$datosjuicio];
+    }
 
 
 
