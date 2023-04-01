@@ -50357,3 +50357,9 @@ tr.shown td.details-control {
 .kt-badge.kt-badge--outline.kt-badge--pasado.kt-badge--outline-2x {
     border: 2px solid #9d8bbb
 }
+
+.juiciotext {
+    color: #8b1818b8;
+    font-weight: bold;
+    
+}

@@ -2,18 +2,7 @@
  
 
     <div class="col-md-3 mb-3">
-        <label for="abogados_asignados">Abogados Asignados a la Sala</label>
-        
-        {{-- <select class="custom-select" id="juicio_abogado" name="abogado">
-          <option selected disabled value="">Abogado</option>
-           @foreach ($abogados as $abogado)
-              @php
-                  $nabogado = Str::substr($abogado->nombre, 0, 1). Str::substr($abogado->apellidoP, 0, 1).Str::substr($abogado->apellidoM, 0, 1)
-              @endphp
-              <option value="{{$nabogado}}" name = "{{$nabogado}}">{{$nabogado}}</option>
-            @endforeach          
-        </select>       --}}
-        
+        <label for="abogados_asignados">Abogados Asignados a la Sala</label>                        
         <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala"  readonly >
       </div>
 
