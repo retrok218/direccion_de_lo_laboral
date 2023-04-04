@@ -50363,3 +50363,27 @@ tr.shown td.details-control {
     font-weight: bold;
     
 }
+
+.subcardtt {
+    color: #009688;
+    margin: 20px 0px 20px 4%;
+}
+
+.separador{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+      border-top-color: currentcolor;
+      border-top-style: none;
+      border-top-width: 0px;
+    border-top: 2px solid #000;
+}
+
+.subseparador{
+    border-top: 1px solid #ccb68a;
+    width: 80%;
+}
+
+.fechaprox_juicio{
+    margin: -1rem 1rem -1rem auto;
+}

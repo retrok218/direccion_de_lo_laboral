@@ -6,17 +6,27 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
-
             <div class="kt-portlet__body">                
-                <h3 class="modal-title" id="myModalLabel">
-                    <div class="kt-iconbox__icon">
-                         <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
-                        Desgloce Juicio: {{$juicio3[0]->id_juicio}}                        
-                    </div>                    
-                </h3> 
-                <h4></h4>                               
-            </div>              
-          </div>          
+                <h3 class="modal-title" id="myModalLabel">                    
+                  <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
+                  Desgloce Juicio: {{$juicio3[0]->id_juicio}}                                                                
+                </h3>                                                                              
+            </div>  
+
+            <div class="fechaprox_juicio">
+              Fecha Proxima Audiencia : 
+              <br>
+                <p >{{$fechaaudiencia}}</p> 
+                Dias Restantes Para Juicio: 
+                <br>
+                <p>{{$diasDiferencia}} Dias</p>                                        
+            </div> 
+                        
+          </div> 
+
+          
+          
+
           <div class="modal-body" id="modal_content">
               <form role="form" name="frm_nueva_regla" id="frm_nueva_regla" method="POST" action="javascript:void(0)">
                   <div class="panel panel-primary">
@@ -135,7 +145,7 @@
                           </div>
                         </div>
 
-                        <hr>                                                
+                        <hr class="separador">                                                
                         <h4><i class="fa-solid fa-user" style="color: #8b1818;"></i> - Actor</h4>
 
                         <div class="row row-cols-1 row-cols-md-3">
@@ -249,12 +259,14 @@
                               </div>
                             </div>
                         </div>
-                        <hr>                                                
-                        <h4><i class="fa-solid fa-user" style="color: #8b1818;"></i> - Tramite</h4>
+                        <hr class="separador">    
+
+                        <h4>
+                          <i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> - Tramite
+                        </h4>                          
                         <div class="row row-cols-1 row-cols-md-3">
-                          <div class="card-deck">
-                              <h5><i class="fa-solid fa-user" style="color: #188b44;"></i> Expediente Personal R.H</h5>
-                                
+                          <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> Expediente Personal R.H</h5>
+                          <div class="card-deck">                                                              
                                 <div class="col-sm-4">
                                   <div class="card">
                                     <div class="card-body">
@@ -284,26 +296,91 @@
                                     <div class="card-body">
                                       <h6 class="card-title juiciotext"> Fojas:</h6>
                                       <p class="card-text">
-                                        <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->fojas}}" readonly>
-                                          
+                                        <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->fojas}}" readonly>                                          
+                                      </p>                                    
+                                    </div>
+                                  </div>
+                                </div>
+                          </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="row row-cols-1 row-cols-md-3">
+                          <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> Expediente de Adscripcion</h5>
+                          <div class="card-deck">
+                              
+                                
+                                <div class="col-sm-4">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <h6 class="card-title juiciotext"> Solicitud:</h6>
+                                      <p class="card-text">
+                                        <input  class="form-control" type="text" id="abogados_asignados" value="{{$juicio3[0]->exp_adscripcion_solicitud}}" readonly>                                          
                                       </p>                                    
                                     </div>
                                   </div>
                                 </div>
 
-
-
+                                <div class="col-sm-4">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <h6 class="card-title juiciotext"> Devolucion:</h6>
+                                      <p class="card-text">
+                                        <input  class="form-control" type="text" id="abogados_asignados"  value="{{$juicio3[0]->exp_adscripcion_devolucion}}" readonly>                                          
+                                      </p>                                    
+                                    </div>
+                                  </div>
+                                </div>                                                                                             
                           </div>
                         </div>
 
+                        <hr class="subseparador">
                         
+                        <div class="row row-cols-1 row-cols-md-3">                          
+                          <div class="card-deck">                                                              
+                                <div class="col-sm-12">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <h6 class="card-title juiciotext">Descripcion:</h6>
+                                      <p class="card-text">
+                                         
+                        <div class="overflow-auto p-5 mb-4 mb-md-0 mr-md-5 bg-light form-control" style="max-width: 50%; max-height: 100px;">
+                                          {{$juicio3[0]->descripcion}}
+                                        </div> 
+                                        
+                                      </p> 
+                                                                        
+                                    </div>
+                                  </div>
+                                  
+                                        
+                                </div>
 
-                        
+                                <div class="col-sm-4">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <h6 class="card-title juiciotext"> Cierre de Instruccion:</h6>
+                                      <p class="card-text">
+                                        <input  class="form-control" type="text" id="abogados_asignados"  value="{{$juicio3[0]->cierredeinstruccion}}" readonly>                                          
+                                      </p>                                    
+                                    </div>
+                                  </div>
+                                </div>                                                                                             
+                          </div>
+                        </div>
+                                                
 
                         <hr>                                                
                         <h4><i class="fa-solid fa-user" style="color: #8b1818;"></i> - Laudo</h4>
                         <div class="row row-cols-1 row-cols-md-3">
                           <div class="card-deck">
+
+                            
 
                           </div>
                         </div>
