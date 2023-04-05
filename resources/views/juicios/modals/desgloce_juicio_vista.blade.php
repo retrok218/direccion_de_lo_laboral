@@ -17,9 +17,15 @@
               Fecha Proxima Audiencia : 
               <br>
                 <p >{{$fechaaudiencia}}</p> 
-                Dias Restantes Para Juicio: 
+
+                Faltan  
                 <br>
-                <p>{{$diasDiferencia}} Dias</p>                                        
+                <input  class="form-group col-md-2" type="text"  placeholder="{{$diasrestantes}}" readonly >
+                <input  class="form-group col-md-2" type="text"  placeholder="{{$horfatantes}}" readonly >
+                <input  class="form-group col-md-3" type="text"  placeholder="{{$minfaltantes}}" readonly >
+
+                
+                                                        
             </div> 
                         
           </div> 
@@ -310,12 +316,12 @@
 
 
 
-                        <div class="row row-cols-1 row-cols-md-3">
+                        <div class="row row-cols-1 row-cols-md-2">
                           <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> Expediente de Adscripcion</h5>
                           <div class="card-deck">
                               
                                 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                   <div class="card">
                                     <div class="card-body">
                                       <h6 class="card-title juiciotext"> Solicitud:</h6>
@@ -326,7 +332,7 @@
                                   </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                   <div class="card">
                                     <div class="card-body">
                                       <h6 class="card-title juiciotext"> Devolucion:</h6>
@@ -347,14 +353,11 @@
                                   <div class="card">
                                     <div class="card-body">
                                       <h6 class="card-title juiciotext">Descripcion:</h6>
-                                      <p class="card-text">
-                                         
-                        <div class="overflow-auto p-5 mb-4 mb-md-0 mr-md-5 bg-light form-control" style="max-width: 50%; max-height: 100px;">
+                                      <p class="card-text">                                         
+                                        <div class="overflow-auto p-4 mb-4 mb-md-0 mr-md-5 bg-light form-control" style="max-width: 60%; max-height: 100px;">
                                           {{$juicio3[0]->descripcion}}
-                                        </div> 
-                                        
-                                      </p> 
-                                                                        
+                                        </div>                                         
+                                      </p>                                                                         
                                     </div>
                                   </div>
                                   
@@ -379,6 +382,20 @@
                         <h4><i class="fa-solid fa-user" style="color: #8b1818;"></i> - Laudo</h4>
                         <div class="row row-cols-1 row-cols-md-3">
                           <div class="card-deck">
+
+                            <div class="col-lm-10">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h6 class="card-title juiciotext juiciotext">Notificacion Demanda :</h6>
+                                  <p class="card-text">
+                                     
+                                      <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->lau_fecha}}" readonly >
+                                      
+                                  </p>                                    
+                                </div>
+                              </div>
+                            </div>
+                            
 
                             
 

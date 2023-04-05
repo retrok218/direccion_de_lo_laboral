@@ -24,7 +24,7 @@ class CreateJuiciosTable extends Migration
             $table->string('tipo',50)->nullable() ;
             $table->string('accion',255)->nullable() ;
             $table->string('etapa',30)->nullable();
-            //$table->string('comentario',500)->nullable();
+            $table->longText('comentario')->nullable();
             $table->timestamps();
 
             //foraneas

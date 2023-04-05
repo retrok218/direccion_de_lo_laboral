@@ -3,12 +3,12 @@
 
     <div class="col-md-3 mb-3">
         <label for="abogados_asignados">Abogados Asignados a la Sala</label>                        
-        <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala"  readonly >
+        <input  class="form-control" type="text"  id="abogados_asignados" placeholder="Seleccione la Sala"  readonly >
       </div>
 
       <div class="col-md-3 mb-3">
         <label for="notidemanda">Notificacion de Demanda</label>
-        <input type="date" class="form-control" id="notidemanda" value="Mark"  name="notidemanda">
+        <input type="date"  min="2016-01-01" class="form-control" id="notidemanda" value="Mark"  name="notidemanda">
       </div>
 
       <div class="col-md-3 mb-3">
@@ -482,7 +482,7 @@ function formatCurrency(input, blur) {
     // Limit decimal to only 2 digits
     right_side = right_side.substring(0, 2);
 
-    // join number by .
+    //  number by .
    // input_val = "$" + left_side + "." + right_side;
 
   } else {

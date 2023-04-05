@@ -214,14 +214,26 @@ class Juicios2Controller extends Controller
 
         //se modifica la fecha para que aparesca con los nombre de los meses y dias 
          $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
-        //resta fecha ingresada en audiencia y fecha actual para calcular los dias restantes para el juicio
-         $diasDiferencia = Carbon::parse($juicio3[0]->audiencia)->diffInDays(Carbon::now());
-
+         $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria  
+      
+         $diasDiferencia = $fecha->diffInDays(Carbon::now());
+         //$diferenciaMinuto = $fecha->diffInMinutes(Carbon::now());        
+         $diasrestantes = "Dias: ". Carbon::now()->diffInDays($fecha);
+         $horfatantes ="Horas: ". Carbon::now()->diffInHours($fecha) %24 ;         
+         $minfaltantes = "Minutos: ". Carbon::now()->diffInMinutes($fecha) % 60;
+         
+         $datoLaudos = Juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
+         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
+         ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
+         ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
+         ->where('laudo.laudo_id_juicio',$id)
+         ->get();
+         
         
-         //dd($diasDiferencia);
+        // dd($datoLaudos);  
 
 
          
-        return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia ]);
+        return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
     }
 }
