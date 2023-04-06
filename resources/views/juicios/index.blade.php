@@ -69,11 +69,11 @@ Swal.fire({
     
 </table>
 
-<script src="{{URL::asset('jquery/jquery-3.6.4.js')}}"></script>  
+{{-- <script src="{{URL::asset('jquery/jquery-3.6.4.js')}}"></script>  
 
 <script src="{{ URL::asset('assets/vendors/general/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>    
 
-
+ --}}
 
 
 @endsection
