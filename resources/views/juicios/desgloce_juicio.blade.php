@@ -1,4 +1,4 @@
-@extends('home') 
+{{-- @extends('home') 
 @section('content')
 <div class="row">
 
@@ -34,4 +34,4 @@
           
                
     @endforeach
-@endsection
+@endsection --}}

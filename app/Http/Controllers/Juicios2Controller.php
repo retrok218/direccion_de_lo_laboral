@@ -207,7 +207,7 @@ class Juicios2Controller extends Controller
        
     //dd($nombreabogados[0]); 
         
-        $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion')        
+        $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario')        
         ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
         ->where('juicios.id_juicio', $id)
         ->get('juicios.id_juicio');
@@ -218,9 +218,9 @@ class Juicios2Controller extends Controller
       
          $diasDiferencia = $fecha->diffInDays(Carbon::now());
          //$diferenciaMinuto = $fecha->diffInMinutes(Carbon::now());        
-         $diasrestantes = "Dias: ". Carbon::now()->diffInDays($fecha);
-         $horfatantes ="Horas: ". Carbon::now()->diffInHours($fecha) %24 ;         
-         $minfaltantes = "Minutos: ". Carbon::now()->diffInMinutes($fecha) % 60;
+         $diasrestantes =  Carbon::now()->diffInDays($fecha);
+         $horfatantes = Carbon::now()->diffInHours($fecha) %24 ;         
+         $minfaltantes =  Carbon::now()->diffInMinutes($fecha) % 60;
          
          $datoLaudos = Juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
          ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
@@ -230,10 +230,17 @@ class Juicios2Controller extends Controller
          ->get();
          
         
-        // dd($datoLaudos);  
+         //dd($juicio3);  
 
 
          
         return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
+    }
+
+    public function comentario(Request $request,$id){ 
+        $comentario =request()->only('comentario'); 
+
+        Juicio::where('id_juicio','=',$id)->update($comentario);
+        return redirect()->route('juicios.index');
     }
 }

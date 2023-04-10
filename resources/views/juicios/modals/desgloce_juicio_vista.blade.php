@@ -3,31 +3,55 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
 
+        
           <div class="modal-header kt-portlet kt-iconbox kt-iconbox--animate-slow">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
-            <div class="kt-portlet__body">                
-                <h3 class="modal-title" id="myModalLabel">                    
-                  <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
-                  Desgloce Juicio : {{$juicio3[0]->id_juicio}}                                                                
-                </h3>                                                                              
-            </div>  
-
+              
+                <div class="kt-portlet__head">  
+                  <div class="modal-header">              
+                  <h2 class="modal-title" id="myModalLabel">                    
+                    <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
+                    Desgloce Juicio : {{$juicio3[0]->id_juicio}}                                                                
+                  </h2>                   
+                </div> 
+              </div>
             
-              <div class="row" style="margin: -1rem -1rem -1rem auto;">
-                  <div class="fechaprox_juicio">
-                    Fecha Proxima Audiencia 
+
+              <div class="kt-portlet__body">
+                <div class="kt-section kt-section--first">
+                <h3 class="kt-section__title"> Fecha Proxima Audiencia :</h3>
+                <p>{{$fechaaudiencia}}</p>
+                </div>                                 
                     <br>
-                      <p>{{$fechaaudiencia}}</p> 
+                       
                       Faltan  
-                      <br>
-                  <input  class="col col-lg-3" type="text"  placeholder="{{$diasrestantes}}" readonly >
-                  <input  class="col col-lg-3" type="text"  placeholder="{{$horfatantes}}" readonly >
-                  <input  class="col col-lg-3" type="text"  placeholder="{{$minfaltantes}}" readonly > 
-                </div>                                                                                       
-            </div>                         
-          </div>            
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class=" input-group md-3">
+                            <span class="input-group-text" id="basic-addon3">Dias :</span>
+                            <input class="col-sm-3" type="text"  placeholder="{{$diasrestantes}}" readonly>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="  input-group md-3">
+                            <span class="input-group-text" id="basic-addon3">Horas :</span>
+                            <input class="col-sm-3" type="text"  placeholder="{{$horfatantes}}" readonly>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class=" input-group md-3">
+                            <span class="input-group-text" id="basic-addon3">Minutos :</span>
+                            <input class=" col-sm-3" type="text"  placeholder="{{$minfaltantes}}" readonly>
+                          </div>
+                        </div>
+                      </div>    
+                    </div>                                                                                                                                    
+          </div>      
+          
+          
+
           <div class="modal-body" id="modal_content">
               <form role="form" name="juiciodes" id="juiciodes" method="POST" action="javascript:void(0)">
                   <div class="panel panel-primary">
@@ -442,7 +466,7 @@
                                             <div class="card-body">
                                              
                                               <p class="card-text">                                         
-                                                <div class="overflow-auto p-4 mb-4 mb-md-0 mr-md-5 bg-light form-control" style="max-width: 60%; max-height: 100px;">
+                                                <div class="overflow-auto p-5 mb-4 mb-md-0 mr-md-5 bg-light form-control" style="max-width: 100%; max-height: 100px;">
                                                   {{$juicio3[0]->descripcion}}
                                                 </div>                                         
                                               </p>                                                                         
@@ -484,7 +508,7 @@
                               <div class="card-body">
                                 <div class="row row-cols-1 row-cols-md-3">
                                   <div class="card-deck">        
-                                    <div class="col-lm-10">
+                                    <div class="col-sm-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Fecha
@@ -496,7 +520,7 @@
                                         </div>
                                       </div>
                                     </div>        
-                                    <div class="col-lm-3">
+                                    <div class="col-sm-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Sentido
@@ -508,7 +532,7 @@
                                         </div>
                                       </div>
                                     </div>                                    
-                                    <div class="col-lm-3">
+                                    <div class="col-sm-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Reinstalacion
@@ -520,7 +544,7 @@
                                         </div>
                                       </div>
                                     </div>        
-                                    <div class="col-lm-3">
+                                    <div class="col-sm-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Indemnización
@@ -532,7 +556,7 @@
                                         </div>
                                       </div>
                                     </div>        
-                                    <div class="col-lm-3">
+                                    <div class="col-sm-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Pasivo Total
@@ -544,7 +568,7 @@
                                         </div>
                                       </div>
                                     </div>        
-                                    <div class="col-lm-3">
+                                    <div class="col-sm-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Notificacion
@@ -574,10 +598,8 @@
                             </div>
                             <div id="amparo" class="collapse" aria-labelledby="amparos" data-parent="#acordionjuicio">
                               <div class="card-body">
-                                <div class="row row-cols-1 row-cols-md-3">
-                                  <div class="card-deck">
-        
-                                    <div class="col-lm-3">
+                                <div class="row ">                                         
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Parte
@@ -589,7 +611,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Directo O Indirecto
@@ -602,7 +624,7 @@
                                       </div>
                                     </div>
         
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                          Ad o Dt
@@ -615,7 +637,7 @@
                                       </div>
                                     </div>
         
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                          Concepto De
@@ -628,7 +650,7 @@
                                       </div>
                                     </div>
                                     
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                          Aud.Const.2
@@ -641,7 +663,7 @@
                                       </div>
                                     </div>
         
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                          Fecha Sentecia 
@@ -653,7 +675,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Sentido Sentecia
@@ -666,7 +688,7 @@
                                       </div>
                                     </div>
         
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Recurso
@@ -679,7 +701,7 @@
                                       </div>
                                     </div>
         
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Parte Adherente
@@ -691,7 +713,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Sentido AD
@@ -704,7 +726,7 @@
                                       </div>
                                     </div>
         
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Fecha AD
@@ -715,10 +737,7 @@
                                           </p>                                    
                                         </div>
                                       </div>
-                                    </div>
-        
-                                  </div>
-                                </div>
+                                    </div>                                                                              
                               </div>
                             </div>
                           </div>
@@ -737,7 +756,7 @@
                                 <div class="row row-cols-1 row-cols-md-3">
                                   <div class="card-deck">
         
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Fecha Cump Reinstalacion
@@ -749,7 +768,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Notif.2
@@ -761,7 +780,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           R.H
@@ -773,7 +792,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Vence
@@ -785,7 +804,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Sentido
@@ -797,7 +816,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Solicitado a R.H
@@ -809,7 +828,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Cantidad
@@ -821,7 +840,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Folio
@@ -833,7 +852,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           No.De Intento
@@ -845,7 +864,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Fecha Prox.
@@ -857,7 +876,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-lm-3">
+                                    <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Cumplimiento
@@ -888,7 +907,7 @@
                               <div class="card-body">
                                 <div class="row row-cols-1 row-cols-md-3">
                                   <div class="card-deck">
-                                    <div class="col-lm-3">
+                                    <div class="col-lg-6">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Mes Para Segob De Conclusion
@@ -901,7 +920,7 @@
                                       </div>
                                     </div>
         
-                                    <div class="col-lm-3">
+                                    <div class="col-lg-6">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
                                           Fecha de Conclusion TFCA
@@ -921,40 +940,34 @@
                           {{-- fin conclusion card--}}
 
                         </div> 
-                        <hr class="separador">                                                
-                        <h4><i class="fa-solid fa-user" style="color: #8b1818;"></i> - Comentario</h4>
-                        <div class="row row-cols-1 row-cols-md-3">
-                          <div class="card-deck">
-
-                            <div class="col-lm-8">
-                              <div class="card">
-                                <div class="card-header  juiciotext">
-                                  Comentario
-                                </div>
-                                <div class="card-body">                               
-                                  <p class="card-text">                                     
-                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->comentario}}" readonly >                                      
-                                  </p>                                    
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-
-
-
-
+                        
                       </div>
                   </div>
-                  
                   
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Cancelar
                     </button>             
-                </div>
-          </div>
-          
+                </div>                  
+              </form>
+{{-- fin de formulario para mostrar datos--}}
+              <hr class="separador">
+                
+              <form action="{{url('/juicios_com/'.$juicio3[0]->id_juicio)}}" method="POST">
+                @csrf
+                <h6>
+                  <i class="fa-solid fa-comment fa-beat" style="color: #680606;"></i> - Comentarios
+                </h6>
+                <div class="row row-cols-1 row-cols-md-3">                                                                                                                 
+                    <div class="card-body">                               
+                      <p class="card-text">                                                                                                             
+                        <textarea name="comentario" class="form-control"  id="abogados_asignados" placeholder="Sin Dato por el Momento"   >{{$juicio3[0]->comentario}}</textarea>
+                      </p>                                    
+                    </div>                                                                                    
+                </div> 
+                <button class="btn btn-primary" value="Guardar Comentario" >Guardar Comentario</button>                      
+              </form> 
+
+          </div>          
       </div>
   </div>

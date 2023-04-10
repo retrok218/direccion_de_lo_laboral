@@ -50361,6 +50361,7 @@ tr.shown td.details-control {
 .juiciotext {
     color: #8b1818b8;
     font-weight: bold;
+    margin-left: 17px !important;
     
 }
 
