@@ -237,10 +237,11 @@ class Juicios2Controller extends Controller
         return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
     }
 
-    public function comentario(Request $request,$id){ 
+    public function comentario(Request $request,$id,SessionManager $sessionManager){ 
         $comentario =request()->only('comentario'); 
-
         Juicio::where('id_juicio','=',$id)->update($comentario);
-        return redirect()->route('juicios.index');
+        $sessionManager->flash('mensaje', 'Comentario Agregado');
+        
+        return redirect()->route('juicios.index')->with(['sessionManager',$sessionManager]) ;
     }
 }
