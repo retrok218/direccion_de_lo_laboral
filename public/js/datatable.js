@@ -93,18 +93,20 @@ var table = $('#juiciotabla').DataTable({
         let diferenciafehas =f.diff(actual_fecha,'days');
 
         if (diferenciafehas >= 1) {
-            // verde si faltan mas de 2 dias
-            $(row).find('td').css('background-color', '#00800063');
-            $(row).find('td').css('color', 'white');
+            // verde si faltan mas de 2 dias            
+            $(row).find('td').css('color', 'rgb(60, 53, 53)');            
+            $(row).css('background', 'rgba(7, 232, 0, 0.14)');                        
+            $(row).css('box-shadow', '2px 1px 8px rgba(0, 255, 40)');                                    
         } else if (diferenciafehas < 1 & diferenciafehas > -1) {
             //rojo 0 dias o menos de 0 dias
-            $(row).find('td').css('background-color', 'rgb(255 0 12 / 65%)');
-            $(row).find('td').css('color', 'white');
+            $(row).css('background', 'rgba(255, 1, 1, 0.38)');
+            $(row).css('box-shadow', 'rgb(255, 0, 0) 2px 1px 8px');           
+            $(row).find('td').css('color', 'rgb(60, 53, 53)');
         }        
         else {
             //Gris vencidos 
             $(row).find('td').css('background-color', 'rgb(139 135 135 / 31%)');
-            $(row).find('td').css('color', 'white');
+            $(row).find('td').css('color', 'rgb(60, 53, 53)');
         }
     },
 
