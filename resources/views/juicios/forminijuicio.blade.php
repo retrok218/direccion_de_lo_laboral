@@ -412,7 +412,7 @@
   </div>
   <button class="btn btn-primary" type="submit">Crear Juicio</button>
   
-  @include('layouts/scripts/scripts_dttb')
+  {{-- @include('layouts/scripts/scripts_dttb') --}}
   
 <script>
 

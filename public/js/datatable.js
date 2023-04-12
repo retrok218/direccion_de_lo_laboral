@@ -117,8 +117,7 @@ var table = $('#juiciotabla').DataTable({
 
             let actual_fecha = moment(); 
             let f = moment(row.actor[0].audiencia);            
-            let diferenciafehas =f.diff(actual_fecha,'days');
-                        
+            let diferenciafehas =f.diff(actual_fecha,'days');                        
             if( diferenciafehas >= 1){
                 estatusRegla = '<i class="far fa-clock fa-xl" style="color: #0daf5c; margin: 0px 0px 0px 35%;" title='+'Resta'+diferenciafehas+'/D'+'></i>';
             }
@@ -127,16 +126,14 @@ var table = $('#juiciotabla').DataTable({
             }
             else {
                 estatusRegla = '<i class="fa fa-calendar-times fa-xl" style="color: #484747; margin: 0px 0px 0px 35%;"></i>';
-            } 
-            
-            
+            }                         
             return estatusRegla;
         }},
                
         {"mRender": function(data, type, row){
             var ligajuicio=row.id_juicio;                
             //  return '<a href="'+url+'desgloce_juicio/'+ ligajuicio +'" target="_blank" title="Ir en busca del TKT en OTRS" ;><button class="button2"> <span> '+row.id_juicio+' <span> </button></a>';
-             return `<a  onclick="mostrar_modal_juicio(${ligajuicio}) " title="Ir en busca del TKT en OTRS" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
+             return `<a  onclick="mostrar_modal_juicio(${ligajuicio})" title="Ir en busca del TKT en OTRS" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
         },
         {data:'noti_demanda', name:'noti_demanda'},
         {data:'presentacion_de_demanda', name:'presentacion_de_demanda'},
@@ -149,7 +146,9 @@ var table = $('#juiciotabla').DataTable({
             "mRender": function(data, type, row){
               var editUrl = url+"editar/" + row.id_juicio;
               var deleteUrl =url+"eliminar/" + row.id_juicio;
-              return '<a href="'+editUrl+'" title="Editar"><i class="fa fa-pencil">'+'/'+'</i></a> <a href="'+deleteUrl+'" title="Eliminar"><i class="fa fa-trash"></i></a>';
+              var ligajuicio=row.id_juicio;
+              
+              return `<a onclick="editarJuicio(${ligajuicio})" title="Editar"><i class="fa fa-pencil">/</i></a> <a href="'+deleteUrl+'" title="Eliminar"><i class="fa fa-trash"></i></a>`
             }
           }
         
@@ -171,8 +170,35 @@ function mostrar_modal_juicio(data) {
         success: function(resp_success) {
             var modal = resp_success;
             $(modal).modal().on('shown.bs.modal', function() {
+                $("#guardar").prop("disabled",true).hide();
                 $("[class='make-switch']").bootstrapSwitch('animate', true);
                 $('.select2').select2({dropdownParent: $("#modal-juicio")});
+                
+            }).on('hidden.bs.modal', function() {
+                $(this).remove();
+            });
+        },
+        error: function(respuesta) {
+            Swal.fire('¡Alerta!','Error de conectividad de red USR-03','warning');
+        }
+    });   
+};
+
+
+function editarJuicio(data) {
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url : url +"desgloce_juicio/"+data,
+        dataType: 'html',
+        success: function(resp_success) {
+            var modal = resp_success;
+            $(modal).modal().on('shown.bs.modal', function() {
+                $("[class='make-switch']").bootstrapSwitch('animate', true);
+                $('.select2').select2({dropdownParent: $("#modal-juicio")});
+                $("[readonly]").removeAttr("readonly");
+
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });

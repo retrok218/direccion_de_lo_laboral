@@ -3,8 +3,14 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
 
-        
-          <div class="modal-header kt-portlet kt-iconbox kt-iconbox--animate-slow">
+        @if ($diasrestantes > 1)
+          <div class="modal-header kt-portlet kt-iconbox--success kt-iconbox--animate-slow">
+            @elseif($diasrestantes == 0 & $horfatantes == 0 & $minfaltantes == 0)
+            <div class="modal-header kt-portlet kt-iconbox kt-iconbox--animate-slow">
+            @else
+            <div class="modal-header kt-portlet kt-iconbox--danger kt-iconbox--animate-slow">
+        @endif
+          
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
@@ -20,7 +26,7 @@
             
 
               <div class="kt-portlet__body">
-                <div class="kt-section kt-section--first">
+                <div class="kt-section kt-section--first" style="margin: 0 0 0 0;">
                 <h3 class="kt-section__title"> Fecha Proxima Audiencia :</h3>
                 <p>{{$fechaaudiencia}}</p>
                 </div>                                 
@@ -47,7 +53,7 @@
                           </div>
                         </div>
                       </div>  
-                        
+
                     </div>                                                                                                                                    
           </div>      
           
@@ -943,9 +949,9 @@
                         </div> 
                         
                       </div>
-                  </div>
-                  
+                  </div>                  
                   <div class="modal-footer">
+                    <button  class="btn btn-primary" value="guardar_edicionjuicio" id="guardar">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Cancelar
                     </button>             

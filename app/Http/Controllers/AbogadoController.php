@@ -67,16 +67,6 @@ class AbogadoController extends Controller
         return view('abogados.edit', compact('abogadod'));
     }
 
-
-
-
-
-
-
-
-
-
-
     /**
      * Update the specified resource in storage.
      *
