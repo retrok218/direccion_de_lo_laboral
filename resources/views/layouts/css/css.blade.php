@@ -34,6 +34,7 @@
 <!--CSS para datatables Gestor de tikets  --> 
 <link rel="stylesheet" href="{{ asset('assets/css/card.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/css/preloader.css') }}" />
+<link href="{{ asset('css/fontawesome/css/all.css') }}"  rel="stylesheet" type="text/css" />
 <!--CSS para monitoreo de Tikets -->
 {{-- <link rel="stylesheet" href="{{ asset('assets\css\demo1\estilos-gestortkts.css') }}" /> --}}
 

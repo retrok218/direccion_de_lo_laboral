@@ -88,17 +88,22 @@ var table = $('#juiciotabla').DataTable({
 
     // cambia el estilo de la fila dependiendo de id_juicio
     "createdRow": function(row, data, dataIndex) {
-        if (data.id_juicio == 1) {
+        let actual_fecha = moment(); 
+        let f = moment(data.actor[0].audiencia);            
+        let diferenciafehas =f.diff(actual_fecha,'days');
+
+        if (diferenciafehas >= 1) {
+            // verde si faltan mas de 2 dias
             $(row).find('td').css('background-color', '#00800063');
             $(row).find('td').css('color', 'white');
-        } else if (data.id_juicio == 2) {
-            $(row).find('td').css('background-color', 'rgb(223 119 0 / 68%)');
+        } else if (diferenciafehas < 1 & diferenciafehas > -1) {
+            //rojo 0 dias o menos de 0 dias
+            $(row).find('td').css('background-color', 'rgb(255 0 12 / 65%)');
             $(row).find('td').css('color', 'white');
-        } else if (data.id_juicio == 3) {
-            $(row).find('td').css('background-color', '#0000ff91');
-            $(row).find('td').css('color', 'white');
-        } else {
-            $(row).find('td').css('background-color', '#41464154');
+        }        
+        else {
+            //Gris vencidos 
+            $(row).find('td').css('background-color', 'rgb(139 135 135 / 31%)');
             $(row).find('td').css('color', 'white');
         }
     },
@@ -106,19 +111,23 @@ var table = $('#juiciotabla').DataTable({
     columns:[
 
 
-        { "mRender": function(data, type, row){
-            let estatusRegla = "";
-            if(row.id_juicio == '1'){
-                estatusRegla = '<span class="kt-badge kt-badge--success kt-badge--dot"></span>';
+        { "mRender": function(data, type, row){            
+
+            let actual_fecha = moment(); 
+            let f = moment(row.actor[0].audiencia);            
+            let diferenciafehas =f.diff(actual_fecha,'days');
+                        
+            if( diferenciafehas >= 1){
+                estatusRegla = '<i class="far fa-clock fa-xl" style="color: #0daf5c; margin: 0px 0px 0px 35%;" title='+'Resta'+diferenciafehas+'/D'+'></i>';
             }
-            else if (row.id_juicio == '2'){
-                estatusRegla = '<span class="kt-badge kt-badge--warning kt-badge--dot"></span>';
+            else if (diferenciafehas < 1 & diferenciafehas > -1){
+                estatusRegla = '<i class="fa fa-bell fa-shake fa-xl" style="color: #511f1f; margin: 0px 0px 0px 35%;"></i>';
             }
-            else if(row.id_juicio == '3'){
-                estatusRegla = '<span class="kt-badge kt-badge--pasado kt-badge--dot"></span>';
-            }else {
-                estatusRegla = '<span class="kt-badge kt-badge--pasado kt-badge--dot"></span>';
-            }
+            else {
+                estatusRegla = '<i class="fa fa-calendar-times fa-xl" style="color: #484747; margin: 0px 0px 0px 35%;"></i>';
+            } 
+            
+            
             return estatusRegla;
         }},
                
@@ -136,8 +145,8 @@ var table = $('#juiciotabla').DataTable({
 
         { 
             "mRender": function(data, type, row){
-              var editUrl = "editar/" + row.id;
-              var deleteUrl = "eliminar/" + row.id;
+              var editUrl = url+"editar/" + row.id_juicio;
+              var deleteUrl =url+"eliminar/" + row.id_juicio;
               return '<a href="'+editUrl+'" title="Editar"><i class="fa fa-pencil">'+'/'+'</i></a> <a href="'+deleteUrl+'" title="Eliminar"><i class="fa fa-trash"></i></a>';
             }
           }
@@ -169,8 +178,7 @@ function mostrar_modal_juicio(data) {
         error: function(respuesta) {
             Swal.fire('¡Alerta!','Error de conectividad de red USR-03','warning');
         }
-    });
-    
-}
+    });   
+};
 
 

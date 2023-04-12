@@ -46,7 +46,8 @@
                             <input class=" col-sm-3" type="text"  placeholder="{{$minfaltantes}}" readonly>
                           </div>
                         </div>
-                      </div>    
+                      </div>  
+                        
                     </div>                                                                                                                                    
           </div>      
           

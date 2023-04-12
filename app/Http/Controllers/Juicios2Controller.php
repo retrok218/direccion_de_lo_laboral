@@ -131,7 +131,6 @@ class Juicios2Controller extends Controller
 
 
 
-
         //mensaje de confirmacion guardado 
         $sessionManager->flash('mensaje', 'Este es el mensaje');
 
@@ -203,45 +202,49 @@ class Juicios2Controller extends Controller
     public function desglocejuicio($id){
         //se obtienen los nombres de los abogados dependiendo de la seleccion del id se realiza la consulta en el modelo
         $j=juicio::find($id);
-        $nombreabogados = $j->obteniendonombresdearea($id);
-       
-    //dd($nombreabogados[0]); 
-        
+        $nombreabogados = $j->obteniendonombresdearea($id);                   
         $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario')        
         ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
         ->where('juicios.id_juicio', $id)
         ->get('juicios.id_juicio');
-
         //se modifica la fecha para que aparesca con los nombre de los meses y dias 
          $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
-         $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria  
-      
+         $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria        
          $diasDiferencia = $fecha->diffInDays(Carbon::now());
-         //$diferenciaMinuto = $fecha->diffInMinutes(Carbon::now());        
-         $diasrestantes =  Carbon::now()->diffInDays($fecha);
-         $horfatantes = Carbon::now()->diffInHours($fecha) %24 ;         
-         $minfaltantes =  Carbon::now()->diffInMinutes($fecha) % 60;
-         
+         //$diferenciaMinuto = $fecha->diffInMinutes(Carbon::now());   
+
+         $diasrestantes =  Carbon::now()->diffInDays($fecha,false);
+         if ($diasrestantes < 0) {
+            $diasrestantes = 0;
+            $horfatantes= 0;
+            $minfaltantes= 0;
+         }else {
+            $horfatantes = Carbon::now()->diffInHours($fecha) %24 ;         
+            $minfaltantes =  Carbon::now()->diffInMinutes($fecha) % 60; 
+         }
+
+                 
          $datoLaudos = Juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
          ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
          ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
          ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
          ->where('laudo.laudo_id_juicio',$id)
-         ->get();
-         
+         ->get();                  
+        //  trnario php $a < 5? v : f
         
-         //dd($juicio3);  
-
-
-         
+        
         return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
     }
+
+
+
+
 
     public function comentario(Request $request,$id,SessionManager $sessionManager){ 
         $comentario =request()->only('comentario'); 
         Juicio::where('id_juicio','=',$id)->update($comentario);
         $sessionManager->flash('mensaje', 'Comentario Agregado');
-        
-        return redirect()->route('juicios.index')->with(['sessionManager',$sessionManager]) ;
+        //dd($sessionManager);
+        return redirect()->route('juicios.index', compact('sessionManager')) ;
     }
 }

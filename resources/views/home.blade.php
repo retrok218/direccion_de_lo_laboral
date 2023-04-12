@@ -13,7 +13,7 @@
      
     {{-- jquery de forma local --}}
     <script src="{{URL::asset('jquery/jquery-3.6.4.js')}}"></script>    
-    <link href="{{ asset('css/fontawesome/css/all.css') }}"  rel="stylesheet" type="text/css" />
+    
 <script src="{{ URL::asset('assets/vendors/general/sweetalert2/dist/sweetalert2.min.js')}}" type="text/javascript"></script>
 <link href="{{ asset('assets/vendors/general/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
 
