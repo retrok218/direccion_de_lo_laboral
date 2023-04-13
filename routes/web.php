@@ -41,5 +41,7 @@ Route::get('data/juicios',[Juicios2Controller::class,'juiciosdatosajax']);
 Route::post('juicios_com/{id}',[Juicios2Controller::class,'comentario']);
 
 Route::get('desgloce_juicio/{id}',[Juicios2Controller::class,'desglocejuicio'])->name('desgloce.juicio');
+Route::get('edit_juicio/{id}',[Juicios2Controller::class,'edit']);
+
 Route::resource('sala', SalasController::class);
 

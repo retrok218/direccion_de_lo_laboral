@@ -155,9 +155,32 @@ class Juicios2Controller extends Controller
      * @param  \App\Models\Juicios2  $juicios2
      * @return \Illuminate\Http\Response
      */
-    public function edit(Juicios2 $juicios2)
+    public function edit($id)
     {
-        //
+        $j=juicio::find($id);
+        $nombreabogados = $j->obteniendonombresdearea($id); 
+        $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario')        
+        ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        ->where('juicios.id_juicio', $id)
+        ->get('juicios.id_juicio');
+        //se modifica la fecha para que aparesca con los nombre de los meses y dias 
+         $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
+         $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria        
+         $diasDiferencia = $fecha->diffInDays(Carbon::now());
+         //$diferenciaMinuto = $fecha->diffInMinutes(Carbon::now());   
+
+         $diasrestantes =  Carbon::now()->diffInDays($fecha,false);
+         if ($diasrestantes < 0) {
+            $diasrestantes = 0;
+            $horfatantes= 0;
+            $minfaltantes= 0;
+         }else {
+            $horfatantes = Carbon::now()->diffInHours($fecha) %24 ;         
+            $minfaltantes =  Carbon::now()->diffInMinutes($fecha) % 60; 
+         }
+
+        return view('juicios.edit')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
+       
     }
 
     /**

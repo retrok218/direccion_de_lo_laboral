@@ -951,7 +951,7 @@
                       </div>
                   </div>                  
                   <div class="modal-footer">
-                    <button  class="btn btn-primary" value="guardar_edicionjuicio" id="guardar">Guardar</button>
+                    
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Cancelar
                     </button>             

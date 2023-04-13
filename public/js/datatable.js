@@ -170,10 +170,8 @@ function mostrar_modal_juicio(data) {
         success: function(resp_success) {
             var modal = resp_success;
             $(modal).modal().on('shown.bs.modal', function() {
-                $("#guardar").prop("disabled",true).hide();
                 $("[class='make-switch']").bootstrapSwitch('animate', true);
                 $('.select2').select2({dropdownParent: $("#modal-juicio")});
-                
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });
@@ -190,15 +188,15 @@ function editarJuicio(data) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url : url +"desgloce_juicio/"+data,
+        url : url +"edit_juicio/"+data,
         dataType: 'html',
         success: function(resp_success) {
             var modal = resp_success;
             $(modal).modal().on('shown.bs.modal', function() {
                 $("[class='make-switch']").bootstrapSwitch('animate', true);
-                $('.select2').select2({dropdownParent: $("#modal-juicio")});
-                $("[readonly]").removeAttr("readonly");
-
+                $('.select2').select2({dropdownParent: $("#edicion_juicio")});
+                
+                
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });
