@@ -178,8 +178,19 @@ class Juicios2Controller extends Controller
             $horfatantes = Carbon::now()->diffInHours($fecha) %24 ;         
             $minfaltantes =  Carbon::now()->diffInMinutes($fecha) % 60; 
          }
+         
 
-        return view('juicios.edit')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
+         $añoactual = date('Y');
+        $abogados=abogado::all();
+        $salas=salas::all(); 
+
+        $añosseleccionables=[];
+        while($añoactual >= 1950){
+            $añosseleccionables[]=$añoactual;
+            $añoactual = $añoactual-1;
+         };
+
+        return view('juicios.edit')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes ,'añosseleccionables'=>$añosseleccionables]);
        
     }
 

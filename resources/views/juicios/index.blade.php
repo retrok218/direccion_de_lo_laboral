@@ -28,6 +28,8 @@
             no-repeat`    
         })
 }
+
+
 </script>
 @section('content')
 
@@ -37,7 +39,7 @@
     </script>        
 @endif
 
-<h1>Desglose de juicios</h1> 
+<h1  id="h01">Desglose de juicios</h1> 
 <div class="botonargegar">            
     <a href="{{URL::asset('juicios/create')}}" class="btn-agregar-abogado button-pulse"> +     <span>Agregar Juicio</span> </a>
 </div>
@@ -58,4 +60,5 @@
     </thead>
     
 </table>
+
 @endsection

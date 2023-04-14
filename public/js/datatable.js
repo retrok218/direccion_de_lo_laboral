@@ -92,12 +92,12 @@ var table = $('#juiciotabla').DataTable({
         let f = moment(data.actor[0].audiencia);            
         let diferenciafehas =f.diff(actual_fecha,'days');
 
-        if (diferenciafehas >= 1) {
+        if (diferenciafehas > 1) {
             // verde si faltan mas de 2 dias            
             $(row).find('td').css('color', 'rgb(60, 53, 53)');            
             $(row).css('background', 'rgba(7, 232, 0, 0.14)');                        
             $(row).css('box-shadow', '2px 1px 8px rgba(0, 255, 40)');                                    
-        } else if (diferenciafehas < 1 & diferenciafehas > -1) {
+        } else if (diferenciafehas <= 1 & diferenciafehas > -1) {
             //rojo 0 dias o menos de 0 dias
             $(row).css('background', 'rgba(255, 1, 1, 0.38)');
             $(row).css('box-shadow', 'rgb(255, 0, 0) 2px 1px 8px');           
@@ -118,10 +118,10 @@ var table = $('#juiciotabla').DataTable({
             let actual_fecha = moment(); 
             let f = moment(row.actor[0].audiencia);            
             let diferenciafehas =f.diff(actual_fecha,'days');                        
-            if( diferenciafehas >= 1){
+            if( diferenciafehas > 1){
                 estatusRegla = '<i class="far fa-clock fa-xl" style="color: #0daf5c; margin: 0px 0px 0px 35%;" title='+'Resta'+diferenciafehas+'/D'+'></i>';
             }
-            else if (diferenciafehas < 1 & diferenciafehas > -1){
+            else if (diferenciafehas <= 1 & diferenciafehas > -1){
                 estatusRegla = '<i class="fa fa-bell fa-shake fa-xl" style="color: #511f1f; margin: 0px 0px 0px 35%;"></i>';
             }
             else {
@@ -133,7 +133,7 @@ var table = $('#juiciotabla').DataTable({
         {"mRender": function(data, type, row){
             var ligajuicio=row.id_juicio;                
             //  return '<a href="'+url+'desgloce_juicio/'+ ligajuicio +'" target="_blank" title="Ir en busca del TKT en OTRS" ;><button class="button2"> <span> '+row.id_juicio+' <span> </button></a>';
-             return `<a  onclick="mostrar_modal_juicio(${ligajuicio})" title="Ir en busca del TKT en OTRS" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
+             return `<a  onclick="mostrar_modal_juicio(${ligajuicio})" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
         },
         {data:'noti_demanda', name:'noti_demanda'},
         {data:'presentacion_de_demanda', name:'presentacion_de_demanda'},
@@ -192,11 +192,13 @@ function editarJuicio(data) {
         dataType: 'html',
         success: function(resp_success) {
             var modal = resp_success;
+            
             $(modal).modal().on('shown.bs.modal', function() {
-                $("[class='make-switch']").bootstrapSwitch('animate', true);
-                $('.select2').select2({dropdownParent: $("#edicion_juicio")});
-                
-                
+            $("[class='make-switch']").bootstrapSwitch('animate', true);
+            $('.select2').select2({dropdownParent: $("#edicion_juicio")});
+
+            
+                                           
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });
