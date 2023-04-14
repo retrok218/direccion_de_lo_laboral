@@ -215,14 +215,14 @@
                                             </div>
                                           </div>
                                         </div>          
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                           <div class="card">
                                             <div class="card-header juiciotext ">
                                               Adscripcion :
                                             </div>
                                             <div class="card-body">
                                                                                                                                               
-                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->adscripcion}}" > 
+                                                  
                                                   <select class="custom-select" id="adscripcion" name="adscripcion" >
                                                     <option selected disabled value="">Selecicona la Adscripcion</option>
                                                     <option @if ($juicio3[0]->adscripcion == "Archivo General de la Nación") {{"selected"}} @endif>Archivo General de la Nación</option>
@@ -330,8 +330,7 @@
                                             <div class="card-header juiciotext ">
                                               UR  :
                                             </div>
-                                            <div class="card-body">
-                                             
+                                            <div class="card-body">                                             
                                               <p class="card-text">
                                                 <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->ur}}" > 
                                                   

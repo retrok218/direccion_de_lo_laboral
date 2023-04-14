@@ -192,13 +192,11 @@ function editarJuicio(data) {
         dataType: 'html',
         success: function(resp_success) {
             var modal = resp_success;
-            
             $(modal).modal().on('shown.bs.modal', function() {
             $("[class='make-switch']").bootstrapSwitch('animate', true);
-            $('.select2').select2({dropdownParent: $("#edicion_juicio")});
-
-            
-                                           
+                $('.select2').select2({dropdownParent: $("#edicion_juicio")});
+                
+                
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });
