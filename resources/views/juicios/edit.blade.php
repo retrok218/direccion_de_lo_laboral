@@ -19,7 +19,7 @@
                               <div class="card-header" id="datosjuicio">
                                 <h5 class="mb-0">
                                   <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#juicio" aria-expanded="false" aria-controls="juicio">
-                                    <i class="fa-solid fa-book" style="color: #8b1818;" ></i>- Datos Generales del Juicio
+                                    <i class="fa-solid fa-book" style="color: #8b1818;" ></i>- Datos Generales del JuicioXD
                                     
                                   </button>
                                 </h5>
@@ -221,12 +221,17 @@
                                               Adscripcion :
                                             </div>
                                             <div class="card-body">
-                                                                                                                                              
-                                                  
+                                                                                    
+                                              @php
+                                                  $adscripcion =["Archivo General de la Nación","Centro de Producción de Programas Informativos y Especiales","Centro Nacional de Prevención de Desastres","CFE","CNI (antes CISEN)","COMISION EJECUTIVA DE ATENCION A VICTIMAS Y OTROS","Comisión Nacional para Prevenir y Erradicar la Violencia Contra las Mujeres","Comisión para el Diálogo con los Pueblos Indígenas de México","Consejo de Menores", "Coordinación General de la Comisión Mexicana de Ayuda a Refugiados","Coordinación General de Protección Civil","Coordinación para la Atención Integral de la Migración en la Frontera Sur","DATOS DE LA RELACIÓN LABORAL","DESPLEGABLE CON MODIFICACIÓN","Diario Oficial","Dirección General De Acuerdos Políticos","Dirección general de Análisis y Prospectiva para la Poítica de Interior","Dirección General de Asociaciones Religiosas","Dirección General de Compilación y Consulta del Orden Jurídico Nacional","Dirección General de Comunicación Social","Dirección General de Coordinación con Entidades Federativas","Dirección General De Coordinación Para La Operación Territorial" ];
+                                                
+                                              @endphp                                                                                                
                                                   <select class="custom-select" id="adscripcion" name="adscripcion" >
+                                                    @foreach
+                                                    @endforeach
                                                     <option selected disabled value="">Selecicona la Adscripcion</option>
                                                     <option @if ($juicio3[0]->adscripcion == "Archivo General de la Nación") {{"selected"}} @endif>Archivo General de la Nación</option>
-                                                    <option @if ($juicio3[0]->adscripcion == "Centro de Producción de Programas Informativos y Especiales") {{"selected"}} @endif></option>
+                                                    <option @if ($juicio3[0]->adscripcion == "Centro de Producción de Programas Informativos y Especiales") {{"selected"}} @endif>Centro de Producción de Programas Informativos y Especiales</option>
                                                     <option @if ($juicio3[0]->adscripcion == "Centro Nacional de Prevención de Desastres ") {{"selected"}} @endif>Centro Nacional de Prevención de Desastres</option>
                                                     <option @if ($juicio3[0]->adscripcion == "CFE") {{"selected"}} @endif value="CFE">CFE</option>
                                                     <option @if ($juicio3[0]->adscripcion == "CNI (antes CISEN)") {{"selected"}} @endif value="CNI (antes CISEN)">CNI (antes CISEN)</option>

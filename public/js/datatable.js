@@ -191,6 +191,7 @@ function editarJuicio(data) {
         url : url +"edit_juicio/"+data,
         dataType: 'html',
         success: function(resp_success) {
+            
             var modal = resp_success;
             $(modal).modal().on('shown.bs.modal', function() {
             $("[class='make-switch']").bootstrapSwitch('animate', true);
@@ -200,6 +201,7 @@ function editarJuicio(data) {
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });
+            console.log(modal);
         },
         error: function(respuesta) {
             Swal.fire('¡Alerta!','Error de conectividad de red USR-03','warning');
