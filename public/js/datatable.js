@@ -145,10 +145,10 @@ var table = $('#juiciotabla').DataTable({
         { 
             "mRender": function(data, type, row){
               var editUrl = url+"editar/" + row.id_juicio;
-              var deleteUrl =url+"eliminar/" + row.id_juicio;
+              var deleteUrl =url+"eliminar/" + row.id_juicio;              
               var ligajuicio=row.id_juicio;
-              
-              return `<a onclick="editarJuicio(${ligajuicio})" title="Editar"><i class="fa fa-pencil">/</i></a> <a href="'+deleteUrl+'" title="Eliminar"><i class="fa fa-trash"></i></a>`
+                                        
+              return `<a onclick="editarJuicio(${ligajuicio})" title="Editar"><i class="fa fa-pencil">/</i></a>    <a href="'+deleteUrl+'" title="Eliminar"><i class="fa fa-trash"></i></a>`
             }
           }
         
@@ -183,25 +183,25 @@ function mostrar_modal_juicio(data) {
 };
 
 
-function editarJuicio(data) {
+function editarJuicio(data,ads) {
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url : url +"edit_juicio/"+data,
         dataType: 'html',
+        
         success: function(resp_success) {
+            console.log(data);
             
             var modal = resp_success;
-            $(modal).modal().on('shown.bs.modal', function() {
-            $("[class='make-switch']").bootstrapSwitch('animate', true);
-                $('.select2').select2({dropdownParent: $("#edicion_juicio")});
-                
-                
-            }).on('hidden.bs.modal', function() {
-                $(this).remove();
-            });
-            console.log(modal);
+                $(modal).modal().on('shown.bs.modal', function() {
+                $("[class='make-switch']").bootstrapSwitch('animate', true);
+                $('.select2').select2({dropdownParent: $("#edicion_juicio")});                
+                    
+                }).on('hidden.bs.modal', function() {
+                    $(this).remove();
+                });                          
         },
         error: function(respuesta) {
             Swal.fire('¡Alerta!','Error de conectividad de red USR-03','warning');

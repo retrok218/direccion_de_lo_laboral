@@ -50362,7 +50362,7 @@ tr.shown td.details-control {
 .juiciotext {
     color: #8b1818b8;
     font-weight: bold;
-    margin-left: 17px !important;
+    /* margin-left: 17px !important; */
     
 }
 
@@ -50386,9 +50386,6 @@ tr.shown td.details-control {
     width: 80%;
 }
 
-/* .fechaprox_juicio{
-    margin: -1rem -19rem -1rem auto;
-} */
 
 
 

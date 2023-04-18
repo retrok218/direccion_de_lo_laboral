@@ -33,7 +33,9 @@
 <!-- <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.react.js')}}" type="text/javascript"></script>-->
 <script src="{{ URL::asset('assets/vendors/general/canvas/jquery.canvasjs.min.js')}}" type="text/javascript"></script>
 <!-- FIN Scrips para generar graficas  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="{{ URL::asset('assets/vendors/general/moment2.18/moment.min.js')}}" type="text/javascript"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> --}}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   
 <script src="{{URL::asset('js/dateTime.min.js')}}"></script> <!--script para calendario datatable-->

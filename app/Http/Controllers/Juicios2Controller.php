@@ -235,6 +235,65 @@ class Juicios2Controller extends Controller
 
     public function desglocejuicio($id){
         //se obtienen los nombres de los abogados dependiendo de la seleccion del id se realiza la consulta en el modelo
+        $urcatalogo =[                                              
+            "100",
+            "111",
+            "114",
+            "130",  
+            "200",
+            "211",  
+            "212", 
+            "214", 
+            "215",      
+            "217",  
+            "223",
+            "230",
+            "231",
+            "232",
+            "270",
+            "271",
+            "272",
+            "273",
+            "300",
+            "311",
+            "313",
+            "410",
+            "412",
+            "500",
+            "510",
+            "511",
+            "513",
+            "515",
+            "541",
+            "700",
+            "800",
+            "810",
+            "811",
+            "812",
+            "813",
+            "814",
+            "900",
+            "901",
+            "911",
+            "913",
+            "914",
+            "915",
+            "920",
+            "941",
+            "A00",
+            "C00",
+            "E2D",
+            "EZN",
+            "F00",
+            "K00",
+            "M00",
+            "N00",
+            "Q00",
+            "S/UR",
+            "T00",
+            "V00"
+        ];
+
         $j=juicio::find($id);
         $nombreabogados = $j->obteniendonombresdearea($id);                   
         $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario')        
@@ -267,7 +326,7 @@ class Juicios2Controller extends Controller
         //  trnario php $a < 5? v : f
         
         
-        return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
+        return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes, 'urcatalogo'=>$urcatalogo ]);
     }
 
 
