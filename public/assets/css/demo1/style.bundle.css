@@ -50225,7 +50225,7 @@ tr.shown td.details-control {
 
  .btn-agregar-abogado{
     position: relative;
-    color: #ccb68b;
+    color: #9d203f;
     text-decoration: none;
     display: inline-block;
     text-transform: uppercase;
@@ -50239,11 +50239,41 @@ tr.shown td.details-control {
     font-weight: 800;   
     font-size: 10px;
 
+
+  }
+
+
+  .btn-agregar-abogado-succes{
+    position: relative;
+    color: #28830a;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    /* letter-spacing: 1px; */
+    border: 2px solid #cab487;
+    border-radius: 1000px;
+    padding: 9px 9px;
+    margin: 0% 1% 1% 85%;
+    box-shadow: 0 2px 5px 0 rgb(22 253 42 / 59%);
+    transition: .5s all ease-in-out; 
+    font-weight: 800;   
+    font-size: 10px;
+
   }
 
   .btn-agregar-abogado:hover {
     cursor: pointer;
     background: #d4c19d40;
+    color: #9d1f3eab;
+    animation: none;
+    animation-play-state: paused;
+    border-color: #9d1f3e7d;
+    font-weight: 900;    
+  }
+
+  .btn-agregar-abogado-succes:hover {
+    cursor: pointer;
+    background: #abd49d70;
     color: #9d1f3eab;
     animation: none;
     animation-play-state: paused;
@@ -50259,10 +50289,12 @@ tr.shown td.details-control {
   }
   @keyframes pulse {
     to {
-      box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); 
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); 
     }
   }
 
+
+  
 
   .botonargegar{
     

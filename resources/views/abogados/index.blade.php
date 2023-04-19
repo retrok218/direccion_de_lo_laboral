@@ -26,23 +26,30 @@
                     <td>{{$abogado->nombre}}</td>
                     <td>{{$abogado->apellidoP}}</td>
                     <td>{{$abogado->apellidoM}}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-xs dt-edit" style="margin-right:16px;">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-xs dt-delete">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
+                    <td>                                                                           
                         
-
-                        <a class="btn btn-outline-success" href="{{url('/abogado/'.$abogado->id_abogado.'/edit' ) }}">Editar</a>
-                       
-
-                        <form action="{{ url('abogado/'.$abogado->id_abogado ) }}" method="POST">
-                            @csrf
-                            {{method_field('DELETE')}}
-                            <input class="btn btn-outline-danger" type="submit" onclick="return confirm('¿Quieres borrar el registro?')" value="Borrar">
-                        </form>
+                        
+                            <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">
+                              <i class="la la-ellipsis-h"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="container text-center" style="display: contents;">
+                                <form action="{{ url('abogado/'.$abogado->id_abogado ) }}" method="POST">
+                                    @csrf
+                                    {{method_field('DELETE')}}
+                                    <button type="submit" onclick="return confirm('¿Quieres borrar el registro?'+{{$abogado->id_abogado}})" class="btn btn-danger  btn-wide">
+                                        <i class="fa fa-trash"></i> Borrar
+                                    </button>
+                                    
+                                </form>
+                                <form action="{{url('/abogado/'.$abogado->id_abogado.'/edit' ) }}" >
+                                    <button type="submit"  class="btn btn-success btn-wide">
+                                        <i class="la la-edit"></i>Editar
+                                    </button>
+                                </form>                                                                
+                            </div>
+                        </div>
+                    
                     </td>
                                        
                 </tr>
@@ -56,6 +63,5 @@
 
 
 
-@include('layouts/scripts/scripts_dttb')
 
 @endsection

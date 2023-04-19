@@ -23,9 +23,9 @@ use App\Http\Controllers\SalasController;
 
 Route::get('/',[table_juicios_controller::class, 'index']);
 // Route::get('/juicios',[table_juicios_controller::class,'desgloce_juicios']);
-Route::get('/agregar1',[table_juicios_controller::class,'agregarjuicio1']);
-Route::get('/agregar2',[table_juicios_controller::class,'agregarjuicio2']);
-Route::get('/datos_rel_laboral',[table_juicios_controller::class,'datos_rel_laboral']);
+// Route::get('/agregar1',[table_juicios_controller::class,'agregarjuicio1']);
+// Route::get('/agregar2',[table_juicios_controller::class,'agregarjuicio2']);
+// Route::get('/datos_rel_laboral',[table_juicios_controller::class,'datos_rel_laboral']);
 Route::get('/registro_Juicio',[table_juicios_controller::class,'registro']);
 
 
@@ -33,6 +33,8 @@ Route::get('/registro_Juicio',[table_juicios_controller::class,'registro']);
 // Route::get('/abogado/create',[AbogadoController::class,'create']);
 
 Route::resource('abogado', AbogadoController::class);
+
+
 
 Route::resource('juicios', Juicios2Controller::class);
 Route::post('juicios/data', [Juicios2Controller::class,'juicios_datos'])->name('jucios.data');

@@ -10,5 +10,5 @@
 
 
    
-@include('layouts/scripts/scripts_dttb')
+
 @endsection

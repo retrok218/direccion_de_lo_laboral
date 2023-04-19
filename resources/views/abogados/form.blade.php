@@ -23,7 +23,11 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-primary" value="guardar_abogado" >Confirmar</button>
-  <div class="botonargegar">    
-    <a href="{{URL::asset('abogado/')}}" class="btn-agregar-abogado button-pulse"> Cancelar</a>
+  
+  <div class="row">
+    <div class="botonargegar">    
+      <button class="btn-agregar-abogado-succes button-pulse "  value="guardar_abogado" >Confirmar</button>
+      <a href="{{URL::asset('abogado/')}}" class="btn-agregar-abogado button-pulse"> Cancelar</a>
+    </div>
   </div>
+  
