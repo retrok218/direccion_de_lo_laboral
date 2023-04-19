@@ -148,7 +148,9 @@ var table = $('#juiciotabla').DataTable({
               var deleteUrl =url+"eliminar/" + row.id_juicio;              
               var ligajuicio=row.id_juicio;
                                         
-              return `<a onclick="editarJuicio(${ligajuicio})" title="Editar"><i class="fa fa-pencil">/</i></a>    <a href="'+deleteUrl+'" title="Eliminar"><i class="fa fa-trash"></i></a>`
+              return `              
+              <button value="Actualizar" title="Actualizar" class="btn  btn-edit" onclick="editarJuicio(${ligajuicio})"><i class="fa fa-pencil"></i></button>
+              <button value="Actualizar" title="Eliminar" class="btn  btn-edit"><i class="fa fa-trash"></i></button>`
             }
           }
         

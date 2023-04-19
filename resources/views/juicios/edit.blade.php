@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-body" id="modal_content">
                 
-                <form role="form" name="juiciodes" id="juiciodes" method="POST" action="javascript:void(0)">
+                <form action="{{url('/juicio/'.$juicio3[0]->id_juicio)}}" method="POST" >
                   @csrf
                   {{method_field('PATCH') }}
                     <div class="panel panel-primary">
@@ -28,7 +28,7 @@
                                     <div class="col-sm-4">
                                         <div class="card">
                                           <div class="card-body">
-                          
+                                            
                           
                                             <h6 class="card-title juiciotext juiciotext">  Abogados Asignados</h6>                                                                                                
                                                 @foreach ($nombreabogados[0] as $nombreabogado)                                                                     
@@ -45,7 +45,7 @@
                                             Notificacion Demanda 
                                           </div>
                                           <div class="card-body">
-                                            <input type="date"  min="2016-01-01" class="form-control" id="notidemanda" value="{{$juicio3[0]->noti_demanda}}"  name="notidemanda"> 
+                                            <input type="date"   class="form-control" id="notidemanda" value="{{$juicio3[0]->noti_demanda}}"  name="notidemanda"> 
                                           </div>                                                                                                                                 
                                         </div>
                                       </div>
@@ -645,7 +645,7 @@
                                               
                                               <p class="card-text">
                                                 
-                                                <input type="date"  min="2016-01-01" class="form-control" id="juicio_in_rellaboral" value="{{$juicio3[0]->inicio_rellab}}"  name="juicio_in_rellaboral"> 
+                                                <input type="date"   class="form-control" id="juicio_in_rellaboral" value="{{$juicio3[0]->inicio_rellab}}"  name="juicio_in_rellaboral"> 
                                               </p>                                    
                                             </div>
                                           </div>
@@ -659,7 +659,7 @@
                                             <div class="card-body">
                                               
                                               <p class="card-text">                                                
-                                                <input type="date"  min="2016-01-01" class="form-control" id="juicio_term_rellaboral" value="{{$juicio3[0]->terminacion_rellab}}"  name="juicio_term_rellaboral">                                                   
+                                                <input type="date"   class="form-control" id="juicio_term_rellaboral" value="{{$juicio3[0]->terminacion_rellab}}"  name="juicio_term_rellaboral">                                                   
                                               </p>                                    
                                             </div>
                                           </div>
@@ -691,7 +691,7 @@
                                               </div>
                                               <div class="card-body">                                                
                                                 <p class="card-text">                                                                                                    
-                                                  <input type="date"  min="2016-01-01" class="form-control" id="Solicitud" value="{{$juicio3[0]->exp_personal_rh_solicitud}}"  name="Solicitud">   
+                                                  <input type="date"   class="form-control" id="Solicitud" value="{{$juicio3[0]->exp_personal_rh_solicitud}}"  name="Solicitud">   
                                                 </p>                                    
                                               </div>
                                             </div>
@@ -704,7 +704,7 @@
                                               </div>
                                               <div class="card-body">                                                
                                                 <p class="card-text">                                                  
-                                                  <input type="date"  min="2016-01-01" class="form-control" id="Devolucion" value="{{$juicio3[0]->exp_personal_rh_devolucion}}"  name="Devolucion">                                                    
+                                                  <input type="date"   class="form-control" id="Devolucion" value="{{$juicio3[0]->exp_personal_rh_devolucion}}"  name="Devolucion">                                                    
                                                 </p>                                    
                                               </div>
                                             </div>
@@ -742,7 +742,7 @@
                                               <div class="card-body">
                                                
                                                 <p class="card-text">                                                      
-                                                  <input type="date"  min="2016-01-01" class="form-control" id="exp_adscripcion_solicitud" value="{{$juicio3[0]->exp_adscripcion_solicitud}}"  name="exp_adscripcion_solicitud">                                     
+                                                  <input type="date"   class="form-control" id="exp_adscripcion_solicitud" value="{{$juicio3[0]->exp_adscripcion_solicitud}}"  name="exp_adscripcion_solicitud">                                     
                                                 </p>                                    
                                               </div>
                                             </div>
@@ -821,7 +821,7 @@
                                           </div>
                                           <div class="card-body">                                  
                                             <p class="card-text">                                                                                    
-                                              <input type="date"  min="2016-01-01" class="form-control" id="lau_fecha" value="{{$juicio3[0]->lau_fecha}}"  name="lau_fecha">                                     
+                                              <input type="date"   class="form-control" id="lau_fecha" value="{{$juicio3[0]->lau_fecha}}"  name="lau_fecha">                                     
                                             </p>                                    
                                           </div>
                                         </div>
@@ -833,7 +833,7 @@
                                           </div>
                                           <div class="card-body">                                  
                                             <p class="card-text">                                                                                     
-                                              <input type="date"  min="2016-01-01" class="form-control" id="sentido" value="{{$juicio3[0]->sentido}}"  name="sentido">                                   
+                                              <input type="date"   class="form-control" id="sentido" value="{{$juicio3[0]->sentido}}"  name="sentido">                                   
                                             </p>                                    
                                           </div>
                                         </div>
@@ -1304,7 +1304,7 @@
                         </div>
                     </div>   
                     <div class="kt-form__actions">
-                      <button type="reset" class="btn btn-success">Guardar Cambios</button>
+                      <button value="actualizar" class="btn btn-success">Guardar Cambios</button>
                       <button type="reset" class="btn btn-secondary">Cancel</button>
                     </div>   
 

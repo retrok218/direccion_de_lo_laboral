@@ -204,6 +204,7 @@ class Juicios2Controller extends Controller
     public function update(Request $request, Juicios2 $juicios2)
     {
         //
+        return "Esto es la  imprimicion de los datos "+$request ;
     }
 
     /**
