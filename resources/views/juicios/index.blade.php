@@ -10,7 +10,7 @@
             
     // });
     Swal.fire({
-        title: 'Juicio Agregado  Correctamente',
+        title: 'Operacion Exitosa',
         width: 334,
         type:'success',
         position :'top-right',
@@ -18,12 +18,12 @@
         color: '#716add',
         border: '3px solid #a5dc86',
         timerProgressBar: true,
-        timer: 2000,
+        timer: 4000,
         showConfirmButton: false,
         background: '#fff ',
         backdrop: `
             rgba(0,0,123,0.4)
-            url("public/assets/media/company-logos/nyan-cat.gif")
+            
             left top
             no-repeat`    
         })
@@ -60,5 +60,30 @@
     </thead>
     
 </table>
+
+<script>
+    function edit_juicio(id) {
+        
+        let formData = new FormData($("#edit_juicio").get(0));        
+        formData.append('_method','PUT');
+        $.ajax({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+            url:'{{url('juicios/editar/')}}'+id,
+            method:'POST',
+            data:formData,
+           contentType:false,
+           processData:false,
+            
+    
+
+
+        });
+        
+       
+    }
+</script>
+
 
 @endsection

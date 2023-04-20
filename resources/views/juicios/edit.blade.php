@@ -1,17 +1,23 @@
 
-<div class="modal fade" id="modal-juicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="editjuicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body" id="modal_content">
                 
-                <form action="{{url('/juicio/'.$juicio3[0]->id_juicio)}}" method="POST" >
-                  @csrf
-                  {{method_field('PATCH') }}
+                 
+                  
                     <div class="panel panel-primary">
                         <div class="panel-body">
                           {{--inicio del acordion juicios --}}
                           <div class="accordion" id="acordionjuicio">
 
+
+
+                            <form id="actualiza_datos_generales" >
+
+                              {{-- @csrf
+                              {{method_field('PATCH') }} --}}
+                             
                             <div class="card">
                               <div class="card-header" id="datosjuicio">
                                 <h5 class="mb-0">
@@ -45,7 +51,7 @@
                                             Notificacion Demanda 
                                           </div>
                                           <div class="card-body">
-                                            <input type="date"   class="form-control" id="notidemanda" value="{{$juicio3[0]->noti_demanda}}"  name="notidemanda"> 
+                                            <input type="date"   class="form-control" id="noti_demanda"   name="noti_demanda" value="{{$juicio3[0]->noti_demanda}}"> 
                                           </div>                                                                                                                                 
                                         </div>
                                       </div>
@@ -58,7 +64,7 @@
                                           <div class="card-body">
                                            
                                             <p class="card-text" >                                        
-                                                <input  class="form-control" type="date" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->presentacion_de_demanda}}" >
+                                                <input  class="form-control" type="date" id="presentacion_de_demanda" name="presentacion_de_demanda" value="{{$juicio3[0]->presentacion_de_demanda}}" >
                                             </p>                                    
                                           </div>
                                         </div>
@@ -70,7 +76,7 @@
                                             Expediente 
                                           </div>
                                           <div class="card-body">                                                                                                               
-                                                <input  class="form-control" type="text" id="abogados_asignados"  value="{{$juicio3[0]->expediente}}" >
+                                                <input  class="form-control" type="text" id="expediente"  value="{{$juicio3[0]->expediente}}" >
                                                                                
                                           </div>
                                         </div>
@@ -104,7 +110,7 @@
                                           </div>
                                           <div class="card-body">                                            
                                             <p class="card-text">                                                                                                
-                                                <select class="custom-select" name="año_juicio" id="año_juicio" >
+                                                <select class="custom-select" name="clasificacion_año" id="clasificacion_año" >
                                                   @foreach($añosseleccionables as $año)
                                                     @if ($año == $juicio3[0]->clasificacion_año)
                                                       <option value="{{$año}}" selected>{{$año}}</option>                                                                                                               
@@ -175,15 +181,17 @@
                                         </div>
                                       </div>                                                                                                                       
                                   </div>
+                                      
                                 </div>
                                 </div>
                               </div>
-
-
-
-
-
                             </div>
+                          </form>
+                          <div class="kt-form__actions">
+                            <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}});"  class="btn btn-success">Editar</button>
+                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                          </div>
+
                             {{--inicio car actor--}}
                             <div class="card">                            
                               <div class="card-header" id="headingTwo">
@@ -1303,13 +1311,9 @@
                           
                         </div>
                     </div>   
-                    <div class="kt-form__actions">
-                      <button value="actualizar" class="btn btn-success">Guardar Cambios</button>
-                      <button type="reset" class="btn btn-secondary">Cancel</button>
-                    </div>   
+                       
 
-                </form>
-
+                
 
   {{-- fin de formulario para mostrar datos--}}                  
             </div>          

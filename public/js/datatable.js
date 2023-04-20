@@ -194,7 +194,7 @@ function editarJuicio(data,ads) {
         dataType: 'html',
         
         success: function(resp_success) {
-            console.log(data);
+          
             
             var modal = resp_success;
                 $(modal).modal().on('shown.bs.modal', function() {
@@ -211,4 +211,33 @@ function editarJuicio(data,ads) {
     });   
 };
 
+
+function update_actualiza_datos_generales(id){
+    // let form = document.getElementById('actualiza_datos_generales');
+    let formData = new FormData($('#actualiza_datos_generales').get(0));
+    // let idf =id;
+    formData.append('_method','PUT');
+    console.log(url);
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: url+'juicios/'+id ,        
+        type:'POST',
+        data:formData,
+        contentType: false,
+        processData: false, 
+        success:function (respuesta) {
+            if (respuesta.success == true) {
+                console.log(respuesta);
+            }
+
+        },error:function(xhr){
+            console.log(xhr);
+        }
+
+
+    });
+              
+}
 

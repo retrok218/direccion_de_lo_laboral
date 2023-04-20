@@ -94,8 +94,9 @@ class AbogadoController extends Controller
      */
     public function destroy($id_abogado)
     {
+
         //dd($id_abogado);
-        $aeliminar = abogado::findOrFail($id_abogado);
+        $aeliminar = abogado::find($id_abogado);
         if($aeliminar){
             $aeliminar->delete();
             return redirect()->route('abogado.index');
