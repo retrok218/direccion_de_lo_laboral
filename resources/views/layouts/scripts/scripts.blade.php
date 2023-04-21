@@ -52,5 +52,6 @@
 <!--FIn scrips para grafica mediante google charts -->
 
 
-<script src="public/js/datatable.js"></script>
+  {{-- <script src="public/js/datatable.js"></script>   --}}
+  <script src="{{URL::asset('js/datatable.js')}}"></script>  
 <script src="{{ URL::asset('js/juicios.js')}}" type="text/javascript"></script>

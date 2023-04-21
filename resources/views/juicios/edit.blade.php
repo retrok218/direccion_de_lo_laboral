@@ -13,12 +13,13 @@
 
 
 
-                            <form id="actualiza_datos_generales" >
+                           
 
                               {{-- @csrf
                               {{method_field('PATCH') }} --}}
                              
                             <div class="card">
+                              
                               <div class="card-header" id="datosjuicio">
                                 <h5 class="mb-0">
                                   <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#juicio" aria-expanded="false" aria-controls="juicio">
@@ -29,9 +30,11 @@
                           
                               <div id="juicio" class="collapse " aria-labelledby="datosjuicio" data-parent="#acordionjuicio">
                                 <div class="card-body">
-                                  <div class="row  row-cols-1 row-cols-md-3">                                                       
+                                  <div class="row  row-cols-1 row-cols-md-3"> 
+                                    <form id="actualiza_datos_generales" >                                                      
                                     <div class="card-deck"> 
                                     <div class="col-sm-4">
+                                      
                                         <div class="card">
                                           <div class="card-body">
                                             
@@ -179,18 +182,21 @@
                                             </p>                                    
                                           </div>
                                         </div>
-                                      </div>                                                                                                                       
+                                      </div>                                                                                                                      
                                   </div>
-                                      
+                                </form>                                      
                                 </div>
                                 </div>
-                              </div>
+
+                                <div class="kt-form__actions">
+                                  <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}});"  class="btn btn-success">Editar</button>
+                                  <button type="reset" class="btn btn-secondary">Cancel</button>
+                                </div>
+
+                              </div>                            
                             </div>
-                          </form>
-                          <div class="kt-form__actions">
-                            <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}});"  class="btn btn-success">Editar</button>
-                            <button type="reset" class="btn btn-secondary">Cancel</button>
-                          </div>
+                          
+                          
 
                             {{--inicio car actor--}}
                             <div class="card">                            

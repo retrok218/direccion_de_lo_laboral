@@ -39,10 +39,7 @@
     </script>        
 @endif
 
-<h1  id="h01">Desglose de juicios</h1> 
-<div class="botonargegar">            
-    <a href="{{URL::asset('juicios/create')}}" class="btn-agregar-abogado button-pulse"> +     <span>Agregar Juicio</span> </a>
-</div>
+@include('juicios.headbar')
 
 <table class="table table-striped table-bordered" style="width:100%" id="juiciotabla" >
     <thead>

@@ -5,6 +5,7 @@ var table = $('#juiciotabla').DataTable({
     "pageLength": 6,   
     "lengthChange": true,
     "searching": true,
+    responsive: true,
     
     "info": true,
     // responsive: true,
