@@ -5,11 +5,7 @@
             <h3 class="kt-subheader__title">Desgloce de Juicios</h3>
 
             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-
-           
-
-                       
-            
+                                              
 
             <div class="kt-input-icon kt-input-icon--right kt-subheader__search kt-hidden">
                 <input type="text" class="form-control" placeholder="Search order..." id="generalSearch">
@@ -20,11 +16,9 @@
         </div>
         <div class="kt-subheader__toolbar">
             <div class="kt-subheader__wrapper">
-                <a href="#" class="btn btn-label-success btn-bold btn-agregar-abogado button-pulse">
-                    Agregar Juicio
-                </a>
-                
-                
+                <a href="{{URL::asset('juicios/create')}}" class="btn btn-label-success btn-bold">
+                    <i class="fa-solid fa-circle-plus fa-beat" style="margin: 3px 2px 0px 0px;"></i> Agregar Juicio  
+                </a>                                                
             </div>
         </div>
     </div>
