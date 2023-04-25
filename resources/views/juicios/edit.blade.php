@@ -29,8 +29,8 @@
                                 <div id="juicio" class="collapse " aria-labelledby="datosjuicio"
                                     data-parent="#acordionjuicio">
                                     <div class="card-body">
-                                        <div class="row  row-cols-1 row-cols-md-3">
-                                            <form id="actualiza_datos_generales">
+                                        <div class="row  row-cols-1 row-cols-md-3">                                          
+                                            <form id="actualiza_datos_generales" name="actualiza_datos_generales">
                                                 <div class="card-deck">
                                                     <div class="col-sm-4">
                                                         <div class="card">
@@ -80,9 +80,7 @@
                                                                 Expediente
                                                             </div>
                                                             <div class="card-body">
-                                                                <input class="form-control" type="text"
-                                                                    id="expediente"
-                                                                    value="{{ $juicio3[0]->expediente }}">
+                                                                <input class="form-control" type="text" id="expediente" value="{{ $juicio3[0]->expediente }}" name="expediente">
 
                                                             </div>
                                                         </div>
@@ -230,12 +228,13 @@
                                                     </div>
                                                 </div>
                                             </form>
+
                                         </div>
                                     </div>
 
                                     <div class="kt-form__actions">
                                         <button
-                                            onclick="update_actualiza_datos_generales({{ $juicio3[0]->id_juicio }});"
+                                            onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio }},'actualiza_datos_generales');"
                                             class="btn btn-success">Editar</button>
                                         <button type="reset" class="btn btn-secondary">Cancel</button>
                                     </div>
@@ -256,9 +255,13 @@
                                         </button>
                                     </h5>
                                 </div>
+
+
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                     data-parent="#acordionjuicio">
                                     <div class="card-body">
+                                      
+                                      <form id="actor" name="actor">
                                         <div class="row row-cols-1 row-cols-md-3">
                                             <div class="card-deck">
                                                 <div class="col-sm-4">
@@ -269,11 +272,7 @@
                                                         <div class="card-body">
 
                                                             <p class="card-text">
-                                                                <input class="form-control" type="text"
-                                                                    id="abogados_asignados"
-                                                                    placeholder="Seleccione la Sala"
-                                                                    value=" {{ $juicio3[0]->nombre_completo }}">
-
+                              <input class="form-control" name="nombre_completo" type="text" id="abogados_asignados" placeholder="Seleccione la Sala"value=" {{ $juicio3[0]->nombre_completo }}" >
                                                             </p>
                                                         </div>
                                                     </div>
@@ -904,7 +903,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-sm-4">
                                                     <div class="card">
                                                         <div class="card-header juiciotext ">
@@ -920,11 +918,21 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>                                                                                              
                                             </div>
                                         </div>
+                                      </form>
+                                      <div class="kt-form__actions">
+                                        <button
+                                            onclick="update_actualiza_datos_generales({{ $juicio3[0]->id_juicio }},'actor');"
+                                            class="btn btn-success">Editar</button>
+                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                    </div>
+
                                     </div>
                                 </div>
+
+
                             </div>
                             {{-- fin car actor --}}
                             {{-- Inicio card  Tramite --}}

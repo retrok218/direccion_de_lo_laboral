@@ -202,13 +202,15 @@ class Juicios2Controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-       
-         $datosj=request()->except(['_token','_method']);
-         Juicios2::where('id_juicio', $id)->update($datosj);
-         
-        //  dd($datosj);
-       
+    {       
+
+        $datosj=request()->except(['_token','_method']);  
+            dd($datosj);
+            if ($datosj){
+                Juicios2::where('id_juicio', $id)->update($datosj);
+            return redirect()->route('juicios.index');  
+            }
+                       
     }
 
     

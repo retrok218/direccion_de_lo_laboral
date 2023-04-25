@@ -213,12 +213,12 @@ function editarJuicio(data,ads) {
 };
 
 
-function update_actualiza_datos_generales(id){
-    // let form = document.getElementById('actualiza_datos_generales');
-    let formData = new FormData($('#actualiza_datos_generales').get(0));
-    // let idf =id;
+function update_actualiza_datos_generales(id,formname){
+    console.log(formname);
+    let formData = new FormData($('#'+formname).get(0));
+   
     formData.append('_method','PUT');
-    console.log(url);
+    
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -227,18 +227,9 @@ function update_actualiza_datos_generales(id){
         type:'POST',
         data:formData,
         contentType: false,
-        processData: false, 
-        success:function (respuesta) {
-            if (respuesta.success == true) {
-                console.log(respuesta);
-            }
-
-        },error:function(xhr){
-            console.log(xhr);
-        }
-
-
+        processData: false,
+                        
     });
-              
+  //  location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
 

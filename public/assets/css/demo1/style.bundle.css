@@ -50230,10 +50230,10 @@ tr.shown td.details-control {
     display: inline-block;
     text-transform: uppercase;
     /* letter-spacing: 1px; */
-    /* border: 2px solid #cab487; */
+    border: 2px solid #cab487;
     border-radius: 1000px;
-    /* padding: 9px 9px;
-    margin: 0% 1% 1% 85%; */
+    padding: 9px 9px;
+    margin: 0% 1% 1% 85%;
     box-shadow: 0 2px 5px 0 rgba(208 188 148);
     transition: .5s all ease-in-out; 
     font-weight: 800;   
