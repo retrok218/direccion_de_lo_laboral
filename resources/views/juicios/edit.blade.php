@@ -29,8 +29,10 @@
                                 <div id="juicio" class="collapse " aria-labelledby="datosjuicio"
                                     data-parent="#acordionjuicio">
                                     <div class="card-body">
-                                        <div class="row  row-cols-1 row-cols-md-3">                                          
+                                        <div class="row  row-cols-1 row-cols-md-3">
+
                                             <form id="actualiza_datos_generales" name="actualiza_datos_generales">
+
                                                 <div class="card-deck">
                                                     <div class="col-sm-4">
                                                         <div class="card">
@@ -234,8 +236,8 @@
 
                                     <div class="kt-form__actions">
                                         <button
-                                            onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio }},'actualiza_datos_generales');"
-                                            class="btn btn-success">Editar</button>
+                                            onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'actualiza_datos_generales');"
+                                            class="btn btn-success">Editar Juicio General</button>
                                         <button type="reset" class="btn btn-secondary">Cancel</button>
                                     </div>
 
@@ -842,11 +844,7 @@
                                                                 $nivelcat = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '14', '21', '22', '23', '-', '*', 'DG', 'Enlace', 'K11', 'K32', 'L11', 'L31', ' L32', 'LA1', 'LB1', 'LC1', 'M11', 'M21', 'M23', 'M33', 'M43', 'MA1', 'MB1', 'MB2', 'MC1', 'MC2', 'MC3', 'N11', 'N21', 'N22', 'N22 y P12', 'N23', 'N31', 'N33', 'N8', ' NA', 'NA1', 'NA1/OA1', 'NA2', 'NB1', 'NB2', 'NB3', 'NC1', 'NC2', 'NC3', ' NIVEL', 'O11', ' O21', 'O23', 'O32', 'OA1', 'OA2', 'OB1', 'OB3', ' OC1', 'OC2', 'P11', 'p12', 'P12, P13', 'P12 P13 P12 P12', 'P13', 'P13 P12 P12 P12', 'P2', 'P23', 'P23 P13 P13', 'P31', 'P32', 'P33', 'PA1', 'PC2', 'PQ1', 'PQ2', 'PQ3', 'QA', 'SPFOF', 'Varios'];
                                                             @endphp
                                                             <p class="card-text">
-                                                                <input type="number"
-                                                                    class="form-control input_dinero"
-                                                                    name="salarioMen" id="salarioMen"
-                                                                    data-type="currency" placeholder="1000,000.00"
-                                                                    min="1" value="{{ $juicio3[0]->nivel }}">
+                                                           <input type="text" class="form-control input_dinero" name="nivel" id="nivel"data-type="currency" min="1" value="{{$juicio3[0]->nivel}}">
                                                                 <datalist class="custom-datalist" id="niveles">
                                                                     @foreach ($nivelcat as $nivc)
                                                                         @if ($nivc == $juicio3[0]->nivel)
@@ -896,9 +894,9 @@
                                                             <p class="card-text">
 
                                                                 <input type="date" class="form-control"
-                                                                    id="juicio_in_rellaboral"
+                                                                    id="inicio_rellab"
                                                                     value="{{ $juicio3[0]->inicio_rellab }}"
-                                                                    name="juicio_in_rellaboral">
+                                                                    name="inicio_rellab">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -912,9 +910,9 @@
 
                                                             <p class="card-text">
                                                                 <input type="date" class="form-control"
-                                                                    id="juicio_term_rellaboral"
+                                                                    id="terminacion_rellab"
                                                                     value="{{ $juicio3[0]->terminacion_rellab }}"
-                                                                    name="juicio_term_rellaboral">
+                                                                    name="terminacion_rellab">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -925,7 +923,7 @@
                                       <div class="kt-form__actions">
                                         <button
                                             onclick="update_actualiza_datos_generales({{ $juicio3[0]->id_juicio }},'actor');"
-                                            class="btn btn-success">Editar</button>
+                                            class="btn btn-success">Editar Actor</button>
                                         <button type="reset" class="btn btn-secondary">Cancel</button>
                                     </div>
 
@@ -937,21 +935,24 @@
                             {{-- fin car actor --}}
                             {{-- Inicio card  Tramite --}}
                             <div class="card">
+
                                 <div class="card-header" id="stramite">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                            data-target="#tramite" aria-expanded="false" aria-controls="tramite">
+                                            data-target="#tramitea" aria-expanded="false" aria-controls="tramitea">
                                             <i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i>
                                             - Tramite
                                         </button>
                                     </h5>
                                 </div>
-                                <div id="tramite" class="collapse" aria-labelledby="stramite"
-                                    data-parent="#acordionjuicio">
-                                    <div class="card-body">
-                                        <div class="row row-cols-1 row-cols-md-3">
-                                            <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice"
-                                                    style="color: #8b1818;"></i> Expediente Personal R.H</h5>
+
+                                <div id="tramitea" class="collapse" aria-labelledby="stramite"
+                                    data-parent="#acordionjuicio"> 
+
+                                    <div class="card-body">   
+                            <form id="tramite" name="tramite">          
+                              <div class="row row-cols-1 row-cols-md-3">                                                                                   
+                    <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice"style="color: #8b1818;"></i> Expediente Personal R.H</h5>
                                             <div class="card-deck">
                                                 <div class="col-sm-4">
                                                     <div class="card">
@@ -960,10 +961,9 @@
                                                         </div>
                                                         <div class="card-body">
                                                             <p class="card-text">
-                                                                <input type="date" class="form-control"
-                                                                    id="Solicitud"
-                                                                    value="{{ $juicio3[0]->exp_personal_rh_solicitud }}"
-                                                                    name="Solicitud">
+                                            <input type="date" class="form-control" id="exp_personal_rh_solicitud"
+                                                                    value="{{ $juicio3[0]->exp_personal_rh_solicitud}}"
+                                                                    name="exp_personal_rh_solicitud">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -977,9 +977,9 @@
                                                         <div class="card-body">
                                                             <p class="card-text">
                                                                 <input type="date" class="form-control"
-                                                                    id="Devolucion"
+                                                                    id="exp_personal_rh_devolucion"
                                                                     value="{{ $juicio3[0]->exp_personal_rh_devolucion }}"
-                                                                    name="Devolucion">
+                                                                    name="exp_personal_rh_devolucion">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -995,95 +995,99 @@
                                                             <p class="card-text">
 
                                                                 <input type="number" class="form-control"
-                                                                    id="Fojas" name="Fojas" placeholder="0"
+                                                                    id="fojas" name="fojas" placeholder="0"
                                                                     value="{{ $juicio3[0]->fojas }}">
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-
-                                        <div class="row row-cols-1 row-cols-md-2">
                                             <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice"
-                                                    style="color: #8b1818;"></i> Expediente de Adscripcion</h5>
-                                            <div class="card-deck">
+                                              style="color: #8b1818;"></i> Expediente de Adscripcion</h5>
+                                      <div class="card-deck">
 
 
-                                                <div class="col-sm-6">
-                                                    <div class="card">
-                                                        <div class="card-header juiciotext ">
-                                                            Solicitud
-                                                        </div>
+                                          <div class="col-sm-6">
+                                              <div class="card">
+                                                  <div class="card-header juiciotext ">
+                                                      Solicitud
+                                                  </div>
 
-                                                        <div class="card-body">
+                                                  <div class="card-body">
 
-                                                            <p class="card-text">
-                                                                <input type="date" class="form-control"
-                                                                    id="exp_adscripcion_solicitud"
-                                                                    value="{{ $juicio3[0]->exp_adscripcion_solicitud }}"
-                                                                    name="exp_adscripcion_solicitud">
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                      <p class="card-text">
+                                                          <input type="date" class="form-control"
+                                                              id="exp_adscripcion_solicitud"
+                                                              value="{{ $juicio3[0]->exp_adscripcion_solicitud }}"
+                                                              name="exp_adscripcion_solicitud">
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                          <div class="col-sm-6">
+                                              <div class="card">
+                                                  <div class="card-header juiciotext ">
+                                                      Devolucion
+                                                  </div>
+                                                  <div class="card-body">
+
+                                                      <p class="card-text">
+
+                                                          <input type="date" class="form-control"
+                                                              id="exp_adscripcion_devolucion"
+                                                              name="exp_adscripcion_devolucion"
+                                                              value="{{ $juicio3[0]->exp_adscripcion_devolucion }}">
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="card-deck">
+                                        <div class="col-sm-12">
+                                            <div class="card">
+                                                <div class="card-header juiciotext ">
+                                                    Descripcion
                                                 </div>
-
-                                                <div class="col-sm-6">
-                                                    <div class="card">
-                                                        <div class="card-header juiciotext ">
-                                                            Devolucion
-                                                        </div>
-                                                        <div class="card-body">
-
-                                                            <p class="card-text">
-
-                                                                <input type="date" class="form-control"
-                                                                    id="exp_adscripcion_devolucion"
-                                                                    name="exp_adscripcion_devolucion"
-                                                                    value="{{ $juicio3[0]->exp_adscripcion_devolucion }}">
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row row-cols-1 row-cols-md-3">
-                                            <div class="card-deck">
-                                                <div class="col-sm-12">
-                                                    <div class="card">
-                                                        <div class="card-header juiciotext ">
-                                                            Descripcion
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <p class="card-text">
-                                                                <textarea name="addescripcion" class="form-control" id="addescripcion" placeholder="Sin Datos por el Momento">{{ $juicio3[0]->descripcion }}</textarea>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-4">
-                                                <div class="card">
-                                                    <div class="card-header juiciotext ">
-                                                        Cierre de Instruccion:
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">
-
-                                                            <input type="date" class="form-control"
-                                                                id="Cierre_de_Instruccion"
-                                                                name="Cierre_de_Instruccion"value="{{ $juicio3[0]->cierredeinstruccion }}">
-                                                        </p>
-                                                    </div>
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                                                        <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Sin Datos por el Momento">{{ $juicio3[0]->descripcion }}</textarea>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                          <div class="col-sm-4">
+                                              <div class="card">
+                                                  <div class="card-header juiciotext ">
+                                                      Cierre de Instruccion:
+                                                  </div>
+                                                  <div class="card-body">
+                                                      <p class="card-text">
+
+                                                          <input type="date" class="form-control"
+                                                              id="cierredeinstruccion"
+                                                              name="cierredeinstruccion"value="{{ $juicio3[0]->cierredeinstruccion }}">
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          </div> 
+                                        
+                                      </div>                                       
+                                      </form>
+                                      
+                                      
+                                      <div class="kt-form__actions">
+                                        <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'tramite');"class="btn btn-success">Editar tramite
+                                        </button>
+                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
+
 
                             {{-- fin card  Tramite --}}
 
@@ -1092,16 +1096,19 @@
                                 <div class="card-header" id="laudos">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                            data-target="#laudo" aria-expanded="false" aria-controls="laudo">
+                                            data-target="#laudoab" aria-expanded="false" aria-controls="laudoab">
                                             <i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i>
                                             - Laudo
                                         </button>
                                     </h5>
                                 </div>
-                                <div id="laudo" class="collapse" aria-labelledby="laudos"
+                                <div id="laudoab" class="collapse" aria-labelledby="laudoab"
                                     data-parent="#acordionjuicio">
+
                                     <div class="card-body">
                                         <div class="row row-cols-1 row-cols-md-3">
+
+                                          <form id="laudo" name="laudo">
                                             <div class="card-deck">
                                                 <div class="col-sm-4">
                                                     <div class="card">
@@ -1218,7 +1225,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                          </form>
+
                                         </div>
+                                        <div class="kt-form__actions">
+                                          <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'laudo');"class="btn btn-success">Editar Laudo
+                                          </button>
+                                          <button type="reset" class="btn btn-secondary">Cancel</button>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
@@ -1229,16 +1244,18 @@
                                 <div class="card-header" id="amparos">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                            data-target="#amparo" aria-expanded="false" aria-controls="amparo">
+                                            data-target="#amparoab" aria-expanded="false" aria-controls="amparoab">
                                             <i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i>
                                             - Amparo
                                         </button>
                                     </h5>
                                 </div>
-                                <div id="amparo" class="collapse" aria-labelledby="amparos"
+                                <div id="amparoab" class="collapse" aria-labelledby="amparoab"
                                     data-parent="#acordionjuicio">
                                     <div class="card-body">
+                                      <form id="amparo" name="amparo">
                                         <div class="row ">
+                                          
                                             <div class="col-md-4">
                                                 <div class="card">
                                                     <div class="card-header  juiciotext">
@@ -1436,6 +1453,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                      </form>
+                                      <div class="kt-form__actions">
+                                        <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'amparo');"class="btn btn-success">Editar Amparo
+                                        </button>
+                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                    </div>
+
                                     </div>
                                 </div>
                                 {{-- fincard amparo --}}
@@ -1444,14 +1468,14 @@
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button"
-                                                data-toggle="collapse" data-target="#ejecucion" aria-expanded="false"
+                                                data-toggle="collapse" data-target="#ejecucionab" aria-expanded="false"
                                                 aria-controls="collapseThree">
                                                 <i class="fa-sharp fa-solid fa-file-invoice"
                                                     style="color: #8b1818;"></i> - Ejecucion
                                             </button>
                                         </h5>
                                     </div>
-                                    <div id="ejecucion" class="collapse" aria-labelledby="headingThree"
+                                    <div id="ejecucionab" class="collapse" aria-labelledby="headingThree"
                                         data-parent="#acordionjuicio">
                                         <div class="card-body">
                                             <div class="row row-cols-1 row-cols-md-3">

@@ -189,7 +189,8 @@ class Juicios2Controller extends Controller
             $añosseleccionables[]=$añoactual;
             $añoactual = $añoactual-1;
          };
-
+         
+         
         return view('juicios.edit')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes ,'añosseleccionables'=>$añosseleccionables]);
        
     }
@@ -206,6 +207,7 @@ class Juicios2Controller extends Controller
 
         $datosj=request()->except(['_token','_method']);  
             dd($datosj);
+
             if ($datosj){
                 Juicios2::where('id_juicio', $id)->update($datosj);
             return redirect()->route('juicios.index');  

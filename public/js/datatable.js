@@ -216,6 +216,7 @@ function editarJuicio(data,ads) {
 function update_actualiza_datos_generales(id,formname){
     console.log(formname);
     let formData = new FormData($('#'+formname).get(0));
+    
    
     formData.append('_method','PUT');
     
