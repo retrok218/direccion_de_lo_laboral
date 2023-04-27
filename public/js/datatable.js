@@ -214,23 +214,22 @@ function editarJuicio(data,ads) {
 
 
 function update_actualiza_datos_generales(id,formname){
-    console.log(formname);
-    let formData = new FormData($('#'+formname).get(0));
-    
-   
-    formData.append('_method','PUT');
-    
+    // console.log(formname);
+    let formData = new FormData($('#'+formname).get(0));       
+    formData.append('_method','PUT');    
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: url+'juicios/'+id ,        
+        url: url+'juicios_update/'+id+'/'+formname ,        
         type:'POST',
         data:formData,
         contentType: false,
         processData: false,
                         
     });
+
+    
   //  location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
 

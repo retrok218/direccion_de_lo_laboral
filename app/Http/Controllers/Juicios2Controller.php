@@ -159,10 +159,14 @@ class Juicios2Controller extends Controller
     {
         $j=juicio::find($id);
         $nombreabogados = $j->obteniendonombresdearea($id); 
-        $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario')        
-        ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        // $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario','laudo.lau_fecha' ) 
+        $juicio3 = Juicio::join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
+        ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
+        ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
+        ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')        
         ->where('juicios.id_juicio', $id)
-        ->get('juicios.id_juicio');
+        ->get();
         //se modifica la fecha para que aparesca con los nombre de los meses y dias 
          $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
          $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria        
@@ -189,7 +193,7 @@ class Juicios2Controller extends Controller
             $añosseleccionables[]=$añoactual;
             $añoactual = $añoactual-1;
          };
-         
+      
          
         return view('juicios.edit')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes ,'añosseleccionables'=>$añosseleccionables]);
        
@@ -202,21 +206,51 @@ class Juicios2Controller extends Controller
      * @param  \App\Models\Juicios2  $juicios2
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id,$name)
     {       
+       dd('holsa'+$name);
 
-        $datosj=request()->except(['_token','_method']);  
-            dd($datosj);
-
-            if ($datosj){
-                Juicios2::where('id_juicio', $id)->update($datosj);
-            return redirect()->route('juicios.index');  
-            }
+        // $datosj=request()->except(['_token','_method']);             
+        // juicio::where('id_juicio', $id)->with('laudo')->update($datosj);
+        // return redirect()->route('juicios.index');  
+            
                        
     }
-
     
 
+    public function update_all_form(Request $request,$id,$name){
+
+        $datosj = request()->except(['_token','_method']);
+        
+        switch ($name) {
+            case 'actualiza_datos_generales':                
+                juicio::where('id_juicio', $id)->update($datosj);                
+            break;            
+            case 'actor';
+            case 'tramite';
+                actor::where('juicio_id', $id)->update($datosj);                
+            break;
+            case 'laudo';
+                laudo::where('laudo_id_juicio', $id)->update($datosj);
+            break;           
+            case 'amparo';
+             amparo::where('id_amparo', $id)->update($datosj);
+            break;
+
+            case 'ejecucion':
+             etapaejecucion::where('id_etapaejecucion', $id)->update($datosj);
+            break;
+
+            case 'conclusion':
+                concluido::where('id_concluido', $id)->update($datosj);
+            break;
+
+            default:
+                # code...
+                break;
+        }        
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -248,10 +282,18 @@ class Juicios2Controller extends Controller
         //se obtienen los nombres de los abogados dependiendo de la seleccion del id se realiza la consulta en el modelo
         $j=juicio::find($id);
         $nombreabogados = $j->obteniendonombresdearea($id);                   
-        $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario')        
-        ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        // $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario')        
+        // ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        // ->where('juicios.id_juicio', $id)
+        // ->get('juicios.id_juicio');
+
+        $juicio3 = Juicio::join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
+        ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
+        ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
+        ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')        
         ->where('juicios.id_juicio', $id)
-        ->get('juicios.id_juicio');
+        ->get();
         //se modifica la fecha para que aparesca con los nombre de los meses y dias 
          $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
          $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria        
@@ -276,7 +318,7 @@ class Juicios2Controller extends Controller
          ->where('laudo.laudo_id_juicio',$id)
          ->get();                  
         //  trnario php $a < 5? v : f
-        
+        //dd($juicio3);
         
         return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
     }

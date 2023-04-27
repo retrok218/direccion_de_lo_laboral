@@ -238,7 +238,7 @@
                                         <button
                                             onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'actualiza_datos_generales');"
                                             class="btn btn-success">Editar Juicio General</button>
-                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                      
                                     </div>
 
                                 </div>
@@ -924,7 +924,7 @@
                                         <button
                                             onclick="update_actualiza_datos_generales({{ $juicio3[0]->id_juicio }},'actor');"
                                             class="btn btn-success">Editar Actor</button>
-                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                        
                                     </div>
 
                                     </div>
@@ -1082,7 +1082,7 @@
                                       <div class="kt-form__actions">
                                         <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'tramite');"class="btn btn-success">Editar tramite
                                         </button>
-                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                       
                                     </div>
                                     </div>
                                 </div>
@@ -1117,10 +1117,7 @@
                                                         </div>
                                                         <div class="card-body">
                                                             <p class="card-text">
-                                                                <input type="date" class="form-control"
-                                                                    id="lau_fecha"
-                                                                    value="{{ $juicio3[0]->lau_fecha }}"
-                                                                    name="lau_fecha">
+                         <input type="date" class="form-control" id="lau_fecha" name="lau_fecha" value="{{ $juicio3[0]->lau_fecha }}">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -1232,7 +1229,7 @@
                                         <div class="kt-form__actions">
                                           <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'laudo');"class="btn btn-success">Editar Laudo
                                           </button>
-                                          <button type="reset" class="btn btn-secondary">Cancel</button>
+                                         
                                       </div>
                                     </div>
                                 </div>
@@ -1456,14 +1453,14 @@
                                       </form>
                                       <div class="kt-form__actions">
                                         <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'amparo');"class="btn btn-success">Editar Amparo
-                                        </button>
-                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                        </button>                                        
                                     </div>
 
                                     </div>
                                 </div>
                                 {{-- fincard amparo --}}
                                 {{-- card ejecucion --}}
+
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
@@ -1478,7 +1475,13 @@
                                     <div id="ejecucionab" class="collapse" aria-labelledby="headingThree"
                                         data-parent="#acordionjuicio">
                                         <div class="card-body">
+                                          
+                                          
+
                                             <div class="row row-cols-1 row-cols-md-3">
+                                              <form name="ejecucion" id="ejecucion">
+
+
                                                 <div class="card-deck">
 
                                                     <div class="col-md-4">
@@ -1674,27 +1677,36 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                              </form>
                                             </div>
+                                            <div class="kt-form__actions">
+                                              <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'ejecucion');"class="btn btn-success">Editar Ejecucion
+                                              </button>                                        
+                                          </div>
+
+
                                         </div>
                                     </div>
                                 </div>
                                 {{-- fin card ejecucion --}}
                                 {{-- card conclusion --}}
+
                                 <div class="card">
                                     <div class="card-header" id="conclusions">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button"
-                                                data-toggle="collapse" data-target="#conclusion"
-                                                aria-expanded="false" aria-controls="conclusion">
+                                                data-toggle="collapse" data-target="#conclusionab"
+                                                aria-expanded="false" aria-controls="conclusionab">
                                                 <i class="fa-sharp fa-solid fa-file-invoice"
                                                     style="color: #8b1818;"></i> - Conclusion
                                             </button>
                                         </h5>
                                     </div>
-                                    <div id="conclusion" class="collapse" aria-labelledby="conclusions"
+                                    <div id="conclusionab" class="collapse" aria-labelledby="conclusions"
                                         data-parent="#acordionjuicio">
                                         <div class="card-body">
                                             <div class="row row-cols-1 row-cols-md-3">
+                                              <form name="conclusion" id="conclusion">
                                                 <div class="card-deck">
                                                     <div class="col-lg-6">
                                                         <div class="card">
@@ -1728,9 +1740,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                 </div>
+                                              </form>
+
+                                          </div>
                                         </div>
+                                        <div class="kt-form__actions">
+                                          <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'conclusion');"class="btn btn-success">Editar Conclusion
+                                          </button>                                        
+                                      </div>
+
                                     </div>
                                 </div>
                                 {{-- fin conclusion card --}}

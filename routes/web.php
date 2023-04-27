@@ -38,7 +38,8 @@ Route::resource('abogado', AbogadoController::class);
 
 Route::resource('juicios', Juicios2Controller::class);
 Route::post('juicios/data', [Juicios2Controller::class,'juicios_datos'])->name('jucios.data');
- Route::put('juicios/hola/{id}',[Juicios2Controller::class,'hola'])->name('juicios.hola');
+
+Route::put('juicios_update/{id}/{name}',[Juicios2Controller::class,'update_all_form']);
 
 
 

@@ -4,7 +4,7 @@
       <div class="modal-content">
 
         @if ($diasrestantes > 1)
-          <div class="modal-header kt-portlet kt-iconbox--success kt-iconbox--animate-slow">
+          <div class="modal-header kt-portlet kt-iconbox--success kt-iconbox--animate-slow" style="padding: 0.25rem; margin-bottom: 0px;">
             @elseif($diasrestantes == 0 & $horfatantes == 0 & $minfaltantes == 0)
             <div class="modal-header kt-portlet kt-iconbox kt-iconbox--animate-slow">
             @else
@@ -934,7 +934,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fecha_conclusion}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{ $juicio3[0]->fecha_conclusion }}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
