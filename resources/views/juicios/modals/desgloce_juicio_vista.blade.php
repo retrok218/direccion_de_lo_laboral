@@ -19,45 +19,43 @@
               
                 <div class="kt-portlet__head">  
                   <div class="modal-header">              
-                  <h2 class="modal-title" id="myModalLabel">                    
-                    <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
-                    Desgloce Juicio : {{$juicio3[0]->id_juicio}}                                                                
-                  </h2>                   
+                    <h2 class="modal-title" id="myModalLabel">                    
+                      <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
+                      Desgloce Juicio : {{$juicio3[0]->id_juicio}}                                                                
+                    </h2>                   
+                  </div> 
                 </div> 
+
+                <div class="kt-subheader  kt-grid__item" id="kt_subheader"style="width: 100%;" >
+                  <div class="kt-container  kt-container--fluid ">
+                      <div class="kt-subheader__main">                                                    
+                          <h3 class="kt-subheader__title">Fecha Proxima Audiencia</h3>
+              
+                          <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+              
+                          <span class="kt-subheader__desc"> {{$fechaaudiencia}}</span>       
+                      </div>
+                      <div class="kt-subheader__toolbar">
+                          <div class="kt-subheader__wrapper">
+                            <span class="input-group-text btn kt-subheader__btn-secondary" id="basic-addon3">Faltan :</span>                                      
+                              <a  class="btn kt-subheader__btn-secondary">Dias: {{$diasrestantes}}</a>              
+                              <a  class="btn kt-subheader__btn-secondary">Horas: {{$horfatantes}}</a>
+                              <a  class="btn kt-subheader__btn-secondary">Minutos: {{$minfaltantes}}</a>                                                                                                                           
+                          </div>
+                      </div>
+                  </div>
               </div>
-            
 
-              <div class="kt-portlet__body">
-                <div class="kt-section kt-section--first" style="margin: 0 0 0 0;">
-                <h3 class="kt-section__title"> Fecha Proxima Audiencia :</h3>
-                <p>{{$fechaaudiencia}}</p>                          
 
-                </div>                                 
-                    <br>
-                       
-                      Faltan  
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class=" input-group md-3">
-                            <span class="input-group-text" id="basic-addon3">Dias :</span>
-                            <input class="col-sm-3" type="text"  placeholder="{{$diasrestantes}}" readonly>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="  input-group md-3">
-                            <span class="input-group-text" id="basic-addon3">Horas :</span>
-                            <input class="col-sm-3" type="text"  placeholder="{{$horfatantes}}" readonly>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class=" input-group md-3">
-                            <span class="input-group-text" id="basic-addon3">Minutos :</span>
-                            <input class=" col-sm-3" type="text"  placeholder="{{$minfaltantes}}" readonly>
-                          </div>
-                        </div>
-                      </div>  
-
-                    </div>                                                                                                                                    
+                
+              
+              
+              <div class="kt-portlet__body">               
+                <div class="kt-section kt-section--first" style="margin: 0 0 0 0;">                                                                                                      
+                </div>
+                <div @class(['p-4', 'font-bold' => true])></div>
+                 <h4> @isset($juicio3[0]->archivo) <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>  @else Sin Archivo @endisset</h4>                     
+              </div>                                                                                                                                    
           </div>      
           
           

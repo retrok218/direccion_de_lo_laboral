@@ -324,10 +324,6 @@ class Juicios2Controller extends Controller
         return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
     }
 
-
-
-
-
     public function comentario(Request $request,$id,SessionManager $sessionManager){ 
         $comentario =request()->only('comentario'); 
         Juicio::where('id_juicio','=',$id)->update($comentario);
@@ -336,12 +332,24 @@ class Juicios2Controller extends Controller
         return redirect()->route('juicios.index', compact('sessionManager')) ;
     }
 
-    public function upload(Request $request,$id){  
-        
+
+
+
+
+    private $disk = "public"; //se configura el disco como publick para que sea donde se almacena el archivo por defecto 
+    public function upload(Request $request,$id){ 
+       $archivos=[];
+       $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo'); //buscando el nombre dentro de la db
+             
+       foreach (Storage::disk($this->disk)->files() as $file) {
+            $name = str_replace("$this->disk/","",$file);
+            $archivos[]= $name;            
+       }
+    
         $archivo = $request->file('archivo');  
-        $archivonombre =time().$archivo->getClientOriginalName();   
-         var_dump($archivonombre)   ;  exit();
-        $archivo->storeAs('public',$id.$archivo->getClientOriginalName());                 
+        $archivonombre =$archivo->getClientOriginalName();   
+       
+        $archivo->storeAs($this->disk,$archivo->getClientOriginalName());                 
         Juicio::where('id_juicio','=',$id)->update(['archivo' => $archivonombre]); 
       
        //return $this->loadView();
@@ -349,5 +357,19 @@ class Juicios2Controller extends Controller
 
 
 
+
+
+
+    public function dowload_juicio($name){
+        if(Storage::disk($this->disk)->exists($name)){
+            return Storage::disk($this->disk)->download($name);
+        }
+        return response()->json(['error' => 'El archivo no existe.'], 404);
+    }
     
+
+
+
+
+
 }
