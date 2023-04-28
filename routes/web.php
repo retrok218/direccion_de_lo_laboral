@@ -6,6 +6,8 @@ use App\Http\Controllers\Dashboard_Controller;
 use App\Http\Controllers\table_juicios_controller;
 use App\Http\Controllers\Juicios2Controller;
 use App\Http\Controllers\SalasController;
+use App\Models\Juicios2;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +49,7 @@ Route::put('juicios_update/{id}/{name}',[Juicios2Controller::class,'update_all_f
 Route::get('data/juicios',[Juicios2Controller::class,'juiciosdatosajax']);
 
 Route::post('juicios_com/{id}',[Juicios2Controller::class,'comentario']);
+Route::post('juicios_upload/{id}',[Juicios2Controller::class,'upload']);
 
 Route::get('desgloce_juicio/{id}',[Juicios2Controller::class,'desglocejuicio'])->name('desgloce.juicio');
 Route::get('edit_juicio/{id}',[Juicios2Controller::class,'edit']);

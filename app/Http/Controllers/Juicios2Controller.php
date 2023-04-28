@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 
 class Juicios2Controller extends Controller
@@ -334,6 +335,19 @@ class Juicios2Controller extends Controller
         //dd($sessionManager);
         return redirect()->route('juicios.index', compact('sessionManager')) ;
     }
+
+    public function upload(Request $request,$id){  
+        
+        $archivo = $request->file('archivo');  
+        $archivonombre =time().$archivo->getClientOriginalName();   
+         var_dump($archivonombre)   ;  exit();
+        $archivo->storeAs('public',$id.$archivo->getClientOriginalName());                 
+        Juicio::where('id_juicio','=',$id)->update(['archivo' => $archivonombre]); 
+      
+       //return $this->loadView();
+    }
+
+
 
     
 }

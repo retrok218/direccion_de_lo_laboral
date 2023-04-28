@@ -2,10 +2,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body" id="modal_content">
-
-
-
-                <div class="panel panel-primary">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="modal-header">                                
+                <h4 class="modal-title"> <i class="flaticon2-edit"  style="color: #8b1818;"></i> Edicion del Juicio: {{$juicio3[0]->id_juicio}}</h4>
+              </div>
+      <div class="panel panel-primary">
                     <div class="panel-body">
                         {{-- inicio del acordion juicios --}}
                         <div class="accordion" id="acordionjuicio">

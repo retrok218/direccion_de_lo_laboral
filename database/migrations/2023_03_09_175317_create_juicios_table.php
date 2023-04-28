@@ -25,17 +25,13 @@ class CreateJuiciosTable extends Migration
             $table->string('accion',255)->nullable() ;
             $table->string('etapa',30)->nullable();
             $table->longText('comentario')->nullable();
+            $table->string('archivo',150 )->nullable();
             $table->timestamps();
 
-            //foraneas
 
-
-            
-
+        //foraneas
             $table->unsignedBigInteger('id_actores')->nullable(); 
             $table->foreign('id_actores')->references('id_actores')->on('actores');  
-
-          
 
             $table->unsignedBigInteger('id_laudo')->nullable(); 
             $table->foreign('id_laudo')->references('id_laudo')->on('laudo'); 

@@ -1,4 +1,6 @@
 
+
+
 <div class="modal fade" id="modal-juicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
@@ -6,9 +8,9 @@
         @if ($diasrestantes > 1)
           <div class="modal-header kt-portlet kt-iconbox--success kt-iconbox--animate-slow" style="padding: 0.25rem; margin-bottom: 0px;">
             @elseif($diasrestantes == 0 & $horfatantes == 0 & $minfaltantes == 0)
-            <div class="modal-header kt-portlet kt-iconbox kt-iconbox--animate-slow">
+            <div class="modal-header kt-portlet kt-iconbox kt-iconbox--animate-slow" style="padding: 0.25rem; margin-bottom: 0px;">
             @else
-            <div class="modal-header kt-portlet kt-iconbox--danger kt-iconbox--animate-slow">
+            <div class="modal-header kt-portlet kt-iconbox--danger kt-iconbox--animate-slow" style="padding: 0.25rem; margin-bottom: 0px;">
         @endif
           
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -28,7 +30,8 @@
               <div class="kt-portlet__body">
                 <div class="kt-section kt-section--first" style="margin: 0 0 0 0;">
                 <h3 class="kt-section__title"> Fecha Proxima Audiencia :</h3>
-                <p>{{$fechaaudiencia}}</p>
+                <p>{{$fechaaudiencia}}</p>                          
+
                 </div>                                 
                     <br>
                        
@@ -368,6 +371,7 @@
                           {{--fin car actor--}}                          
                           {{--Inicio card  Tramite--}}
                           <div class="card">
+
                             <div class="card-header" id="stramite">
                               <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#tramite" aria-expanded="false" aria-controls="tramite">
@@ -375,12 +379,22 @@
                                 </button>
                               </h5>
                             </div>
+
                             <div id="tramite" class="collapse" aria-labelledby="stramite" data-parent="#acordionjuicio">
+
                               <div class="card-body">
+
                                 <div class="row row-cols-1 row-cols-md-3">
-                                  <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> Expediente Personal R.H</h5>
-                                  <div class="card-deck">                                                              
-                                        <div class="col-sm-4">
+                                  <div class="col-lg-12">
+                                     <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> Expediente Personal R.H</h5>
+                                  </div>
+                                 
+                                   
+                                    
+
+
+
+                                        <div class="col-lg-4">
                                           <div class="card">
                                             <div class="card-header juiciotext ">
                                               Solicitud
@@ -388,14 +402,13 @@
                                             <div class="card-body">
                                               
                                               <p class="card-text">
-                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->exp_personal_rh_solicitud}}" readonly>
-                                                  
+                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->exp_personal_rh_solicitud}}" readonly>                                                  
                                               </p>                                    
                                             </div>
                                           </div>
                                         </div>
         
-                                        <div class="col-sm-4">
+                                        <div class="col-lg-4">
                                           <div class="card">
                                             <div class="card-header juiciotext ">
                                               Devolucion
@@ -410,7 +423,7 @@
                                           </div>
                                         </div>
         
-                                        <div class="col-sm-4">
+                                        <div class="col-lg-4">
                                           <div class="card">
                                             <div class="card-header juiciotext ">
                                               Fojas
@@ -423,23 +436,24 @@
                                             </div>
                                           </div>
                                         </div>
-                                  </div>
+
                                 </div>
                                                 
         
-                                <div class="row row-cols-1 row-cols-md-2">
-                                  <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> Expediente de Adscripcion</h5>
-                                  <div class="card-deck">
-                                      
-                                        
+                                <div class="row row-cols-1 row-cols-md-3">
+                                  <div class="col-lg-12">
+                                   <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> Expediente de Adscripcion</h5>
+                                  </div>
+
+
+                                  <div class="row">
+
                                         <div class="col-sm-6">
                                           <div class="card">
                                             <div class="card-header juiciotext ">
                                               Solicitud
-                                            </div>
-                                            
-                                            <div class="card-body">
-                                             
+                                            </div>                                            
+                                            <div class="card-body">                                             
                                               <p class="card-text">
                                                 <input  class="form-control" type="text" id="abogados_asignados" value="{{$juicio3[0]->exp_adscripcion_solicitud}}" readonly>                                          
                                               </p>                                    
@@ -459,12 +473,27 @@
                                               </p>                                    
                                             </div>
                                           </div>
-                                        </div>                                                                                             
+                                        </div> 
+                                        
+                                        <div class="col-sm-4">
+                                          <div class="card">
+                                            <div class="card-header juiciotext ">
+                                              Cierre de Instruccion:
+                                            </div>
+                                            <div class="card-body">                                      
+                                              <p class="card-text">
+                                                <input  class="form-control" type="text" id="abogados_asignados"  value="{{$juicio3[0]->cierredeinstruccion}}" readonly>                                          
+                                              </p>                                    
+                                            </div>
+                                          </div>
+                                        </div>  
+
                                   </div>
                                 </div>
 
                                 <div class="row row-cols-1 row-cols-md-3">                          
-                                  <div class="card-deck">                                                              
+                                  <div class="card-deck"> 
+
                                         <div class="col-sm-12">
                                           <div class="card">
                                             <div class="card-header juiciotext ">
@@ -483,23 +512,19 @@
                                                 
                                         </div>
         
-                                        <div class="col-sm-4">
-                                          <div class="card">
-                                            <div class="card-header juiciotext ">
-                                              Cierre de Instruccion:
-                                            </div>
-                                            <div class="card-body">                                      
-                                              <p class="card-text">
-                                                <input  class="form-control" type="text" id="abogados_asignados"  value="{{$juicio3[0]->cierredeinstruccion}}" readonly>                                          
-                                              </p>                                    
-                                            </div>
-                                          </div>
-                                        </div>                                                                                             
+                                                                                                                                   
                                   </div>
                                 </div>
+
+
                               </div>
                             </div>
                           </div>
+
+
+
+
+
                           {{--fin card  Tramite--}}
 
                           {{--inicio card Laudo --}}
@@ -946,22 +971,38 @@
                           </div>
                           {{-- fin conclusion card--}}
 
-                        </div> 
-                        
+                        </div>                         
                       </div>
-                  </div>                  
-                  {{-- <div class="modal-footer">
-                    
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        Cancelar
-                    </button>             
-                </div>                   --}}
+                  </div>                                   
               </form>
 {{-- fin de formulario para mostrar datos--}}
+              <hr class="separador">                
+              @include('juicios.form_comentario')
               <hr class="separador">
                 
-              @include('juicios.form_comentario')
+              <div class="card">
+                <div class="card-body">
+                  <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
+                    @csrf                                  
+                      <div class="form-group">
+                          <input type="file"  id="upload" name="archivo">  
+                          @error('archivo')
+                              <small>{{$message}}</small>
+                          @enderror                                        
+                      </div>
+                      <button type="submit" class="bt bt-primary">Subir </button>
+                  
+                  </form>
+
+                  
+                  
+                </div>  
+              </div>   
+                
+             
 
           </div>          
       </div>
   </div>
+
+  

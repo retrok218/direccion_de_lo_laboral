@@ -164,6 +164,7 @@ var table = $('#juiciotabla').DataTable({
 });
 
 function mostrar_modal_juicio(data) {
+    let segment =location.href.split('/');
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -178,6 +179,9 @@ function mostrar_modal_juicio(data) {
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });
+
+
+            
         },
         error: function(respuesta) {
             Swal.fire('¡Alerta!','Error de conectividad de red USR-03','warning');
@@ -225,11 +229,10 @@ function update_actualiza_datos_generales(id,formname){
         type:'POST',
         data:formData,
         contentType: false,
-        processData: false,
-                        
+        processData: false,                        
     });
 
-    
-  //  location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
+
+    location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
 
