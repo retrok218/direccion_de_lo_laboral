@@ -209,7 +209,7 @@ class Juicios2Controller extends Controller
      */
     public function update(Request $request,$id,$name)
     {       
-       dd('holsa'+$name);
+      //dd('holsa'+$name);
 
         // $datosj=request()->except(['_token','_method']);             
         // juicio::where('id_juicio', $id)->with('laudo')->update($datosj);
@@ -319,7 +319,7 @@ class Juicios2Controller extends Controller
          ->where('laudo.laudo_id_juicio',$id)
          ->get();                  
         //  trnario php $a < 5? v : f
-        //dd($juicio3);
+        dd($juicio3);
         
         return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
     }
@@ -351,6 +351,7 @@ class Juicios2Controller extends Controller
        
         $archivo->storeAs($this->disk,$archivo->getClientOriginalName());                 
         Juicio::where('id_juicio','=',$id)->update(['archivo' => $archivonombre]); 
+        
       
        //return $this->loadView();
     }

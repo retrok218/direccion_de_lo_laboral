@@ -179,8 +179,6 @@ function mostrar_modal_juicio(data) {
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });
-
-
             
         },
         error: function(respuesta) {
