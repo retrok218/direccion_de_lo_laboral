@@ -2,7 +2,8 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
 
-        @if ($diasrestantes > 1)
+        {{-- se cambia el color de fondo dependiendo de el tiempo restante para el juicio --}}
+        @if ($diasrestantes > 1)  
           <div class="modal-header kt-portlet kt-iconbox--success kt-iconbox--animate-slow" style="padding: 0.25rem; margin-bottom: 0px;">
             @elseif($diasrestantes == 0 & $horfatantes == 0 & $minfaltantes == 0)
             <div class="modal-header kt-portlet kt-iconbox kt-iconbox--animate-slow" style="padding: 0.25rem; margin-bottom: 0px;">
@@ -34,29 +35,15 @@
                       </div>
                       <div class="kt-subheader__toolbar">
                           <div class="kt-subheader__wrapper">
-                            <span class="input-group-text btn kt-subheader__btn-secondary" id="basic-addon3">Faltan :</span>                                      
+                            <span class="input-group-text btn kt-subheader__btn-secondary" id="basic-addon3">Faltan</span>                                      
                               <a  class="btn kt-subheader__btn-secondary">Dias: {{$diasrestantes}}</a>              
                               <a  class="btn kt-subheader__btn-secondary">Horas: {{$horfatantes}}</a>
                               <a  class="btn kt-subheader__btn-secondary">Minutos: {{$minfaltantes}}</a>                                                                                                                           
                           </div>
                       </div>
                   </div>
-              </div>
-
-
-                
-              
-              
-              <div class="kt-portlet__body">               
-                <div class="kt-section kt-section--first" style="margin: 0 0 0 0;">                                                                                                      
-                </div>
-                <div @class(['p-4', 'font-bold' => true])></div>
-                 <h4> @isset($juicio3[0]->archivo) <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>  @else Sin Archivo @endisset</h4>                     
-              </div>                                                                                                                                    
-          </div>      
-          
-          
-
+              </div>            
+          </div>                          
           <div class="modal-body" id="modal_content">
               <form role="form" name="juiciodes" id="juiciodes" method="POST" action="javascript:void(0)">
                   <div class="panel panel-primary">
@@ -971,28 +958,48 @@
                   </div>                                   
               </form>
 {{-- fin de formulario para mostrar datos--}}
-              <hr class="separador">                
+          <hr class="separador">                
               @include('juicios.form_comentario')
-              <hr class="separador">
-                
-              <div class="card">
-                <div class="card-body">
-                  <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
-                    @csrf                                  
-                      <div class="form-group">
-                          <input type="file"  id="upload" name="archivo">  
-                          @error('archivo')
-                              <small>{{$message}}</small>
-                          @enderror                                        
-                      </div>
-                      <button type="submit" class="bt bt-primary">Subir </button>
-                  
-                  </form>
+          <hr class="separador">
 
-                  
-                  
-                </div>  
-              </div>   
+              <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
+                @csrf                                                                
+                  <input type="file"  id="upload" name="archivo" >                            
+                      @error('archivo')
+                          <small>{{$message}}</small>
+                      @enderror                                                                     
+                  <button type="submit" class="bt bt-primary">Subir archivo </button>                  
+              </form> 
+              {{-- Descargar Archivo --}}
+              <i class="fa fa-download"></i>
+              @isset($juicio3[0]->archivo)
+              <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a> 
+
+
+
+
+
+
+              <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
+                @csrf                                                                
+                  <input type="file"  id="upload" name="archivo2" >                            
+                      @error('archivo')
+                          <small>{{$message}}</small>
+                      @enderror                                                                     
+                  <button type="submit" class="bt bt-primary">Subir archivo2 </button>                  
+              </form> 
+               
+              
+
+
+
+
+
+              @else
+              Sin archivo para descarga
+              @endisset
+                
+               
                 
              
 

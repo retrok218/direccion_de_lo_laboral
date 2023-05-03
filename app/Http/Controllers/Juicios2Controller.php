@@ -221,6 +221,8 @@ class Juicios2Controller extends Controller
 
     public function update_all_form(Request $request,$id,$name){
 
+        
+
         $datosj = request()->except(['_token','_method']);
         
         switch ($name) {
@@ -319,7 +321,7 @@ class Juicios2Controller extends Controller
          ->where('laudo.laudo_id_juicio',$id)
          ->get();                  
         //  trnario php $a < 5? v : f
-        dd($juicio3);
+        dd($datoLaudos);
         
         return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
     }
@@ -338,21 +340,24 @@ class Juicios2Controller extends Controller
 
     private $disk = "public"; //se configura el disco como publick para que sea donde se almacena el archivo por defecto 
     public function upload(Request $request,$id){ 
+        $arrLlaves=array_keys($_POST);
+        dd($arrLlaves);
        $archivos=[];
-       $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo'); //buscando el nombre dentro de la db
+    //    $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo'); 
              
        foreach (Storage::disk($this->disk)->files() as $file) {
             $name = str_replace("$this->disk/","",$file);
             $archivos[]= $name;            
        }
     
-        $archivo = $request->file('archivo');  
-        $archivonombre =$archivo->getClientOriginalName();   
-       
-        $archivo->storeAs($this->disk,$archivo->getClientOriginalName());                 
+        $archivo = $request->file('archivo'); 
+        
+        $archivonombre =$archivo->getClientOriginalName();          
+        $archivo->storeAs($this->disk,$archivo->getClientOriginalName());    
+                     
         Juicio::where('id_juicio','=',$id)->update(['archivo' => $archivonombre]); 
         
-      
+        return redirect()->route('juicios.index');
        //return $this->loadView();
     }
 

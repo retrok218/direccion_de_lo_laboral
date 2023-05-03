@@ -1132,10 +1132,7 @@
                                                         </div>
                                                         <div class="card-body">
                                                             <p class="card-text">
-                                                                <input type="date" class="form-control"
-                                                                    id="sentido"
-                                                                    value="{{ $juicio3[0]->sentido }}"
-                                                                    name="sentido">
+                    <input type="date" class="form-control"  id="sentido" name="sentido" value="{{ $juicio3[0]->sentido }}">
                                                             </p>
                                                         </div>
                                                     </div>
