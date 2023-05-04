@@ -321,7 +321,7 @@ class Juicios2Controller extends Controller
          ->where('laudo.laudo_id_juicio',$id)
          ->get();                  
         //  trnario php $a < 5? v : f
-        dd($datoLaudos);
+        //dd($datoLaudos);
         
         return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
     }
@@ -340,11 +340,14 @@ class Juicios2Controller extends Controller
 
     private $disk = "public"; //se configura el disco como publick para que sea donde se almacena el archivo por defecto 
     public function upload(Request $request,$id){ 
+        $updatearchivo = request()->only('asubir')['asubir'];
+        //dd($updatearchivo);
         $arrLlaves=array_keys($_POST);
-        dd($arrLlaves);
+      
        $archivos=[];
-    //    $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo'); 
-             
+    // $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo'); 
+         
+    //dd($request);
        foreach (Storage::disk($this->disk)->files() as $file) {
             $name = str_replace("$this->disk/","",$file);
             $archivos[]= $name;            
@@ -354,8 +357,16 @@ class Juicios2Controller extends Controller
         
         $archivonombre =$archivo->getClientOriginalName();          
         $archivo->storeAs($this->disk,$archivo->getClientOriginalName());    
-                     
-        Juicio::where('id_juicio','=',$id)->update(['archivo' => $archivonombre]); 
+ 
+       if ($updatearchivo=="demandaupload") {
+        Juicio::where('id_juicio','=',$id)->update(['archivo' =>$archivonombre]); 
+       } elseif($updatearchivo=="contratacionupload" ) {
+        Juicio::where('id_juicio','=',$id)->update(['archivo1' => $archivonombre]);
+       }elseif($updatearchivo=="laudoupload" ) {
+        Juicio::where('id_juicio','=',$id)->update(['archivo2' => $archivonombre]);
+       }
+       
+        // Juicio::where('id_juicio','=',$id)->update(['archivo' => $archivonombre]); 
         
         return redirect()->route('juicios.index');
        //return $this->loadView();

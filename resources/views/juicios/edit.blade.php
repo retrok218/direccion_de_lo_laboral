@@ -1132,7 +1132,7 @@
                                                         </div>
                                                         <div class="card-body">
                                                             <p class="card-text">
-                    <input type="date" class="form-control"  id="sentido" name="sentido" value="{{ $juicio3[0]->sentido }}">
+                    <input type="date" class="form-control"  id="lau_sentido" name="lau_sentido" value="{{ $juicio3[0]->lau_sentido }}">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -1425,10 +1425,10 @@
                                                                 name="sentido_ad">
                                                                 <option
                                                                     @if ($juicio3[0]->sentido_ad == 'Concede') {{ 'selected' }} @endif
-                                                                    value="Concede">Trabajador</option>
+                                                                    value="Concede">Concede</option>
                                                                 <option
                                                                     @if ($juicio3[0]->sentido_ad == 'Niega') {{ 'selected' }} @endif
-                                                                    value="Niega">Segob</option>
+                                                                    value="Niega">Niega</option>
                                                             </select>
                                                         </p>
                                                     </div>

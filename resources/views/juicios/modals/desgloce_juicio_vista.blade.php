@@ -19,7 +19,7 @@
                   <div class="modal-header">              
                     <h2 class="modal-title" id="myModalLabel">                    
                       <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
-                      Desgloce Juicio : {{$juicio3[0]->id_juicio}}                                                                
+                      Desglose Juicio : {{$juicio3[0]->id_juicio}}                                                                
                     </h2>                   
                   </div> 
                 </div> 
@@ -541,7 +541,7 @@
                                         </div>
                                         <div class="card-body">                                  
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->sentido}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->lau_sentido}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -696,7 +696,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fecha_sentencia}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->sentido_sentencia}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -789,7 +789,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fecha_ad}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->notf2}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -964,17 +964,19 @@
 
               <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
                 @csrf                                                                
-                  <input type="file"  id="upload" name="archivo" >                            
+                  <input type="file"  id="upload" name="demandaar" >                            
                       @error('archivo')
                           <small>{{$message}}</small>
                       @enderror                                                                     
-                  <button type="submit" class="bt bt-primary">Subir archivo </button>                  
+                  <button type="submit" class="bt bt-primary" name="asubir" value="demandaupload">Subir archivo Demanda </button>                  
               </form> 
               {{-- Descargar Archivo --}}
               <i class="fa fa-download"></i>
               @isset($juicio3[0]->archivo)
-              <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a> 
-
+                <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>               
+              @else
+              Sin archivo para descarga
+              @endisset
 
 
 
@@ -982,26 +984,41 @@
 
               <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
                 @csrf                                                                
-                  <input type="file"  id="upload" name="archivo2" >                            
+                  <input type="file"  id="upload" name="archivo" >                            
                       @error('archivo')
                           <small>{{$message}}</small>
                       @enderror                                                                     
-                  <button type="submit" class="bt bt-primary">Subir archivo2 </button>                  
+                  <button type="submit" class="bt bt-primary" name="asubir" value="contratacionupload">Subir archivo Contratacion </button>                  
               </form> 
-               
+               {{-- Descargar Archivo --}}
+               <i class="fa fa-download"></i>
+               @isset($juicio3[0]->archivo)
+                 <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo1)}}"> {{$juicio3[0]->archivo1}}</a>               
+               @else
+               Sin archivo para descarga
+               @endisset
               
 
 
 
 
 
-              @else
-              Sin archivo para descarga
-              @endisset
-                
-               
-                
-             
+              <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
+                @csrf                                                                
+                  <input type="file"  id="upload" name="archivo" >                            
+                      @error('archivo')
+                          <small>{{$message}}</small>
+                      @enderror                                                                     
+                  <button type="submit" class="bt bt-primary" name="asubir" value="laudoupload" >Subir archivo Laudo </button>                  
+              </form> 
+               {{-- Descargar Archivo --}}
+               <i class="fa fa-download"></i>
+               @isset($juicio3[0]->archivo)
+                 <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo2)}}"> {{$juicio3[0]->archivo2}}</a>               
+               @else
+               Sin archivo para descarga
+               @endisset
+
 
           </div>          
       </div>
