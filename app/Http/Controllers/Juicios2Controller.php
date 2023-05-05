@@ -341,29 +341,24 @@ class Juicios2Controller extends Controller
     private $disk = "public"; //se configura el disco como publick para que sea donde se almacena el archivo por defecto 
     public function upload(Request $request,$id){ 
         $updatearchivo = request()->only('asubir')['asubir'];
-        //dd($updatearchivo);
-        $arrLlaves=array_keys($_POST);
-      
-       $archivos=[];
-    // $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo'); 
-         
-    //dd($request);
-       foreach (Storage::disk($this->disk)->files() as $file) {
-            $name = str_replace("$this->disk/","",$file);
-            $archivos[]= $name;            
-       }
-    
-        $archivo = $request->file('archivo'); 
+        // $arrLlaves=array_keys($_POST);
+        // $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo');          
+        //dd($request);
+       //$nombrearchivo =juicio::select('id_juicio','archivo')->where('id_juicio','=',$id)->get();
         
-        $archivonombre =$archivo->getClientOriginalName();          
-        $archivo->storeAs($this->disk,$archivo->getClientOriginalName());    
- 
+        $archivo = $request->file('archivo');         
+        $archivonombre =date('Y-m-d-H').'_'.$archivo->getClientOriginalName();          
+        
+
        if ($updatearchivo=="demandaupload") {
-        Juicio::where('id_juicio','=',$id)->update(['archivo' =>$archivonombre]); 
+        Juicio::where('id_juicio','=',$id)->update(['archivo' =>$archivonombre]);
+        $archivo->storeAs($this->disk,$archivonombre); 
        } elseif($updatearchivo=="contratacionupload" ) {
         Juicio::where('id_juicio','=',$id)->update(['archivo1' => $archivonombre]);
+        $archivo->storeAs($this->disk,$archivonombre);
        }elseif($updatearchivo=="laudoupload" ) {
         Juicio::where('id_juicio','=',$id)->update(['archivo2' => $archivonombre]);
+        $archivo->storeAs($this->disk,$archivonombre);
        }
        
         // Juicio::where('id_juicio','=',$id)->update(['archivo' => $archivonombre]); 
@@ -372,16 +367,22 @@ class Juicios2Controller extends Controller
        //return $this->loadView();
     }
 
-
-
-
-
-
     public function dowload_juicio($name){
         if(Storage::disk($this->disk)->exists($name)){
             return Storage::disk($this->disk)->download($name);
         }
         return response()->json(['error' => 'El archivo no existe.'], 404);
+    }
+
+    public function delete($narchivo,$id,$name){
+        
+        if(Storage::disk($this->disk)->exists($name)){    
+            Juicio::where('id_juicio', '=', $id)->update([$narchivo => null]);
+            Storage::disk($this->disk)->delete($name);
+            return redirect()->route('juicios.index');
+        }
+         return response()->json(['error' => 'El archivo no existe.'], 404);
+        
     }
     
 

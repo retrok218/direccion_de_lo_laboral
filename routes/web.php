@@ -43,6 +43,7 @@ Route::post('juicios/data', [Juicios2Controller::class,'juicios_datos'])->name('
 
 Route::put('juicios_update/{id}/{name}',[Juicios2Controller::class,'update_all_form']);
 Route::get('juicio_dowload/{name}',[Juicios2Controller::class,'dowload_juicio']);
+Route::get('juicio_delete_archivo/{narchivo}/{id}/{name}',[Juicios2Controller::class,'delete']);
 
 
 

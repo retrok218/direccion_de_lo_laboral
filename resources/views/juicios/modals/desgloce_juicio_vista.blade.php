@@ -961,10 +961,10 @@
           <hr class="separador">                
               @include('juicios.form_comentario')
           <hr class="separador">
-
+                {{-- subir archivo --}}
               <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
                 @csrf                                                                
-                  <input type="file"  id="upload" name="demandaar" >                            
+                  <input type="file"  id="upload" name="archivo" >                            
                       @error('archivo')
                           <small>{{$message}}</small>
                       @enderror                                                                     
@@ -972,16 +972,17 @@
               </form> 
               {{-- Descargar Archivo --}}
               <i class="fa fa-download"></i>
-              @isset($juicio3[0]->archivo)
-                <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>               
-              @else
-              Sin archivo para descarga
+              @isset($juicio3[0]->archivo)                
+                        <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>
+                        <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo)}}" >
+                          <span aria-hidden="true">&times;</span>
+                        </a>  
+
+                        @else
+                        Sin archivo para descarga
               @endisset
 
-
-
-
-
+                         {{-- subir archivo --}}
               <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
                 @csrf                                                                
                   <input type="file"  id="upload" name="archivo" >                            
@@ -992,8 +993,11 @@
               </form> 
                {{-- Descargar Archivo --}}
                <i class="fa fa-download"></i>
-               @isset($juicio3[0]->archivo)
-                 <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo1)}}"> {{$juicio3[0]->archivo1}}</a>               
+               @isset($juicio3[0]->archivo1)
+                 <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo1)}}"> {{$juicio3[0]->archivo1}}</a> 
+                 <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo1'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo1)}}" >
+                  <span aria-hidden="true">&times;</span>
+                </a>             
                @else
                Sin archivo para descarga
                @endisset
@@ -1002,10 +1006,10 @@
 
 
 
-
+                {{-- subir archivo --}}
               <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
                 @csrf                                                                
-                  <input type="file"  id="upload" name="archivo" >                            
+                  <input type="file"  id="upload" name="archivo"  >                            
                       @error('archivo')
                           <small>{{$message}}</small>
                       @enderror                                                                     
@@ -1013,11 +1017,25 @@
               </form> 
                {{-- Descargar Archivo --}}
                <i class="fa fa-download"></i>
-               @isset($juicio3[0]->archivo)
-                 <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo2)}}"> {{$juicio3[0]->archivo2}}</a>               
+               @isset($juicio3[0]->archivo2)
+                 <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo2)}}"> {{$juicio3[0]->archivo2}}</a>
+                 <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo2'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo2)}}" value="archivo2" >
+                  <span aria-hidden="true">&times;</span>
+                </a>                
                @else
                Sin archivo para descarga
                @endisset
+
+
+               <div class="container-input">
+                <input type="file" name="file-5" id="file-5" class="inputfile inputfile-5" data-multiple-caption="{count} archivos seleccionados" multiple />
+                <label for="file-5">
+                <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                </figure>
+                <span class="iborrainputfile">Seleccionar archivo</span>
+                </label>
+                </div>
 
 
           </div>          
