@@ -50457,12 +50457,12 @@ button.close_archivo {
 .container-input {
     text-align: center;
     background: #282828;
-    border-top: 5px solid #c39f77;
-    padding: 50px 0;
-    border-radius: 6px;
-    width: 50%;
+    border-top: 3px solid #c39f77;
+    padding: 0px 0px;
+    border-radius: 12px;
+    /* width: 20%; */
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
 }
 
 .inputfile {
@@ -50475,15 +50475,16 @@ button.close_archivo {
 }
 
 .inputfile + label {
-    max-width: 80%;
-    font-size: 1.25rem;
-    font-weight: 700;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    padding: 0.625rem 1.25rem;
+       /* max-width: 50%; */
+       font-size: 1.25rem;
+       font-weight: 700;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+       cursor: pointer;
+       display: inline-block;
+       overflow: hidden;
+       padding: 0.625rem 1.25rem;
+   
 }
 
 .inputfile + label svg {
@@ -50533,3 +50534,5 @@ button.close_archivo {
     height: 100%;
     fill: #fff;
 }
+
+

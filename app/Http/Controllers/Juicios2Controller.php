@@ -130,13 +130,9 @@ class Juicios2Controller extends Controller
         $concluido->updated_at = now();
         $concluido->save();
 
-
-
         //mensaje de confirmacion guardado 
-        $sessionManager->flash('mensaje', 'Este es el mensaje');
-
-        return redirect()->route('juicios.index');      
-        
+        $sessionManager->flash('mensaje', 'Juicio Creado Correctamente');        
+        return redirect()->route('juicios.index');              
     }
 
     /**
@@ -209,13 +205,7 @@ class Juicios2Controller extends Controller
      */
     public function update(Request $request,$id,$name)
     {       
-      //dd('holsa'+$name);
-
-        // $datosj=request()->except(['_token','_method']);             
-        // juicio::where('id_juicio', $id)->with('laudo')->update($datosj);
-        // return redirect()->route('juicios.index');  
-            
-                       
+                
     }
     
 
@@ -339,17 +329,14 @@ class Juicios2Controller extends Controller
 
 
     private $disk = "public"; //se configura el disco como publick para que sea donde se almacena el archivo por defecto 
-    public function upload(Request $request,$id){ 
+    public function upload(Request $request,SessionManager $sessionManager,$id){ 
         $updatearchivo = request()->only('asubir')['asubir'];
         // $arrLlaves=array_keys($_POST);
         // $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo');          
         //dd($request);
-       //$nombrearchivo =juicio::select('id_juicio','archivo')->where('id_juicio','=',$id)->get();
-        
+       //$nombrearchivo =juicio::select('id_juicio','archivo')->where('id_juicio','=',$id)->get();        
         $archivo = $request->file('archivo');         
-        $archivonombre =date('Y-m-d-H').'_'.$archivo->getClientOriginalName();          
-        
-
+        $archivonombre =date('Y-m-d-H').'_'.$archivo->getClientOriginalName();                  
        if ($updatearchivo=="demandaupload") {
         Juicio::where('id_juicio','=',$id)->update(['archivo' =>$archivonombre]);
         $archivo->storeAs($this->disk,$archivonombre); 
@@ -359,10 +346,8 @@ class Juicios2Controller extends Controller
        }elseif($updatearchivo=="laudoupload" ) {
         Juicio::where('id_juicio','=',$id)->update(['archivo2' => $archivonombre]);
         $archivo->storeAs($this->disk,$archivonombre);
-       }
-       
-        // Juicio::where('id_juicio','=',$id)->update(['archivo' => $archivonombre]); 
-        
+       }               
+        $sessionManager->flash('mensaje', 'Archivo Agregado');
         return redirect()->route('juicios.index');
        //return $this->loadView();
     }
@@ -374,16 +359,15 @@ class Juicios2Controller extends Controller
         return response()->json(['error' => 'El archivo no existe.'], 404);
     }
 
-    public function delete($narchivo,$id,$name){
-        
+    public function delete(SessionManager $sessionManager,$narchivo,$id,$name){        
         if(Storage::disk($this->disk)->exists($name)){    
             Juicio::where('id_juicio', '=', $id)->update([$narchivo => null]);
             Storage::disk($this->disk)->delete($name);
+            $sessionManager->flash('mensaje', 'Archivo Eliminado');
             return redirect()->route('juicios.index');
+            }
+            return response()->json(['error' => 'El archivo no existe.'], 404);        
         }
-         return response()->json(['error' => 'El archivo no existe.'], 404);
-        
-    }
     
 
 

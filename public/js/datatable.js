@@ -1,6 +1,26 @@
+function executeExample(mensaje) {        
+    Swal.fire({
+        title: mensaje,
+        width: 334,
+        type:'success',
+        position :'top-right',
+        padding: '0px',
+        color: '#716add',
+        border: '3px solid #a5dc86',
+        timerProgressBar: true,
+        timer: 4000,
+        showConfirmButton: false,
+        background: '#fff ',
+        backdrop: `
+            rgba(0,0,123,0.4)
+            
+            left top
+            no-repeat`    
+        })
+}
+
 
 $(document).ready(function(){
-
 var table = $('#juiciotabla').DataTable({
     "pageLength": 6,   
     "lengthChange": true,
