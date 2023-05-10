@@ -1,28 +1,48 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
-    },
-    "devDependencies": {
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
-    },
-    "dependencies": {
-        "@popperjs/core": "^2.11.6",
-        "bootstrap": "^4.0.0-alpha.6",
-        "dropzone": "^6.0.0-beta.2",
-        "jquery": "^3.6.4",
-        "popper.js": "^1.16.1",
-        "react-bootstrap": "^0.32.1",
-        "sweetalert": "^2.1.2",
-        "sweetalert2": "^11.7.3"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production"
+  },
+  "devDependencies": {
+    "axios": "^0.21",
+    "laravel-mix": "^6.0.6",
+    "lodash": "^4.17.19",
+    "postcss": "^8.4.23",
+    "xxxxx": "^1.0.3"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.7",
+    "bootstrap": "^4.6.2",
+    "chart.js": "^4.3.0",
+    "dropzone": "^6.0.0-beta.2",
+    "jquery": "^3.6.4",
+    "popper.js": "^1.16.1",
+    "react-bootstrap": "^0.32.4",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.5"
+  },
+  "name": "Direccion_De_Lo_Laboral",
+  "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\"></a></p>",
+  "version": "1.0.0",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/retrok218/direccion_de_lo_laboral.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/retrok218/direccion_de_lo_laboral/issues"
+  },
+  "homepage": "https://github.com/retrok218/direccion_de_lo_laboral#readme"
 }

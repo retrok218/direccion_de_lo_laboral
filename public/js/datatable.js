@@ -181,34 +181,6 @@ var table = $('#juiciotabla').DataTable({
 
 
     });
-
-
-    (function (document, window, index) {
-        console.log(document);
-        var inputs = document.querySelectorAll(".inputfile");
-        Array.prototype.forEach.call(inputs, function (input) {
-          var label = input.nextElementSibling,
-            labelVal = label.innerHTML;
-      
-          input.addEventListener("change", function (e) {
-            var fileName = "";
-            if (this.files && this.files.length > 1)
-              fileName = (this.getAttribute("data-multiple-caption") || "").replace(
-                "{count}",
-                this.files.length
-              );
-            else fileName = e.target.value.split("\\").pop();
-      
-            if (fileName) label.querySelector("span").innerHTML = fileName;
-            else label.innerHTML = labelVal;
-          });
-        });
-      })(document, window, 0);
-
-
-
-
-
 });
 
 function mostrar_modal_juicio(data) {
@@ -282,5 +254,29 @@ function update_actualiza_datos_generales(id,formname){
 //    location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
 
+$('form').submit(function (e) {
+    e.preventDefault();
+  });
+  $('form input').on('change', function () {
+    var file        = $(this).prop('files')[0],
+        convertToMb = Math.floor(file.size / 1024 / 1024);
+    
+    $('form #r').html(
+      "<div>Name: <span>" + file.name + "</span></div>" +
+      "<div>Type: <span>" + file.type + "</span></div>" +
+      "<div>Size: <span>" + file.size + ' bytes (' + convertToMb + ' mb)' + "</span> </div>"
+      );
+    console.log(file);
+  });
+  
+  $('form button').click(function () {
+    $('input').click();
+  });
 
 
+  $(document).ready(function() {
+    $(':file').on('fileselect', function(event, numFiles, label) {
+      console.log(numFiles);
+      console.log(label);
+    });
+  });

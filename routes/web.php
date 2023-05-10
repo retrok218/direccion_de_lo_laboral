@@ -19,9 +19,7 @@ use App\Models\Juicios2;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 Route::get('/',[table_juicios_controller::class, 'index']);
 // Route::get('/juicios',[table_juicios_controller::class,'desgloce_juicios']);

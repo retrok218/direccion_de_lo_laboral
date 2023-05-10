@@ -369,7 +369,7 @@ class Juicios2Controller extends Controller
             return response()->json(['error' => 'El archivo no existe.'], 404);        
         }
     
-
+       
 
 
 

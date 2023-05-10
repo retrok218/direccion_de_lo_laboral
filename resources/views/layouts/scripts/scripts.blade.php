@@ -28,11 +28,11 @@
 {{-- <script src="{{ URL::asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script> --}}
 
 
-<!-- Scrips para generar graficas   -->
+{{-- <!-- Scrips para generar graficas   -->
 <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.min.js')}}" type="text/javascript"></script>
 <!-- <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.react.js')}}" type="text/javascript"></script>-->
 <script src="{{ URL::asset('assets/vendors/general/canvas/jquery.canvasjs.min.js')}}" type="text/javascript"></script>
-<!-- FIN Scrips para generar graficas  -->
+<!-- FIN Scrips para generar graficas  --> --}}
 
 <script src="{{ URL::asset('assets/vendors/general/moment2.18/moment.min.js')}}" type="text/javascript"></script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> --}}
@@ -41,15 +41,7 @@
 <script src="{{URL::asset('js/dateTime.min.js')}}"></script> <!--script para calendario datatable-->
 
 
-<!-- scripts para datatable -->
-<!--Scrips para grafica mediante google charts -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.esm.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.esm.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/helpers.esm.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/helpers.esm.min.js"></script> -->
-<!--FIn scrips para grafica mediante google charts -->
+
 
 
   {{-- <script src="public/js/datatable.js"></script>   --}}
