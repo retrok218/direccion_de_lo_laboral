@@ -50422,49 +50422,40 @@ tr.shown td.details-control {
 
 
 
-.close_archivo {
-  float: right;
-  font-size: 1.35rem;
-  font-weight: bold;
-  line-height: 1;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  opacity: 0.5;
+
+
+.fansi_file{
+    display: none;
+
 }
-.close_archivo:focus, .close:hover {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0.75;
+.fansi_file + label {
+    display: flex;
+
 }
 
-button.close_archivo {
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  -webkit-appearance: none;
+.fansi_file_name,
+.fansi_file_button{
+    padding: 5px 10px;
+
+}
+
+.fansi_file_name{
+    background: white;
+    border: 1px solid #cacaca;
+}
+.fansi_file_name span{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+    display: block;
 }
 
 
-
-.btn-file {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-file input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  font-size: 100px;
-  text-align: right;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  outline: none;
-  background: white;
-  cursor: inherit;
-  display: block;
+.fansi_file_button{
+    background: #5BC0DE ;
+    border: 1px solid #5BC0DE;
+    color: white;
+    white-space: nowrap;
+    border-radius: 0 30px 30px 0;
 }

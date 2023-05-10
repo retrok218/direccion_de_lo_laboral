@@ -280,3 +280,16 @@ $('form').submit(function (e) {
       console.log(label);
     });
   });
+
+
+  const files = document.querySelectorAll('.fansi_file')
+  console.log(files);
+  Array.from(files).forEach(
+    f => {
+        f.addEventListener('change', e => {
+            const span = document.querySelector('.fansi_file_name > span');
+            span.innerHTML = f.files[0].name;            
+        });
+    }
+  );
+  

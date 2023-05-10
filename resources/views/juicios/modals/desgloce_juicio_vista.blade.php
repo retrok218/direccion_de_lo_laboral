@@ -1029,9 +1029,21 @@
 <br>
 <hr class="separador">   
                
-<label class="btn btn-default btn-file">
-  Browse <input type="file" style="display: none;">
-</label>
+
+
+<div>
+  <input type="file" id="archivo" class="fansi_file" >
+  <label for="archivo">
+    <span class="fansi_file_name">
+       <span>  Ningun archivo Seleccionado</span>
+     
+    </span>
+    <span class="fansi_file_button"> <i class="fa fa-upload"></i> Buscar Archivo</span>
+  </label>
+</div>
+<input type="submit" value="Enviar">
+
+
 
                
 
