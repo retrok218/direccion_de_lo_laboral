@@ -26,6 +26,8 @@
     </thead>
     
 </table>
-@endsection
 
- 
+
+  
+  
+@endsection

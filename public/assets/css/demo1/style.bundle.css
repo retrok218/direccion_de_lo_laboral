@@ -50419,7 +50419,18 @@ tr.shown td.details-control {
 }
 
 
-
+/*Arhcivos eje 2 */
+.file input{
+    display: none;
+}
+.file label{
+    display: block;
+    padding: 8px 21px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #eee;
+    cursor: pointer;
+}
 
 
 

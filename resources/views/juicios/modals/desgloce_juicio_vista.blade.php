@@ -1009,12 +1009,17 @@
 
                 {{-- subir archivo --}}
               <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
-                @csrf                                                                
-                  <input type="file"  id="upload" name="archivo"  >                            
+                @csrf  
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Default file input example</label>
+                    
+                    <input class="form-control" type="file" id="formFile" name="archivo">                            
                       @error('archivo')
                           <small>{{$message}}</small>
                       @enderror                                                                     
-                  <button type="submit" class="bt bt-primary" name="asubir" value="laudoupload" >Subir archivo Laudo </button>                  
+                  <button type="submit" class="bt bt-primary" name="asubir" value="laudoupload" >Subir archivo Laudo </button> 
+                  </div>                                                              
+                                   
               </form> 
                {{-- Descargar Archivo --}}
                <i class="fa fa-download"></i>
@@ -1028,20 +1033,14 @@
                @endisset
 <br>
 <hr class="separador">   
-               
+              
 
 
-<div>
-  <input type="file" id="archivo" class="fansi_file" >
-  <label for="archivo">
-    <span class="fansi_file_name">
-       <span>  Ningun archivo Seleccionado</span>
-     
-    </span>
-    <span class="fansi_file_button"> <i class="fa fa-upload"></i> Buscar Archivo</span>
-  </label>
+<div class="mb-3">
+  <label for="formFile" class="form-label">Default file input example</label>
+  <input class="form-control" type="file" id="formFile">
 </div>
-<input type="submit" value="Enviar">
+
 
 
 
