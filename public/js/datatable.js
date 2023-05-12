@@ -194,12 +194,22 @@ function mostrar_modal_juicio(data) {
         success: function(resp_success) {
             var modal = resp_success;
             $(modal).modal().on('shown.bs.modal', function() {
-                $("[class='make-switch']").bootstrapSwitch('animate', true);
-                $('.select2').select2({dropdownParent: $("#modal-juicio")});
+            $("[class='make-switch']").bootstrapSwitch('animate', true);
+            $('.select2').select2({dropdownParent: $("#modal-juicio")});
+          
+            let archivo = $('#archivo')[0];
+           
+            archivo.addEventListener('change', () => {            
+            document.querySelector('#docn').innerText = archivo.files[0].name;
+            console.log(archivo.files[0].name);
+        });
+    
+
+
+
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
-            });
-            
+            });            
         },
         error: function(respuesta) {
             Swal.fire('¡Alerta!','Error de conectividad de red USR-03','warning');
@@ -254,29 +264,55 @@ function update_actualiza_datos_generales(id,formname){
 //    location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
 
-$('form').submit(function (e) {
-    e.preventDefault();
-  });
-  $('form input').on('change', function () {
-    var file        = $(this).prop('files')[0],
-        convertToMb = Math.floor(file.size / 1024 / 1024);
+
+
+//eliminar checando si es util ?
+
+// $('form').submit(function (e) {
+//     e.preventDefault();
+//   });
+//   $('form input').on('change', function () {
+//     var file        = $(this).prop('files')[0],
+//         convertToMb = Math.floor(file.size / 1024 / 1024);
     
-    $('form #r').html(
-      "<div>Name: <span>" + file.name + "</span></div>" +
-      "<div>Type: <span>" + file.type + "</span></div>" +
-      "<div>Size: <span>" + file.size + ' bytes (' + convertToMb + ' mb)' + "</span> </div>"
-      );
-    console.log(file);
-  });
+//     $('form #r').html(
+//       "<div>Name: <span>" + file.name + "</span></div>" +
+//       "<div>Type: <span>" + file.type + "</span></div>" +
+//       "<div>Size: <span>" + file.size + ' bytes (' + convertToMb + ' mb)' + "</span> </div>"
+//       );
+//     console.log(file);
+//   });
   
-  $('form button').click(function () {
-    $('input').click();
-  });
+//   $('form button').click(function () {
+//     $('input').click();
+//   });
 
 
-  $(document).ready(function() {
-    $(':file').on('fileselect', function(event, numFiles, label) {
-      console.log(numFiles);
-      console.log(label);
-    });
-  });
+
+
+
+
+
+
+
+
+
+
+
+
+//   $(document).ready(function() {
+     
+
+//     $(':file').on('fileselect', function(event, numFiles, label) {
+//       console.log(numFiles);
+//       console.log(label);
+//     });
+
+//   });
+
+
+
+ 
+    
+ 
+

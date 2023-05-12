@@ -1017,8 +1017,9 @@
                       @error('archivo')
                           <small>{{$message}}</small>
                       @enderror                                                                     
-                  <button type="submit" class="bt bt-primary" name="asubir" value="laudoupload" >Subir archivo Laudo </button> 
-                  </div>                                                              
+                  
+                  </div>    
+                  <button type="submit" class="bt bt-primary" name="asubir" value="laudoupload" >Subir archivo Laudo </button>                                                           
                                    
               </form> 
                {{-- Descargar Archivo --}}
@@ -1034,18 +1035,19 @@
 <br>
 <hr class="separador">   
               
-
-
-<div class="mb-3">
-  <label for="formFile" class="form-label">Default file input example</label>
-  <input class="form-control" type="file" id="formFile">
-</div>
-
-
+<div>
+    <input type="file" id="archivo" class='fansi_file'>
+    <label for="archivo">
+      <span class='fansi_file_name'>
+         <span id="docn">  Ningun archivo Seleccionado</span>     
+      </span>
+      <span class='fansi_file_button'> <i class="fa fa-upload"></i> Buscar Archivo</span>
+    </label>
+  </div>
+<input type="submit" value="Enviar">
 
 
                
-
           </div>          
       </div>
   </div>

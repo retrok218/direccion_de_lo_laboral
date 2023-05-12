@@ -27,7 +27,6 @@
 <script src="{{ URL::asset('assets/js/demo1/bootstrap-session-timeout.js')}}" type="text/javascript"></script>
 {{-- <script src="{{ URL::asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script> --}}
 
-
 {{-- <!-- Scrips para generar graficas   -->
 <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.min.js')}}" type="text/javascript"></script>
 <!-- <script src="{{ URL::asset('assets/vendors/general/canvas/canvasjs.react.js')}}" type="text/javascript"></script>-->
@@ -40,10 +39,8 @@
   
 <script src="{{URL::asset('js/dateTime.min.js')}}"></script> <!--script para calendario datatable-->
 
-
-
-
-
-  {{-- <script src="public/js/datatable.js"></script>   --}}
-  <script src="{{URL::asset('js/datatable.js')}}"></script>  
+{{-- <script src="public/js/datatable.js"></script>   --}}
+<script src="{{URL::asset('js/datatable.js')}}"></script>  
 <script src="{{ URL::asset('js/juicios.js')}}" type="text/javascript"></script>
+
+

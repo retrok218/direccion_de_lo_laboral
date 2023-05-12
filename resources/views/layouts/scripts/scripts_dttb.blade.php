@@ -2,7 +2,8 @@
 {{-- <script src="{{ URL::asset('assets/vendors/general/jquery/dist/jquery.js')}}" type="text/javascript"></script> --}}
 <script src="{{ URL::asset('assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
-  <script src="{{URL::asset('js/datatable.js')}}"></script>  
+  {{-- <script src="{{URL::asset('js/datatable.js')}}"></script>   --}}
+  
 
 
 
@@ -18,4 +19,5 @@
 <script src="{{ URL::asset('morris.js-0.5.1/morris.js')}}" type="text/javascript"></script>
 <script src="{{ URL::asset('morris.js-0.5.1/morris.min.js')}}" type="text/javascript"></script>
 
-<script src="{{ URL::asset('js/graficas_juicio.js')}}" type="text/javascript"></script>
+{{-- <script src="{{ URL::asset('js/graficas_juicio.js')}}" type="text/javascript"></script> --}}
+<script src="{{ URL::asset('js/gradica_barras.js')}}" type="text/javascript"></script>
