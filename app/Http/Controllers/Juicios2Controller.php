@@ -330,15 +330,22 @@ class Juicios2Controller extends Controller
 
     private $disk = "public"; //se configura el disco como publick para que sea donde se almacena el archivo por defecto 
     public function upload(Request $request,SessionManager $sessionManager,$id){ 
-        $updatearchivo = request()->only('asubir')['asubir'];
-        // $arrLlaves=array_keys($_POST);
-        // $archivodtn= Juicio::select('archivo')->where('id_juicio','=',$id)->get('archivo');          
-        //dd($request);
-       //$nombrearchivo =juicio::select('id_juicio','archivo')->where('id_juicio','=',$id)->get();        
-        $archivo = $request->file('archivo');         
-        $archivonombre =date('Y-m-d-H').'_'.$archivo->getClientOriginalName();                  
+
+        
+
+       $updatearchivo = request()->only('asubir')['asubir'];  //se requiere el valor del boton para guardar respectivamente   
+       $archivo = $request->file('archivo');
+       if (!isset($archivo) ) {
+        $sessionManager->flash('mensaje', 'No se selecciono el archivo');
+        return redirect()->route('juicios.index');
+         }       
+        //obteniendo nombre del archivo 
+        $archivo = $request->file('archivo');       
+         //se agrega fecha al nombre del archivo para que no se sobre escrivan archivos 
+        $archivonombre =date('Y-m-d-H-m-s').'_'.$updatearchivo.$archivo->getClientOriginalName(); 
+        
        if ($updatearchivo=="demandaupload") {
-        Juicio::where('id_juicio','=',$id)->update(['archivo' =>$archivonombre]);
+        Juicio::where('id_juicio','=',$id)->update(['archivo' =>$archivonombre]);        
         $archivo->storeAs($this->disk,$archivonombre); 
        } elseif($updatearchivo=="contratacionupload" ) {
         Juicio::where('id_juicio','=',$id)->update(['archivo1' => $archivonombre]);

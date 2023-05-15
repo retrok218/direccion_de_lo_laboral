@@ -960,94 +960,64 @@
 {{-- fin de formulario para mostrar datos--}}
           <hr class="separador">                
               @include('juicios.form_comentario')
-          <hr class="separador">
+<hr class="separador">
+     
+    
+      <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
+            @csrf 
+          <input type="file" id="archivo" class='fansi_file' name="archivo">
+          <label for="archivo">
+            <span class='fansi_file_name'>
+              <span id="docn">  Ningun archivo Seleccionado</span>     
+            </span>
+            <span class='fansi_file_button'> <i class="fa fa-file-alt "></i> - Buscar Archivo</span>      
+          </label>
+          <div class="kt-section">
+            <div class="kt-section__info">Seleccione donde se guardara el PDF</div>
+            <div class="kt-section__content kt-section__content--solid">                          
+              <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="demandaupload"><i class="fa fa-upload"></i> Subir archivo Demanda</button>
+              <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="contratacionupload"><i class="fa fa-upload"></i> Subir archivo Contratacion</button>
+              <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="laudoupload"><i class="fa fa-upload"></i> Subir archivo Laudo</button>
+          </div>
+          </div>
+    </form>
+    
+    
+    <i class="fa fa-download"></i>
+    @isset($juicio3[0]->archivo2)
+      <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo2)}}"> {{$juicio3[0]->archivo2}}</a>
+      <a class="close_archivo" href="{{url('/juicio_delete_archivo/'.'archivo2'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo2)}}" value="archivo2" >       
+        <i class="fa fa-times-circle"></i>
+      </a>                
+    @else
+    Sin archivo para descarga Laudo
+    @endisset
+    <br>
+    <i class="fa fa-download"></i>
+  @isset($juicio3[0]->archivo1)
+    <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo1)}}"> {{$juicio3[0]->archivo1}}</a> 
+    <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo1'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo1)}}" >
+      <i class="fa fa-times-circle"></i>
+   </a>             
+  @else
+  
+  Sin archivo para descarga Contratacion
+  @endisset
+  <br>
+  <i class="fa fa-download"></i>
+  @isset($juicio3[0]->archivo)                
+            <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>
+            <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo)}}" >
+              <i class="fa fa-times-circle"></i>
+            </a>  
+            @else
+            Sin archivo para descarga Demanda
+  @endisset
 
-                {{-- subir archivo --}}
-              <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
-                @csrf                                                                
-                  <input type="file"  id="upload" name="archivo" >                            
-                      @error('archivo')
-                          <small>{{$message}}</small>
-                      @enderror                                                                     
-                  <button type="submit" class="bt bt-primary" name="asubir" value="demandaupload">Subir archivo Demanda </button>                  
-              </form> 
-              {{-- Descargar Archivo --}}
-              <i class="fa fa-download"></i>
-              @isset($juicio3[0]->archivo)                
-                        <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>
-                        <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo)}}" >
-                          <span aria-hidden="true">&times;</span>
-                        </a>  
-
-                        @else
-                        Sin archivo para descarga
-              @endisset
-
-                         {{-- subir archivo --}}
-              <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
-                @csrf                                                                
-                  <input type="file"  id="upload" name="archivo" >                            
-                      @error('archivo')
-                          <small>{{$message}}</small>
-                      @enderror                                                                     
-                  <button type="submit" class="bt bt-primary" name="asubir" value="contratacionupload">Subir archivo Contratacion </button>                  
-              </form> 
-               {{-- Descargar Archivo --}}
-               <i class="fa fa-download"></i>
-               @isset($juicio3[0]->archivo1)
-                 <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo1)}}"> {{$juicio3[0]->archivo1}}</a> 
-                 <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo1'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo1)}}" >
-                  <span aria-hidden="true">&times;</span>
-                </a>             
-               @else
-               Sin archivo para descarga
-               @endisset
-              
-
-
-
-
-                {{-- subir archivo --}}
-              <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
-                @csrf  
-                  <div class="mb-3">
-                    <label for="formFile" class="form-label">Default file input example</label>
-                    
-                    <input class="form-control" type="file" id="formFile" name="archivo">                            
-                      @error('archivo')
-                          <small>{{$message}}</small>
-                      @enderror                                                                     
-                  
-                  </div>    
-                  <button type="submit" class="bt bt-primary" name="asubir" value="laudoupload" >Subir archivo Laudo </button>                                                           
-                                   
-              </form> 
-               {{-- Descargar Archivo --}}
-               <i class="fa fa-download"></i>
-               @isset($juicio3[0]->archivo2)
-                 <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo2)}}"> {{$juicio3[0]->archivo2}}</a>
-                 <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo2'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo2)}}" value="archivo2" >
-                  <span aria-hidden="true">&times;</span>
-                </a>                
-               @else
-               Sin archivo para descarga
-               @endisset
-<br>
-<hr class="separador">   
-              
-<div>
-    <input type="file" id="archivo" class='fansi_file'>
-    <label for="archivo">
-      <span class='fansi_file_name'>
-         <span id="docn">  Ningun archivo Seleccionado</span>     
-      </span>
-      <span class='fansi_file_button'> <i class="fa fa-upload"></i> Buscar Archivo</span>
-    </label>
-  </div>
-<input type="submit" value="Enviar">
+  
+  
 
 
-               
           </div>          
       </div>
   </div>

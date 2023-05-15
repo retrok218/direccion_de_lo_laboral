@@ -18,6 +18,14 @@ function executeExample(mensaje) {
             no-repeat`    
         })
 }
+function  executewrong(mensaje) {
+    Swal.fire({
+        type:'error',
+        title: 'Oops...',
+        text: 'No se selecciono Archivo para Subir ',
+        
+        })
+}
 
 
 $(document).ready(function(){
@@ -197,10 +205,12 @@ function mostrar_modal_juicio(data) {
             $("[class='make-switch']").bootstrapSwitch('animate', true);
             $('.select2').select2({dropdownParent: $("#modal-juicio")});
           
-            let archivo = $('#archivo')[0];
-           
+            let archivo = $('#archivo')[0];           
             archivo.addEventListener('change', () => {            
             document.querySelector('#docn').innerText = archivo.files[0].name;
+            document.querySelector('#docn').classList.remove('textanime')
+            document.querySelector('#docn').classList.add('textanime');
+
             console.log(archivo.files[0].name);
         });
     

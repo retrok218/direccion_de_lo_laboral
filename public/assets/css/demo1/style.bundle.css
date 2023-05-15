@@ -50452,13 +50452,15 @@ tr.shown td.details-control {
 
 .fansi_file_name{
     background: white;
-    border: 1px solid #cacaca;
+    border: 1px solid #383838;
+    color: #91011ca1;
+    font-size: 14px;
 }
 .fansi_file_name span{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 200px;
+    width: auto;
     display: block;
 }
 
@@ -50470,3 +50472,33 @@ tr.shown td.details-control {
     white-space: nowrap;
     border-radius: 0 30px 30px 0;
 }
+
+
+
+/* animacion para de makina de escribir  */
+.textanime {
+    color: black;
+   /* font-family: monospace;*/
+    overflow: hidden; 
+    border-right: .15em solid orange; /*cursor*/
+    white-space: nowrap;
+    margin: 0 auto; 
+    letter-spacing: .15em; 
+    animation: 
+      typing 3.5s steps(30, end),
+      blink-caret .5s step-end infinite;
+  }  
+  /* Efecto*/
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  /* Efecto del cursor  */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+  }
+
+  .close_archivo{
+    color: #f91313;
+  }
