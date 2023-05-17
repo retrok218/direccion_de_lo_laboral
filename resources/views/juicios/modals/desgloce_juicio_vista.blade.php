@@ -15,14 +15,19 @@
                   <span aria-hidden="true">&times;</span>
               </button>
               
-                <div class="kt-portlet__head">  
-                  <div class="modal-header">              
+                <div class="kt-portlet__head"> 
+                  <div class="modal-header"> 
                     <h2 class="modal-title" id="myModalLabel">                    
                       <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
                       Desglose Juicio : {{$juicio3[0]->id_juicio}}                                                                
-                    </h2>                   
-                  </div> 
+                    </h2>
+                                                            
+                  </div>                                                                    
                 </div> 
+                <div style="position: absolute;top: 20%;left: 80%;" >                                     
+                    <span>Etapa :</span><h3 id="etappa">{{$juicio3[0]->etapa}}</h3>                                                                                                                              
+                </div> 
+                
 
                 <div class="kt-subheader  kt-grid__item" id="kt_subheader"style="width: 100%;" >
                   <div class="kt-container  kt-container--fluid ">
@@ -35,10 +40,11 @@
                       </div>
                       <div class="kt-subheader__toolbar">
                           <div class="kt-subheader__wrapper">
-                            <span class="input-group-text btn kt-subheader__btn-secondary" id="basic-addon3">Faltan</span>                                      
-                              <a  class="btn kt-subheader__btn-secondary">Dias: {{$diasrestantes}}</a>              
-                              <a  class="btn kt-subheader__btn-secondary">Horas: {{$horfatantes}}</a>
-                              <a  class="btn kt-subheader__btn-secondary">Minutos: {{$minfaltantes}}</a>                                                                                                                           
+                            <span class="input-group-text btn kt-subheader__btn-secondary" id="basic-addon3">Faltan</span>
+                            <span class="input-group-text btn kt-subheader__btn-secondary" id="basic-addon3">Dias: {{$diasrestantes}}</span>     
+                            <span class="input-group-text btn kt-subheader__btn-secondary" id="basic-addon3">Horas: {{$horfatantes}}</span>
+                            <span class="input-group-text btn kt-subheader__btn-secondary" id="basic-addon3">Minutos: {{$minfaltantes}}</span>
+                                                                                                                                                        
                           </div>
                       </div>
                   </div>
@@ -51,7 +57,7 @@
                         {{--inicio del acordion juicios --}}
                         <div class="accordion" id="acordionjuicio">
 
-                          <div class="card">
+                          <div  class="card"  >
                             <div class="card-header" id="datosjuicio">
                               <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#juicio" aria-expanded="false" aria-controls="juicio">
@@ -966,7 +972,7 @@
       <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
             @csrf 
           <input type="file" id="archivo" class='fansi_file' name="archivo">
-          <label for="archivo">
+          <label for="archivo" class="subirarchivos">
             <span class='fansi_file_name'>
               <span id="docn">  Ningun archivo Seleccionado</span>     
             </span>
@@ -983,17 +989,17 @@
     </form>
     
     
-    <i class="fa fa-download"></i>
-    @isset($juicio3[0]->archivo2)
-      <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo2)}}"> {{$juicio3[0]->archivo2}}</a>
-      <a class="close_archivo" href="{{url('/juicio_delete_archivo/'.'archivo2'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo2)}}" value="archivo2" >       
-        <i class="fa fa-times-circle"></i>
-      </a>                
-    @else
-    Sin archivo para descarga Laudo
-    @endisset
-    <br>
-    <i class="fa fa-download"></i>
+    <i class="fa fa-download"></i> <span>Demanda :</span>
+  @isset($juicio3[0]->archivo)                
+            <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>
+            <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo)}}" >
+              <i class="fa fa-times-circle"></i>
+            </a>  
+            @else
+            Sin archivo para descarga Demanda
+  @endisset
+  <br>
+    <i class="fa fa-download"></i> <span>Contratacion :</span>
   @isset($juicio3[0]->archivo1)
     <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo1)}}"> {{$juicio3[0]->archivo1}}</a> 
     <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo1'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo1)}}" >
@@ -1004,20 +1010,17 @@
   Sin archivo para descarga Contratacion
   @endisset
   <br>
-  <i class="fa fa-download"></i>
-  @isset($juicio3[0]->archivo)                
-            <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>
-            <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo)}}" >
-              <i class="fa fa-times-circle"></i>
-            </a>  
-            @else
-            Sin archivo para descarga Demanda
-  @endisset
-
   
-  
-
-
+  <i class="fa fa-download"></i> <span>Laudo :</span>
+    @isset($juicio3[0]->archivo2)
+      <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo2)}}"> {{$juicio3[0]->archivo2}}</a>
+      <a class="close_archivo" href="{{url('/juicio_delete_archivo/'.'archivo2'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo2)}}" value="archivo2" >       
+        <i class="fa fa-times-circle"></i>
+      </a>                
+    @else
+    Sin archivo para descarga Laudo
+    @endisset
+    
           </div>          
       </div>
   </div>

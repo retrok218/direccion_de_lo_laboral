@@ -86,7 +86,8 @@ class Juicios2Controller extends Controller
         $juicio->clasificacion_exp= $request->input('clasificacion_exp');
         $juicio->tipo= $request->input('tipo');
         $juicio->accion= $request->input('accion');
-        $juicio->id_sala=$request->input('juicio_sala_seleccionada');        
+        $juicio->id_sala=$request->input('juicio_sala_seleccionada');   
+        $juicio->etapa=$request->input('Etapa');
         //dd($juicio);
         $juicio->save();
 
@@ -330,35 +331,52 @@ class Juicios2Controller extends Controller
 
     private $disk = "public"; //se configura el disco como publick para que sea donde se almacena el archivo por defecto 
     public function upload(Request $request,SessionManager $sessionManager,$id){ 
+      
 
-        
+        try {
+            $updatearchivo = request()->only('asubir')['asubir'];  //se requiere el valor del boton para guardar respectivamente   
+            $archivo = $request->file('archivo');
+            if (!isset($archivo) ) {
+                $sessionManager->flash('mensaje', 'No se selecciono el archivo');
+                return redirect()->route('juicios.index');
+            }
+            else{               
+                    //obteniendo nombre del archivo 
+                     $archivo = $request->file('archivo');       
+                    //se agrega fecha al nombre del archivo para que no se sobre escrivan archivos 
+                    $archivonombre =date('Y-m-d-H-m-s').'_'.$updatearchivo.'_'.$archivo->getClientOriginalName();                     
+                    if ($updatearchivo=="demandaupload") {
+                        $narchivo = 'archivo';                         
+                        $archivoprevio = Juicio::select($narchivo)->where('id_juicio','=',$id)->value($narchivo);                                                   
+                        if ($archivoprevio == !null) {
+                                Storage::disk($this->disk)->delete($archivoprevio);
+                            }
 
-       $updatearchivo = request()->only('asubir')['asubir'];  //se requiere el valor del boton para guardar respectivamente   
-       $archivo = $request->file('archivo');
-       if (!isset($archivo) ) {
-        $sessionManager->flash('mensaje', 'No se selecciono el archivo');
-        return redirect()->route('juicios.index');
-         }       
-        //obteniendo nombre del archivo 
-        $archivo = $request->file('archivo');       
-         //se agrega fecha al nombre del archivo para que no se sobre escrivan archivos 
-        $archivonombre =date('Y-m-d-H-m-s').'_'.$updatearchivo.$archivo->getClientOriginalName(); 
-        
-       if ($updatearchivo=="demandaupload") {
-        Juicio::where('id_juicio','=',$id)->update(['archivo' =>$archivonombre]);        
-        $archivo->storeAs($this->disk,$archivonombre); 
-       } elseif($updatearchivo=="contratacionupload" ) {
-        Juicio::where('id_juicio','=',$id)->update(['archivo1' => $archivonombre]);
-        $archivo->storeAs($this->disk,$archivonombre);
-       }elseif($updatearchivo=="laudoupload" ) {
-        Juicio::where('id_juicio','=',$id)->update(['archivo2' => $archivonombre]);
-        $archivo->storeAs($this->disk,$archivonombre);
-       }               
-        $sessionManager->flash('mensaje', 'Archivo Agregado');
-        return redirect()->route('juicios.index');
-       //return $this->loadView();
-    }
-
+                    }elseif($updatearchivo=="contratacionupload" ) {
+                         $narchivo = 'archivo1';         
+                         $archivoprevio = Juicio::select($narchivo)->where('id_juicio','=',$id)->value($narchivo);                                                   
+                            if ($archivoprevio == !null) {
+                                Storage::disk($this->disk)->delete($archivoprevio);
+                            }                       
+                    }elseif($updatearchivo=="laudoupload" ) {
+                         $narchivo = 'archivo2';   
+                         $archivoprevio = Juicio::select($narchivo)->where('id_juicio','=',$id)->value($narchivo);                                                   
+                            if ($archivoprevio == !null) {
+                                    Storage::disk($this->disk)->delete($archivoprevio);
+                                }                          
+                            } 
+                            
+                    Juicio::where('id_juicio','=',$id)->update([$narchivo =>$archivonombre]); 
+                    $archivo->storeAs($this->disk,$archivonombre);
+                    $sessionManager->flash('mensaje', 'Archivo Agregado');
+                    return redirect()->route('juicios.index');
+                    //return $this->loadView();
+                  }                                 
+        } 
+        catch (\Exception $e) {
+            $response = ['success' => false, 'message' => 'Error al guardar la regla.'];
+        }
+    }           
     public function dowload_juicio($name){
         if(Storage::disk($this->disk)->exists($name)){
             return Storage::disk($this->disk)->download($name);

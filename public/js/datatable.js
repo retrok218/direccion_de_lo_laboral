@@ -27,9 +27,9 @@ function  executewrong(mensaje) {
         })
 }
 
-
+let table ;
 $(document).ready(function(){
-var table = $('#juiciotabla').DataTable({
+table = $('#juiciotabla').DataTable({
     "pageLength": 6,   
     "lengthChange": true,
     "searching": true,
@@ -165,6 +165,7 @@ var table = $('#juiciotabla').DataTable({
              return `<a  onclick="mostrar_modal_juicio(${ligajuicio})" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
         },
         {data:'noti_demanda', name:'noti_demanda'},
+        {data:'etapa',name:'etapa'},
         {data:'presentacion_de_demanda', name:'presentacion_de_demanda'},
         {data:'expediente',name:'expediente'},
         {data:'tipo', name:'tipo'},
@@ -179,7 +180,7 @@ var table = $('#juiciotabla').DataTable({
                                         
               return `              
               <button value="Actualizar" title="Actualizar" class="btn  btn-edit" onclick="editarJuicio(${ligajuicio})"><i class="fa fa-pencil"></i></button>
-              <button value="Actualizar" title="Eliminar" class="btn  btn-edit"><i class="fa fa-trash"></i></button>`
+              `
             }
           }
         
@@ -192,6 +193,7 @@ var table = $('#juiciotabla').DataTable({
 });
 
 function mostrar_modal_juicio(data) {
+    
     let segment =location.href.split('/');
     $.ajax({
         headers: {
@@ -204,17 +206,16 @@ function mostrar_modal_juicio(data) {
             $(modal).modal().on('shown.bs.modal', function() {
             $("[class='make-switch']").bootstrapSwitch('animate', true);
             $('.select2').select2({dropdownParent: $("#modal-juicio")});
-          
+            let etapa = document.getElementById('etappa').textContent //se obtiene el nombre de la etapa en la que se encuentra para manipular los datos a mostrar
             let archivo = $('#archivo')[0];           
             archivo.addEventListener('change', () => {            
-            document.querySelector('#docn').innerText = archivo.files[0].name;
-            document.querySelector('#docn').classList.remove('textanime')
-            document.querySelector('#docn').classList.add('textanime');
+                document.querySelector('#docn').innerText = archivo.files[0].name;
+                document.querySelector('#docn').classList.remove('textanime')
+                document.querySelector('#docn').classList.add('textanime')
+                  
+             });
 
-            console.log(archivo.files[0].name);
-        });
     
-
 
 
             }).on('hidden.bs.modal', function() {
@@ -229,21 +230,18 @@ function mostrar_modal_juicio(data) {
 
 
 function editarJuicio(data,ads) {
+    // muestra modal de edicion
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url : url +"edit_juicio/"+data,
-        dataType: 'html',
-        
-        success: function(resp_success) {
-          
-            
+        dataType: 'html',        
+        success: function(resp_success) {                      
             var modal = resp_success;
                 $(modal).modal().on('shown.bs.modal', function() {
                 $("[class='make-switch']").bootstrapSwitch('animate', true);
-                $('.select2').select2({dropdownParent: $("#edicion_juicio")});                
-                    
+                $('.select2').select2({dropdownParent: $("#edicion_juicio")});                                    
                 }).on('hidden.bs.modal', function() {
                     $(this).remove();
                 });                          
@@ -256,7 +254,7 @@ function editarJuicio(data,ads) {
 
 
 function update_actualiza_datos_generales(id,formname){
-    // console.log(formname);
+     console.log(formname);
     let formData = new FormData($('#'+formname).get(0));       
     formData.append('_method','PUT');    
     $.ajax({
@@ -267,7 +265,18 @@ function update_actualiza_datos_generales(id,formname){
         type:'POST',
         data:formData,
         contentType: false,
-        processData: false,                        
+        processData: false,    
+        success: function(response) {
+            
+            table.ajax.reload(); 
+            // Recargar el modal con los datos actualizados
+            editarJuicio(id);
+            // Cerrar el modal actual
+            $('#editjuicio').modal('hide');
+        },
+        error: function(respuesta) {
+            Swal.fire('¡Alerta!', 'Error de conectividad de red USR-03', 'warning');
+        }                    
     });
 
 

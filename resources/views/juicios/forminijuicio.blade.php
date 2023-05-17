@@ -397,14 +397,16 @@
   <div class="form-row">
    <div class="col-md-3 mb-3">
       <label for="validationDefault03">Etapa</label>      
-        <select class="custom-select" id="Etapa"  name="Etapa">
+        <select class="custom-select" id="etapa"  name="etapa">
           <option selected disabled value="">Selecicona la Etapa</option>
-          <option>Concluido </option>
+          <option>Ejecucion </option>
           <option>Transferido</option>
-          <option>Ejecucion</option>
-          <option>Proyecto de Laudo</option> 
-          <option>Laudo</option>    
-          <option>Amparo</option>            
+          <option>Proyecto de Laudo</option>
+          <option>Concluido</option> 
+          <option>Amparo</option>    
+          <option>Tramite</option>
+          <option>Incidente de cambio de situacion juridica</option>    
+          <option>Cancelado</option>       
          
         </select>      
       </div>

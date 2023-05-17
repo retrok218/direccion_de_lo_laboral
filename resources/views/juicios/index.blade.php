@@ -21,15 +21,16 @@
 <table class="table table-striped table-bordered" style="width:100%" id="juiciotabla" >
     <thead>
         <tr>
-            <th>Etapa</th>
+            <th>Alerta</th>
             <th>Juicio</th>
             <th>Notificacion</th>
+            <th>Etapa</th>
             <th>Presentacion</th>
             <th>Expediente</th>
             <th>Tipo</th>
             <th>Accion</th>
             <th>Actor</th>
-            <th>Editar/Eliminar</th>
+            <th>Editar</th>
         </tr>                
     </thead>
     

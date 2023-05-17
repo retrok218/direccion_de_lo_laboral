@@ -50454,7 +50454,8 @@ tr.shown td.details-control {
     background: white;
     border: 1px solid #383838;
     color: #91011ca1;
-    font-size: 14px;
+    font-size: 13px;
+    border-radius: 30px 0px 0px 30px;
 }
 .fansi_file_name span{
     white-space: nowrap;
@@ -50464,10 +50465,17 @@ tr.shown td.details-control {
     display: block;
 }
 
+.fansi_file_name:hover,
+.fansi_file_button:hover{
+    cursor: pointer;
+    
+
+}
+
 
 .fansi_file_button{
-    background: #5BC0DE ;
-    border: 1px solid #5BC0DE;
+    background: #5867dd;
+    border: 1px solid #5867dd;
     color: white;
     white-space: nowrap;
     border-radius: 0 30px 30px 0;
@@ -50501,4 +50509,25 @@ tr.shown td.details-control {
 
   .close_archivo{
     color: #f91313;
+    margin: 0px 0px 0px 23px;
+
   }
+  .headmdal {
+    display: flex;
+    align-items: normal;
+    justify-content: end;
+    padding: 1.25rem;
+    border-bottom: 1px solid #ebedf2;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem
+  }
+
+  .etapahead{
+    display: flex;
+    /* align-items:flex-end; */
+    justify-content: flex-end;
+    padding: 1.25rem;
+    
+  }
+
+  

@@ -231,6 +231,51 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-sm-4">
+                                                        <div class="card">
+                                                            <div class="card-header juiciotext ">
+                                                                Etapa
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <select class="custom-select" id="etapa"  name="etapa">
+                                                                    <option selected disabled value="">Selecicona la Etapa</option>
+                                                                    <option 
+                                                                        @if ($juicio3[0]->etapa == 'Ejecucion'){{'selected'}}@endif>Ejecucion
+                                                                    </option>
+                                                                    <option
+                                                                        @if ($juicio3[0]->etapa == 'Transferido'){{'selected'}}@endif>Transferido
+                                                                    </option>
+                                                                    <option 
+                                                                        @if ($juicio3[0]->etapa == 'Proyecto de Laudo'){{'selected'}}@endif>Proyecto de Laudo
+                                                                    </option>                                                                     
+                                                                    <option 
+                                                                        @if ($juicio3[0]->etapa == 'Concluido'){{'selected'}}@endif >Concluido 
+                                                                    </option>
+                                                                    <option  
+                                                                        @if ($juicio3[0]->etapa == 'Amparo'){{'selected'}}@endif>Amparo
+                                                                    </option> 
+                                                                    <option  
+                                                                        @if ($juicio3[0]->etapa == 'Tramite'){{'selected'}}@endif>Tramite
+                                                                    </option> 
+                                                                    <option  
+                                                                        @if ($juicio3[0]->etapa == 'Incidente de cambio de situacion juridica'){{'selected'}}@endif>Incidente de cambio de situacion juridica
+                                                                    </option> 
+                                                                    <option  
+                                                                        @if ($juicio3[0]->etapa == 'Cancelado'){{'selected'}}@endif>Cancelado
+                                                                    </option>
+
+
+
+                                                                    
+                                                                    
+                                                                    
+                                                                       
+                                                                                                                                                  
+                                                                  </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </form>
 
