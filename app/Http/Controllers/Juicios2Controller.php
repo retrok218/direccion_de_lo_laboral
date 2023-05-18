@@ -268,8 +268,16 @@ class Juicios2Controller extends Controller
     }
 
     public function juiciosdatosajax(){
-        $juicio_actor= juicio::with('actor')->get();
+        $juicio_actor= juicio::with('actor')
+        ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
+        ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
+        ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
+        ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')
+        ->get();
+        
         return Datatables::of($juicio_actor)->toJson();
+
     }
 
     public function desglocejuicio($id){

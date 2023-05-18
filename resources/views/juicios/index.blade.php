@@ -27,9 +27,12 @@
             <th>Etapa</th>
             <th>Presentacion</th>
             <th>Expediente</th>
-            <th>Tipo</th>
-            <th>Accion</th>
+            <th>Indemnizacion</th>
+            
             <th>Actor</th>
+            <th>Reinstalacion</th>
+            <th>Dias restantes Para Requerimiento Fecha Proxima</th>
+            <th>Requerimiento Fecha Proxima </th>
             <th>Editar</th>
         </tr>                
     </thead>

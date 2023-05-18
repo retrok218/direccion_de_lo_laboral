@@ -29,6 +29,7 @@ function  executewrong(mensaje) {
 
 let table ;
 $(document).ready(function(){
+ 
 table = $('#juiciotabla').DataTable({
     "pageLength": 6,   
     "lengthChange": true,
@@ -138,16 +139,18 @@ table = $('#juiciotabla').DataTable({
             $(row).find('td').css('color', 'rgb(60, 53, 53)');
         }
     },
-
+    
     columns:[
 
-
+        
         { "mRender": function(data, type, row){            
 
             let actual_fecha = moment(); 
-            let f = moment(row.actor[0].audiencia);            
-            let diferenciafehas =f.diff(actual_fecha,'days');                        
-            if( diferenciafehas > 1){
+            let f = moment(row.actor[0].audiencia);  
+            let fproxima = moment(row.fechaproxima);           
+            let diferenciafehas =f.diff(actual_fecha,'days'); 
+            let fproxdif  = fproxima.diff(actual_fecha,'days');                    
+            if( diferenciafehas > 1 ){
                 estatusRegla = '<i class="far fa-clock fa-xl" style="color: #0daf5c; margin: 0px 0px 0px 35%;" title='+'Resta'+diferenciafehas+'/D'+'></i>';
             }
             else if (diferenciafehas <= 1 & diferenciafehas > -1){
@@ -168,9 +171,27 @@ table = $('#juiciotabla').DataTable({
         {data:'etapa',name:'etapa'},
         {data:'presentacion_de_demanda', name:'presentacion_de_demanda'},
         {data:'expediente',name:'expediente'},
-        {data:'tipo', name:'tipo'},
-        {data:'accion', name:'accion'},
+        {data:'indemnizacion', name:'indemnizacion'},
+        
         {data:'actor.0.nombre_completo', name: 'actor.nombre_completo'},
+        {data:'reinstalacion',name:'reinstalacion'},
+        {"mRender":function(data,type,row){
+            let actual_fecha = moment(); 
+            let f = moment(row.fechaproxima);            
+            let fechaproximaalert;
+            if (row.fechaproxima !== null ) {                
+                 fechaproximaalert = f.diff(actual_fecha,'days') ;
+                 fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? 'Feacha Vencida':fechaproximaalert;         
+               }               
+               else{
+                fechaproximaalert = 'Sin Fecha';
+               }            
+                return fechaproximaalert
+               console.log(fechaproximaalert)
+
+          
+        }},
+        {data:'fechaproxima',name:'fechaproxima'},
 
         { 
             "mRender": function(data, type, row){

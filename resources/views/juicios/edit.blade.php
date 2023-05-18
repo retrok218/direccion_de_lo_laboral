@@ -1177,7 +1177,26 @@
                                                         </div>
                                                         <div class="card-body">
                                                             <p class="card-text">
-                    <input type="date" class="form-control"  id="lau_sentido" name="lau_sentido" value="{{ $juicio3[0]->lau_sentido }}">
+                                                 {{-- <input type="date" class="form-control"  id="lau_sentido" name="lau_sentido" value="{{ $juicio3[0]->lau_sentido }}"> --}}
+                                                 
+                                                 <select class="custom-select"  id="lau_sentido" name="lau_sentido">
+                                                                <option selected disabled value="">
+                                                                    Selecicona una opcion
+                                                                </option>
+
+                                                                <option
+                                                                    @if ($juicio3[0]->lau_sentido == 'Mixto') {{ 'selected' }} @endif>
+                                                                    Mixto
+                                                                </option>
+                                                                <option
+                                                                    @if ($juicio3[0]->lau_sentido == 'Condenatorio') {{ 'selected' }} @endif>
+                                                                    Condenatorio
+                                                                </option>
+                                                                <option
+                                                                    @if ($juicio3[0]->lau_sentido == 'Absolutorio') {{ 'selected' }} @endif>
+                                                                    Absolutorio
+                                                                </option>
+                                                            </select>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -1200,12 +1219,7 @@
                                                                         value="No">No</option>
                                                                 </select>
 
-                                                                {{-- <span class="kt-switch kt-switch--outline kt-switch--icon kt-switch--success">
-                                                <label>
-                                                  <input @if ($juicio3[0]->reinstalacion == 'No') checked="checked" @endif type="checkbox"  name="reinstalacion">
-                                                  <span></span>
-                                                </label>
-                                              </span> --}}
+                                                       
                                                             </p>
                                                         </div>
                                                     </div>
@@ -1409,13 +1423,10 @@
                                                                 name="sentido_sentencia">
                                                                 <option
                                                                     @if ($juicio3[0]->sentido_sentencia == 'Ampara y Protege') {{ 'selected' }} @endif>
-                                                                    Ampara y Protege Actor</option>
+                                                                    Concede</option>
                                                                 <option
                                                                     @if ($juicio3[0]->sentido_sentencia == 'No Ampara Ni Protege') {{ 'selected' }} @endif>
-                                                                    No Ampara Ni Protege"</option>
-                                                                <option
-                                                                    @if ($juicio3[0]->sentido_sentencia == 'Niega') {{ 'selected' }} @endif>
-                                                                    Niega</option>
+                                                                    No Concede</option>                                                                
                                                             </select>
                                                         </p>
                                                     </div>
