@@ -22,10 +22,12 @@ function  executewrong(mensaje) {
     Swal.fire({
         type:'error',
         title: 'Oops...',
-        text: 'No se selecciono Archivo para Subir ',
-        
+        text: 'No se selecciono Archivo para Subir ',        
         })
 }
+
+
+
 
 let table ;
 $(document).ready(function(){
@@ -163,25 +165,24 @@ table = $('#juiciotabla').DataTable({
         }},
                
         {"mRender": function(data, type, row){
-            var ligajuicio=row.id_juicio;                
-            //  return '<a href="'+url+'desgloce_juicio/'+ ligajuicio +'" target="_blank" title="Ir en busca del TKT en OTRS" ;><button class="button2"> <span> '+row.id_juicio+' <span> </button></a>';
+            var ligajuicio=row.id_juicio;                           
              return `<a  onclick="mostrar_modal_juicio(${ligajuicio})" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
         },
         {data:'noti_demanda', name:'noti_demanda'},
-        {data:'etapa',name:'etapa'},
-        {data:'presentacion_de_demanda', name:'presentacion_de_demanda'},
+        {data:'etapa',name:'etapa'},        
         {data:'expediente',name:'expediente'},
+        {data:'reinstalacion',name:'reinstalacion'},
         {data:'indemnizacion', name:'indemnizacion'},
         
-        {data:'actor.0.nombre_completo', name: 'actor.nombre_completo'},
-        {data:'reinstalacion',name:'reinstalacion'},
+        
         {"mRender":function(data,type,row){
             let actual_fecha = moment(); 
             let f = moment(row.fechaproxima);            
             let fechaproximaalert;
             if (row.fechaproxima !== null ) {                
                  fechaproximaalert = f.diff(actual_fecha,'days') ;
-                 fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? 'Feacha Vencida':fechaproximaalert;         
+                 fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? 'Feacha Vencida':fechaproximaalert;  
+                 fechaproximaalert = f.diff(actual_fecha,'days') <=2 && f.diff(actual_fecha,'days') >=0 ? '<span class=" requerimiento fa-beat-fade"> Restan '+f.diff(actual_fecha,'days')+' Dias</span>':  fechaproximaalert;      
                }               
                else{
                 fechaproximaalert = 'Sin Fecha';
@@ -303,6 +304,9 @@ function update_actualiza_datos_generales(id,formname){
 
 //    location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
+
+
+
 
 
 

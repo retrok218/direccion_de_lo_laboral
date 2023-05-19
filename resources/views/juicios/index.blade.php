@@ -24,13 +24,10 @@
             <th>Alerta</th>
             <th>Juicio</th>
             <th>Notificacion</th>
-            <th>Etapa</th>
-            <th>Presentacion</th>
+            <th>Etapa</th>            
             <th>Expediente</th>
-            <th>Indemnizacion</th>
-            
-            <th>Actor</th>
             <th>Reinstalacion</th>
+            <th>Indemnizacion</th>                        
             <th>Dias restantes Para Requerimiento Fecha Proxima</th>
             <th>Requerimiento Fecha Proxima </th>
             <th>Editar</th>
