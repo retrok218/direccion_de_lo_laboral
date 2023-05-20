@@ -181,8 +181,9 @@ table = $('#juiciotabla').DataTable({
             let fechaproximaalert;
             if (row.fechaproxima !== null ) {                
                  fechaproximaalert = f.diff(actual_fecha,'days') ;
-                 fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? 'Feacha Vencida':fechaproximaalert;  
-                 fechaproximaalert = f.diff(actual_fecha,'days') <=2 && f.diff(actual_fecha,'days') >=0 ? '<span class=" requerimiento fa-beat-fade"> Restan '+f.diff(actual_fecha,'days')+' Dias</span>':  fechaproximaalert;      
+                 fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? 'Feacha Vencida':fechaproximaalert; 
+                    
+                 fechaproximaalert = f.diff(actual_fecha,'days') <=2 && f.diff(actual_fecha,'days') >=0 ? '<span class=" requerimiento fa-beat-fade"> Faltan '+f.diff(actual_fecha,'days')+'- Dias '+f.diff(actual_fecha,'hours')+'- Horas </span><br> <span class=" requerimiento fa-beat-fade" >Proxima Fecha: '+row.fechaproxima+'</span>':  fechaproximaalert;      
                }               
                else{
                 fechaproximaalert = 'Sin Fecha';
@@ -192,7 +193,7 @@ table = $('#juiciotabla').DataTable({
 
           
         }},
-        {data:'fechaproxima',name:'fechaproxima'},
+       
 
         { 
             "mRender": function(data, type, row){

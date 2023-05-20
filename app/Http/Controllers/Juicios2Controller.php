@@ -48,7 +48,7 @@ class Juicios2Controller extends Controller
         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
         ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
         ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')->get('fechaproxima');     
-        dd($requerimientofecha);
+       // dd($requerimientofecha);
        return view('juicios.index')->with([
         'juicio_actor' => $juicio_actor
        ]);
@@ -99,7 +99,7 @@ class Juicios2Controller extends Controller
         $juicio->tipo= $request->input('tipo');
         $juicio->accion= $request->input('accion');
         $juicio->id_sala=$request->input('juicio_sala_seleccionada');   
-        $juicio->etapa=$request->input('Etapa');
+        $juicio->etapa=$request->input('etapa');
         //dd($juicio);
         $juicio->save();
 
@@ -114,14 +114,14 @@ class Juicios2Controller extends Controller
         $actor->salarioMen  = $request->input('salarioMen');
         $actor->inicio_rellab  = $request->input('juicio_in_rellaboral');
         $actor->terminacion_rellab  = $request->input('juicio_term_rellaboral');
-        $actor->exp_personal_rh_solicitud  = $request->input('Solicitud');
-        $actor->exp_personal_rh_devolucion  = $request->input('Devolucion');
-        $actor->fojas  = $request->input('Fojas');
-        $actor->exp_adscripcion_solicitud = $request->input('exp_adscripcion_solicitud');
-        $actor->exp_adscripcion_devolucion = $request->input('exp_adscripcion_devolucion');
-        $actor->audiencia = $request->input('audiencia');
-        $actor->descripcion = $request->input('addescripcion');
-        $actor->cierredeinstruccion = $request->input('Cierre_de_Instruccion');
+        // $actor->exp_personal_rh_solicitud  = $request->input('Solicitud');
+        // $actor->exp_personal_rh_devolucion  = $request->input('Devolucion');
+        // $actor->fojas  = $request->input('Fojas');
+        // $actor->exp_adscripcion_solicitud = $request->input('exp_adscripcion_solicitud');
+        // $actor->exp_adscripcion_devolucion = $request->input('exp_adscripcion_devolucion');
+        // $actor->audiencia = $request->input('audiencia');
+        // $actor->descripcion = $request->input('addescripcion');
+        // $actor->cierredeinstruccion = $request->input('Cierre_de_Instruccion');
         $actor->save();
 
         $laudo = new laudo;

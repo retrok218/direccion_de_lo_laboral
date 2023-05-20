@@ -983,7 +983,6 @@
                             {{-- fin car actor --}}
                             {{-- Inicio card  Tramite --}}
                             <div class="card">
-
                                 <div class="card-header" id="stramite">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
@@ -994,144 +993,329 @@
                                     </h5>
                                 </div>
 
-                                <div id="tramitea" class="collapse" aria-labelledby="stramite"
-                                    data-parent="#acordionjuicio"> 
-
+                                <div id="tramitea" class="collapse" aria-labelledby="stramite" data-parent="#acordionjuicio"> 
                                     <div class="card-body">   
-                            <form id="tramite" name="tramite">          
-                              <div class="row row-cols-1 row-cols-md-3">                                                                                   
-                    <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice"style="color: #8b1818;"></i> Expediente Personal R.H</h5>
-                                            <div class="card-deck">
-                                                <div class="col-sm-4">
-                                                    <div class="card">
-                                                        <div class="card-header juiciotext ">
-                                                            Solicitud
+                                        <form id="tramite" name="tramite">                                            
+                                            <div class="kt-portlet__body">
+
+
+                                                <div class="form-group row form-group-marginless">
+                                                    <label class="col-lg-2 col-form-label juiciotext ">Expediente Personal R.H:</label>
+                                                    <div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Solicitud 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control" id="exp_personal_rh_solicitud"
+                                                                        value="{{ $juicio3[0]->exp_personal_rh_solicitud}}"
+                                                                        name="exp_personal_rh_solicitud">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Devolucion 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                            id="exp_personal_rh_devolucion"
+                                                                            value="{{ $juicio3[0]->exp_personal_rh_devolucion }}"
+                                                                            name="exp_personal_rh_devolucion">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Fojas 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="number" class="form-control"
+                                                                        id="fojas" name="fojas" placeholder="0"
+                                                                        value="{{ $juicio3[0]->fojas }}">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>                                                           
                                                         </div>
-                                                        <div class="card-body">
-                                                            <p class="card-text">
-                                            <input type="date" class="form-control" id="exp_personal_rh_solicitud"
-                                                                    value="{{ $juicio3[0]->exp_personal_rh_solicitud}}"
-                                                                    name="exp_personal_rh_solicitud">
-                                                            </p>
+                                                    </div>
+                                                </div>       
+
+                                                <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                                                
+                                                <div class="form-group row form-group-marginless">
+                                                    <label class="col-lg-2 col-form-label juiciotext ">Expediente Adscripcion :</label>
+                                                    <div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Solicitud 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="exp_adscripcion_solicitud"
+                                                                        value="{{ $juicio3[0]->exp_adscripcion_solicitud }}"
+                                                                        name="exp_adscripcion_solicitud">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Devolucion 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="exp_adscripcion_devolucion"
+                                                                        name="exp_adscripcion_devolucion"
+                                                                        value="{{ $juicio3[0]->exp_adscripcion_devolucion }}">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                                                                                       
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-4">
-                                                    <div class="card">
-                                                        <div class="card-header juiciotext ">
-                                                            Devolucion
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <p class="card-text">
-                                                                <input type="date" class="form-control"
-                                                                    id="exp_personal_rh_devolucion"
-                                                                    value="{{ $juicio3[0]->exp_personal_rh_devolucion }}"
-                                                                    name="exp_personal_rh_devolucion">
-                                                            </p>
+                                                <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                                                <div class="form-group row form-group-marginless">
+                                                    <label class="col-lg-2 col-form-label juiciotext">Fecha Proxima :</label>
+                                                    <div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Audiencia 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="audiencia"
+                                                                        value="{{ $juicio3[0]->audiencia}}"
+                                                                        name="audiencia">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Descripcion 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="exp_adscripcion_devolucion"
+                                                                        name="exp_adscripcion_devolucion"
+                                                                        value="{{ $juicio3[0]->descripcion}}">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                                                                                       
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-4">
-                                                    <div class="card">
-                                                        <div class="card-header juiciotext ">
-                                                            Fojas
-                                                        </div>
-                                                        <div class="card-body">
+                                                
+                                                <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
 
-                                                            <p class="card-text">
-
-                                                                <input type="number" class="form-control"
-                                                                    id="fojas" name="fojas" placeholder="0"
-                                                                    value="{{ $juicio3[0]->fojas }}">
-                                                            </p>
+                                                <div class="form-group row form-group-marginless">
+                                                    <label class="col-lg-2 col-form-label  juiciotext">Terminos :</label>
+                                                    <div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Notificacion 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="tramite_terminos_notificacion"
+                                                                        value="{{ $juicio3[0]->tramite_terminos_notificacion}}"
+                                                                        name="tramite_terminos_notificacion">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Vencimiento 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="tramite_terminos_vencimiento"
+                                                                        name="tramite_terminos_vencimiento"
+                                                                        value="{{ $juicio3[0]->tramite_terminos_vencimiento}}">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                                                                                       
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                
+                                                <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                                                <div class="form-group row form-group-marginless">
+                                                    <label class="col-lg-2 col-form-label juiciotext">Amparo Indirecto :</label>
+                                                    <div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Juzgado 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="tramite_ampindirectos_jusgado"
+                                                                        value="{{ $juicio3[0]->tramite_ampindirectos_jusgado}}"
+                                                                        name="tramite_ampindirectos_jusgado">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        AD 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="tramite_ampindirectos_AD"
+                                                                        name="tramite_ampindirectos_AD"
+                                                                        value="{{ $juicio3[0]->tramite_ampindirectos_AD}}">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Suspension 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="tramite_ampindirectos_suspencion"
+                                                                        value="{{ $juicio3[0]->tramite_ampindirectos_suspencion}}"
+                                                                        name="tramite_ampindirectos_suspencion">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        AUD.Const 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="tramite_ampindirectos_audconst"
+                                                                        value="{{ $juicio3[0]->tramite_ampindirectos_audconst}}"
+                                                                        name="tramite_ampindirectos_audconst">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Sentido 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="tramite_ampindirectos_sentido"
+                                                                        value="{{ $juicio3[0]->tramite_ampindirectos_sentido}}"
+                                                                        name="tramite_ampindirectos_sentido">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                        Recurso 				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="tramite_ampindirectos_recurso"
+                                                                        value="{{ $juicio3[0]->tramite_ampindirectos_recurso}}"
+                                                                        name="tramite_ampindirectos_recurso">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+                                                                                                                       
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                            
                                             </div>
-
-                                            <h5 class="subcardtt"><i class="fa-sharp fa-solid fa-file-invoice"
-                                              style="color: #8b1818;"></i> Expediente de Adscripcion</h5>
-                                      <div class="card-deck">
-
-
-                                          <div class="col-sm-6">
-                                              <div class="card">
-                                                  <div class="card-header juiciotext ">
-                                                      Solicitud
-                                                  </div>
-
-                                                  <div class="card-body">
-
-                                                      <p class="card-text">
-                                                          <input type="date" class="form-control"
-                                                              id="exp_adscripcion_solicitud"
-                                                              value="{{ $juicio3[0]->exp_adscripcion_solicitud }}"
-                                                              name="exp_adscripcion_solicitud">
-                                                      </p>
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                          <div class="col-sm-6">
-                                              <div class="card">
-                                                  <div class="card-header juiciotext ">
-                                                      Devolucion
-                                                  </div>
-                                                  <div class="card-body">
-
-                                                      <p class="card-text">
-
-                                                          <input type="date" class="form-control"
-                                                              id="exp_adscripcion_devolucion"
-                                                              name="exp_adscripcion_devolucion"
-                                                              value="{{ $juicio3[0]->exp_adscripcion_devolucion }}">
-                                                      </p>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="card-deck">
-                                        <div class="col-sm-12">
-                                            <div class="card">
-                                                <div class="card-header juiciotext ">
-                                                    Descripcion
-                                                </div>
-                                                <div class="card-body">
-                                                    <p class="card-text">
-                                                        <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Sin Datos por el Momento">{{ $juicio3[0]->descripcion }}</textarea>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                        </form>                                                                                        
+                                        <div class="kt-form__actions">
+                                            <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'tramite');"class="btn btn-success">Editar tramite
+                                            </button>                                            
                                         </div>
-                                    </div>
-
-                                          <div class="col-sm-4">
-                                              <div class="card">
-                                                  <div class="card-header juiciotext ">
-                                                      Cierre de Instruccion:
-                                                  </div>
-                                                  <div class="card-body">
-                                                      <p class="card-text">
-
-                                                          <input type="date" class="form-control"
-                                                              id="cierredeinstruccion"
-                                                              name="cierredeinstruccion"value="{{ $juicio3[0]->cierredeinstruccion }}">
-                                                      </p>
-                                                  </div>
-                                              </div>
-                                          </div> 
-                                        
-                                      </div>                                       
-                                      </form>
-                                      
-                                      
-                                      <div class="kt-form__actions">
-                                        <button onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'tramite');"class="btn btn-success">Editar tramite
-                                        </button>
-                                       
-                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -1201,6 +1385,37 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="card">
+                                                        <div class="card-header  juiciotext">
+                                                            Basificacion
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text">
+
+                                                                <select class="custom-select" id="basificacion"
+                                                                    name="basificacion">
+                                                                    <option
+                                                                        @if ($juicio3[0]->basificacion == 'Si') {{ 'selected' }} @endif
+                                                                        value="Si">Si</option>
+                                                                    <option
+                                                                        @if ($juicio3[0]->basificacion == 'No') {{ 'selected' }} @endif
+                                                                        value="No">No</option>
+                                                                </select>
+
+                                                       
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
                                                 <div class="col-sm-4">
                                                     <div class="card">
                                                         <div class="card-header  juiciotext">
@@ -1634,8 +1849,8 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="card">
-                                                            <div class="card-header  juiciotext">
-                                                                Solicitado a R.H
+                                                            <div class="card-header  juiciotext">                                                                
+                                                                Solicitado A R H
                                                             </div>
                                                             <div class="card-body">
                                                                 <p class="card-text">
@@ -1766,8 +1981,8 @@
                                                 <div class="card-deck">
                                                     <div class="col-lg-6">
                                                         <div class="card">
-                                                            <div class="card-header  juiciotext">
-                                                                MES PARA SEGOB DE CONCLUSIÓN
+                                                            <div class="card-header  juiciotext">                                                                
+                                                                Mes Para Segob De Conclusion 
                                                             </div>
                                                             <div class="card-body">
                                                                 <p class="card-text">

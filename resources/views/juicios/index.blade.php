@@ -29,7 +29,7 @@
             <th>Reinstalacion</th>
             <th>Indemnizacion</th>                        
             <th>Dias restantes Para Requerimiento Fecha Proxima</th>
-            <th>Requerimiento Fecha Proxima </th>
+            
             <th>Editar</th>
         </tr>                
     </thead>

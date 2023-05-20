@@ -24,7 +24,9 @@ class Actores extends Migration
             $table->string('nivel')->nullable();            
             $table->string('salarioMen' , 150)->nullable();
             $table->date('inicio_rellab')->nullable();
-            $table->date('terminacion_rellab')->nullable();            
+            $table->date('terminacion_rellab')->nullable();  
+
+            //Etapa Tramite
             $table->date('exp_personal_rh_solicitud')->nullable();
             $table->date('exp_personal_rh_devolucion')->nullable();
             $table->string('fojas')->nullable();
@@ -36,6 +38,17 @@ class Actores extends Migration
             $table->string('descripcion')->nullable();
             $table->date('cierredeinstruccion',200)->nullable();
 
+            $table->date('tramite_terminos_notificacion')->nullable();
+            $table->date('tramite_terminos_vencimiento')->nullable();
+            
+            $table->string('tramite_ampindirectos_jusgado')->nullable();
+            $table->string('tramite_ampindirectos_AD')->nullable();
+            $table->string('tramite_ampindirectos_suspencion')->nullable();
+            $table->string('tramite_ampindirectos_audconst')->nullable();
+            $table->string('tramite_ampindirectos_sentido')->nullable();
+            $table->string('tramite_ampindirectos_recurso')->nullable();
+
+            
 
 
 

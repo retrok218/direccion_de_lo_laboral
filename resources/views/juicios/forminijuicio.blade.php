@@ -3,18 +3,18 @@
 
     <div class="col-md-3 mb-3">
         <label for="abogados_asignados">Abogados Asignados a la Sala</label>                        
-        <input  class="form-control" type="text"  id="abogados_asignados" placeholder="Seleccione la Sala"  readonly >
+        <input  class="form-control" type="text"  id="abogados_asignados" placeholder="Seleccione la Sala"  readonly  required>
       </div>
 
       <div class="col-md-3 mb-3">
         <label for="notidemanda">Notificacion de Demanda</label>
-        <input type="date"  min="2016-01-01" class="form-control" id="notidemanda" value="Mark"  name="notidemanda">
+        <input type="date"   class="form-control"  {{--min="2016-01-01"--}} id="notidemanda" value="Mark"  name="notidemanda" required> 
       </div>
 
       <div class="col-md-3 mb-3">
         <label for="presentacion_de_demanda">Presentacion de Demanda</label>
 
-        <input type="date" class="form-control" id="presentacion_de_demanda" name="presentacion_de_demanda" value="Otto" >
+        <input type="date" class="form-control" id="presentacion_de_demanda" name="presentacion_de_demanda" value="Otto"  required>
       </div>
     </div>
 
@@ -22,8 +22,8 @@
       <div class="col-md-3 mb-3">
         <label for="juicio_sala_seleccionada">Sala/Jta</label>     
 
-        <select class="custom-select" id="juicio_sala_seleccionada" name="juicio_sala_seleccionada" >
-          <option selected disabled value="Sala">Sala</option>        
+        <select class="custom-select" id="juicio_sala_seleccionada" name="juicio_sala_seleccionada" required>
+          <option selected disabled >Sala</option>        
           @foreach($salas as $sala)
           <option value="{{$sala->id_sala}}">{{$sala->nombre_sala}}</option>
           @endforeach
@@ -99,7 +99,7 @@
   
       <div class="col-md-3 mb-3">
         <label for="adscripcion">Adscripcion</label>      
-        <select class="custom-select" id="adscripcion" name="adscripcion" >
+        <select class="custom-select" id="adscripcion" name="adscripcion" required>
           <option selected disabled value="">Selecicona la Adscripcion</option>
           <option value="Archivo General de la Nación">Archivo General de la Nación</option>
           <option value="Centro de Producción de Programas Informativos y Especiales">Centro de Producción de Programas Informativos y Especiales</option>
@@ -354,7 +354,8 @@
       </div>
     </div>
     <hr>
-    <h3>Expediente Personal R.H</h3>
+
+    {{-- <h3>Expediente Personal R.H</h3>
   <div class="form-row">
       <div class="col-md-2 mb-2">
           <label for="Solicitud">Solicitud</label>
@@ -369,8 +370,8 @@
           <input type="number" class="form-control" id="Fojas" name="Fojas" placeholder="0"   >
       </div>
   </div>
-<hr>
-<h3>EXP. De Adscripcion</h3>
+<hr> --}}
+{{-- <h3>EXP. De Adscripcion</h3>
   <div class="form-row">
     <div class="col-mb-3 mb-3" >
       <label for="exp_adscripcion_solicitud">Solicitud</label>
@@ -379,25 +380,37 @@
     <div class="col-mb-3 mb-3" >
       <label for="exp_adscripcion_devolucion" >Devolucion</label>
       <input type="date" class="form-control" id="exp_adscripcion_devolucion" name="exp_adscripcion_devolucion" value="Otto" >
-    </div>
-    <div class="col-mb-3 mb-3" >
+    </div> --}}
+    {{-- <div class="col-mb-3 mb-3" >
       <label for="audiencia">Audiencia</label>
       <input type="date" class="form-control" id="audiencia" name="audiencia" value="Otto" >
-    </div>
-    <div class="col-mb-3 mb-3" >
+    </div> --}}
+    {{-- <div class="col-mb-3 mb-3" >
       <label for="addescripcion">Descripcion</label>
       <input type="text" class="form-control" id="addescripcion" name="addescripcion" placeholder="Descripcion" >
     </div>
     <div class="col-mb-3 mb-3" >
       <label for="Cierre_de_Instruccion">Cierre de Instruccion</label>
       <input type="date" class="form-control" id="Cierre_de_Instruccion" name="Cierre_de_Instruccion" value="Otto" >
+    </div> --}}
+  {{-- </div> --}}
+  {{-- <h3>Fecha Proxima </h3>
+  <div class="form-row">
+    <div class="col-mb-3 mb-3" >
+      <label for="exp_adscripcion_solicitud">Audiencia</label>
+      <input type="date" class="form-control" id="exp_adscripcion_solicitud" name="exp_adscripcion_solicitud" value="Otto" >
     </div>
-  </div>
+    <div class="col-mb-3 mb-3" >
+      <label for="exp_adscripcion_devolucion" >Descripcion</label>
+      <input type="date" class="form-control" id="exp_adscripcion_devolucion" name="exp_adscripcion_devolucion" value="Otto" >
+    </div>
+    
+  </div> --}}
 
   <div class="form-row">
    <div class="col-md-3 mb-3">
       <label for="validationDefault03">Etapa</label>      
-        <select class="custom-select" id="etapa"  name="etapa">
+        <select class="custom-select" id="etapa"  name="etapa" required>
           <option selected disabled value="">Selecicona la Etapa</option>
           <option>Ejecucion </option>
           <option>Transferido</option>

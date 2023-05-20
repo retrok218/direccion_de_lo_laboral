@@ -18,6 +18,7 @@ class CreateLaudoTable extends Migration
             $table->unsignedBigInteger('laudo_id_juicio');
             $table->date('lau_fecha')->nullable();
             $table->string('lau_sentido')->nullable();
+            $table->string('basificacion')->nullable();
             $table->string('reinstalacion')->nullable();
             $table->string('indemnizacion')->nullable();
             $table->string('pasivo_total')->nullable();
