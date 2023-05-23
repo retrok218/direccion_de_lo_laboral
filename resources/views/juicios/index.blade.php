@@ -13,9 +13,12 @@
          executeExample(mensaje);
      });  
     }     
-                                                                                                            
+    
+    
+
 </script>    
 @endif
+
                   
 @include('juicios.headbar')
 <table class="table table-striped table-bordered" style="width:100%" id="juiciotabla" >
@@ -28,7 +31,7 @@
             <th>Expediente</th>
             <th>Reinstalacion</th>
             <th>Indemnizacion</th>                        
-            <th>Dias restantes Para Requerimiento Fecha Proxima</th>
+            <th>Ejecucion/Dias restantes Para Requerimiento Fecha Proxima</th>
             
             <th>Editar</th>
         </tr>                

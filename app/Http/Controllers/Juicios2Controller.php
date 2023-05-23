@@ -42,15 +42,38 @@ class Juicios2Controller extends Controller
         
 
 
-
-        $requerimientofecha = juicio::join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+        $arreglofechas = [];        
+        $requerimientofecha = juicio::select('fechaproxima')->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
         ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
         ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
-        ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')->get('fechaproxima');     
-       // dd($requerimientofecha);
+        ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')      
+        ->whereNotNull('fechaproxima')                
+        ->pluck('fechaproxima');
+        $fechascount=$requerimientofecha->count(); //se lleva el conteo de cuantas fechas de fechaproxima->etapajuicio esta en 2 dias o menos para iniciar 
+
+        
+        
+        $alertaproximafecha=[];
+       $totalqueaproximados = 0;
+       //se seleciconan las fechas que estan a punto de iniciar fechaproxima->etapajuicio se veran dentro de la alerta 
+        foreach ($requerimientofecha as $fecha) {
+            $nf = Carbon::parse($fecha);                        
+            $diferenciadias = date_diff($factual,$nf)->format('%R%a');
+            $diferenciahoras = date_diff($nf,$factual)->format('%H');
+           // $alertaproximafecha[]= 'Dia'.$diferenciadias.'- h'.$diferenciahoras.'- fecha'.$fecha;
+            if ($diferenciadias <=2 &&  $diferenciadias >= 0 ) {
+                $totalqueaproximados++;
+                $alertaproximafecha[]= 'Dia'.$diferenciadias.'- h'.$diferenciahoras.'- fecha'.$fecha;
+            }
+            
+        }
+        //dd($totalqueaproximados,$alertaproximafecha);
+
        return view('juicios.index')->with([
-        'juicio_actor' => $juicio_actor
+        'juicio_actor' => $juicio_actor,
+        'totalqueaproximados' => $totalqueaproximados,
+        '$alertaproximafecha'=>$alertaproximafecha,        
        ]);
     }
 
