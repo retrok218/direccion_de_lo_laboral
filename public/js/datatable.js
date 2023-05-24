@@ -26,23 +26,25 @@ function  executewrong(mensaje) {
         })
 }
 
-function seacercan(total) {
+function seacercan(fechas) {
+     
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
+        
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
       })
       
       Toast.fire({
         icon: 'success',
-        title: 'Fechas Proximas a Juicio '+total+' fechas que se aproximan',
-        title:'Estos son las fechas que se aproximan ',
+        title: '<span style="font-weight:bold;">Hay <h3 style="color:red;">'+fechas+'</h3> juicios en etapa de ejecución con fechas próximas</span>',
+         
       })
 }
 

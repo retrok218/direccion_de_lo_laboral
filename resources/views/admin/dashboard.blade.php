@@ -1,24 +1,10 @@
 @extends('home')
  <!-- <meta http-equiv="refresh" content="60"> Se recarga cada segundo marcado content -> 10 -->
- <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-
-
-
-    
-
-
 @section('content')
 
 
-<h3>{{$totalqueaproximados}}</h3>
-
-
-
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid"> <!--inicio de graficas y pag principal -->     
-    <h1> Dash - board</h1>
+    <h1> Control Direccion de lo Laboral</h1>
     <div class="row">
         <div class="col-xl-4 col-lg-4 order-lg-2 order-xl-1">
             <div class="kt-portlet kt-portlet--height-fluid" >
@@ -48,8 +34,9 @@
 @include('layouts/scripts/scripts_dttb')
 @if($totalqueaproximados != 0)
     <script>
+        let fechas = {{$totalqueaproximados}};
         $(function() {
-            seacercan({{$totalqueaproximados}}) 
+            seacercan(fechas) ;            
         });    
     </script>    
     @else        

@@ -313,13 +313,38 @@
                                             Salario Mensual :
                                           </div>
                                           <div class="card-body">
+
+                                            <div class="input-group">
+                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->salarioMen}}" readonly>
+                                            </div>
                                             
-                                            <p class="card-text">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" ${{$juicio3[0]->salarioMen}}" readonly>
-                                               
-                                            </p>                                    
+                                                                                
                                           </div>
                                         </div>
+                                        <div class="card">
+                                          <div class="card-header juiciotext2 ">
+                                            Salario Quincenal :
+                                          </div>
+                                          <div class="card-body">
+                                            <div class="input-group">
+                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->salarioMen/2}}" readonly>
+                                            </div>                                  
+                                          </div>
+                                        </div>
+                                        <div class="card">
+                                          <div class="card-header juiciotext2 ">
+                                            Salario Diario :
+                                          </div>
+                                          <div class="card-body">
+                                            <div class="input-group">
+                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{round($juicio3[0]->salarioMen/30,2)}}" readonly>
+                                            </div>                                  
+                                          </div>
+                                        </div>
+
                                       </div>
         
                                       <div class="col-sm-4">

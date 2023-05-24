@@ -357,7 +357,14 @@ class Juicios2Controller extends Controller
         //  trnario php $a < 5? v : f
         //dd($datoLaudos);
         
-        return view('juicios.modals.desgloce_juicio_vista')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes]);
+        return view('juicios.modals.desgloce_juicio_vista')
+         ->with(['juicio3'=>$juicio3,
+         'nombreabogados'=>$nombreabogados,
+         'fechaaudiencia'=>$fechaaudiencia,
+         'diasDiferencia' => $diasDiferencia,
+          "diasrestantes"=>$diasrestantes,
+          "horfatantes" => $horfatantes,
+          "minfaltantes"=>$minfaltantes]);
     }
 
     public function comentario(Request $request,$id,SessionManager $sessionManager){ 
