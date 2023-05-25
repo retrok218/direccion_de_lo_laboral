@@ -17,13 +17,13 @@ class CreateJuiciosTable extends Migration
             $table->bigIncrements('id_juicio');
             $table->date('noti_demanda')->nullable();
             $table->date('presentacion_de_demanda')->nullable();            
-            $table->string('expediente',50)->nullable() ;
+            $table->string('expediente',150)->nullable() ;
             $table->year('año_juicio') ->nullable();
             $table->year('clasificacion_año') ->nullable();
             $table->integer('clasificacion_exp')->nullable() ;
-            $table->string('tipo',50)->nullable() ;
+            $table->string('tipo',150)->nullable() ;
             $table->string('accion',255)->nullable() ;
-            $table->string('etapa',30)->nullable();
+            $table->string('etapa',150)->nullable();
             $table->longText('comentario')->nullable();
             $table->string('archivo',150 )->nullable();
             $table->string('archivo1',150 )->nullable();

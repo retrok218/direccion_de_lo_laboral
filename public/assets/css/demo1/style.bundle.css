@@ -50565,3 +50565,10 @@ tr.shown td.details-control {
     .main{
     display:none;
     }
+
+    .juiciotext2 {
+        color: #d1ac56;
+        font-weight: bold;
+        /* margin-left: 17px !important; */
+        
+    }

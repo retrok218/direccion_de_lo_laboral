@@ -22,7 +22,7 @@ class Actores extends Migration
             $table->string('denominacion')->nullable();
             $table->string('puesto')->nullable();
             $table->string('nivel')->nullable();            
-            $table->string('salarioMen' , 150)->nullable();
+            $table->decimal('salarioMen')->nullable();
             $table->date('inicio_rellab')->nullable();
             $table->date('terminacion_rellab')->nullable();  
 

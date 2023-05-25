@@ -916,12 +916,9 @@
                                                             Salario Mensual :
                                                         </div>
                                                         <div class="card-body">
-
                                                             <p class="card-text">
-
                                                             <div class="input-group">
-                                                                <div class="input-group-prepend"><span
-                                                                        class="input-group-text">$</span></div>
+                                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
                                                                 <input type="text" class="form-control "
                                                                     name="salarioMen" id="salarioMen"
                                                                     data-type="currency"

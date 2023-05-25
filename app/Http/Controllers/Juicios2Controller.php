@@ -335,7 +335,7 @@ class Juicios2Controller extends Controller
          $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
          $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria        
          $diasDiferencia = $fecha->diffInDays(Carbon::now());
-         //$diferenciaMinuto = $fecha->diffInMinutes(Carbon::now());   
+            
 
          $diasrestantes =  Carbon::now()->diffInDays($fecha,false);
          if ($diasrestantes < 0) {
@@ -344,7 +344,7 @@ class Juicios2Controller extends Controller
             $minfaltantes= 0;
          }else {
             $horfatantes = Carbon::now()->diffInHours($fecha) %24 ;         
-            $minfaltantes =  Carbon::now()->diffInMinutes($fecha) % 60; 
+            $minfaltantes =  Carbon::now()->diffInMinutes($fecha) %60; 
          }
 
                  
@@ -353,10 +353,21 @@ class Juicios2Controller extends Controller
          ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
          ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
          ->where('laudo.laudo_id_juicio',$id)
-         ->get();                  
-        //  trnario php $a < 5? v : f
-        //dd($datoLaudos);
-        
+         ->get(); 
+         $sueldo=[];
+         //dd($juicio3[0]->salarioMen );
+         $sueldo['Diario'] = round($juicio3[0]->salarioMen/30,2);
+         $sueldo['Quincenal'] = round($juicio3[0]->salarioMen/2,2);
+         $iniciolab = Carbon::create($juicio3[0]->inicio_rellab);
+         $finrellab = Carbon::create($juicio3[0]->terminacion_rellab);
+         $añostrancurridos = $iniciolab->diffInYears($finrellab);
+         $diastranscurridos = $iniciolab->diffInDays($finrellab);
+
+        $sueldo['Aginaldo'] =number_format ((40*$añostrancurridos)* $sueldo['Diario'],2,'.',',');
+        $sueldo['Indemnizacion'] = number_format(($juicio3[0]->salarioMen*3)+(($añostrancurridos*20)* $sueldo['Diario']), 2, '.', ',');
+       
+       
+    //dd('i'.$indemnizacion,'a'. $añostrancurridos,'d'.$saldiario,'m'.$juicio3[0]->salarioMen );
         return view('juicios.modals.desgloce_juicio_vista')
          ->with(['juicio3'=>$juicio3,
          'nombreabogados'=>$nombreabogados,
@@ -364,6 +375,7 @@ class Juicios2Controller extends Controller
          'diasDiferencia' => $diasDiferencia,
           "diasrestantes"=>$diasrestantes,
           "horfatantes" => $horfatantes,
+          "sueldo" =>$sueldo,
           "minfaltantes"=>$minfaltantes]);
     }
 

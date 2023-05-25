@@ -213,9 +213,12 @@
                                 </button>
                               </h5>
                             </div>
+
+                            
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#acordionjuicio">
                               <div class="card-body">
-                                <div class="row row-cols-1 row-cols-md-3">
+
+                                {{-- <div class="row row-cols-1 row-cols-md-3">
                                   <div class="card-deck">
                                     <div class="col-sm-4">
                                         <div class="card">
@@ -316,7 +319,7 @@
 
                                             <div class="input-group">
                                               <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->salarioMen}}" readonly>
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$juicio3[0]->salarioMen}}" readonly>
                                             </div>
                                             
                                                                                 
@@ -329,7 +332,7 @@
                                           <div class="card-body">
                                             <div class="input-group">
                                               <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->salarioMen/2}}" readonly>
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{number_format($salquincenal, 2, '.', ',')}}" readonly>
                                             </div>                                  
                                           </div>
                                         </div>
@@ -340,14 +343,41 @@
                                           <div class="card-body">
                                             <div class="input-group">
                                               <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{round($juicio3[0]->salarioMen/30,2)}}" readonly>
+                                              
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{number_format( $saldiario, 2, '.', ',')}}" readonly>
+                                            </div>                                  
+                                          </div>
+                                        </div>
+                                        <div class="card">
+                                          <div class="card-header juiciotext2 ">
+                                           Aguinaldo:
+                                          </div>
+                                          <div class="card-body">
+                                            <div class="input-group">
+                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$aginaldo}}" readonly>
+                                            </div>                                  
+                                          </div>
+                                        </div>
+                                        <div class="card">
+                                          <div class="card-header juiciotext2 ">
+                                            Indemnización:
+                                          </div>
+                                          <div class="card-body">
+                                            <div class="input-group">
+                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$indemnizacion}}" readonly>
                                             </div>                                  
                                           </div>
                                         </div>
 
                                       </div>
+
+
+
         
                                       <div class="col-sm-4">
+                                        
                                         <div class="card">
                                           <div class="card-header juiciotext ">
                                             Inicio de la Relaicon Laboral :
@@ -376,8 +406,192 @@
                                           </div>
                                         </div>
                                       </div>
+
+                                      
                                     </div>
-                                </div>
+                                </div> --}}
+
+                                <div class="kt-portlet__body">
+                                  <div class="form-group row form-group-marginless">
+                                      <label class="col-lg-2 col-form-label juiciotext ">Datos Actor:</label>
+                                      <div class="col-lg-10">
+                                          <div class="row">
+
+                                              <div class="col-lg-4">
+                                                  <label class="kt-option">                                                                
+                                                  <span class="kt-option__label">
+                                                      <span class="kt-option__head">
+                                                          <span class="kt-option__title juiciotext">
+                                                          Nombre Completo 				
+                                                          </span>                                                                												 
+                                                      </span>
+                                                      <span class="kt-option__body">
+                                                          <input type="text" class="form-control" id="nombre_completo"
+                                                          value="{{ $juicio3[0]->nombre_completo}}"
+                                                          name="nombre_completo" readonly>
+                                                      </span>
+                                                  </span>		
+                                                  </label> 
+                                              </div>
+                                              <div class="col-lg-4">
+                                                  <label class="kt-option">                                                                
+                                                  <span class="kt-option__label">
+                                                      <span class="kt-option__head">
+                                                          <span class="kt-option__title juiciotext">
+                                                          Adscripcion : 				
+                                                          </span>                                                                												 
+                                                      </span>
+                                                      <span class="kt-option__body">
+                                                          <input type="text" class="form-control"
+                                                              id="exp_personal_rh_devolucion"
+                                                              value="{{ $juicio3[0]->adscripcion }}"
+                                                              name="exp_personal_rh_devolucion" readonly>
+                                                      </span>
+                                                  </span>		
+                                                  </label> 
+                                              </div>
+                                              <div class="col-lg-4">
+                                                  <label class="kt-option">                                                                
+                                                  <span class="kt-option__label">
+                                                      <span class="kt-option__head">
+                                                          <span class="kt-option__title juiciotext">
+                                                            UR  :				
+                                                          </span>                                                                												 
+                                                      </span>
+                                                      <span class="kt-option__body">
+                                                        <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->ur}}" readonly> 
+                                                      </span>
+                                                  </span>		
+                                                  </label> 
+                                              </div>  
+                                              <div class="col-lg-4">
+                                                <label class="kt-option">                                                                
+                                                <span class="kt-option__label">
+                                                    <span class="kt-option__head">
+                                                        <span class="kt-option__title juiciotext">
+                                                          Denominacion :				
+                                                        </span>                                                                												 
+                                                    </span>
+                                                    <span class="kt-option__body">
+                                                      <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->denominacion}}" readonly> 
+                                                    </span>
+                                                </span>		
+                                                </label> 
+                                            </div> 
+                                            <div class="col-lg-4">
+                                              <label class="kt-option">                                                                
+                                              <span class="kt-option__label">
+                                                  <span class="kt-option__head">
+                                                      <span class="kt-option__title juiciotext">
+                                                        Puesto :				
+                                                      </span>                                                                												 
+                                                  </span>
+                                                  <span class="kt-option__body">
+                                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->puesto}}" readonly> 
+                                                  </span>
+                                              </span>		
+                                              </label> 
+                                          </div>
+                                          
+                                          <div class="col-lg-4">
+                                            <label class="kt-option">                                                                
+                                            <span class="kt-option__label">
+                                                <span class="kt-option__head">
+                                                    <span class="kt-option__title juiciotext">
+                                                      Nivel :				
+                                                    </span>                                                                												 
+                                                </span>
+                                                <span class="kt-option__body">
+                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->nivel}}" readonly> 
+                                                </span>
+                                            </span>		
+                                            </label> 
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                          <label class="kt-option">                                                                
+                                          <span class="kt-option__label">
+                                              <span class="kt-option__head">
+                                                  <span class="kt-option__title juiciotext">
+                                                    Inicio de la Relacion Laboral  :				
+                                                  </span>                                                                												 
+                                              </span>
+                                              <span class="kt-option__body">
+                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->inicio_rellab}}" readonly> 
+                                              </span>
+                                          </span>		
+                                          </label> 
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <label class="kt-option">                                                                
+                                        <span class="kt-option__label">
+                                            <span class="kt-option__head">
+                                                <span class="kt-option__title juiciotext">
+                                                  Terminacion de la Relacion Laboral  :				
+                                                </span>                                                                												 
+                                            </span>
+                                            <span class="kt-option__body">
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->terminacion_rellab}}" readonly> 
+                                            </span>
+                                        </span>		
+                                        </label> 
+                                    </div>
+                                    
+                                      
+                                        
+
+                                          </div>
+                                      </div>
+                                  </div>       
+
+                                  <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                                  <div class="form-group row form-group-marginless">
+                                    <label class="col-lg-2 col-form-label juiciotext ">Pasivo Laboral :</label>
+                                    <div class="col-lg-10">                                      
+                                        <div class="row">
+                                          <div class="col-lg-4">
+                                            <label class="kt-option">                                                                
+                                            <span class="kt-option__label">
+                                                <span class="kt-option__head">
+                                                    <span class="kt-option__title juiciotext">
+                                                      Salario Mensual:				
+                                                    </span>                                                                												 
+                                                </span>
+                                                <div class="input-group">
+                                                  <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$juicio3[0]->salarioMen}}" readonly>
+                                                </div>
+                                            </span>		
+                                            </label> 
+                                        </div>   
+
+                                          @foreach ($sueldo as $key=>$sueldos)
+                                          <div class="col-lg-4">
+                                            <label class="kt-option">                                                                
+                                            <span class="kt-option__label">
+                                                <span class="kt-option__head">
+                                                    <span class="kt-option__title juiciotext">
+                                                      {{$key}} :				
+                                                    </span>                                                                												 
+                                                </span>
+                                                <div class="input-group">
+                                                  <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldos}}" readonly>
+                                                </div>
+                                            </span>		
+                                            </label> 
+                                        </div>                                              
+                                          @endforeach                                                                                     
+                                            
+                                                                                                       
+                                        </div>
+                                    </div>
+                                </div>                                                           
+                              </div> 
+
+
+
                               </div>
                             </div>
                           </div>
@@ -398,8 +612,6 @@
                                 <div class="card-body">   
                                                                               
                                         <div class="kt-portlet__body">
-
-
                                             <div class="form-group row form-group-marginless">
                                                 <label class="col-lg-2 col-form-label juiciotext ">Expediente Personal R.H:</label>
                                                 <div class="col-lg-10">
