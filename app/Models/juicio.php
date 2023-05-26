@@ -52,7 +52,10 @@ class juicio extends Model
         foreach ($nombres_abogados as $nombre ) {
             $nombres[]=$nombre->nombre;
         }
-        return [$nombres,$datosjuicio];
+        $nombresala =$datosjuicio->sala[0]->nombre_sala;
+
+      
+        return [$nombres,$datosjuicio,$nombresala];
     }
 
 

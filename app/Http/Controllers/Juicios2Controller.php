@@ -318,11 +318,11 @@ class Juicios2Controller extends Controller
     public function desglocejuicio($id){
         //se obtienen los nombres de los abogados dependiendo de la seleccion del id se realiza la consulta en el modelo
         $j=juicio::find($id);
-        $nombreabogados = $j->obteniendonombresdearea($id);                   
-        // $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario')        
-        // ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
-        // ->where('juicios.id_juicio', $id)
-        // ->get('juicios.id_juicio');
+        $nombreabogados = $j->obteniendonombresdearea($id); 
+        //dd($nombreabogados);
+        //$f=$datosjuicio->sala[0]->nombre_sala;
+       
+        
 
         $juicio3 = Juicio::join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
         ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
@@ -331,6 +331,7 @@ class Juicios2Controller extends Controller
         ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')        
         ->where('juicios.id_juicio', $id)
         ->get();
+
         //se modifica la fecha para que aparesca con los nombre de los meses y dias 
          $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
          $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria        
@@ -355,19 +356,35 @@ class Juicios2Controller extends Controller
          ->where('laudo.laudo_id_juicio',$id)
          ->get(); 
          $sueldo=[];
-         //dd($juicio3[0]->salarioMen );
+         $informacionauto=[];
+        
          $sueldo['Diario'] = round($juicio3[0]->salarioMen/30,2);
          $sueldo['Quincenal'] = round($juicio3[0]->salarioMen/2,2);
-         $iniciolab = Carbon::create($juicio3[0]->inicio_rellab);
+       
+         $iniciolab = Carbon::create($juicio3[0]->inicio_rellab);                                      
          $finrellab = Carbon::create($juicio3[0]->terminacion_rellab);
-         $añostrancurridos = $iniciolab->diffInYears($finrellab);
-         $diastranscurridos = $iniciolab->diffInDays($finrellab);
 
-        $sueldo['Aginaldo'] =number_format ((40*$añostrancurridos)* $sueldo['Diario'],2,'.',',');
-        $sueldo['Indemnizacion'] = number_format(($juicio3[0]->salarioMen*3)+(($añostrancurridos*20)* $sueldo['Diario']), 2, '.', ',');
+         if ($juicio3[0]->inicio_rellab == null ||  $juicio3[0]->terminacion_rellab == null) {
+            $añostrancurridos = "Sin Fecha para Calcular Diferecia";
+            $diastranscurridos= "Sin Fecha para Calcular Diferecia";
+         } else {
+            $añostrancurridos = $iniciolab->diffInYears($finrellab);
+            $diastranscurridos = $iniciolab->diffInDays($finrellab);
+            $sueldo['Aginaldo'] =number_format ((40*$añostrancurridos)* $sueldo['Diario'],2,'.',',');
+            $sueldo['Indemnizacion'] = number_format(($juicio3[0]->salarioMen*3)+(($añostrancurridos*20)* $sueldo['Diario']), 2, '.', ',');
+            $sueldo['Prima Vacacional']=  $sueldo['Diario']*20*0.30;
+            $informacionauto["Años Transcurridos Relacion Laboral"]=  $añostrancurridos;
+            $informacionauto["Dias Transcurridos Relacion Laboral"]=  $diastranscurridos;
+         }
+         
        
-       
-    //dd('i'.$indemnizacion,'a'. $añostrancurridos,'d'.$saldiario,'m'.$juicio3[0]->salarioMen );
+         
+        
+        // dd($finrellab, $añostrancurridos,$diastranscurridos, $iniciolab    );
+        
+
+    
+    
         return view('juicios.modals.desgloce_juicio_vista')
          ->with(['juicio3'=>$juicio3,
          'nombreabogados'=>$nombreabogados,
@@ -375,8 +392,9 @@ class Juicios2Controller extends Controller
          'diasDiferencia' => $diasDiferencia,
           "diasrestantes"=>$diasrestantes,
           "horfatantes" => $horfatantes,
-          "sueldo" =>$sueldo,
-          "minfaltantes"=>$minfaltantes]);
+          "informacionauto"=> $informacionauto,
+          "minfaltantes"=>$minfaltantes,
+          "sueldo" =>$sueldo]);
     }
 
     public function comentario(Request $request,$id,SessionManager $sessionManager){ 

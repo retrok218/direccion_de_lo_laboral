@@ -50549,18 +50549,19 @@ tr.shown td.details-control {
 	
 	span.fa-circle {
 		position: absolute;
-		font-size: 0.6em;
-		top: -6px;
-		color: red;
-		right: -2px;
+        font-size: 1.6em;
+        top: -1px;
+        color: red;
+        right: 30px;
+
 	}
 	
 	span.num {
 		position: absolute;
-		font-size: 0.3em;
-		top: 0px;
-		color: #fff;
-		right: 3px;
+        font-size: 1.3em;
+        top: -4px;
+        color: #fffffff2;
+        right: 36px;
 	}
     .main{
     display:none;

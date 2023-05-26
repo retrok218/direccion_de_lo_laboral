@@ -20,23 +20,22 @@ use Illuminate\Support\Facades\Storage;
 
 
 
-/**
- * 
- */
-trait alertafechas
-{
-    
-}
 
 
 class table_juicios_controller extends Controller
 {
 
     public function index(){
-       $juiciosactivos = juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
+       $juicios = juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
          ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
          ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
          ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
+         ->get();
+
+         $juiciosetapas = juicio::select('etapa')->pluck('etapa');
+//se requiere un count por cada etapa que se encuentre en los juicios que hay 
+         $conteoPorEtapa = juicio::groupBy('etapa')
+         ->select('etapa', DB::raw('count(*) as total'))
          ->get();
 
          $factual = Carbon::now();
@@ -68,13 +67,13 @@ class table_juicios_controller extends Controller
       
 
          
-        
-                     
+                            
 
         return view('admin.dashboard')->with([
          'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,
         'alertaproximafecha'=>$alertaproximafecha, 
+        'conteoPorEtapa'=>$conteoPorEtapa
         ]);
     }
 

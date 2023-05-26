@@ -261,6 +261,8 @@ function mostrar_modal_juicio(data) {
                   
              });
 
+            console.log(etapa);
+
     
 
 
@@ -332,55 +334,4 @@ function update_actualiza_datos_generales(id,formname){
 
 
 
-
-
-//eliminar checando si es util ?
-
-// $('form').submit(function (e) {
-//     e.preventDefault();
-//   });
-//   $('form input').on('change', function () {
-//     var file        = $(this).prop('files')[0],
-//         convertToMb = Math.floor(file.size / 1024 / 1024);
-    
-//     $('form #r').html(
-//       "<div>Name: <span>" + file.name + "</span></div>" +
-//       "<div>Type: <span>" + file.type + "</span></div>" +
-//       "<div>Size: <span>" + file.size + ' bytes (' + convertToMb + ' mb)' + "</span> </div>"
-//       );
-//     console.log(file);
-//   });
-  
-//   $('form button').click(function () {
-//     $('input').click();
-//   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   $(document).ready(function() {
-     
-
-//     $(':file').on('fileselect', function(event, numFiles, label) {
-//       console.log(numFiles);
-//       console.log(label);
-//     });
-
-//   });
-
-
-
- 
-    
- 
 

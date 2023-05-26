@@ -1299,6 +1299,26 @@
                                                                 </span>		
                                                                 </label> 
                                                             </div>
+                                                            
+                                                            <div class="col-lg-4">
+                                                                <label class="kt-option">                                                                
+                                                                <span class="kt-option__label">
+                                                                    <span class="kt-option__head">
+                                                                        <span class="kt-option__title juiciotext">
+                                                                            Cierre De Instruccion				
+                                                                        </span>                                                                												 
+                                                                    </span>
+                                                                    <span class="kt-option__body">
+                                                                        <input type="date" class="form-control"
+                                                                        id="cierredeinstruccion"
+                                                                        value="{{ $juicio3[0]->cierredeinstruccion}}"
+                                                                        name="cierredeinstruccion">
+                                                                    </span>
+                                                                </span>		
+                                                                </label> 
+                                                            </div>
+
+                                                            
                                                                                                                        
                                                         </div>
                                                     </div>

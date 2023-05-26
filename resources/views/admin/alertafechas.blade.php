@@ -45,13 +45,15 @@
            <tr>
             <th scope="col">ID Juicio</th>
             <th scope="col">Fecha Proxima</th>
+            
           </tr>  
         </thead>
         <tbody>               
           @foreach ($alertaproximafecha as $key=>$fecha) 
           <tr>
             <td><a  onclick="mostrar_modal_juicio({{$key}})" title="Desglose de Juicio" ;><button class="button2"> <span> {{$key}} <span> </button></a> </td>
-            <td >{{$fecha }}</td>
+            <td style="color:red;">{{$fecha}}</td>
+           
           </tr>                      
           @endforeach
         </tbody>

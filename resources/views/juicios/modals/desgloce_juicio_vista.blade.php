@@ -75,11 +75,24 @@
                                         <div class="card-body">
                         
                         
-                                          <h6 class="card-title juiciotext juiciotext">  Abogados Asignados</h6>                                                                                                
+                                          <h6 class="card-title juiciotext juiciotext">Abogados Asignados:</h6>                                                                                                
                                               @foreach ($nombreabogados[0] as $nombreabogado)                                                                     
                                                   <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$nombreabogado}}" readonly >
                                               @endforeach	
                                                                               
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                      <div class="card">
+                                        <div class="card-body">
+                        
+                        
+                                          <h6 class="card-title juiciotext juiciotext">Sala/JTA:</h6>                                                                                                
+                                                                                                              
+                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$nombreabogados[2]}}" readonly >
+                                                                                                                         
                                         </div>
                                       </div>
                                     </div>
@@ -517,7 +530,14 @@
                                                   </span>                                                                												 
                                               </span>
                                               <span class="kt-option__body">
-                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->inicio_rellab}}" readonly> 
+                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Fecha" 
+                                                    @if ($juicio3[0]->inicio_rellab == null)
+                                                        value="Sin Fecha Asignada "
+                                                    @else
+                                                    value=" {{$juicio3[0]->inicio_rellab}}" readonly
+                                                    @endif
+                                                 > 
+                                                
                                               </span>
                                           </span>		
                                           </label> 
@@ -531,18 +551,56 @@
                                                 </span>                                                                												 
                                             </span>
                                             <span class="kt-option__body">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->terminacion_rellab}}" readonly> 
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" 
+                                              @if ($juicio3[0]->terminacion_rellab == null)
+                                                value="Sin Fecha Asignada "
+                                              @else
+                                                value=" {{$juicio3[0]->terminacion_rellab}}" readonly
+                                              @endif
+                                               
+                                              
+                                              readonly> 
                                             </span>
                                         </span>		
                                         </label> 
                                     </div>
-                                    
-                                      
-                                        
-
-                                          </div>
+                                    </div>
                                       </div>
-                                  </div>       
+                                  </div>
+
+                                  
+                                  <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                                  <div class="form-group row form-group-marginless">
+                                    <label class="col-lg-2 col-form-label juiciotext ">Informacion :</label>
+                                    <div class="col-lg-10">                                      
+                                        <div class="row">                                        
+
+                                          @foreach ($informacionauto as $key=>$Info) 
+                                          <div class="col-lg-4">
+                                            <label class="kt-option">                                                                
+                                            <span class="kt-option__label">
+                                                <span class="kt-option__head">
+                                                    <span class="kt-option__title juiciotext">
+                                                      {{$key}} :				
+                                                    </span>                                                                												 
+                                                </span>
+                                                <div class="input-group">
+                                                  
+                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$Info}}" readonly>
+                                                </div>
+                                            </span>		
+                                            </label> 
+                                        </div>                                              
+                                          @endforeach                                                                                     
+                                            
+                                                                                                       
+                                        </div>
+                                    </div>
+                                </div>
+                                  
+                                  
+
 
                                   <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
 
@@ -566,7 +624,9 @@
                                             </label> 
                                         </div>   
 
-                                          @foreach ($sueldo as $key=>$sueldos)
+
+
+                                          @foreach ($sueldo as $key=>$sueldos) 
                                           <div class="col-lg-4">
                                             <label class="kt-option">                                                                
                                             <span class="kt-option__label">
@@ -587,7 +647,21 @@
                                                                                                        
                                         </div>
                                     </div>
-                                </div>                                                           
+                                </div>
+                                
+
+
+
+                                
+
+                                
+                                
+
+
+
+
+
+
                               </div> 
 
 
@@ -915,6 +989,24 @@
                                                             </span>		
                                                             </label> 
                                                         </div>
+
+                                                        <div class="col-lg-4">
+                                                          <label class="kt-option">                                                                
+                                                          <span class="kt-option__label">
+                                                              <span class="kt-option__head">
+                                                                  <span class="kt-option__title juiciotext">
+                                                                  Cierre De Instruccion 				
+                                                                  </span>                                                                												 
+                                                              </span>
+                                                              <span class="kt-option__body">
+                                                                  <input type="date" class="form-control"
+                                                                  id="tramite_ampindirectos_recurso"
+                                                                  value="{{ $juicio3[0]->cierredeinstruccion}}"
+                                                                  name="tramite_ampindirectos_recurso" readonly>
+                                                              </span>
+                                                          </span>		
+                                                          </label> 
+                                                      </div>
                                                                                                                    
                                                     </div>
                                                 </div>
@@ -1101,7 +1193,7 @@
                                     <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
-                                         Concepto De
+                                         Concepto De Violacion
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
@@ -1280,7 +1372,7 @@
                                     <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
-                                          Solicitado a R.H
+                                          Solicitado AR.H
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
@@ -1316,7 +1408,7 @@
                                     <div class="col-md-4">
                                       <div class="card">
                                         <div class="card-header  juiciotext">
-                                          No.De Intento
+                                          No.De Intento De REQ
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
@@ -1360,7 +1452,7 @@
                             <div class="card-header" id="conclusions">
                               <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#conclusion" aria-expanded="false" aria-controls="conclusion">
-                                  <i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> - Conclusion
+                                  <i class="fa-sharp fa-solid fa-file-invoice" style="color: #8b1818;"></i> - Concluido
                                 </button>
                               </h5>
                             </div>
