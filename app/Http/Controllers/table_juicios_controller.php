@@ -63,8 +63,13 @@ class table_juicios_controller extends Controller
              
          }
 
-         
-      
+
+         $conteoPorEtapa2 = juicio::groupBy('etapa')
+         ->select('etapa', DB::raw('count(*) as total'))
+         ->get();
+
+         $conteoPorEtapa22 = json_encode($conteoPorEtapa2);    
+       // var_dump($conteoPorEtapa22); exit();
 
          
                             
@@ -73,7 +78,9 @@ class table_juicios_controller extends Controller
          'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,
         'alertaproximafecha'=>$alertaproximafecha, 
-        'conteoPorEtapa'=>$conteoPorEtapa
+        'conteoPorEtapa'=>$conteoPorEtapa,
+        'conteoPorEtapa22'=>$conteoPorEtapa22,
+        
         ]);
     }
 
@@ -86,7 +93,7 @@ class table_juicios_controller extends Controller
 
 
 
-
+ 
     public function desgloce_juicios(){
         return view('Direccion_Laboral.tabla_juicios');
     }
