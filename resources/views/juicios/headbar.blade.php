@@ -2,7 +2,7 @@
     <div class="kt-container  kt-container--fluid ">
         <div class="kt-subheader__main">
             
-            <h3 class="kt-subheader__title">Desgloce de Juicios</h3>
+            <h3 class="kt-subheader__title">Juicios</h3>
 
             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
                                               

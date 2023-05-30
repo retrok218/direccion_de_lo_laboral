@@ -1532,7 +1532,7 @@
             Sin archivo para descarga Demanda
   @endisset
   <br>
-    <i class="fa fa-download"></i> <span>Contratacion :</span>
+    <i class="fa fa-download"></i> <span>Contestacion :</span>
   @isset($juicio3[0]->archivo1)
     <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo1)}}"> {{$juicio3[0]->archivo1}}</a> 
     <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo1'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo1)}}" >
@@ -1540,7 +1540,7 @@
    </a>             
   @else
   
-  Sin archivo para descarga Contratacion
+  Sin archivo para descarga Contestacion
   @endisset
   <br>
   
