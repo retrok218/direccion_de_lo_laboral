@@ -19,7 +19,7 @@
                   <div class="modal-header"> 
                     <h2 class="modal-title" id="myModalLabel">                    
                       <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
-                      Desglose Juicio : {{$juicio3[0]->id_juicio}}                                                                
+                      Juicios Laborales  : {{$juicio3[0]->id_juicio}}                                                                
                     </h2>
                                                             
                   </div>                                                                    
@@ -625,27 +625,164 @@
                                         </div>   
 
 
-
-                                          @foreach ($sueldo as $key=>$sueldos) 
                                           <div class="col-lg-4">
-                                            <label class="kt-option">                                                                
-                                            <span class="kt-option__label">
-                                                <span class="kt-option__head">
-                                                    <span class="kt-option__title juiciotext">
-                                                      {{$key}} :				
-                                                    </span>                                                                												 
-                                                </span>
-                                                <div class="input-group">
-                                                  <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldos}}" readonly>
-                                                </div>
-                                            </span>		
-                                            </label> 
-                                        </div>                                              
-                                          @endforeach                                                                                     
+                                          <label class="kt-option">                                                                
+                                          <span class="kt-option__label">
+                                              <span class="kt-option__head">
+                                                  <span class="kt-option__title juiciotext">
+                                                    Sueldo Quincenal:				
+                                                  </span>                                                                												 
+                                              </span>
+                                              <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Quincenal']}}" readonly>
+                                              </div>
+                                          </span>		
+                                          </label> 
+                                      </div> 
+
+                                      <div class="col-lg-4">
+                                        <label class="kt-option">                                                                
+                                        <span class="kt-option__label">
+                                            <span class="kt-option__head">
+                                                <span class="kt-option__title juiciotext">
+                                                  Sueldo Diario:				
+                                                </span>                                                                												 
+                                            </span>
+                                            <div class="input-group">
+                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Diario']}}" readonly>
+                                            </div>
+                                        </span>		
+                                        </label> 
+                                    </div> 
+
+
+
+                                         
+
+                                                                                                                      
                                             
                                                                                                        
                                         </div>
+
+                                        <div class="row">
+                                          
+                                          <div class="col-lg-12">
+                                            <label class="kt-option">                                                                
+                                            <span class="kt-option__label">
+                                              <div class="col-lg-12">
+                                                <span class="kt-option__head">
+                                                  <span class="kt-option__title juiciotext">
+                                                    <div class="input-group-prepend"><span class="input-group-text">COCODI : $ {{$sueldo['cocodi']}} </span></div>  		
+                                                  </span>                                                                												 
+                                                </span>
+
+                                              </div>
+                                               
+                                                <div class="input-group">
+
+                                                  <div class="col-lg-12">
+                                                    <span class="kt-option__title juiciotext">
+                                                      Prestaciones Legales:				
+                                                    </span>
+                                                  </div>                                                                                                  
+                                                  <div class="col-lg-4">
+                                                    <label class="kt-option">                                                                
+                                                    <span class="kt-option__label">
+                                                        <span class="kt-option__head">
+                                                            <span class="kt-option__title juiciotext">
+                                                              Aguinaldo:			
+                                                            </span>                                                                												 
+                                                        </span>
+                                                        <div class="input-group">
+                                                          <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                          <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Aginaldo']}}" readonly>
+                                                        </div>
+                                                    </span>		
+                                                    </label> 
+                                                  </div>
+                                                  <div class="col-lg-4">
+                                                    <label class="kt-option">                                                                
+                                                    <span class="kt-option__label">
+                                                        <span class="kt-option__head">
+                                                            <span class="kt-option__title juiciotext">
+                                                              Vacaciones:			
+                                                            </span>                                                                												 
+                                                        </span>
+                                                        <div class="input-group">
+                                                          <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                          <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Vacaciones']}}" readonly>
+                                                        </div>
+                                                    </span>		
+                                                    </label> 
+                                                  </div>  
+                                                  <div class="col-lg-4">
+                                                    <label class="kt-option">                                                                
+                                                    <span class="kt-option__label">
+                                                        <span class="kt-option__head">
+                                                            <span class="kt-option__title juiciotext">
+                                                              Prima Vacacional:			
+                                                            </span>                                                                												 
+                                                        </span>
+                                                        <div class="input-group">
+                                                          <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                          <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Prima_Vacacional']}}" readonly>
+                                                        </div>
+                                                    </span>		
+                                                    </label> 
+                                                  </div> 
+                                                  
+                                                </div>
+
+                                                <div class="input-group">
+                                                  <div class="col-lg-12">
+                                                    <span class="kt-option__title juiciotext">
+                                                      Indemnizacion	:
+
+                                                    </span>
+                                                  </div>
+                                                  <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Indemnizacion']}}" readonly>
+                                                  </div>
+
+                                                </div>
+
+                                                <div class="input-group">
+                                                  <div class="col-lg-12">
+                                                    <span class="kt-option__title juiciotext">
+                                                      Indemnizaciones		:
+
+                                                    </span>
+                                                  </div>
+                                                  <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Indemnizaciones']}}" readonly>
+                                                  </div>
+
+                                                </div>
+
+                                                <div class="input-group">
+                                                  <div class="col-lg-12">
+                                                    <span class="kt-option__title juiciotext">
+                                                      Reinstalacion	/ Salarios Caidos	:
+
+                                                    </span>
+                                                  </div>
+                                                  <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Salarios_Caidos']}}" readonly>
+                                                  </div>
+
+                                                </div>
+
+
+                                            </span>		
+                                            </label> 
+                                          </div>                                          
+                                        </div> 
+
                                     </div>
                                 </div>
                                 
@@ -1515,7 +1652,7 @@
             <div class="kt-section__info">Seleccione donde se guardara el PDF</div>
             <div class="kt-section__content kt-section__content--solid">                          
               <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="demandaupload"><i class="fa fa-upload"></i> Subir archivo Demanda</button>
-              <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="contratacionupload"><i class="fa fa-upload"></i> Subir archivo Contratacion</button>
+              <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="contratacionupload"><i class="fa fa-upload"></i> Subir archivo Contestacion</button>
               <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="laudoupload"><i class="fa fa-upload"></i> Subir archivo Laudo</button>
           </div>
           </div>

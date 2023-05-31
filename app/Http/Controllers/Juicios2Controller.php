@@ -332,6 +332,7 @@ class Juicios2Controller extends Controller
         ->where('juicios.id_juicio', $id)
         ->get();
 
+        $accion_de_juicio = $juicio3[0]->accion;
         //se modifica la fecha para que aparesca con los nombre de los meses y dias 
          $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
          $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria        
@@ -358,30 +359,58 @@ class Juicios2Controller extends Controller
          $sueldo=[];
          $informacionauto=[];
         
-         $sueldo['Diario'] = round($juicio3[0]->salarioMen/30,2);
          $sueldo['Quincenal'] = round($juicio3[0]->salarioMen/2,2);
+         $sueldo['Diario'] = round($juicio3[0]->salarioMen/30,2);
+         
        
          $iniciolab = Carbon::create($juicio3[0]->inicio_rellab);                                      
          $finrellab = Carbon::create($juicio3[0]->terminacion_rellab);
+         $finrelacionlaboral = Carbon::create($juicio3[0]->terminacion_rellab);
+         $fechaactul = Carbon::create(now());
+
+         $dif_days_finrellab_actual = $finrelacionlaboral->diffInDays($fechaactul); 
+         $dif_monts_finrellab_actual = $finrelacionlaboral->diffInMonths($fechaactul); 
+         $dif_years_finrellab_actual = $finrelacionlaboral->diffInYears($fechaactul); 
+
 
          if ($juicio3[0]->inicio_rellab == null ||  $juicio3[0]->terminacion_rellab == null) {
             $añostrancurridos = "Sin Fecha para Calcular Diferecia";
             $diastranscurridos= "Sin Fecha para Calcular Diferecia";
          } else {
             $añostrancurridos = $iniciolab->diffInYears($finrellab);
-            $diastranscurridos = $iniciolab->diffInDays($finrellab);
-            $sueldo['Aginaldo'] =number_format ((40*$añostrancurridos)* $sueldo['Diario'],2,'.',',');
-            $sueldo['Indemnizacion'] = number_format(($juicio3[0]->salarioMen*3)+(($añostrancurridos*20)* $sueldo['Diario']), 2, '.', ',');
-            $sueldo['Prima Vacacional']=  $sueldo['Diario']*20*0.30;
+            $diastranscurridos = $iniciolab->diffInDays($finrellab);            
+            $sueldo['Indemnizacion'] = $juicio3[0]->salarioMen*3+$sueldo['Diario']*20;
+            $sueldo['Indemnizaciones'] = $juicio3[0]->salarioMen*3 +(20*$añostrancurridos)*$sueldo['Diario'];
+            $sueldo['aginaldoanual'] = 40 * $sueldo['Diario'];
+           
+            $sueldo['Aginaldo'] =(40*$añostrancurridos)* $sueldo['Diario'];
+            $sueldo['Vacaciones']=$sueldo['Diario']*20;
+            $sueldo['Prima_Vacacional']=  $sueldo['Vacaciones']*0.30;
+             $sueldo['Prestaciones_legales'] = $sueldo['Aginaldo']+$sueldo['Vacaciones']+$sueldo['Prima_Vacacional'];
+
+            $sueldo['Salarios_Caidos']= $añostrancurridos*$sueldo['Diario'];
             $informacionauto["Años Transcurridos Relacion Laboral"]=  $añostrancurridos;
             $informacionauto["Dias Transcurridos Relacion Laboral"]=  $diastranscurridos;
+
+
+         } 
+         
+         
+          //$sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
+
+         if ($accion_de_juicio == 'Indemnizacion') {
+            $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Prestaciones_legales'];
+         }elseif($accion_de_juicio == 'Reinstalación') {
+            $sueldo['cocodi']= $sueldo['Salarios_Caidos'] +$sueldo['Prestaciones_legales'];
+         }elseif($accion_de_juicio == 'Otros (prestaciones legales)') {
+            $sueldo['cocodi']=$sueldo['Prestaciones_legales'];
+         }else {
+            $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
          }
-         
+
        
-         
-        
-        // dd($finrellab, $añostrancurridos,$diastranscurridos, $iniciolab    );
-        
+        //dd($sueldo); exit();
+
 
     
     
