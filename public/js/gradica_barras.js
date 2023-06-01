@@ -1,3 +1,5 @@
+
+
 am5.ready(function() {
 
   // Create root element
@@ -83,31 +85,35 @@ am5.ready(function() {
   
   // Set data
   var data = [
+    {
+      country: 'Totales',
+      value: parseFloat(todosloj)
+    },
 
     {
     country: 'Ejecucion',
-    value: 2025
+    value: parseFloat(nombteetapa['Ejecucion'])
   }, {
     country: "Transferido",
-    value: 1882
+    value: parseFloat (nombteetapa['Transferido'])
   }, {
-    country: "Proyecto Laudo",
-    value: 1809
+    country: "Laudo",
+    value: parseFloat(nombteetapa['Proyecto de Laudo']) 
   }, {
     country: "Conluido",
-    value: 1322
+    value: parseFloat(nombteetapa['Conluido']) 
   }, {
     country: "Amparo",
-    value: 1122
+    value: parseFloat(nombteetapa['Amparo']) 
   }, {
     country: "Tramite",
-    value: 1114
+    value: parseFloat(nombteetapa['Tramite']) 
   }, {
-    country: "CambioSituacion",
-    value: 984
+    country: "CSituacion",
+    value: parseFloat(nombteetapa['Incidente de cambio de situacion juridica'])
   }, {
     country: "Cancelado",
-    value: 441
+    value:parseFloat(nombteetapa['Cancelado']) 
   }];
   
   xAxis.data.setAll(data);

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use function PHPUnit\Framework\isNull;
+
 class juicio extends Model
 {
     protected $table = 'juicios';
@@ -46,13 +48,22 @@ class juicio extends Model
     }  
 
     public function obteniendonombresdearea($id){
-        $datosjuicio = juicio::where('id_juicio',$id)->with('actor','sala.abogados')->firstOrFail();     
-        $nombres_abogados = $datosjuicio->sala[0]->abogados;            
+        $datosjuicio = juicio::where('id_juicio',$id)->with('actor','sala.abogados')->firstOrFail(); 
+       // dd($datosjuicio->id_sala);
+      if ($datosjuicio->id_sala == null) {
+        $nombres_abogados = "Sin Abogado seleccionado";
+        $nombresala ="Sin Sala Asignada ";
+        $nombres = [];
+      } else {
+        $nombres_abogados = $datosjuicio->sala[0]->abogados; 
         $nombres=[];
         foreach ($nombres_abogados as $nombre ) {
             $nombres[]=$nombre->nombre;
         }
         $nombresala =$datosjuicio->sala[0]->nombre_sala;
+      } 
+                  
+       
 
       
         return [$nombres,$datosjuicio,$nombresala];

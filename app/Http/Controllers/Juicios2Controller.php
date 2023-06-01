@@ -319,11 +319,7 @@ class Juicios2Controller extends Controller
         //se obtienen los nombres de los abogados dependiendo de la seleccion del id se realiza la consulta en el modelo
         $j=juicio::find($id);
         $nombreabogados = $j->obteniendonombresdearea($id); 
-        //dd($nombreabogados);
-        //$f=$datosjuicio->sala[0]->nombre_sala;
-       
-        
-
+ 
         $juicio3 = Juicio::join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
         ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
@@ -333,7 +329,7 @@ class Juicios2Controller extends Controller
         ->get();
 
         $accion_de_juicio = $juicio3[0]->accion;
-        //se modifica la fecha para que aparesca con los nombre de los meses y dias 
+
          $fechaaudiencia = Carbon::parse($juicio3[0]->audiencia)->formatLocalized('%A %d %B %Y');  
          $fecha = Carbon::create($juicio3[0]->audiencia); //se crea la fecha en formato carbon no necesaria        
          $diasDiferencia = $fecha->diffInDays(Carbon::now());
@@ -376,43 +372,52 @@ class Juicios2Controller extends Controller
          if ($juicio3[0]->inicio_rellab == null ||  $juicio3[0]->terminacion_rellab == null) {
             $añostrancurridos = "Sin Fecha para Calcular Diferecia";
             $diastranscurridos= "Sin Fecha para Calcular Diferecia";
+            $sueldo['Indemnizacion'] = 0;
+            $sueldo['Indemnizaciones'] = 0;
+            $sueldo['Aginaldo']= 0 ;
+            $sueldo['Vacaciones']=0;
+            $sueldo['Prima_Vacacional']= 0;
+            $sueldo['Prestaciones_legales'] =0;
+            $sueldo['Salarios_Caidos']=0;
+            $informacionauto["Años Transcurridos Relacion Laboral"]="Sin Fecha";
+            $informacionauto["Dias Transcurridos Relacion Laboral"]="Sin Fecha";
+            
+            if ($accion_de_juicio == 'Indemnización') {
+                $sueldo['cocodi'] = 0;
+             }elseif($accion_de_juicio == 'Reinstalación') {
+                $sueldo['cocodi']= 0;
+             }elseif($accion_de_juicio == 'Otros (prestaciones legales)') {
+                $sueldo['cocodi']=0;             
+             }else {
+                // $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
+                $sueldo['cocodi']= 1;
+             }
          } else {
+            // si son nulos resolver que pasaria
             $añostrancurridos = $iniciolab->diffInYears($finrellab);
             $diastranscurridos = $iniciolab->diffInDays($finrellab);            
             $sueldo['Indemnizacion'] = $juicio3[0]->salarioMen*3+$sueldo['Diario']*20;
             $sueldo['Indemnizaciones'] = $juicio3[0]->salarioMen*3 +(20*$añostrancurridos)*$sueldo['Diario'];
-            $sueldo['aginaldoanual'] = 40 * $sueldo['Diario'];
-           
-            $sueldo['Aginaldo'] =(40*$añostrancurridos)* $sueldo['Diario'];
+            $sueldo['aginaldoanual'] = 40 * $sueldo['Diario'];           
+            $sueldo['Aginaldo'] =40* $sueldo['Diario'];
             $sueldo['Vacaciones']=$sueldo['Diario']*20;
             $sueldo['Prima_Vacacional']=  $sueldo['Vacaciones']*0.30;
-             $sueldo['Prestaciones_legales'] = $sueldo['Aginaldo']+$sueldo['Vacaciones']+$sueldo['Prima_Vacacional'];
-
-            $sueldo['Salarios_Caidos']= $añostrancurridos*$sueldo['Diario'];
+            $sueldo['Prestaciones_legales'] = $sueldo['Aginaldo']+$sueldo['Vacaciones']+$sueldo['Prima_Vacacional'];
+            $sueldo['Salarios_Caidos']= $diastranscurridos*$sueldo['Diario'];
             $informacionauto["Años Transcurridos Relacion Laboral"]=  $añostrancurridos;
             $informacionauto["Dias Transcurridos Relacion Laboral"]=  $diastranscurridos;
 
-
-         } 
-         
-         
-          //$sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
-
-         if ($accion_de_juicio == 'Indemnizacion') {
-            $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Prestaciones_legales'];
-         }elseif($accion_de_juicio == 'Reinstalación') {
-            $sueldo['cocodi']= $sueldo['Salarios_Caidos'] +$sueldo['Prestaciones_legales'];
-         }elseif($accion_de_juicio == 'Otros (prestaciones legales)') {
-            $sueldo['cocodi']=$sueldo['Prestaciones_legales'];
-         }else {
-            $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
-         }
-
-       
-        //dd($sueldo); exit();
-
-
-    
+            if ($accion_de_juicio == 'Indemnización') {
+                $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Prestaciones_legales'];
+             }elseif($accion_de_juicio == 'Reinstalación') {
+                $sueldo['cocodi']= $sueldo['Salarios_Caidos'] +$sueldo['Prestaciones_legales'];
+             }elseif($accion_de_juicio == 'Otros (prestaciones legales)') {
+                $sueldo['cocodi']=$sueldo['Prestaciones_legales'];             
+             }else {
+                // $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
+                $sueldo['cocodi']= 1;
+             }
+         }                                 
     
         return view('juicios.modals.desgloce_juicio_vista')
          ->with(['juicio3'=>$juicio3,
@@ -429,7 +434,7 @@ class Juicios2Controller extends Controller
     public function comentario(Request $request,$id,SessionManager $sessionManager){ 
         $comentario =request()->only('comentario'); 
         Juicio::where('id_juicio','=',$id)->update($comentario);
-        $sessionManager->flash('mensaje', 'Comentario Agregado');
+        $sessionManager->flash('mensaje', 'Observacion Agregada');
         //dd($sessionManager);
         return redirect()->route('juicios.index', compact('sessionManager')) ;
     }

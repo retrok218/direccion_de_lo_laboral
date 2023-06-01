@@ -67,29 +67,51 @@
                         <div class="kt-widget14__chart">
                             <div id="pastelgrafica" style="height: 250px;"></div>
                         </div>    
-                        <div class="kt-widget14__chart">
-                            <div id="pas" style="height: 250px;"></div>
-                        </div>    
+                            
                     </div>                        
                 </div>            
             </div>    
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 order-lg-12 order-xl-12">
+            <div class="kt-portlet kt-portlet--height-fluid" >
+                <div class="kt-witdget14">
+                    <div class="kt-widget14__header">
+                        <h3>Grafica Juicios Por Etapa</h3>
+                        <span>Etapas </span>
+                    </div>
+                    <div class="kt-widgeat14__content">                                                    
+                        <div class="kt-widget14__chart">
+                            <div id="pas" style="height: 250px;"></div>
+                        </div>    
+                            
+                    </div>                        
+                </div>            
+            </div>    
+        </div>
+    </div>
+
+    
 </div>
 
 {{-- se requeiere que el arreglo que se rtae dese el controlados se transferido a js  --}}
 <script>    
-    let nombteetapa=new Array();          
+    let nombteetapa= []; 
+    let todosloj ={{$todoslosjuicios}};
 </script>
 @foreach ($conteoPorEtapa as $etapa)
 <script>
     nombteetapa['{{$etapa['etapa']}}'] = '{{$etapa['total']}}';
+    
 </script>    
 @endforeach
 
 <script>
-    console.log(nombteetapa);
-    console.log(nombteetapa['Cancelado']);
+    console.log( nombteetapa);
+    console.log(typeof nombteetapa.Ejecucion);
+    console.log(todosloj);
 </script>
 @include('admin/alertafechas')
 @include('layouts/scripts/scripts_dttb')

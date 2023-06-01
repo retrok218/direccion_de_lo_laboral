@@ -9,6 +9,7 @@ use App\Models\juicio;
 use App\Models\amparo;
 use App\Models\etapaejecucion;
 use App\Models\concluido;
+use App\Models\Juicios2;
 use App\Models\User;
 use App\Models\laudo;
 use Illuminate\Http\Request;
@@ -63,16 +64,14 @@ class table_juicios_controller extends Controller
              
          }
 
-
+         $todoslosjuicios = juicio::count();
          $conteoPorEtapa2 = juicio::groupBy('etapa')
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
 
-         $conteoPorEtapa22 = json_encode($conteoPorEtapa2);    
-       // var_dump($conteoPorEtapa22); exit();
-
-         
+         $conteoPorEtapa22 = json_encode($conteoPorEtapa2);         
                             
+        
 
         return view('admin.dashboard')->with([
          'requerimientofecha' => $requerimientofecha,  
@@ -80,6 +79,7 @@ class table_juicios_controller extends Controller
         'alertaproximafecha'=>$alertaproximafecha, 
         'conteoPorEtapa'=>$conteoPorEtapa,
         'conteoPorEtapa22'=>$conteoPorEtapa22,
+        'todoslosjuicios'=>$todoslosjuicios,
         
         ]);
     }

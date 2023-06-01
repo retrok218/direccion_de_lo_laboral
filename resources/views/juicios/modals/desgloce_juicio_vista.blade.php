@@ -19,7 +19,7 @@
                   <div class="modal-header"> 
                     <h2 class="modal-title" id="myModalLabel">                    
                       <i class="fa-solid fa-gavel fa-bounce fa-xl"  style="color: #8b1818;"> </i>
-                      Juicios Laborales  : {{$juicio3[0]->id_juicio}}                                                                
+                      Juicio: {{$juicio3[0]->id_juicio}}                                                                
                     </h2>
                                                             
                   </div>                                                                    
@@ -222,7 +222,7 @@
                             <div class="card-header" id="headingTwo">
                               <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                  <i class="fa-solid fa-user" style="color: #8b1818;"></i> - Actor
+                                  <i class="fa-solid fa-user" style="color: #8b1818;"></i> - Datos De La Ralacion Laboral
                                 </button>
                               </h5>
                             </div>
@@ -231,198 +231,7 @@
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#acordionjuicio">
                               <div class="card-body">
 
-                                {{-- <div class="row row-cols-1 row-cols-md-3">
-                                  <div class="card-deck">
-                                    <div class="col-sm-4">
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            Nombre Completo:
-                                          </div>
-                                          <div class="card-body">
-                                            
-                                            <p class="card-text">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->nombre_completo}}" readonly> 
-                                            
-                                            </p>                                    
-                                          </div>
-                                        </div>
-                                      </div>
-        
-                                      <div class="col-sm-4">
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            Adscripcion :
-                                          </div>
-                                          <div class="card-body">
-                                            
-                                            <p class="card-text">
-                                                
-                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->adscripcion}}" readonly> 
-                                            </p>                                    
-                                          </div>
-                                        </div>
-                                      </div>
-        
-                                      <div class="col-sm-4">
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            UR  :
-                                          </div>
-                                          <div class="card-body">
-                                           
-                                            <p class="card-text">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->ur}}" readonly> 
-                                                
-                                            </p>                                    
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="col-sm-4">
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            Denominacion :
-                                          </div>
-                                          <div class="card-body">
-                                            
-                                            <p class="card-text">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->denominacion}}" readonly> 
-                                                
-                                            </p>                                    
-                                          </div>
-                                        </div>
-                                      </div>
-        
-                                      <div class="col-sm-4">
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            Puesto
-                                          </div>
-                                          <div class="card-body">
-                                            
-                                            <p class="card-text">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->puesto}}" readonly> 
-                                                
-                                            </p>                                    
-                                          </div>
-                                        </div>
-                                      </div>
-        
-                                      <div class="col-sm-4">
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            Nivel
-                                          </div>
-                                          <div class="card-body">
-                                            
-                                            <p class="card-text">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->nivel}}" readonly>
-                                                
-                                            </p>                                    
-                                          </div>
-                                        </div>
-                                      </div>
-        
-                                      <div class="col-sm-4">
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            Salario Mensual :
-                                          </div>
-                                          <div class="card-body">
-
-                                            <div class="input-group">
-                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$juicio3[0]->salarioMen}}" readonly>
-                                            </div>
-                                            
-                                                                                
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <div class="card-header juiciotext2 ">
-                                            Salario Quincenal :
-                                          </div>
-                                          <div class="card-body">
-                                            <div class="input-group">
-                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{number_format($salquincenal, 2, '.', ',')}}" readonly>
-                                            </div>                                  
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <div class="card-header juiciotext2 ">
-                                            Salario Diario :
-                                          </div>
-                                          <div class="card-body">
-                                            <div class="input-group">
-                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{number_format( $saldiario, 2, '.', ',')}}" readonly>
-                                            </div>                                  
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <div class="card-header juiciotext2 ">
-                                           Aguinaldo:
-                                          </div>
-                                          <div class="card-body">
-                                            <div class="input-group">
-                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$aginaldo}}" readonly>
-                                            </div>                                  
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <div class="card-header juiciotext2 ">
-                                            Indemnización:
-                                          </div>
-                                          <div class="card-body">
-                                            <div class="input-group">
-                                              <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$indemnizacion}}" readonly>
-                                            </div>                                  
-                                          </div>
-                                        </div>
-
-                                      </div>
-
-
-
-        
-                                      <div class="col-sm-4">
-                                        
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            Inicio de la Relaicon Laboral :
-                                          </div>
-                                          <div class="card-body">
-                                            
-                                            <p class="card-text">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->inicio_rellab}}" readonly>
-                                                
-                                            </p>                                    
-                                          </div>
-                                        </div>
-                                      </div>
-        
-                                      <div class="col-sm-4">
-                                        <div class="card">
-                                          <div class="card-header juiciotext ">
-                                            Terminacion de la Relacion Laboral :
-                                          </div>
-                                          <div class="card-body">
-                                            
-                                            <p class="card-text">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->terminacion_rellab}}" readonly>
-                                                
-                                            </p>                                    
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      
-                                    </div>
-                                </div> --}}
+                                
 
                                 <div class="kt-portlet__body">
                                   <div class="form-group row form-group-marginless">
@@ -630,7 +439,7 @@
                                           <span class="kt-option__label">
                                               <span class="kt-option__head">
                                                   <span class="kt-option__title juiciotext">
-                                                    Sueldo Quincenal:				
+                                                    Salario Quincenal:				
                                                   </span>                                                                												 
                                               </span>
                                               <div class="input-group">
@@ -646,7 +455,7 @@
                                         <span class="kt-option__label">
                                             <span class="kt-option__head">
                                                 <span class="kt-option__title juiciotext">
-                                                  Sueldo Diario:				
+                                                  Salario Diario:				
                                                 </span>                                                                												 
                                             </span>
                                             <div class="input-group">
@@ -674,7 +483,7 @@
                                               <div class="col-lg-12">
                                                 <span class="kt-option__head">
                                                   <span class="kt-option__title juiciotext">
-                                                    <div class="input-group-prepend"><span class="input-group-text">COCODI : $ {{$sueldo['cocodi']}} </span></div>  		
+                                                    <div class="input-group-prepend"><span class="input-group-text" style="color: black">COCODI : $  {{$sueldo['cocodi']}} </span></div>  		
                                                   </span>                                                                												 
                                                 </span>
 
