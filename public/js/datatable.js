@@ -188,8 +188,9 @@ table = $('#juiciotabla').DataTable({
         }},
                
         {"mRender": function(data, type, row){
-            var ligajuicio=row.id_juicio;                           
-             return `<a  onclick="mostrar_modal_juicio(${ligajuicio})" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
+            var ligajuicio=row.id_juicio;   
+            var accionj=row.accion;                        
+             return `<a  onclick="mostrar_modal_juicio(${ligajuicio},'${accionj}')" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
         },
         {data:'noti_demanda', name:'noti_demanda'},
         {data:'etapa',name:'etapa'},        
@@ -238,7 +239,7 @@ table = $('#juiciotabla').DataTable({
     });
 });
 
-function mostrar_modal_juicio(data) {
+function mostrar_modal_juicio(data,accion) {
     
     let segment =location.href.split('/');
     $.ajax({
@@ -258,13 +259,14 @@ function mostrar_modal_juicio(data) {
                 document.querySelector('#docn').innerText = archivo.files[0].name;
                 document.querySelector('#docn').classList.remove('textanime')
                 document.querySelector('#docn').classList.add('textanime')
-                  
+               
+                            
              });
-
-            console.log(etapa);
-
-    
-
+            //ocultamos el elemento reinstalacion ya que cuando la accion es indemnizacion no se requiere mostrar salariois caidos reinstalacion
+             if (accion === "Indemnización") {                 
+                 document.querySelector('#salarioscaidos').classList.add('oculto');
+            }
+               
 
             }).on('hidden.bs.modal', function() {
                 $(this).remove();

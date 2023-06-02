@@ -573,8 +573,8 @@
 
                                                 </div> --}}
 
-                                                <div class="input-group">
-                                                  <div class="col-lg-12">
+                                                <div class="input-group" id="salarioscaidos" >
+                                                  <div class="col-lg-12" >
                                                     <span class="kt-option__title juiciotext">
                                                       Reinstalacion	/ Salarios Caidos	:
 

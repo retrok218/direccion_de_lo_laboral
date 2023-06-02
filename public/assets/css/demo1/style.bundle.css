@@ -50573,3 +50573,6 @@ tr.shown td.details-control {
         /* margin-left: 17px !important; */
         
     }
+    .oculto {
+        display: none;
+    }

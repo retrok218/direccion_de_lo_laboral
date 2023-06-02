@@ -395,7 +395,7 @@ class Juicios2Controller extends Controller
                 $sueldo['cocodi']= 1;
              }
          } else {
-            // si son nulos resolver que pasaria
+            
             $añostrancurridos = $iniciolab->diffInYears($finrellab);
             $diastranscurridos = $iniciolab->diffInDays($finrellab);            
             $sueldo['Indemnizacion'] = $juicio3[0]->salarioMen*3+$sueldo['Diario']*20;
