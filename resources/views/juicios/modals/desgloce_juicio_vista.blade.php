@@ -483,7 +483,7 @@
                                               <div class="col-lg-12">
                                                 <span class="kt-option__head">
                                                   <span class="kt-option__title juiciotext">
-                                                    <div class="input-group-prepend"><span class="input-group-text" style="color: black">COCODI : $  {{$sueldo['cocodi']}} </span></div>  		
+                                                    <div class="input-group-prepend"><span class="input-group-text" style="color: black">COCODI : $  {{$sueldo['cocodi']}}  </span></div>  		
                                                   </span>                                                                												 
                                                 </span>
 
@@ -493,7 +493,8 @@
 
                                                   <div class="col-lg-12">
                                                     <span class="kt-option__title juiciotext">
-                                                      Prestaciones Legales:				
+                                                      Prestaciones Legales:	${{ number_format($sueldo['sumaprestacioneslegales'],2,'.',',') }}
+                                                    
                                                     </span>
                                                   </div>                                                                                                  
                                                   <div class="col-lg-4">
@@ -558,7 +559,7 @@
 
                                                 </div>
 
-                                                <div class="input-group">
+                                                {{-- <div class="input-group">
                                                   <div class="col-lg-12">
                                                     <span class="kt-option__title juiciotext">
                                                       Indemnizaciones		:
@@ -570,7 +571,7 @@
                                                     <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Indemnizaciones']}}" readonly>
                                                   </div>
 
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="input-group">
                                                   <div class="col-lg-12">

@@ -301,7 +301,7 @@
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false"
                                             aria-controls="collapseTwo">
-                                            <i class="fa-solid fa-user" style="color: #8b1818;"></i> - Actor
+                                            <i class="fa-solid fa-user" style="color: #8b1818;"></i> - Datos De La Relacion Laboral
                                         </button>
                                     </h5>
                                 </div>

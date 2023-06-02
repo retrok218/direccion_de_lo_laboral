@@ -315,7 +315,9 @@ class Juicios2Controller extends Controller
 
     }
 
-    public function desglocejuicio($id){
+    public function desglocejuicio(Request $request, $id){
+
+        
         //se obtienen los nombres de los abogados dependiendo de la seleccion del id se realiza la consulta en el modelo
         $j=juicio::find($id);
         $nombreabogados = $j->obteniendonombresdearea($id); 
@@ -406,6 +408,7 @@ class Juicios2Controller extends Controller
             $sueldo['Salarios_Caidos']= $diastranscurridos*$sueldo['Diario'];
             $informacionauto["Años Transcurridos Relacion Laboral"]=  $añostrancurridos;
             $informacionauto["Dias Transcurridos Relacion Laboral"]=  $diastranscurridos;
+            $sueldo['sumaprestacioneslegales'] =  $sueldo['Aginaldo']+$sueldo['Vacaciones']+ $sueldo['Prima_Vacacional'];
 
             if ($accion_de_juicio == 'Indemnización') {
                 $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Prestaciones_legales'];
