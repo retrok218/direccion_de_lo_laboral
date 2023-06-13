@@ -263,11 +263,18 @@ function mostrar_modal_juicio(data,accion) {
                             
              });
             //ocultamos el elemento reinstalacion ya que cuando la accion es indemnizacion no se requiere mostrar salariois caidos reinstalacion
+           console.log(accion);
              if (accion === "Indemnización") {                 
                  document.querySelector('#salarioscaidos').classList.add('oculto');
-            }
+                }else if (accion === "Reinstalación"){
+                    document.querySelector('#indemnizacion').classList.add('oculto');
+               }    
+               else{
+                document.querySelector('#indemnizacion').classList.add('oculto');
+                document.querySelector('#salarioscaidos').classList.add('oculto');
+               }   
+                   
                
-
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });            
@@ -332,8 +339,5 @@ function update_actualiza_datos_generales(id,formname){
 
 //    location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
-
-
-
 
 

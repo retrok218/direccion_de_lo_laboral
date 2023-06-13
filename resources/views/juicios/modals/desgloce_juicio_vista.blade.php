@@ -77,7 +77,7 @@
                         
                                           <h6 class="card-title juiciotext juiciotext">Abogados Asignados:</h6>                                                                                                
                                               @foreach ($nombreabogados[0] as $nombreabogado)                                                                     
-                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$nombreabogado}}" readonly >
+                                                  <input  class="form-control" type="text" id="" placeholder="Seleccione la Sala" value="{{$nombreabogado}}" readonly >
                                               @endforeach	
                                                                               
                                         </div>
@@ -86,13 +86,9 @@
 
                                     <div class="col-sm-4">
                                       <div class="card">
-                                        <div class="card-body">
-                        
-                        
-                                          <h6 class="card-title juiciotext juiciotext">Sala/JTA:</h6>                                                                                                
-                                                                                                              
-                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$nombreabogados[2]}}" readonly >
-                                                                                                                         
+                                        <div class="card-body">                                                
+                                          <h6 class="card-title juiciotext juiciotext">Sala/JTA:</h6>                                                                                                                                                                                                              
+                                                  <input  class="form-control" type="text" id="" placeholder="Seleccione la Sala" value="{{$nombreabogados[2]}}" readonly >                                                                                                                         
                                         </div>
                                       </div>
                                     </div>
@@ -106,7 +102,7 @@
                                           
                                           <p class="card-text">
                                              
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->noti_demanda}}" readonly >
+                                              <input  class="form-control" type="text" id="noti_demanda" placeholder="Seleccione la Sala" value="{{$juicio3[0]->noti_demanda}}" readonly >
                                               
                                           </p>                                    
                                         </div>
@@ -121,7 +117,7 @@
                                         <div class="card-body">
                                          
                                           <p class="card-text" >                                        
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->presentacion_de_demanda}}" readonly>
+                                              <input  class="form-control" type="text" id="presentacion_de_demanda" placeholder="Seleccione la Sala" value="{{$juicio3[0]->presentacion_de_demanda}}" readonly>
                                           </p>                                    
                                         </div>
                                       </div>
@@ -133,7 +129,7 @@
                                           Expediente 
                                         </div>
                                         <div class="card-body">                                                                                                               
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->expediente}}" readonly>
+                                              <input  class="form-control" type="text" id="expediente" placeholder="Seleccione la Sala" value="{{$juicio3[0]->expediente}}" readonly>
                                                                              
                                         </div>
                                       </div>
@@ -148,7 +144,7 @@
                                           
                                           <p class="card-text">
                                               
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->año_juicio}}" readonly>
+                                              <input  class="form-control" type="text" id="año_juicio" placeholder="Seleccione la Sala" value="{{$juicio3[0]->año_juicio}}" readonly>
                                           </p>                                    
                                         </div>
                                       </div>
@@ -163,7 +159,7 @@
                                           
                                           <p class="card-text">
                                               
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->clasificacion_año}}" readonly>
+                                              <input  class="form-control" type="text" id="clasificacion_año" placeholder="Seleccione la Sala" value="{{$juicio3[0]->clasificacion_año}}" readonly>
                                           </p>                                    
                                         </div>
                                       </div>
@@ -178,7 +174,7 @@
                                          
                                           <p class="card-text">
                                               
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->clasificacion_exp}}" readonly>
+                                              <input  class="form-control" type="text" id="clasificacion_exp" placeholder="Seleccione la Sala" value="{{$juicio3[0]->clasificacion_exp}}" readonly>
                                           </p>                                    
                                         </div>
                                       </div>
@@ -192,7 +188,7 @@
                                         <div class="card-body">
                                           
                                                                                  
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->tipo}}" readonly>
+                                              <input  class="form-control" type="text" id="tipo" placeholder="Seleccione la Sala" value="{{$juicio3[0]->tipo}}" readonly>
                                                                             
                                         </div>
                                       </div>
@@ -207,7 +203,7 @@
                                           
                                           <p class="card-text">
                                               
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value="{{$juicio3[0]->accion}}" readonly>
+                                              <input  class="form-control" type="text" id="accion" placeholder="Seleccione la Sala" value="{{$juicio3[0]->accion}}" readonly>
                                           </p>                                    
                                         </div>
                                       </div>
@@ -281,7 +277,7 @@
                                                           </span>                                                                												 
                                                       </span>
                                                       <span class="kt-option__body">
-                                                        <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->ur}}" readonly> 
+                                                        <input  class="form-control" type="text" id="ur" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->ur}}" readonly> 
                                                       </span>
                                                   </span>		
                                                   </label> 
@@ -295,7 +291,7 @@
                                                         </span>                                                                												 
                                                     </span>
                                                     <span class="kt-option__body">
-                                                      <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->denominacion}}" readonly> 
+                                                      <input  class="form-control" type="text" id="denominacion" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->denominacion}}" readonly> 
                                                     </span>
                                                 </span>		
                                                 </label> 
@@ -309,7 +305,7 @@
                                                       </span>                                                                												 
                                                   </span>
                                                   <span class="kt-option__body">
-                                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->puesto}}" readonly> 
+                                                    <input  class="form-control" type="text" id="puesto" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->puesto}}" readonly> 
                                                   </span>
                                               </span>		
                                               </label> 
@@ -324,7 +320,7 @@
                                                     </span>                                                                												 
                                                 </span>
                                                 <span class="kt-option__body">
-                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->nivel}}" readonly> 
+                                                  <input  class="form-control" type="text" id="nivel" placeholder="Seleccione la Sala" value=" {{$juicio3[0]->nivel}}" readonly> 
                                                 </span>
                                             </span>		
                                             </label> 
@@ -339,7 +335,7 @@
                                                   </span>                                                                												 
                                               </span>
                                               <span class="kt-option__body">
-                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Fecha" 
+                                                <input  class="form-control" type="text" id="inicio_rellab" placeholder="Sin Fecha" 
                                                     @if ($juicio3[0]->inicio_rellab == null)
                                                         value="Sin Fecha Asignada "
                                                     @else
@@ -360,14 +356,12 @@
                                                 </span>                                                                												 
                                             </span>
                                             <span class="kt-option__body">
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Seleccione la Sala" 
+                                              <input  class="form-control" type="text" id="terminacion_rellab" placeholder="Seleccione la Sala" 
                                               @if ($juicio3[0]->terminacion_rellab == null)
                                                 value="Sin Fecha Asignada "
                                               @else
                                                 value=" {{$juicio3[0]->terminacion_rellab}}" readonly
-                                              @endif
-                                               
-                                              
+                                              @endif                                                                                             
                                               readonly> 
                                             </span>
                                         </span>		
@@ -384,35 +378,26 @@
                                     <label class="col-lg-2 col-form-label juiciotext ">Informacion :</label>
                                     <div class="col-lg-10">                                      
                                         <div class="row">                                        
-
                                           @foreach ($informacionauto as $key=>$Info) 
-                                          <div class="col-lg-4">
-                                            <label class="kt-option">                                                                
-                                            <span class="kt-option__label">
-                                                <span class="kt-option__head">
-                                                    <span class="kt-option__title juiciotext">
-                                                      {{$key}} :				
-                                                    </span>                                                                												 
-                                                </span>
-                                                <div class="input-group">
-                                                  
-                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$Info}}" readonly>
-                                                </div>
-                                            </span>		
-                                            </label> 
-                                        </div>                                              
-                                          @endforeach                                                                                     
-                                            
-                                                                                                       
+                                            <div class="col-lg-4">
+                                              <label class="kt-option">                                                                
+                                                <span class="kt-option__label">
+                                                    <span class="kt-option__head">
+                                                        <span class="kt-option__title juiciotext">
+                                                          {{$key}} :				
+                                                        </span>                                                                												 
+                                                    </span>
+                                                    <div class="input-group">                                                  
+                                                      <input  class="form-control" type="text" id="" placeholder="Salario no Ingresado" value="{{$Info}}" readonly>
+                                                    </div>
+                                                </span>		
+                                              </label> 
+                                            </div>                                              
+                                          @endforeach                                                                                                                                                                                                                                        
                                         </div>
                                     </div>
-                                </div>
-                                  
-                                  
-
-
+                                </div>                                                                    
                                   <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
-
                                   <div class="form-group row form-group-marginless">
                                     <label class="col-lg-2 col-form-label juiciotext ">Pasivo Laboral :</label>
                                     <div class="col-lg-10">                                      
@@ -427,7 +412,7 @@
                                                 </span>
                                                 <div class="input-group">
                                                   <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                  <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$juicio3[0]->salarioMen}}" readonly>
+                                                  <input  class="form-control" type="text" id="salarioMen" placeholder="Salario no Ingresado" value="{{$juicio3[0]->salarioMen}}" readonly>
                                                 </div>
                                             </span>		
                                             </label> 
@@ -444,7 +429,7 @@
                                               </span>
                                               <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Quincenal']}}" readonly>
+                                                <input  class="form-control" type="text" id="Quincenal" placeholder="Salario no Ingresado" value="{{$sueldo['Quincenal']}}" readonly>
                                               </div>
                                           </span>		
                                           </label> 
@@ -460,19 +445,11 @@
                                             </span>
                                             <div class="input-group">
                                               <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                              <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Diario']}}" readonly>
+                                              <input  class="form-control" type="text" id="Diario" placeholder="Salario no Ingresado" value="{{$sueldo['Diario']}}" readonly>
                                             </div>
                                         </span>		
                                         </label> 
-                                    </div> 
-
-
-
-                                         
-
-                                                                                                                      
-                                            
-                                                                                                       
+                                    </div>                                                                  
                                         </div>
 
                                         <div class="row">
@@ -486,8 +463,8 @@
                                                     <div class="input-group-prepend"><span class="input-group-text" style="color: black">COCODI : $  {{$sueldo['cocodi']}}  </span></div>  		
                                                   </span>                                                                												 
                                                 </span>
-
                                               </div>
+                                              <hr width="100%" style="border-color: black">
                                                
                                                 <div class="input-group">
 
@@ -507,7 +484,7 @@
                                                         </span>
                                                         <div class="input-group">
                                                           <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                          <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Aginaldo']}}" readonly>
+                                                          <input  class="form-control" type="text" id="Aginaldo" placeholder="Salario no Ingresado" value="{{$sueldo['Aginaldo']}}" readonly>
                                                         </div>
                                                     </span>		
                                                     </label> 
@@ -522,7 +499,7 @@
                                                         </span>
                                                         <div class="input-group">
                                                           <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                          <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Vacaciones']}}" readonly>
+                                                          <input  class="form-control" type="text" id="Vacaciones" placeholder="Salario no Ingresado" value="{{$sueldo['Vacaciones']}}" readonly>
                                                         </div>
                                                     </span>		
                                                     </label> 
@@ -537,15 +514,31 @@
                                                         </span>
                                                         <div class="input-group">
                                                           <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                          <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Prima_Vacacional']}}" readonly>
+                                                          <input  class="form-control" type="text" id="Prima_Vacacional" placeholder="Salario no Ingresado" value="{{$sueldo['Prima_Vacacional']}}" readonly>
                                                         </div>
-                                                    </span>		
+                                                    </span>	                                                                                                        
                                                     </label> 
                                                   </div> 
+
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                      <label class="kt-checkbox kt-checkbox--single kt-checkbox--success">
+                                                        <input type="checkbox" id="horasextra">
+                                                        <span></span>
+                                                      </label>
+                                                    </span>
+                                                    <span class="input-group-text">Horas Extra</span>
+                                                  </div> 
+
+                                                 
+
+
+
+
                                                   
                                                 </div>
 
-                                                <div class="input-group">
+                                                <div class="input-group" id="indemnizacion">
                                                   <div class="col-lg-12">
                                                     <span class="kt-option__title juiciotext">
                                                       Indemnizacion	:
@@ -554,7 +547,7 @@
                                                   </div>
                                                   <div class="input-group">
                                                     <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Indemnizacion']}}" readonly>
+                                                    <input  class="form-control" type="text" id="Indemnizacion" placeholder="Salario no Ingresado" value="{{$sueldo['Indemnizacion']}}" readonly>
                                                   </div>
 
                                                 </div>
@@ -581,38 +574,25 @@
                                                     </span>
                                                   </div>
                                                   <div class="input-group">
-                                                    <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Salarios_Caidos']}}" readonly>
+                                                    <div class="input-group-prepend"><span class="input-group-text">Meses transcurridos desde la Separacion/ Fecha Actual </span></div>
+                                                    <input  class="form-control" type="text" id="Salarios_Caidos" placeholder="Salario no Ingresado" value={{$mesestranscurridosalcalidos}} readonly>
                                                   </div>
-
+                                                  <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text">Trimestres Transcurridos </span></div>
+                                                    <input  class="form-control" type="text" id="Salarios_Caidos" placeholder="Salario no Ingresado" value={{$trimestres}} readonly>
+                                                  </div>
+                                                  <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text">Salario por Trimestre $</span></div>
+                                                    <input  class="form-control" type="text" id="Salarios_Caidos" placeholder="Salario no Ingresado" value={{ $juicio3[0]->salarioMen*3}} readonly>
+                                                  </div>
                                                 </div>
-
-
                                             </span>		
                                             </label> 
                                           </div>                                          
                                         </div> 
-
                                     </div>
                                 </div>
-                                
-
-
-
-                                
-
-                                
-                                
-
-
-
-
-
-
                               </div> 
-
-
-
                               </div>
                             </div>
                           </div>
@@ -989,7 +969,7 @@
                                         </div>
                                         <div class="card-body">                                  
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->lau_fecha}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="lau_fecha" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->lau_fecha}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1001,7 +981,7 @@
                                         </div>
                                         <div class="card-body">                                  
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->lau_sentido}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="lau_sentido" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->lau_sentido}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1014,7 +994,7 @@
                                         </div>
                                         <div class="card-body">                                  
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->basificacion}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="basificacion" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->basificacion}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1028,7 +1008,7 @@
                                         </div>
                                         <div class="card-body">                                  
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->reinstalacion}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="reinstalacion" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->reinstalacion}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1040,7 +1020,7 @@
                                         </div>
                                         <div class="card-body">                                 
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->indemnizacion}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="indemnizacion" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->indemnizacion}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1075,7 +1055,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->f_notificacion_laudo}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="f_notificacion_laudo" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->f_notificacion_laudo}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1106,7 +1086,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->parte}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="parte" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->parte}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1118,7 +1098,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->dir_indir}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="dir_indir" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->dir_indir}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1131,7 +1111,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->ad_dt}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="ad_dt" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->ad_dt}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1144,7 +1124,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->conceptode}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="conceptode" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->conceptode}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1157,7 +1137,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->aud_const2}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="aud_const2" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->aud_const2}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1170,7 +1150,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fecha_sentencia}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="fecha_sentencia" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fecha_sentencia}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1182,7 +1162,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->sentido_sentencia}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="sentido_sentencia" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->sentido_sentencia}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1195,7 +1175,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->recurso_amparo}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="recurso_amparo" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->recurso_amparo}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1208,7 +1188,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->parte_adherente}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="parte_adherente" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->parte_adherente}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1220,7 +1200,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->sentido_ad}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="sentido_ad" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->sentido_ad}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1233,7 +1213,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fecha_ad}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="fecha_ad" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fecha_ad}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1263,7 +1243,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fechacumpreinstalacion}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="fechacumpreinstalacion" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fechacumpreinstalacion}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1275,7 +1255,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->notf2}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="notf2" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->notf2}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1287,7 +1267,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->r_h}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="r_h" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->r_h}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1299,7 +1279,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->vence}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="vence" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->vence}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1311,7 +1291,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->sentido}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="sentido" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->sentido}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1323,7 +1303,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->solicitadoarh}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="solicitadoarh" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->solicitadoarh}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1335,7 +1315,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->cantidad}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="cantidad" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->cantidad}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1347,7 +1327,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->folio}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="folio" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->folio}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1359,7 +1339,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->nodeintento}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="nodeintento" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->nodeintento}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1371,7 +1351,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fechaproxima}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="fechaproxima" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->fechaproxima}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1383,7 +1363,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->cumplimiento}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="cumplimiento" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->cumplimiento}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1414,7 +1394,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->mesdegobconclusion}}" readonly >                                      
+                                            <input  class="form-control" type="text" id="mesdegobconclusion" placeholder="Sin Dato por el Momento" value="{{$juicio3[0]->mesdegobconclusion}}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1427,7 +1407,7 @@
                                         </div>
                                         <div class="card-body">                               
                                           <p class="card-text">                                     
-                                            <input  class="form-control" type="text" id="abogados_asignados" placeholder="Sin Dato por el Momento" value="{{ $juicio3[0]->fecha_conclusion }}" readonly >                                      
+                                            <input  class="form-control" type="text" id="fecha_conclusion" placeholder="Sin Dato por el Momento" value="{{ $juicio3[0]->fecha_conclusion }}" readonly >                                      
                                           </p>                                    
                                         </div>
                                       </div>
@@ -1500,6 +1480,8 @@
     @else
     Sin archivo para descarga Laudo
     @endisset
+
+
     
           </div>          
       </div>

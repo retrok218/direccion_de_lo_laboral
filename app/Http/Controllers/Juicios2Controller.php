@@ -380,9 +380,11 @@ class Juicios2Controller extends Controller
             $sueldo['Vacaciones']=0;
             $sueldo['Prima_Vacacional']= 0;
             $sueldo['Prestaciones_legales'] =0;
-            $sueldo['Salarios_Caidos']=0;
+          //  $sueldo['Salarios_Caidos']=0;
             $informacionauto["Años Transcurridos Relacion Laboral"]="Sin Fecha";
+            $informacionauto["Meses Transcurridos Relacion Laboral"]="Sin Fecha";
             $informacionauto["Dias Transcurridos Relacion Laboral"]="Sin Fecha";
+            
             
             if ($accion_de_juicio == 'Indemnización') {
                 $sueldo['cocodi'] = 0;
@@ -397,7 +399,9 @@ class Juicios2Controller extends Controller
          } else {
             
             $añostrancurridos = $iniciolab->diffInYears($finrellab);
-            $diastranscurridos = $iniciolab->diffInDays($finrellab);            
+            $mesestranscurridos = $iniciolab->diffInMonths($finrellab);
+            $diastranscurridos = $iniciolab->diffInDays($finrellab);         
+            $mesestranscurridosalcalidos =  $finrellab->diffInMonths($fechaactul);
             $sueldo['Indemnizacion'] = $juicio3[0]->salarioMen*3+$sueldo['Diario']*20;
             $sueldo['Indemnizaciones'] = $juicio3[0]->salarioMen*3 +(20*$añostrancurridos)*$sueldo['Diario'];
             $sueldo['aginaldoanual'] = 40 * $sueldo['Diario'];           
@@ -405,23 +409,32 @@ class Juicios2Controller extends Controller
             $sueldo['Vacaciones']=$sueldo['Diario']*20;
             $sueldo['Prima_Vacacional']=  $sueldo['Vacaciones']*0.30;
             $sueldo['Prestaciones_legales'] = $sueldo['Aginaldo']+$sueldo['Vacaciones']+$sueldo['Prima_Vacacional'];
-            $sueldo['Salarios_Caidos']= $diastranscurridos*$sueldo['Diario'];
+           //$sueldo['Salarios_Caidos']= $diastranscurridos*$sueldo['Diario'];
             $informacionauto["Años Transcurridos Relacion Laboral"]=  $añostrancurridos;
+            $informacionauto["Meses Transcurridos Relacion Laboral"]= $mesestranscurridos;
             $informacionauto["Dias Transcurridos Relacion Laboral"]=  $diastranscurridos;
+           
             $sueldo['sumaprestacioneslegales'] =  $sueldo['Aginaldo']+$sueldo['Vacaciones']+ $sueldo['Prima_Vacacional'];
 
             if ($accion_de_juicio == 'Indemnización') {
                 $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Prestaciones_legales'];
-             }elseif($accion_de_juicio == 'Reinstalación') {
-                $sueldo['cocodi']= $sueldo['Salarios_Caidos'] +$sueldo['Prestaciones_legales'];
-             }elseif($accion_de_juicio == 'Otros (prestaciones legales)') {
+             } //elseif($accion_de_juicio == 'Reinstalación') {
+            //     $sueldo['cocodi']= $sueldo['Salarios_Caidos'] +$sueldo['Prestaciones_legales'];
+            //  }
+            elseif($accion_de_juicio == 'Otros (prestaciones legales)') {
                 $sueldo['cocodi']=$sueldo['Prestaciones_legales'];             
              }else {
                 // $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
                 $sueldo['cocodi']= 1;
              }
-         }                                 
-    
+         }                  
+         //se requiere saber cuantos trimestres son desde la fecha de separacion hasta la fecha actual         
+        $trimestres = floor($mesestranscurridosalcalidos/3);
+        $salarioportrimestre = $juicio3[0]->salarioMen*3;
+        
+        
+         //dd($mesestranscurridosalcalidos,$trimestres,$salarioportrimestre);
+         //dd($sueldo,$accion_de_juicio,$añostrancurridos,$mesestranscurridos,$diastranscurridos);
         return view('juicios.modals.desgloce_juicio_vista')
          ->with(['juicio3'=>$juicio3,
          'nombreabogados'=>$nombreabogados,
@@ -431,6 +444,8 @@ class Juicios2Controller extends Controller
           "horfatantes" => $horfatantes,
           "informacionauto"=> $informacionauto,
           "minfaltantes"=>$minfaltantes,
+          "mesestranscurridosalcalidos"=>$mesestranscurridosalcalidos,
+          "trimestres"=>$trimestres,
           "sueldo" =>$sueldo]);
     }
 
