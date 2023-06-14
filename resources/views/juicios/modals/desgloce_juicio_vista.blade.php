@@ -457,13 +457,15 @@
                                           <div class="col-lg-12">
                                             <label class="kt-option">                                                                
                                             <span class="kt-option__label">
-                                              <div class="col-lg-12">
+
+                                              <div class="col-lg-12" id="cocodi">
                                                 <span class="kt-option__head">
                                                   <span class="kt-option__title juiciotext">
                                                     <div class="input-group-prepend"><span class="input-group-text" style="color: black">COCODI : $  {{$sueldo['cocodi']}}  </span></div>  		
                                                   </span>                                                                												 
                                                 </span>
                                               </div>
+
                                               <hr width="100%" style="border-color: black">
                                                
                                                 <div class="input-group">
@@ -519,30 +521,34 @@
                                                     </span>	                                                                                                        
                                                     </label> 
                                                   </div> 
-
                                                   <div class="input-group-prepend">
-                                                    <span class="input-group-text">
+                                                    <span class="input-group-text">                                                      
                                                       <label class="kt-checkbox kt-checkbox--single kt-checkbox--success">
                                                         <input type="checkbox" id="horasextra">
-                                                        <span></span>
-                                                      </label>
+                                                        <span> </span>
+                                                      </label>                                                     
                                                     </span>
-                                                    <span class="input-group-text">Horas Extra</span>
+                                                    <span class="input-group-text">
+                                                      <input type="text" placeholder="Ingresa Las Horas Extra">
+                                                    </span>
                                                   </div> 
-
-                                                 
-
-
-
-
-                                                  
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">                                                      
+                                                      <label class="kt-checkbox kt-checkbox--single kt-checkbox--success">
+                                                        <input type="checkbox" id="horasextra">
+                                                        <span> </span>
+                                                      </label>                                                     
+                                                    </span>
+                                                    <span class="input-group-text">
+                                                      <input type="text" placeholder="Otras Prestaciones" id="">
+                                                    </span>
+                                                  </div>                                                                                                   
                                                 </div>
 
                                                 <div class="input-group" id="indemnizacion">
                                                   <div class="col-lg-12">
                                                     <span class="kt-option__title juiciotext">
                                                       Indemnizacion	:
-
                                                     </span>
                                                   </div>
                                                   <div class="input-group">
@@ -570,7 +576,6 @@
                                                   <div class="col-lg-12" >
                                                     <span class="kt-option__title juiciotext">
                                                       Reinstalacion	/ Salarios Caidos	:
-
                                                     </span>
                                                   </div>
                                                   <div class="input-group">
@@ -586,6 +591,27 @@
                                                     <input  class="form-control" type="text" id="Salarios_Caidos" placeholder="Salario no Ingresado" value={{ $juicio3[0]->salarioMen*3}} readonly>
                                                   </div>
                                                 </div>
+
+                                                <div class="row">
+                                                  <div class="col-lg-12" >
+                                                    <div class="input-group-prepend"><span class="input-group-text">Trimestres :</span></div>
+                                                    <div class="kt-checkbox-inline">
+                                                    
+                                                      @php
+                                                      $saltrime = $juicio3[0]->salarioMen*3;
+                                                      $contador = 1 ;
+                                                          while ($contador <= $trimestres) {
+                                                            echo "<label class='kt-checkbox'>";
+                                                            echo "<input type='checkbox' name='saltrime' value =  $saltrime >";
+                                                            echo "<span id ='contador'>$contador</span>";                                                            
+                                                            echo "</label>";
+                                                            $contador++;
+                                                          }                                                      
+                                                      @endphp
+                                                  </div>
+                                                 </div>
+                                                </div>                                                
+
                                             </span>		
                                             </label> 
                                           </div>                                          

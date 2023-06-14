@@ -268,10 +268,29 @@ function mostrar_modal_juicio(data,accion) {
                  document.querySelector('#salarioscaidos').classList.add('oculto');
                 }else if (accion === "Reinstalación"){
                     document.querySelector('#indemnizacion').classList.add('oculto');
+
+                    let checkboxes = $("input[type=checkbox][name=saltrime]")
+                    let enabledSettings = [];
+                            // Attach a change event handler to the checkboxes.
+                            checkboxes.change(function() {
+                            enabledSettings = checkboxes
+                                .filter(":checked") // Filter out unchecked boxes.
+                                .map(function() { // Extract values using jQuery map.
+                                return this.value;
+                                }) 
+                                .get() // Get array.
+                                
+                            console.log(enabledSettings);
+                            });
+
+
+
+
                }    
                else{
                 document.querySelector('#indemnizacion').classList.add('oculto');
                 document.querySelector('#salarioscaidos').classList.add('oculto');
+                document.querySelector('#cocodi').classList.add('oculto');
                }   
                    
                
