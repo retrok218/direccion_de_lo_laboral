@@ -146,7 +146,6 @@ table = $('#juiciotabla').DataTable({
         let actual_fecha = moment(); 
         let f = moment(data.actor[0].audiencia);            
         let diferenciafehas =f.diff(actual_fecha,'days');
-
         if (diferenciafehas > 1) {
             // verde si faltan mas de 2 dias            
             $(row).find('td').css('color', 'rgb(60, 53, 53)');            
@@ -163,13 +162,9 @@ table = $('#juiciotabla').DataTable({
             $(row).find('td').css('background-color', 'rgb(139 135 135 / 31%)');
             $(row).find('td').css('color', 'rgb(60, 53, 53)');
         }
-    },
-    
-    columns:[
-
-        
-        { "mRender": function(data, type, row){            
-
+    },    
+    columns:[        
+        { "mRender": function(data, type, row){                      
             let actual_fecha = moment(); 
             let f = moment(row.actor[0].audiencia);  
             let fproxima = moment(row.fechaproxima);           
@@ -185,8 +180,7 @@ table = $('#juiciotabla').DataTable({
                 estatusRegla = '<i class="fa fa-calendar-times fa-xl" style="color: #484747; margin: 0px 0px 0px 35%;"></i>';
             }                         
             return estatusRegla;
-        }},
-               
+        }},               
         {"mRender": function(data, type, row){
             var ligajuicio=row.id_juicio;   
             var accionj=row.accion;                        
@@ -195,10 +189,8 @@ table = $('#juiciotabla').DataTable({
         {data:'noti_demanda', name:'noti_demanda'},
         {data:'etapa',name:'etapa'},        
         {data:'expediente',name:'expediente'},
-        {data:'reinstalacion',name:'reinstalacion'},
-        {data:'indemnizacion', name:'indemnizacion'},
-        
-        
+        {data:'accion',name:'accion'},
+        {data:'indemnizacion', name:'indemnizacion'},                
         {"mRender":function(data,type,row){
             let actual_fecha = moment(); 
             let f = moment(row.fechaproxima);            
@@ -213,34 +205,22 @@ table = $('#juiciotabla').DataTable({
                 fechaproximaalert = 'Sin Fecha';
                }            
                 return fechaproximaalert
-               console.log(fechaproximaalert)
-
-          
-        }},
-       
-
+                       
+        }},       
         { 
             "mRender": function(data, type, row){
               var editUrl = url+"editar/" + row.id_juicio;
               var deleteUrl =url+"eliminar/" + row.id_juicio;              
-              var ligajuicio=row.id_juicio;
-                                        
-              return `              
-              <button value="Actualizar" title="Actualizar" class="btn  btn-edit" onclick="editarJuicio(${ligajuicio})"><i class="fa fa-pencil"></i></button>
-              `
+              var ligajuicio=row.id_juicio;                                        
+              return `<button value="Actualizar" title="Actualizar" class="btn  btn-edit" onclick="editarJuicio(${ligajuicio})"><i class="fa fa-pencil"></i></button>`
             }
-          }
-        
-
-
+          }        
     ],
-
-
     });
 });
 
-function mostrar_modal_juicio(data,accion) {
-    
+//modal desgloce de juicio 
+function mostrar_modal_juicio(data,accion) {    
     let segment =location.href.split('/');
     $.ajax({
         headers: {
@@ -259,16 +239,47 @@ function mostrar_modal_juicio(data,accion) {
                 document.querySelector('#docn').innerText = archivo.files[0].name;
                 document.querySelector('#docn').classList.remove('textanime')
                 document.querySelector('#docn').classList.add('textanime')
-               
-                            
+                                           
              });
-            //ocultamos el elemento reinstalacion ya que cuando la accion es indemnizacion no se requiere mostrar salariois caidos reinstalacion
-           console.log(accion);
+             let valor = document.getElementById('prestaciones_legales').innerHTML.replace(/,/g, ""); 
+
+                let checkbox = document.getElementById('horasextracheck');
+                checkbox.addEventListener('change', () => {
+                    let estaactiva = checkbox.checked;
+                    const horasExtraInput = document.getElementById('horas_extra');
+                    if (estaactiva) {
+                        horasExtraInput.disabled = false;
+                    }else{
+                        horasExtraInput.disabled = true;
+                        let prestaciones_1 = document.getElementById('prestaciones_legales');
+                        prestaciones_1.innerHTML =valor;
+                    }
+                });
+
+             let hrasextra = $('#horas_extra')[0];
+                                      
+             // se crea un escuchador para el input de horas extra al ingresar un numero se suma a la cantidad 
+             hrasextra.addEventListener('change', () =>{
+               let prestaciones_1 = document.getElementById('prestaciones_legales');              
+               let prestaciones_2 = document.getElementById('horas_extra').value;  
+               let caracteres = /^[0-9.]+$/;  
+                if (prestaciones_2 === "" || !caracteres.test(prestaciones_2))   {
+                    prestaciones_1.innerHTML = "Por favor ingresa un valor válido";
+                    document.querySelector('#prestaciones_legales').classList.add('fa-beat-fade')
+                }else{
+                    let res = (parseFloat(prestaciones_2)+parseFloat(valor));
+                    prestaciones_1.innerHTML =res.toFixed(2);
+                    document.querySelector('#prestaciones_legales').classList.remove('fa-beat-fade')
+                }                                            
+             })
+
+
+            //ocultamos el elemento reinstalacion ya que cuando la accion es indemnizacion no se requiere mostrar salariois caidos reinstalacion           
              if (accion === "Indemnización") {                 
                  document.querySelector('#salarioscaidos').classList.add('oculto');
                 }else if (accion === "Reinstalación"){
                     document.querySelector('#indemnizacion').classList.add('oculto');
-
+                    document.querySelector('#trimestres').classList.remove('oculto')
                     let checkboxes = $("input[type=checkbox][name=saltrime]")
                     let enabledSettings = [];
                             // Attach a change event handler to the checkboxes.
@@ -279,13 +290,8 @@ function mostrar_modal_juicio(data,accion) {
                                 return this.value;
                                 }) 
                                 .get() // Get array.
-                                
-                            console.log(enabledSettings);
+                                                            
                             });
-
-
-
-
                }    
                else{
                 document.querySelector('#indemnizacion').classList.add('oculto');
@@ -330,7 +336,7 @@ function editarJuicio(data,ads) {
 
 
 function update_actualiza_datos_generales(id,formname){
-     console.log(formname);
+     
     let formData = new FormData($('#'+formname).get(0));       
     formData.append('_method','PUT');    
     $.ajax({

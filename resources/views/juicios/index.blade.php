@@ -30,7 +30,7 @@
             <th>Notificacion</th>
             <th>Etapa</th>            
             <th>Expediente</th>
-            <th>Reinstalacion</th>
+            <th>Accion</th>
             <th>Indemnizacion</th>                        
             <th>Ejecucion/Dias restantes Para Requerimiento Fecha Proxima</th>
             

@@ -309,10 +309,8 @@ class Juicios2Controller extends Controller
         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
         ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
         ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')
-        ->get();
-        
+        ->get();        
         return Datatables::of($juicio_actor)->toJson();
-
     }
 
     public function desglocejuicio(Request $request, $id){
