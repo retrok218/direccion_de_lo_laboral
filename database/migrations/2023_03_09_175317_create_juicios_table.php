@@ -28,6 +28,7 @@ class CreateJuiciosTable extends Migration
             $table->string('archivo',150 )->nullable();
             $table->string('archivo1',150 )->nullable();
             $table->string('archivo2',150 )->nullable();
+            $table->integer('cocodi_suma')->nullable();
             $table->timestamps();
 
 

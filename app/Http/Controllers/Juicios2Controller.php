@@ -368,7 +368,7 @@ class Juicios2Controller extends Controller
          $dif_monts_finrellab_actual = $finrelacionlaboral->diffInMonths($fechaactul); 
          $dif_years_finrellab_actual = $finrelacionlaboral->diffInYears($fechaactul); 
 
-
+//if para validar si no existe o es nula
          if ($juicio3[0]->inicio_rellab == null ||  $juicio3[0]->terminacion_rellab == null) {
             $añostrancurridos = "Sin Fecha para Calcular Diferecia";
             $diastranscurridos= "Sin Fecha para Calcular Diferecia";
@@ -382,8 +382,7 @@ class Juicios2Controller extends Controller
             $informacionauto["Años Transcurridos Relacion Laboral"]="Sin Fecha";
             $informacionauto["Meses Transcurridos Relacion Laboral"]="Sin Fecha";
             $informacionauto["Dias Transcurridos Relacion Laboral"]="Sin Fecha";
-            
-            
+
             if ($accion_de_juicio == 'Indemnización') {
                 $sueldo['cocodi'] = 0;
              }elseif($accion_de_juicio == 'Reinstalación') {
@@ -391,11 +390,10 @@ class Juicios2Controller extends Controller
              }elseif($accion_de_juicio == 'Otros (prestaciones legales)') {
                 $sueldo['cocodi']=0;             
              }else {
-                // $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
+                 $sueldo['cocodi'] = $sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
                 $sueldo['cocodi']= 1;
              }
-         } else {
-            
+         } else {            
             $añostrancurridos = $iniciolab->diffInYears($finrellab);
             $mesestranscurridos = $iniciolab->diffInMonths($finrellab);
             $diastranscurridos = $iniciolab->diffInDays($finrellab);         
@@ -407,32 +405,27 @@ class Juicios2Controller extends Controller
             $sueldo['Vacaciones']=$sueldo['Diario']*20;
             $sueldo['Prima_Vacacional']=  $sueldo['Vacaciones']*0.30;
             $sueldo['Prestaciones_legales'] = $sueldo['Aginaldo']+$sueldo['Vacaciones']+$sueldo['Prima_Vacacional'];
-           //$sueldo['Salarios_Caidos']= $diastranscurridos*$sueldo['Diario'];
+           // $sueldo['Salarios_Caidos']= $diastranscurridos*$sueldo['Diario'];
             $informacionauto["Años Transcurridos Relacion Laboral"]=  $añostrancurridos;
             $informacionauto["Meses Transcurridos Relacion Laboral"]= $mesestranscurridos;
-            $informacionauto["Dias Transcurridos Relacion Laboral"]=  $diastranscurridos;
-           
+            $informacionauto["Dias Transcurridos Relacion Laboral"]=  $diastranscurridos;           
             $sueldo['sumaprestacioneslegales'] =  $sueldo['Aginaldo']+$sueldo['Vacaciones']+ $sueldo['Prima_Vacacional'];
-
-            if ($accion_de_juicio == 'Indemnización') {
+            if ($accion_de_juicio == 'Indemnización'){
                 $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Prestaciones_legales'];
-             } //elseif($accion_de_juicio == 'Reinstalación') {
-            //     $sueldo['cocodi']= $sueldo['Salarios_Caidos'] +$sueldo['Prestaciones_legales'];
-            //  }
-            elseif($accion_de_juicio == 'Otros (prestaciones legales)') {
-                $sueldo['cocodi']=$sueldo['Prestaciones_legales'];             
-             }else {
-                // $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
-                $sueldo['cocodi']= 1;
-             }
+                }elseif($accion_de_juicio == 'Reinstalación'){
+                    $sueldo['cocodi']= 0 +$sueldo['Prestaciones_legales'];
+                }elseif($accion_de_juicio == 'Otros (prestaciones legales)'){
+                    $sueldo['cocodi']=$sueldo['Prestaciones_legales'];             
+                }else{
+                    $sueldo['cocodi'] =$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
+                }
          }                  
          //se requiere saber cuantos trimestres son desde la fecha de separacion hasta la fecha actual         
         $trimestres = floor($mesestranscurridosalcalidos/3);
-        $salarioportrimestre = $juicio3[0]->salarioMen*3;
-        
-        
-         //dd($mesestranscurridosalcalidos,$trimestres,$salarioportrimestre);
-         //dd($sueldo,$accion_de_juicio,$añostrancurridos,$mesestranscurridos,$diastranscurridos);
+        $salarioportrimestre = $juicio3[0]->salarioMen*3;       
+
+        //dd($sueldo['cocodi']);
+
         return view('juicios.modals.desgloce_juicio_vista')
          ->with(['juicio3'=>$juicio3,
          'nombreabogados'=>$nombreabogados,
@@ -504,7 +497,7 @@ class Juicios2Controller extends Controller
                   }                                 
         } 
         catch (\Exception $e) {
-            $response = ['success' => false, 'message' => 'Error al guardar la regla.'];
+            $response = ['success' => false, 'message' => 'Error al guardar.'];
         }
     }           
     public function dowload_juicio($name){

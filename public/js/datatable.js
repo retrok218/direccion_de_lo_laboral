@@ -256,27 +256,49 @@ function mostrar_modal_juicio(data,accion) {
                     }
                 });
 
-             let hrasextra = $('#horas_extra')[0];
-                                      
+             let hrasextra = $('#horas_extra')[0];             
+             let caracteres = /^[0-9.]+$/;   
+             let prestaciones_1 = document.getElementById('prestaciones_legales');
+             let coco = document.getElementById('cocodi_value');  
+             let coco_value = document.getElementById('cocodi_value').textContent;    
+             let indemnizacion_value = document.getElementById('indemnizacion_value').value;
              // se crea un escuchador para el input de horas extra al ingresar un numero se suma a la cantidad 
              hrasextra.addEventListener('change', () =>{
-               let prestaciones_1 = document.getElementById('prestaciones_legales');              
-               let prestaciones_2 = document.getElementById('horas_extra').value;  
-               let caracteres = /^[0-9.]+$/;  
+                            
+               let prestaciones_2 = document.getElementById('horas_extra').value;                 
                 if (prestaciones_2 === "" || !caracteres.test(prestaciones_2))   {
                     prestaciones_1.innerHTML = "Por favor ingresa un valor válido";
                     document.querySelector('#prestaciones_legales').classList.add('fa-beat-fade')
                 }else{
+                    
                     let res = (parseFloat(prestaciones_2)+parseFloat(valor));
                     prestaciones_1.innerHTML =res.toFixed(2);
+                    if (accion === "Reinstalación") {
+                        
+
+                        let suma_coco2 = (parseFloat(res)+parseFloat(coco_value) );
+                        console.log(suma_coco2);
+
+                        
+                    }else if (accion === "Indemnización"){
+                        let suma_coco = (parseFloat(res)+parseFloat(indemnizacion_value));
+                       
+                        coco.innerHTML = suma_coco.toFixed(2) ;
+                    }
+                   
                     document.querySelector('#prestaciones_legales').classList.remove('fa-beat-fade')
+                  console.log(accion);
                 }                                            
              })
+
+             
+
+
 
 
             //ocultamos el elemento reinstalacion ya que cuando la accion es indemnizacion no se requiere mostrar salariois caidos reinstalacion           
              if (accion === "Indemnización") {                 
-                 document.querySelector('#salarioscaidos').classList.add('oculto');
+                    document.querySelector('#salarioscaidos').classList.add('oculto');
                 }else if (accion === "Reinstalación"){
                     document.querySelector('#indemnizacion').classList.add('oculto');
                     document.querySelector('#trimestres').classList.remove('oculto')
@@ -289,8 +311,7 @@ function mostrar_modal_juicio(data,accion) {
                                 .map(function() { // Extract values using jQuery map.
                                 return this.value;
                                 }) 
-                                .get() // Get array.
-                                                            
+                                .get()                            
                             });
                }    
                else{
