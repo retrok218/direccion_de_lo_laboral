@@ -596,32 +596,64 @@
                                                     <input  class="form-control" type="text" id="Salarios_Caidos" placeholder="Salario no Ingresado" value={{ $juicio3[0]->salarioMen*3}} readonly>
                                                   </div>
                                                 </div>
-
+                                                
+                                                
                                                 <div class="row oculto"  id="trimestres">
                                                   <div class="col-lg-12" >
                                                     <div class="input-group-prepend"><span class="input-group-text">Trimestres :</span></div>
-                                                        <div class="kt-checkbox-inline">
+                                                        <div class="kt-checkbox-inline" id="chequeo">
                                                           
                                                             @php
                                                             $saltrime = $juicio3[0]->salarioMen*3;
                                                             $contador = 1 ;
                                                                 while ($contador <= $trimestres) {
-                                                                  echo "<label class='kt-checkbox' >";
-                                                                  echo "<input type='checkbox' name='saltrime' id=$saltrime value =$saltrime >";
+                                                                  echo "<label class='kt-checkbox' id='trimestre' >";
+                                                                  echo "<input type='checkbox' name='saltrime' id= tri$contador value=$saltrime >";
                                                                   echo "<span id ='contador'>$contador</span>";                                                            
                                                                   echo "</label>";
-                                                                  
-                                                                  
+                                                                                                                                    
                                                                   $contador++;
                                                                 }                                                      
                                                             @endphp
                                                         </div>
                                                     </div>
-                                                  </div>     
-                                                                                          
-
+                                                  </div>
+                                                  
                                             </span>		
+
+                                            
+
                                             </label> 
+
+                                            
+{{-- Ejemplo xxxxx --}}
+                                            {{-- <div class="dropdown dropdown-inline">
+                                              <a href="#" class="btn btn-light-primary btn-sm font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                      Trimestres 
+                                              </a>
+                                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="">
+                                                     
+                                                  <ul class="navi navi-hover">
+                                                    
+                                                    @php
+                                                       $saltrime = $juicio3[0]->salarioMen*3;
+                                                        $contador = 1 ;
+                                                        while ($contador <= $trimestres) {
+                                                        echo "<li class='navi-item'>";
+                                                        echo "<input type='checkbox' name='saltrime' id=$saltrime value =$saltrime >";
+                                                        echo "<span id ='contador'>$contador</span>";                                                            
+                                                        
+                                                        echo "</li >";                                      
+                                                        $contador++;
+                                                       }                                                      
+                                                      @endphp
+                  
+                                                      
+                                                  </ul>
+                                                  <!--end::Navigation-->
+                                                                  </div>
+                                                              </div> --}}
+
                                           </div>                                          
                                         </div> 
                                     </div>

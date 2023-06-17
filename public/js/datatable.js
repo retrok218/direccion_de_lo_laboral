@@ -263,33 +263,62 @@ function mostrar_modal_juicio(data,accion) {
              let coco_value = document.getElementById('cocodi_value').textContent;    
              let indemnizacion_value = document.getElementById('indemnizacion_value').value;
              // se crea un escuchador para el input de horas extra al ingresar un numero se suma a la cantidad 
-             hrasextra.addEventListener('change', () =>{
-                            
-               let prestaciones_2 = document.getElementById('horas_extra').value;                 
+             
+             hrasextra.addEventListener('change', () =>{                            
+               let prestaciones_2 = document.getElementById('horas_extra').value;
+               console.log(prestaciones_2  );
+               console.log(hrasextra);                 
                 if (prestaciones_2 === "" || !caracteres.test(prestaciones_2))   {
                     prestaciones_1.innerHTML = "Por favor ingresa un valor válido";
                     document.querySelector('#prestaciones_legales').classList.add('fa-beat-fade')
-                }else{
-                    
+                }else{                    
                     let res = (parseFloat(prestaciones_2)+parseFloat(valor));
                     prestaciones_1.innerHTML =res.toFixed(2);
-                    if (accion === "Reinstalación") {
-                        
 
+
+
+
+
+                    if (accion === "Reinstalación") {                        
                         let suma_coco2 = (parseFloat(res)+parseFloat(coco_value) );
-                        console.log(suma_coco2);
-
-                        
+                        coco.innerHTML = suma_coco2.toFixed(2) ;
+                        //console.log('rein');;
                     }else if (accion === "Indemnización"){
                         let suma_coco = (parseFloat(res)+parseFloat(indemnizacion_value));
                        
                         coco.innerHTML = suma_coco.toFixed(2) ;
-                    }
-                   
+                    }                   
                     document.querySelector('#prestaciones_legales').classList.remove('fa-beat-fade')
-                  console.log(accion);
+                 
                 }                                            
              })
+
+             let operacioncoco = coco_value
+            //  var labelElement = document.querySelector('#trimestre');
+             var checkboxes = document.querySelectorAll('input[name="saltrime"]');
+             checkboxes.forEach(
+                element => element.addEventListener('change' , () =>{
+                    if (element.checked) {
+                        operacioncoco =  parseFloat(operacioncoco)+ parseFloat(element.value) ;
+                        coco.innerHTML = operacioncoco.toFixed(2);
+                        console.log(operacioncoco );
+                    }else{
+                        operacioncoco = parseFloat(operacioncoco)- parseFloat(element.value);
+                        coco.innerHTML = operacioncoco.toFixed(2);
+                        console.log(operacioncoco);
+                    }
+                        
+                    
+                    
+
+                })    
+            );
+           
+                
+            
+
+            
+
 
              
 
@@ -319,6 +348,9 @@ function mostrar_modal_juicio(data,accion) {
                 document.querySelector('#salarioscaidos').classList.add('oculto');
                 document.querySelector('#cocodi').classList.add('oculto');
                }   
+
+
+
                    
                
             }).on('hidden.bs.modal', function() {
