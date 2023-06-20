@@ -241,7 +241,16 @@ function mostrar_modal_juicio(data,accion) {
                 document.querySelector('#docn').classList.add('textanime')
                                            
              });
-             let valor = document.getElementById('prestaciones_legales').innerHTML.replace(/,/g, ""); 
+
+// agregando mi js 
+             let hrasextra = $('#horas_extra')[0];             
+             let caracteres = /^[0-9.]+$/;   
+             let prestaciones_1 = document.getElementById('prestaciones_legales');
+             let coco = document.getElementById('cocodi_value');  
+             let coco_value = document.getElementById('cocodi_value').textContent;    
+             let indemnizacion_value = document.getElementById('indemnizacion_value').value;
+             let nsuma = document.getElementById('n_cocodi').textContent;             
+             let valor_prestaciones_legales= document.getElementById('prestaciones_legales').innerHTML.replace(/,/g, ""); 
 
                 let checkbox = document.getElementById('horasextracheck');
                 checkbox.addEventListener('change', () => {
@@ -252,60 +261,53 @@ function mostrar_modal_juicio(data,accion) {
                     }else{
                         horasExtraInput.disabled = true;
                         let prestaciones_1 = document.getElementById('prestaciones_legales');
-                        prestaciones_1.innerHTML =valor;
+                        prestaciones_1.innerHTML =valor_prestaciones_legales;
                     }
                 });
 
-             let hrasextra = $('#horas_extra')[0];             
-             let caracteres = /^[0-9.]+$/;   
-             let prestaciones_1 = document.getElementById('prestaciones_legales');
-             let coco = document.getElementById('cocodi_value');  
-             let coco_value = document.getElementById('cocodi_value').textContent;    
-             let indemnizacion_value = document.getElementById('indemnizacion_value').value;
+          
              // se crea un escuchador para el input de horas extra al ingresar un numero se suma a la cantidad 
              
-             hrasextra.addEventListener('change', () =>{                            
-               let prestaciones_2 = document.getElementById('horas_extra').value;
-               console.log(prestaciones_2  );
-               console.log(hrasextra);                 
+    hrasextra.addEventListener('change', () =>{                            
+               let prestaciones_2 = document.getElementById('horas_extra').value;                               
                 if (prestaciones_2 === "" || !caracteres.test(prestaciones_2))   {
-                    prestaciones_1.innerHTML = "Por favor ingresa un valor válido";
+                    prestaciones_1.innerHTML = "Por favor ingresa un valor_prestaciones_legales válido";
                     document.querySelector('#prestaciones_legales').classList.add('fa-beat-fade')
                 }else{                    
-                    let res = (parseFloat(prestaciones_2)+parseFloat(valor));
+                    let res = (parseFloat(prestaciones_2)+parseFloat(valor_prestaciones_legales));
                     prestaciones_1.innerHTML =res.toFixed(2);
-
-
-
-
-
-                    if (accion === "Reinstalación") {                        
-                        let suma_coco2 = (parseFloat(res)+parseFloat(coco_value) );
-                        coco.innerHTML = suma_coco2.toFixed(2) ;
-                        //console.log('rein');;
-                    }else if (accion === "Indemnización"){
-                        let suma_coco = (parseFloat(res)+parseFloat(indemnizacion_value));
-                       
-                        coco.innerHTML = suma_coco.toFixed(2) ;
-                    }                   
-                    document.querySelector('#prestaciones_legales').classList.remove('fa-beat-fade')
-                 
+                    // if (accion === "Reinstalación") {                        
+                    //     let suma_coco2 = (parseFloat(res)+parseFloat(coco_value) );
+                    //     coco.innerHTML = suma_coco2.toFixed(2) ;                       
+                    // }else if (accion === "Indemnización"){
+                    //     let suma_coco = (parseFloat(res)+parseFloat(indemnizacion_value));                       
+                    //     coco.innerHTML = suma_coco.toFixed(2) ;
+                    // }                   
+                    document.querySelector('#prestaciones_legales').classList.remove('fa-beat-fade')                 
                 }                                            
-             })
+    })
 
+
+    
              let operacioncoco = coco_value
             //  var labelElement = document.querySelector('#trimestre');
+            let sum_salarios_caidos = 0 ;
+            let res_salarios_caidos = document.getElementById('res_salarioscaidos');
+            let res_salarios_caidos_valor = document.getElementById('res_salarioscaidos').textContent;
+
              var checkboxes = document.querySelectorAll('input[name="saltrime"]');
              checkboxes.forEach(
                 element => element.addEventListener('change' , () =>{
                     if (element.checked) {
+
                         operacioncoco =  parseFloat(operacioncoco)+ parseFloat(element.value) ;
-                        coco.innerHTML = operacioncoco.toFixed(2);
-                        console.log(operacioncoco );
+                        sum_salarios_caidos = parseFloat(sum_salarios_caidos)+parseFloat(element.value)                        
+                        res_salarios_caidos.innerHTML = operacioncoco.toFixed(2);
+                        
                     }else{
                         operacioncoco = parseFloat(operacioncoco)- parseFloat(element.value);
-                        coco.innerHTML = operacioncoco.toFixed(2);
-                        console.log(operacioncoco);
+                        sum_salarios_caidos = parseFloat(sum_salarios_caidos)- parseFloat(element.value);                       
+                        res_salarios_caidos.innerHTML = operacioncoco.toFixed(2);                        
                     }
                         
                     
@@ -325,10 +327,21 @@ function mostrar_modal_juicio(data,accion) {
 
 
 
-            //ocultamos el elemento reinstalacion ya que cuando la accion es indemnizacion no se requiere mostrar salariois caidos reinstalacion           
-             if (accion === "Indemnización") {                 
+        //ocultamos el elemento reinstalacion ya que cuando la accion es indemnizacion no se requiere mostrar salariois caidos reinstalacion           
+        if (accion === "Indemnización") {                 
                     document.querySelector('#salarioscaidos').classList.add('oculto');
-                }else if (accion === "Reinstalación"){
+
+                    let empezar_cocodi= document.getElementById('empezar_cocodi');    
+                    empezar_cocodi.addEventListener('change',() =>{
+                        if (empezar_cocodi.checked) { //revisamos si el imput de cocodi nueva suma esta activado                    
+                         let res_new_cocodi =  parseFloat(document.getElementById('indemnizacion_value').value) + parseFloat(document.getElementById('prestaciones_legales').innerHTML.replace(/,/g, ""));
+                         n_cocodi.value = res_new_cocodi.toFixed(2);
+                         console.log(res_new_cocodi);                   
+                        }else{
+                            n_cocodi.value = 0;
+                        }   
+                    })
+            }else if (accion === "Reinstalación"){
                     document.querySelector('#indemnizacion').classList.add('oculto');
                     document.querySelector('#trimestres').classList.remove('oculto')
                     let checkboxes = $("input[type=checkbox][name=saltrime]")
@@ -342,12 +355,31 @@ function mostrar_modal_juicio(data,accion) {
                                 }) 
                                 .get()                            
                             });
+            //creadndo nueva suma para cocodi
+               let empezar_cocodi= document.getElementById('empezar_cocodi');    
+               empezar_cocodi.addEventListener('change',() =>{
+                   if (empezar_cocodi.checked) { //revisamos si el imput de cocodi nueva suma esta activado                    
+                    let res_new_cocodi =  parseFloat(document.getElementById('res_salarioscaidos').textContent) + parseFloat(document.getElementById('prestaciones_legales').innerHTML.replace(/,/g, ""));
+                    n_cocodi.value = res_new_cocodi.toFixed(2);
+                    console.log(res_new_cocodi);                   
+                   }else{
+                    n_cocodi.value = 0;
+                   }   
+               })
+
                }    
                else{
                 document.querySelector('#indemnizacion').classList.add('oculto');
                 document.querySelector('#salarioscaidos').classList.add('oculto');
                 document.querySelector('#cocodi').classList.add('oculto');
-               }   
+               }  
+
+
+
+              
+               
+               
+
 
 
 

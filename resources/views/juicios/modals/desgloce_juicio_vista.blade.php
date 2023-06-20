@@ -452,29 +452,46 @@
                                     </div>                                                                  
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row" >
                                           
-                                          <div class="col-lg-12">
+                                          <div class="col-lg-12" >
                                             <label class="kt-option">                                                                
                                             <span class="kt-option__label">
 
-                                              <div class="col-lg-12" id="cocodi">
+                                              
+
+                                              <div class="col-lg-3" id="cocodi">
                                                 <span class="kt-option__head">
-                                                  <span class="kt-option__title juiciotext">
+                                                   
+                                                  <span class="kt-option__title juiciotext">                                                    
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text" style="color: black" >
                                                         COCODI : $  
-                                                        <span id="cocodi_value">{{$sueldo['cocodi']}}</span>
+                                                        <span id="cocodi_value">{{$juicio3[0]->cocodi_suma}}</span>
                                                       </span>
                                                     </div>  		
                                                   </span>                                                                												 
                                                 </span>
                                               </div>
 
-                                              <hr width="100%" style="border-color: black">
-                                               
-                                                <div class="input-group">
+                                              <div class="input-group mb-3">
+                                                <div class="input-group-prepend">                                                  
+                                                  <div class="input-group-text">
+                                                    <input type="checkbox" aria-label="Checkbox for following text input"  id="empezar_cocodi">
+                                                  </div>
+                                                  <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" value="0" id="n_cocodi" readonly>
+                                                
+                                                <div class="input-group-append">
+                                                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Guardar y Actualizar Cocodi</button>
+                                                </div>
+                                              </div>
 
+                                              
+
+                                              <hr width="100%" style="border-color: black">                                               
+                                                <div class="input-group " >
                                                   <div class="col-lg-12">
                                                     <span class="kt-option__title juiciotext">
                                                       Prestaciones Legales:	$
@@ -482,8 +499,20 @@
                                                     </span>
                                                   </div>                                                                                                  
                                                   <div class="col-lg-4">
+
+                                                    
+
                                                     <label class="kt-option">                                                                
                                                     <span class="kt-option__label">
+
+                                                      <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <div class="input-group-text">
+                                                            <input type="checkbox" aria-label="Checkbox for following text input">
+                                                          </div>
+                                                        </div>                                                        
+                                                      </div>
+                                                      
                                                         <span class="kt-option__head">
                                                             <span class="kt-option__title juiciotext">
                                                               Aguinaldo:			
@@ -560,27 +589,11 @@
                                                     <div class="input-group-prepend"><span class="input-group-text">$</span></div>
                                                     <input  class="form-control" type="text" id="indemnizacion_value" placeholder="Salario no Ingresado" value="{{$sueldo['Indemnizacion']}}" readonly>
                                                   </div>
-
-                                                </div>
-
-                                                {{-- <div class="input-group">
-                                                  <div class="col-lg-12">
-                                                    <span class="kt-option__title juiciotext">
-                                                      Indemnizaciones		:
-
-                                                    </span>
-                                                  </div>
-                                                  <div class="input-group">
-                                                    <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                    <input  class="form-control" type="text" id="abogados_asignados" placeholder="Salario no Ingresado" value="{{$sueldo['Indemnizaciones']}}" readonly>
-                                                  </div>
-
-                                                </div> --}}
-
+                                                </div>                                           
                                                 <div class="input-group" id="salarioscaidos" >
                                                   <div class="col-lg-12" >
                                                     <span class="kt-option__title juiciotext">
-                                                      Reinstalacion	/ Salarios Caidos	:
+                                                      Reinstalacion	/ Salarios Caidos	: $ <span id="res_salarioscaidos">0</span>
                                                     </span>
                                                   </div>
                                                   <div class="input-group">
@@ -601,8 +614,7 @@
                                                 <div class="row oculto"  id="trimestres">
                                                   <div class="col-lg-12" >
                                                     <div class="input-group-prepend"><span class="input-group-text">Trimestres :</span></div>
-                                                        <div class="kt-checkbox-inline" id="chequeo">
-                                                          
+                                                        <div class="kt-checkbox-inline" id="chequeo">                                                          
                                                             @php
                                                             $saltrime = $juicio3[0]->salarioMen*3;
                                                             $contador = 1 ;
@@ -610,50 +622,15 @@
                                                                   echo "<label class='kt-checkbox' id='trimestre' >";
                                                                   echo "<input type='checkbox' name='saltrime' id= tri$contador value=$saltrime >";
                                                                   echo "<span id ='contador'>$contador</span>";                                                            
-                                                                  echo "</label>";
-                                                                                                                                    
+                                                                  echo "</label>";                                                                                                                                    
                                                                   $contador++;
                                                                 }                                                      
                                                             @endphp
-                                                        </div>
+                                               </div>
                                                     </div>
-                                                  </div>
-                                                  
-                                            </span>		
-
-                                            
-
+                                                  </div>                                                  
+                                            </span>		                                            
                                             </label> 
-
-                                            
-{{-- Ejemplo xxxxx --}}
-                                            {{-- <div class="dropdown dropdown-inline">
-                                              <a href="#" class="btn btn-light-primary btn-sm font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                      Trimestres 
-                                              </a>
-                                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="">
-                                                     
-                                                  <ul class="navi navi-hover">
-                                                    
-                                                    @php
-                                                       $saltrime = $juicio3[0]->salarioMen*3;
-                                                        $contador = 1 ;
-                                                        while ($contador <= $trimestres) {
-                                                        echo "<li class='navi-item'>";
-                                                        echo "<input type='checkbox' name='saltrime' id=$saltrime value =$saltrime >";
-                                                        echo "<span id ='contador'>$contador</span>";                                                            
-                                                        
-                                                        echo "</li >";                                      
-                                                        $contador++;
-                                                       }                                                      
-                                                      @endphp
-                  
-                                                      
-                                                  </ul>
-                                                  <!--end::Navigation-->
-                                                                  </div>
-                                                              </div> --}}
-
                                           </div>                                          
                                         </div> 
                                     </div>
@@ -1492,62 +1469,7 @@
 {{-- fin de formulario para mostrar datos--}}
           <hr class="separador">                
               @include('juicios.form_comentario')
-<hr class="separador">
-     
-    
-      <form action="{{url('/juicios_upload/'.$juicio3[0]->id_juicio)}}" method="POST" enctype="multipart/form-data">
-            @csrf 
-          <input type="file" id="archivo" class='fansi_file' name="archivo">
-          <label for="archivo" class="subirarchivos">
-            <span class='fansi_file_name'>
-              <span id="docn">  Ningun archivo Seleccionado</span>     
-            </span>
-            <span class='fansi_file_button'> <i class="fa fa-file-alt "></i> - Buscar Archivo</span>      
-          </label>
-          <div class="kt-section">
-            <div class="kt-section__info">Seleccione donde se guardara el PDF</div>
-            <div class="kt-section__content kt-section__content--solid">                          
-              <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="demandaupload"><i class="fa fa-upload"></i> Subir archivo Demanda</button>
-              <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="contratacionupload"><i class="fa fa-upload"></i> Subir archivo Contestacion</button>
-              <button type="submit" class="btn btn-outline-brand btn-elevate btn-pill" name="asubir" value="laudoupload"><i class="fa fa-upload"></i> Subir archivo Laudo</button>
-          </div>
-          </div>
-    </form>
-    
-    
-    <i class="fa fa-download"></i> <span>Demanda :</span>
-  @isset($juicio3[0]->archivo)                
-            <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo)}}"> {{$juicio3[0]->archivo}}</a>
-            <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo)}}" >
-              <i class="fa fa-times-circle"></i>
-            </a>  
-            @else
-            Sin archivo para descarga Demanda
-  @endisset
-  <br>
-    <i class="fa fa-download"></i> <span>Contestacion :</span>
-  @isset($juicio3[0]->archivo1)
-    <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo1)}}"> {{$juicio3[0]->archivo1}}</a> 
-    <a class="close_archivo"href="{{url('/juicio_delete_archivo/'.'archivo1'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo1)}}" >
-      <i class="fa fa-times-circle"></i>
-   </a>             
-  @else
-  
-  Sin archivo para descarga Contestacion
-  @endisset
-  <br>
-  
-  <i class="fa fa-download"></i> <span>Laudo :</span>
-    @isset($juicio3[0]->archivo2)
-      <a href="{{url('/juicio_dowload/'.$juicio3[0]->archivo2)}}"> {{$juicio3[0]->archivo2}}</a>
-      <a class="close_archivo" href="{{url('/juicio_delete_archivo/'.'archivo2'.'/'.$juicio3[0]->id_juicio.'/'.$juicio3[0]->archivo2)}}" value="archivo2" >       
-        <i class="fa fa-times-circle"></i>
-      </a>                
-    @else
-    Sin archivo para descarga Laudo
-    @endisset
-
-
+              @include('juicios.updateydowload_form')
     
           </div>          
       </div>
