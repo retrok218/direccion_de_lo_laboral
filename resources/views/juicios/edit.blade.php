@@ -37,6 +37,24 @@
                                             <form id="actualiza_datos_generales" name="actualiza_datos_generales">
 
                                                 <div class="card-deck">
+
+                                                    <div class="col-sm-4">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h6 class="card-title juiciotext juiciotext">Sala Seleccionada</h6>
+                                                                    
+
+                                                                <select class="custom-select" id="juicio_sala_seleccionada" name="juicio_sala_seleccionada" required>
+                                                                    <option selected disabled >Sala</option>        
+                                                                    @foreach($salas as $sala)
+                                                                        <option value="{{$sala->id_sala}}">{{$sala->nombre_sala}}</option>
+                                                                    @endforeach
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-sm-4">
                                                         <div class="card">
                                                             <div class="card-body">
@@ -281,19 +299,13 @@
 
                                         </div>
                                     </div>
-
                                     <div class="kt-form__actions">
                                         <button
                                             onclick="update_actualiza_datos_generales({{$juicio3[0]->id_juicio}},'actualiza_datos_generales');"
-                                            class="btn btn-success">Editar Juicio General</button>
-                                      
+                                            class="btn btn-success">Editar Juicio General</button>                                      
                                     </div>
-
                                 </div>
                             </div>
-
-
-
                             {{-- inicio car actor --}}
                             <div class="card">
                                 <div class="card-header" id="headingTwo">

@@ -302,12 +302,12 @@ function mostrar_modal_juicio(data,accion) {
 
                         operacioncoco =  parseFloat(operacioncoco)+ parseFloat(element.value) ;
                         sum_salarios_caidos = parseFloat(sum_salarios_caidos)+parseFloat(element.value)                        
-                        res_salarios_caidos.innerHTML = operacioncoco.toFixed(2);
+                        res_salarios_caidos.innerHTML = sum_salarios_caidos.toFixed(2);
                         
                     }else{
                         operacioncoco = parseFloat(operacioncoco)- parseFloat(element.value);
                         sum_salarios_caidos = parseFloat(sum_salarios_caidos)- parseFloat(element.value);                       
-                        res_salarios_caidos.innerHTML = operacioncoco.toFixed(2);                        
+                        res_salarios_caidos.innerHTML = sum_salarios_caidos.toFixed(2);                        
                     }
                         
                     

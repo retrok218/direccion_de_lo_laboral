@@ -51,7 +51,7 @@
               </div>            
           </div>                          
           <div class="modal-body" id="modal_content">
-              <form role="form" name="juiciodes" id="juiciodes" method="POST" action="javascript:void(0)">
+             
                   <div class="panel panel-primary">
                       <div class="panel-body">
                         {{--inicio del acordion juicios --}}
@@ -453,42 +453,40 @@
                                         </div>
 
                                         <div class="row" >
+
+                                          <div class="col-lg-12" id="cocodi">
+                                            <span class="kt-option__head">
+                                               
+                                              <span class="kt-option__title juiciotext">                                                    
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text" style="color: black" >
+                                                    COCODI : $  
+                                                    <span id="cocodi_value">{{$juicio3[0]->cocodi_suma}}</span>
+                                                  </span>
+                                                </div>  		
+                                              </span>                                                                												 
+                                            </span>
+                                          </div>
                                           
                                           <div class="col-lg-12" >
                                             <label class="kt-option">                                                                
-                                            <span class="kt-option__label">
-
-                                              
-
-                                              <div class="col-lg-3" id="cocodi">
-                                                <span class="kt-option__head">
-                                                   
-                                                  <span class="kt-option__title juiciotext">                                                    
-                                                    <div class="input-group-prepend">
-                                                      <span class="input-group-text" style="color: black" >
-                                                        COCODI : $  
-                                                        <span id="cocodi_value">{{$juicio3[0]->cocodi_suma}}</span>
-                                                      </span>
-                                                    </div>  		
-                                                  </span>                                                                												 
-                                                </span>
-                                              </div>
-
-                                              <div class="input-group mb-3">
-                                                <div class="input-group-prepend">                                                  
-                                                  <div class="input-group-text">
-                                                    <input type="checkbox" aria-label="Checkbox for following text input"  id="empezar_cocodi">
+                                            <span class="kt-option__label">                                                                                           
+                                              <form action="{{url('/juicios_coco/'.$juicio3[0]->id_juicio)}}" method="POST">  
+                                                @csrf                                                   
+                                                  <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">                                                  
+                                                      <div class="input-group-text">
+                                                        <input type="checkbox" aria-label="Checkbox for following text input"  id="empezar_cocodi" name="cheket_coco" >
+                                                      </div>
+                                                      <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input  name="cocodi_suma" value='0' type="text" class="form-control" aria-label="Text input with checkbox"  id="n_cocodi" >
+                                                    <div class="input-group-append">
+                                                      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Guardar y Actualizar Cocodi</button>
+                                                    </div>
                                                   </div>
-                                                  <span class="input-group-text">$</span>
-                                                </div>
-                                                <input type="text" class="form-control" aria-label="Text input with checkbox" value="0" id="n_cocodi" readonly>
-                                                
-                                                <div class="input-group-append">
-                                                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Guardar y Actualizar Cocodi</button>
-                                                </div>
-                                              </div>
-
-                                              
+                                              </form>
+                                                                                          
 
                                               <hr width="100%" style="border-color: black">                                               
                                                 <div class="input-group " >
@@ -505,13 +503,7 @@
                                                     <label class="kt-option">                                                                
                                                     <span class="kt-option__label">
 
-                                                      <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                          <div class="input-group-text">
-                                                            <input type="checkbox" aria-label="Checkbox for following text input">
-                                                          </div>
-                                                        </div>                                                        
-                                                      </div>
+                                                      
                                                       
                                                         <span class="kt-option__head">
                                                             <span class="kt-option__title juiciotext">
@@ -568,10 +560,8 @@
                                                         </label>                                                     
                                                       </span>
 
-                                                      <span class="input-group-text">
-                                                        
-                                                          Otras Prestaciones 	 
-                                                        $ &nbsp
+                                                      <span class="input-group-text">                                                        
+                                                          Otras Prestaciones :$ &nbsp
                                                         <input type="text" placeholder="Otras Prestaciones" id="horas_extra" value=0  min="0" disabled="disabled">
                                                       </span>
                                                     </div> 
@@ -608,31 +598,48 @@
                                                     <div class="input-group-prepend"><span class="input-group-text">Salario por Trimestre $</span></div>
                                                     <input  class="form-control" type="text" id="Salarios_Caidos" placeholder="Salario no Ingresado" value={{ $juicio3[0]->salarioMen*3}} readonly>
                                                   </div>
-                                                </div>
-                                                
-                                                
-                                                <div class="row oculto"  id="trimestres">
-                                                  <div class="col-lg-12" >
-                                                    <div class="input-group-prepend"><span class="input-group-text">Trimestres :</span></div>
-                                                        <div class="kt-checkbox-inline" id="chequeo">                                                          
-                                                            @php
-                                                            $saltrime = $juicio3[0]->salarioMen*3;
-                                                            $contador = 1 ;
-                                                                while ($contador <= $trimestres) {
-                                                                  echo "<label class='kt-checkbox' id='trimestre' >";
-                                                                  echo "<input type='checkbox' name='saltrime' id= tri$contador value=$saltrime >";
-                                                                  echo "<span id ='contador'>$contador</span>";                                                            
-                                                                  echo "</label>";                                                                                                                                    
-                                                                  $contador++;
-                                                                }                                                      
-                                                            @endphp
-                                               </div>
-                                                    </div>
-                                                  </div>                                                  
-                                            </span>		                                            
+                                                </div>                                                                                                                                                 
+                                            </span>	                                                                                                                                      
                                             </label> 
-                                          </div>                                          
+                                          </div>                                                                                     
                                         </div> 
+
+                                        <div class="row"> 
+                                          <div class="row oculto"  id="trimestres">
+                                            <div class="col-lg-12" >
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text">Trimestres :</span>
+                                              </div>
+                                                  <div class="kt-checkbox-inline" id="chequeo">                                                          
+                                                      @php
+                                                      $saltrime = $juicio3[0]->salarioMen*3;
+                                                      $contador = 1 ;
+                                                          while ($contador <= $trimestres) {
+                                                            echo "<label class='kt-checkbox' id='trimestre' >";
+                                                            echo "<input type='checkbox' name='saltrime' id= tri$contador value=$saltrime >";
+                                                            echo "<span id ='contador'>$contador</span>";                                                            
+                                                            echo "</label>";                                                                                                                                    
+                                                            $contador++;
+                                                          }                                                      
+                                                      @endphp
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     </div>
                                 </div>
                               </div> 
@@ -1465,7 +1472,7 @@
                         </div>                         
                       </div>
                   </div>                                   
-              </form>
+              
 {{-- fin de formulario para mostrar datos--}}
           <hr class="separador">                
               @include('juicios.form_comentario')

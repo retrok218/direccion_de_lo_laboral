@@ -191,6 +191,7 @@ class Juicios2Controller extends Controller
      */
     public function edit($id)
     {
+        
         $j=juicio::find($id);
         $nombreabogados = $j->obteniendonombresdearea($id); 
         // $juicio3 = Juicio::select('juicios.id_juicio', 'juicios.noti_demanda','juicios.presentacion_de_demanda','juicios.expediente','juicios.año_juicio','juicios.clasificacion_año','juicios.clasificacion_exp','juicios.tipo','juicios.accion','actores.nombre_completo','actores.adscripcion','actores.ur','actores.denominacion','actores.puesto','actores.nivel','actores.salarioMen','actores.inicio_rellab','actores.terminacion_rellab','actores.exp_personal_rh_solicitud','actores.exp_personal_rh_devolucion','actores.fojas','actores.exp_adscripcion_solicitud','actores.exp_adscripcion_devolucion','actores.audiencia','actores.descripcion','actores.cierredeinstruccion','juicios.comentario','laudo.lau_fecha' ) 
@@ -216,9 +217,8 @@ class Juicios2Controller extends Controller
             $horfatantes = Carbon::now()->diffInHours($fecha) %24 ;         
             $minfaltantes =  Carbon::now()->diffInMinutes($fecha) % 60; 
          }
-         
-
-         $añoactual = date('Y');
+        
+        $añoactual = date('Y');
         $abogados=abogado::all();
         $salas=salas::all(); 
 
@@ -229,7 +229,17 @@ class Juicios2Controller extends Controller
          };
       
          
-        return view('juicios.edit')->with(['juicio3'=>$juicio3, 'nombreabogados'=>$nombreabogados , 'fechaaudiencia'=>$fechaaudiencia, 'diasDiferencia' => $diasDiferencia , "diasrestantes"=>$diasrestantes, "horfatantes" => $horfatantes, "minfaltantes"=>$minfaltantes ,'añosseleccionables'=>$añosseleccionables]);
+        return view('juicios.edit')->with([
+            'juicio3'=>$juicio3,
+            'abogados'=>$abogados,
+            'salas'=>$salas,
+            'nombreabogados'=>$nombreabogados , 
+            'fechaaudiencia'=>$fechaaudiencia,
+            'diasDiferencia' => $diasDiferencia ,
+            'diasrestantes'=>$diasrestantes,
+            'horfatantes' => $horfatantes,
+            'minfaltantes'=>$minfaltantes ,
+            'añosseleccionables'=>$añosseleccionables]);
        
     }
 
@@ -424,7 +434,7 @@ class Juicios2Controller extends Controller
             // else{
             //     $sueldo['cocodi'] =$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
             //     }
-                
+
          }                  
          //se requiere saber cuantos trimestres son desde la fecha de separacion hasta la fecha actual         
         $trimestres = floor($mesestranscurridosalcalidos/3);
@@ -519,6 +529,14 @@ class Juicios2Controller extends Controller
             return response()->json(['error' => 'El archivo no existe.'], 404);        
         }
     
+        public function guardarcocodi(Request $request,$id,SessionManager $sessionManager){ 
+            $valorCoco =$request->only('cocodi_suma');            
+            Juicio::where('id_juicio','=',$id)->update($valorCoco);
+            $sessionManager->flash('mensaje', 'Cocodi Actualizado'); 
+                   
+            return redirect()->route('juicios.index');
+                                   
+        }
        
 
 
