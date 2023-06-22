@@ -480,7 +480,7 @@
                                                       </div>
                                                       <span class="input-group-text">$</span>
                                                     </div>
-                                                    <input  name="cocodi_suma" value='0' type="text" class="form-control" aria-label="Text input with checkbox"  id="n_cocodi" >
+                                                    <input  name="cocodi_suma" value='0' type="text" class="form-control" aria-label="Text input with checkbox"  id="n_cocodi" readonly >
                                                     <div class="input-group-append">
                                                       <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Guardar y Actualizar Cocodi</button>
                                                     </div>
