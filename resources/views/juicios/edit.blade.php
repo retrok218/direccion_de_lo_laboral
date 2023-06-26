@@ -44,10 +44,12 @@
                                                                 <h6 class="card-title juiciotext juiciotext">Sala Seleccionada</h6>
                                                                     
 
-                                                                <select class="custom-select" id="juicio_sala_seleccionada" name="juicio_sala_seleccionada" required>
+                                                                <select class="custom-select" id="juicio_sala_seleccionada" name="id_sala" >
                                                                     <option selected disabled >Sala</option>        
                                                                     @foreach($salas as $sala)
-                                                                        <option value="{{$sala->id_sala}}">{{$sala->nombre_sala}}</option>
+                                                                        <option value="{{$sala->id_sala}}" @if ($sala->id_sala == $juicio3[0]->id_sala)
+                                                                            selected                                                                                                                                                   
+                                                                        @endif >{{$sala->nombre_sala}} </option>                                                                        
                                                                     @endforeach
                                                                 </select>
 
@@ -55,7 +57,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-4">
+                                                    {{-- <div class="col-sm-4">
                                                         <div class="card">
                                                             <div class="card-body">
                                                                 <h6 class="card-title juiciotext juiciotext"> Abogados
@@ -68,7 +70,7 @@
                                                                 @endforeach
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="col-sm-4">
                                                         <div class="card">
                                                             <div class="card-header juiciotext ">
@@ -121,7 +123,7 @@
                                                                         @foreach ($añosseleccionables as $año)
                                                                             @if ($año == $juicio3[0]->año_juicio)
                                                                                 <option value="{{ $año }}"
-                                                                                    selected>{{ $año }}
+                                                                                    c>{{ $año }}
                                                                                 </option>
                                                                             @else
                                                                                 <option value="{{ $año }}">
@@ -151,7 +153,7 @@
                                                                             @else
                                                                                 <option value="{{ $año }}">
                                                                                     {{ $año }}</option>
-                                                                            @endif
+                                                                            @endif                                                                            
                                                                         @endforeach
                                                                     </select>
                                                                 </p>
