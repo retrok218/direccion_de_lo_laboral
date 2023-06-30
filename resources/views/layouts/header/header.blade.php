@@ -1,4 +1,14 @@
 <!-- begin:: Header -->
+<style>
+    button:focus {
+    outline: 0;
+}
+
+.navbar .dropdown-menu .form-control {
+    width: 200px;
+}
+</style>
+
 <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
     <!-- begin:: Header Menu -->
     <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i
@@ -8,8 +18,8 @@
 
             <div class="kt-aside__brand-logo">
                 <a href="{{ url('/') }}">
-                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/SEG.png')}}" width="45%"> <!--logo secretraira Administracion y fiannazas-->
-                    
+                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logo_gcdmx.png')}}" width="30%"> <!--logo secretraira Administracion y fiannazas-->
+                    <img alt="Logo" src="{{ URL::asset('assets/media/company-logos/logo_cdmx_saf.png')}}" width="25%"> <!--logo gobierno de la ciudad de mexico  -->
                 </a>
                 
             </div>
@@ -88,23 +98,106 @@
         </div> --}}
         <!--end: Search -->
         <!--begin: Notifications -->
-         <div class="kt-header__topbar-item dropdown">
+        {{-- <div class="kt-header__topbar-item dropdown">
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="30px,0px" aria-expanded="true">
-                <span class="kt-header__topbar-icon kt-pulse kt-pulse--brand" style="width: 100%;">
-                    <p>Ingresar</p>
-                </span>                
+                <span class="kt-header__topbar-icon kt-pulse kt-pulse--brand">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                        height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                            <path
+                                d="M2.56066017,10.6819805 L4.68198052,8.56066017 C5.26776695,7.97487373 6.21751442,7.97487373 6.80330086,8.56066017 L8.9246212,10.6819805 C9.51040764,11.267767 9.51040764,12.2175144 8.9246212,12.8033009 L6.80330086,14.9246212 C6.21751442,15.5104076 5.26776695,15.5104076 4.68198052,14.9246212 L2.56066017,12.8033009 C1.97487373,12.2175144 1.97487373,11.267767 2.56066017,10.6819805 Z M14.5606602,10.6819805 L16.6819805,8.56066017 C17.267767,7.97487373 18.2175144,7.97487373 18.8033009,8.56066017 L20.9246212,10.6819805 C21.5104076,11.267767 21.5104076,12.2175144 20.9246212,12.8033009 L18.8033009,14.9246212 C18.2175144,15.5104076 17.267767,15.5104076 16.6819805,14.9246212 L14.5606602,12.8033009 C13.9748737,12.2175144 13.9748737,11.267767 14.5606602,10.6819805 Z"
+                                id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                            <path
+                                d="M8.56066017,16.6819805 L10.6819805,14.5606602 C11.267767,13.9748737 12.2175144,13.9748737 12.8033009,14.5606602 L14.9246212,16.6819805 C15.5104076,17.267767 15.5104076,18.2175144 14.9246212,18.8033009 L12.8033009,20.9246212 C12.2175144,21.5104076 11.267767,21.5104076 10.6819805,20.9246212 L8.56066017,18.8033009 C7.97487373,18.2175144 7.97487373,17.267767 8.56066017,16.6819805 Z M8.56066017,4.68198052 L10.6819805,2.56066017 C11.267767,1.97487373 12.2175144,1.97487373 12.8033009,2.56066017 L14.9246212,4.68198052 C15.5104076,5.26776695 15.5104076,6.21751442 14.9246212,6.80330086 L12.8033009,8.9246212 C12.2175144,9.51040764 11.267767,9.51040764 10.6819805,8.9246212 L8.56066017,6.80330086 C7.97487373,6.21751442 7.97487373,5.26776695 8.56066017,4.68198052 Z"
+                                id="Combined-Shape" fill="#000000"></path>
+                        </g>
+                    </svg>
+                    <span class="kt-pulse__ring"></span>
+                </span>
+                <!--
+                           Use dot badge instead of animated pulse effect: 
+                           <span class="kt-badge kt-badge--dot kt-badge--notify kt-badge--sm kt-badge--brand"></span>
+                           -->
             </div>
-        </div> 
+        </div> --}}
         <!--end: Notifications -->
        
 
 
         <!--begin: User Bar -->
        
+        @guest
+        <div class="kt-header__topbar-item kt-header__topbar-item--user" >
+            
+                <div class="kt-header__topbar-user" id="btnClick">
+                    
+                       <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="p-3">
+                            <form action="{{ url('login') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="exampleDropdownFormEmail2">Email address</label>
+                                    <input type="email" class="form-control" id="emailInput" placeholder="email@example.com"  name="email" value="{{old('email')}}">
+                                    @error('email')<div style="color:red">{{$message}}</div>@enderror
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleDropdownFormPassword2">Password</label>
+                                    <input type="password" class="form-control" id="passwordInput" placeholder="Password" name="password">
+                                    @error('password') <div style="color:red">{{$message}}</div>@enderror
+                                  </div>
+                                  <div class="form-check">
+                                    <input type="checkbox" class="form-check-input"  name="remember">
+                                    <label class="form-check-label" for="dropdownCheck2">
+                                      Remember me
+                                    </label>
+                                  </div>
+                                  <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                </div>                                  
+                            </form>
+                        </li>
+                    </ul>
+                                                                                                                      
+                </div>
+                       
+        </div>
+        @endguest
 
-        
+        @auth
+        <div class="kt-header__topbar-item kt-header__topbar-item--user" >
+            <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
+                <div class="kt-header__topbar-user" id="btnClick">
+                    <li class="dropdown order-1">
+                        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right mt-1">
+                          <li class="p-3">
+
+                                                                                                           
+                            <form action="/logout" method="POST" >
+                                @csrf
+                                <a href="#" onclick="this.closest('form').submit()" >Desloguear</a>
+                            </form>
+                            </li>
+                        </ul>
+                    </li>                                                                                                    
+                </div>
+            </div>            
+        </div>
+            
+        @endauth
         <!--end: User Bar -->
 </div>
     </div>
+    <!-- end:: Header Topbar -->
+   
+<!-- end:: Header -->
+
+
+
+
+
+
 
 

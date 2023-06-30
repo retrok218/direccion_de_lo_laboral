@@ -14,6 +14,7 @@
                 </span>
             </div>
         </div>
+      @auth
         <div class="kt-subheader__toolbar">
             <div class="kt-subheader__wrapper">
                 <a href="{{URL::asset('juicios/create')}}" class="btn btn-label-success btn-bold">
@@ -21,5 +22,10 @@
                 </a>                                                
             </div>
         </div>
+      @endauth
+                
+        
+        
+
     </div>
 </div>

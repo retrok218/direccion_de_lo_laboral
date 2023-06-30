@@ -6,6 +6,8 @@ use App\Http\Controllers\Dashboard_Controller;
 use App\Http\Controllers\table_juicios_controller;
 use App\Http\Controllers\Juicios2Controller;
 use App\Http\Controllers\SalasController;
+use App\Http\Controllers\LogController;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Juicios2;
 
 /*
@@ -20,6 +22,7 @@ use App\Models\Juicios2;
 */
 
 
+Auth::routes();
 
 Route::get('/',[table_juicios_controller::class, 'index']);
 
@@ -49,3 +52,7 @@ Route::get('edit_juicio/{id}',[Juicios2Controller::class,'edit']);
 
 Route::resource('sala', SalasController::class);
 
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/login',[LogController::class,'login']);

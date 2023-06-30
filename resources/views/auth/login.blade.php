@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="kt-login__signin">
                                     <div class="kt-login__head">
-                                    <img src="{{ URL::asset('assets/media/logos/mesa15.jpg')}}" width="30%" alt="login" style="opacity: 0.4; margin: 0 0 10px 0;"> 
+                                    
                                         <h3 class="kt-login__title">Ingresar</h3>
                                     </div>
                                     <div class="kt-login__form">
