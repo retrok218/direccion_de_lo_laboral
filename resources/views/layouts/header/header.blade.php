@@ -175,9 +175,9 @@
                           <li class="p-3">
 
                                                                                                            
-                            <form action="/logout" method="POST" >
+                            <form style="display: inline" action="{{ url('/logout') }}" method="POST" >
                                 @csrf
-                                <a href="#" onclick="this.closest('form').submit()" >Desloguear</a>
+                                <a  onclick="this.closest('form').submit()">Desloguear</a>
                             </form>
                             </li>
                         </ul>

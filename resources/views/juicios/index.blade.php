@@ -12,15 +12,9 @@
         $(document).ready(function() {       
          executeExample(mensaje);
      });  
-    }     
-    
-    
-
+    }             
 </script>    
-@endif
-
-
-                  
+@endif   
 @include('juicios.headbar')
 <table class="table table-striped table-bordered" style="width:100%" id="juiciotabla" >
     <thead>
@@ -36,12 +30,11 @@
             
             <th>Editar</th>
         </tr>                
-    </thead>
-    
-</table>
-
-    
+    </thead>    
+</table>    
 @endsection
-
-
+{{-- <script>
+    let user = {!! json_encode((array)auth()->user()) !!};
+    console.log(user.typeof );            
+</script> --}}
  

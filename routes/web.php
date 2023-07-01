@@ -56,3 +56,4 @@ Route::resource('sala', SalasController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/login',[LogController::class,'login']);
+Route::post('/logout',[LogController::class,'logout']);

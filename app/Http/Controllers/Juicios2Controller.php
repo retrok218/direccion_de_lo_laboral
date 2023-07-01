@@ -17,7 +17,9 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class Juicios2Controller extends Controller
 {
@@ -277,13 +279,21 @@ class Juicios2Controller extends Controller
     }
 
     public function juiciosdatosajax(){
-        $juicio_actor= juicio::with('actor')
+
+       $status_us =is_null(Auth::user());                      
+       $juicio_actor= juicio::with('actor')
         ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
         ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
         ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
         ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')
         ->get();        
+        
+        $juicio_actor = $juicio_actor->map(function ($item) use ($status_us) {
+            $item->status_us = $status_us;
+            return $item;
+        });
+     //dd($juicio_actor); 
         return Datatables::of($juicio_actor)->toJson();
     }
 

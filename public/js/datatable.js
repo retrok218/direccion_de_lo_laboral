@@ -1,3 +1,4 @@
+
 function executeExample(mensaje) {        
     Swal.fire({
         title: mensaje,
@@ -50,12 +51,10 @@ function seacercan(fechas) {
 
 
 
-
-
 let table ;
-$(document).ready(function(){
- 
+$(document).ready(function(){ 
 table = $('#juiciotabla').DataTable({
+    
     "pageLength": 6,   
     "lengthChange": true,
     "searching": true,
@@ -82,6 +81,7 @@ table = $('#juiciotabla').DataTable({
     },
 
     buttons: {
+        
         dom: {
             container: {
                 tag: 'div',
@@ -138,11 +138,13 @@ table = $('#juiciotabla').DataTable({
     },
     ajax: {
         "url": url + "data/juicios",
-        cache: false,
+        
     },
+    
 
     // cambia el estilo de la fila dependiendo de id_juicio
     "createdRow": function(row, data, dataIndex) {
+       
         let actual_fecha = moment(); 
         let f = moment(data.actor[0].audiencia);            
         let diferenciafehas =f.diff(actual_fecha,'days');
@@ -163,8 +165,10 @@ table = $('#juiciotabla').DataTable({
             $(row).find('td').css('color', 'rgb(60, 53, 53)');
         }
     },    
-    columns:[        
-        { "mRender": function(data, type, row){                      
+    columns:[    
+            
+        { "mRender": function(data, type, row){  
+                                
             let actual_fecha = moment(); 
             let f = moment(row.actor[0].audiencia);  
             let fproxima = moment(row.fechaproxima);           
@@ -209,10 +213,23 @@ table = $('#juiciotabla').DataTable({
         }},       
         { 
             "mRender": function(data, type, row){
+                
               var editUrl = url+"editar/" + row.id_juicio;
-              var deleteUrl =url+"eliminar/" + row.id_juicio;              
-              var ligajuicio=row.id_juicio;                                        
-              return `<button value="Actualizar" title="Actualizar" class="btn  btn-edit" onclick="editarJuicio(${ligajuicio})"><i class="fa fa-pencil"></i></button>`
+              var deleteUrl =url+"eliminar/" + row.id_juicio;                           
+              var ligajuicio=row.id_juicio; 
+              console.log(row.status_us);                                                   
+            //   if (!user) {
+            //     console.log(user);
+            //     return `<button value="Editar" title="Actualizar" type="button" class="btn btn-outline-brand btn-icon" onclick="editarJuicio(${ligajuicio})" style="
+            //     display: none;> <i class="fa fa-pencil" ></i></button>`
+            //   }           
+
+            if (row.status_us == true) {
+                return `<button type="button" class="btn btn-outline-brand btn-icon" disabled><i class="fa fa-pencil" title="Logueate para poder Editar"></i></button>`
+            }
+
+            return `<button value="Editar" title="Editar" type="button" class="btn btn-outline-brand btn-icon" onclick="editarJuicio(${ligajuicio})" ><i class="fa fa-pencil" ></i></button>`
+                            
             }
           }        
     ],
@@ -275,14 +292,7 @@ function mostrar_modal_juicio(data,accion) {
                     document.querySelector('#prestaciones_legales').classList.add('fa-beat-fade')
                 }else{                    
                     let res = (parseFloat(prestaciones_2)+parseFloat(valor_prestaciones_legales));
-                    prestaciones_1.innerHTML =res.toFixed(2);
-                    // if (accion === "Reinstalación") {                        
-                    //     let suma_coco2 = (parseFloat(res)+parseFloat(coco_value) );
-                    //     coco.innerHTML = suma_coco2.toFixed(2) ;                       
-                    // }else if (accion === "Indemnización"){
-                    //     let suma_coco = (parseFloat(res)+parseFloat(indemnizacion_value));                       
-                    //     coco.innerHTML = suma_coco.toFixed(2) ;
-                    // }                   
+                    prestaciones_1.innerHTML =res.toFixed(2);                                      
                     document.querySelector('#prestaciones_legales').classList.remove('fa-beat-fade')                 
                 }                                            
     })
@@ -315,18 +325,7 @@ function mostrar_modal_juicio(data,accion) {
 
                 })    
             );
-           
-                
-            
-
-            
-
-
-             
-
-
-
-
+    
         //ocultamos el elemento reinstalacion ya que cuando la accion es indemnizacion no se requiere mostrar salariois caidos reinstalacion           
         if (accion === "Indemnización") {                 
                     document.querySelector('#salarioscaidos').classList.add('oculto');
@@ -374,17 +373,6 @@ function mostrar_modal_juicio(data,accion) {
                 document.querySelector('#cocodi').classList.add('oculto');
                }  
 
-
-
-              
-               
-               
-
-
-
-
-                   
-               
             }).on('hidden.bs.modal', function() {
                 $(this).remove();
             });            

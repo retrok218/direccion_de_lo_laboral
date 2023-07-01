@@ -5,8 +5,7 @@ am5.ready(function() {
   // Create root element
   // https://www.amcharts.com/docs/v5/getting-started/#Root_element
   var root = am5.Root.new("pastelgrafica");
-  
-  
+    
   // Set themes
   // https://www.amcharts.com/docs/v5/concepts/themes/
   root.setThemes([
