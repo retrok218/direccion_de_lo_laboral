@@ -365,6 +365,8 @@ class Juicios2Controller extends Controller
             $informacionauto["Años Transcurridos Relacion Laboral"]="Sin Fecha";
             $informacionauto["Meses Transcurridos Relacion Laboral"]="Sin Fecha";
             $informacionauto["Dias Transcurridos Relacion Laboral"]="Sin Fecha";
+            $mesestranscurridosalcalidos=0;
+            $sueldo['sumaprestacioneslegales']=0;
 
          } else {            
             $añostrancurridos = $iniciolab->diffInYears($finrellab);

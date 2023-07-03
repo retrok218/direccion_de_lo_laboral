@@ -161,6 +161,7 @@ am5.ready(function() {
   // Set data
   // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
   series.data.setAll([
+    
     { value: 10, category: "One" },
     { value: 9, category: "Two" },
     { value: 6, category: "Three" },

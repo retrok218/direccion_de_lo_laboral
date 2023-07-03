@@ -22,7 +22,7 @@ use App\Models\Juicios2;
 */
 
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/',[table_juicios_controller::class, 'index']);
 
@@ -54,6 +54,6 @@ Route::resource('sala', SalasController::class);
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/login',[LogController::class,'login']);
 Route::post('/logout',[LogController::class,'logout']);

@@ -217,7 +217,7 @@ table = $('#juiciotabla').DataTable({
               var editUrl = url+"editar/" + row.id_juicio;
               var deleteUrl =url+"eliminar/" + row.id_juicio;                           
               var ligajuicio=row.id_juicio; 
-              console.log(row.status_us);                                                   
+              //console.log(row.status_us);                                                   
             //   if (!user) {
             //     console.log(user);
             //     return `<button value="Editar" title="Actualizar" type="button" class="btn btn-outline-brand btn-icon" onclick="editarJuicio(${ligajuicio})" style="
@@ -288,7 +288,7 @@ function mostrar_modal_juicio(data,accion) {
     hrasextra.addEventListener('change', () =>{                            
                let prestaciones_2 = document.getElementById('horas_extra').value;                               
                 if (prestaciones_2 === "" || !caracteres.test(prestaciones_2))   {
-                    prestaciones_1.innerHTML = "Por favor ingresa un valor_prestaciones_legales válido";
+                    prestaciones_1.innerHTML = "Por favor ingresa un valor válido";
                     document.querySelector('#prestaciones_legales').classList.add('fa-beat-fade')
                 }else{                    
                     let res = (parseFloat(prestaciones_2)+parseFloat(valor_prestaciones_legales));
@@ -371,6 +371,7 @@ function mostrar_modal_juicio(data,accion) {
                 document.querySelector('#indemnizacion').classList.add('oculto');
                 document.querySelector('#salarioscaidos').classList.add('oculto');
                 document.querySelector('#cocodi').classList.add('oculto');
+                document.querySelector('#guardarcocodi').classList.add('oculto');
                }  
 
             }).on('hidden.bs.modal', function() {

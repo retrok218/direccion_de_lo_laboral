@@ -1056,7 +1056,7 @@
                                                                         </span>                                                                												 
                                                                     </span>
                                                                     <span class="kt-option__body">
-                                                                        <input type="number" class="form-control"
+                                                                        <input type="text" class="form-control"
                                                                         id="fojas" name="fojas" placeholder="0"
                                                                         value="{{ $juicio3[0]->fojas }}">
                                                                     </span>

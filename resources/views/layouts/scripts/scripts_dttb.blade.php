@@ -22,9 +22,16 @@
 
 
 
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-{{-- <script src="{{ URL::asset('js/graficas_juicio.js')}}" type="text/javascript"></script> --}}
+{{-- <script src="https://cdn.amcharts.com/lib/5/index.js"></script> --}}
+{{-- <script src="https://cdn.amcharts.com/lib/5/percent.js"></script> --}}
+{{-- <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script> --}}
+
+
+<script src="{{URL::asset('GraficasAmcharts/index.js')}}"></script>
+<script src="{{URL::asset('GraficasAmcharts/percent.js')}}"></script>
+<script src="{{URL::asset('GraficasAmcharts/themes/Animated.js')}}"></script>
+<script src="{{URL::asset('GraficasAmcharts/xy.js')}}"></script>
+
+
 <script src="{{ URL::asset('js/gradica_barras.js')}}" type="text/javascript"></script>

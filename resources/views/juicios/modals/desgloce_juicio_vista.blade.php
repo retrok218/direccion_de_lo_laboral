@@ -471,7 +471,7 @@
                                           <div class="col-lg-12" >
                                             <label class="kt-option">                                                                
                                             <span class="kt-option__label">                                                                                           
-                                              <form action="{{url('/juicios_coco/'.$juicio3[0]->id_juicio)}}" method="POST">  
+                                              <form action="{{url('/juicios_coco/'.$juicio3[0]->id_juicio)}}" method="POST" id="guardarcocodi">  
                                                 @csrf                                                   
                                                   <div class="input-group mb-3">
                                                     <div class="input-group-prepend">                                                  
@@ -482,7 +482,7 @@
                                                     </div>
                                                     <input  name="cocodi_suma" value='0' type="text" class="form-control" aria-label="Text input with checkbox"  id="n_cocodi" readonly >
                                                     <div class="input-group-append">
-                                                      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Guardar y Actualizar Cocodi</button>
+                                                      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Guardar / Actualizar Cocodi</button>
                                                     </div>
                                                   </div>
                                               </form>
@@ -495,16 +495,13 @@
                                                       Prestaciones Legales:	$
                                                       <span id="prestaciones_legales">{{ number_format($sueldo['sumaprestacioneslegales'],2,'.',',') }}</span>
                                                     </span>
-                                                  </div>                                                                                                  
-                                                  <div class="col-lg-4">
+                                                  </div>   
 
-                                                    
-
+                                                  <div class="col-lg-4">                                                    
                                                     <label class="kt-option">                                                                
                                                     <span class="kt-option__label">
 
-                                                      
-                                                      
+                                                                                                            
                                                         <span class="kt-option__head">
                                                             <span class="kt-option__title juiciotext">
                                                               Aguinaldo:			
@@ -709,7 +706,7 @@
                                                                     </span>                                                                												 
                                                                 </span>
                                                                 <span class="kt-option__body">
-                                                                    <input type="number" class="form-control"
+                                                                    <input type="text" class="form-control"
                                                                     id="fojas" name="fojas" placeholder="0"
                                                                     value="{{ $juicio3[0]->fojas }}" readonly>
                                                                 </span>
