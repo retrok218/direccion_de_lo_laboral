@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-12 col-lg-12 order-lg-12 order-xl-12">
             <div class="kt-portlet kt-portlet--height-fluid" >
                 <div class="kt-witdget14">
@@ -91,7 +91,7 @@
                 </div>            
             </div>    
         </div>
-    </div>
+    </div> --}}
 
     
 </div>
@@ -106,6 +106,8 @@
         nombteetapa['{{$etapa['etapa']}}'] = '{{$etapa['total']}}';    
     </script>    
 @endforeach
+
+
 
 
 @include('admin/alertafechas')

@@ -80,7 +80,7 @@ class table_juicios_controller extends Controller
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
 
-         $conteoPorEtapa22 = json_encode($conteoPorEtapa2);         
+        $conteoPorEtapa22 = json_encode($conteoPorEtapa2);         
                             
         //dd($conteoPorEtapa);
 
