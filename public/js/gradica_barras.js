@@ -88,7 +88,6 @@ am5.ready(function() {
       country: 'Totales',
       value: parseFloat(todosloj)
     },
-
     {
     country: 'Ejecucion',
     value: parseFloat(nombteetapa['Ejecucion'])
@@ -96,11 +95,11 @@ am5.ready(function() {
     country: "Transferido",
     value: parseFloat (nombteetapa['Transferido'])
   }, {
-    country: "Laudo",
-    value: parseFloat(nombteetapa['Proyecto de Laudo']) 
+    country: "Proyecto de Laudo",
+    value: parseFloat(nombteetapa['Proyecto Laudo']) 
   }, {
-    country: "Conluido",
-    value: parseFloat(nombteetapa['Conluido']) 
+    country: "Concluido",
+    value: parseFloat(nombteetapa['Concluido']) 
   }, {
     country: "Amparo",
     value: parseFloat(nombteetapa['Amparo']) 
@@ -108,7 +107,7 @@ am5.ready(function() {
     country: "Tramite",
     value: parseFloat(nombteetapa['Tramite']) 
   }, {
-    country: "CSituacion",
+    country: "Situacion Juridica",
     value: parseFloat(nombteetapa['Incidente de cambio de situacion juridica'])
   }, {
     country: "Cancelado",

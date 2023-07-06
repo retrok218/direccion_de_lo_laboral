@@ -32,6 +32,7 @@ class table_juicios_controller extends Controller
          ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
          ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
          ->get();
+        $todos_juicios = juicio::get();
 
          $juiciosetapas = juicio::select('etapa')->pluck('etapa');
 //se requiere un count por cada etapa que se encuentre en los juicios que hay 
@@ -39,6 +40,7 @@ class table_juicios_controller extends Controller
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
 
+         //dd($conteoPorEtapa);
          $factual = Carbon::now();
                           
          $requerimientofecha = juicio::select('id_juicio','fechaproxima')->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
@@ -49,17 +51,8 @@ class table_juicios_controller extends Controller
          ->whereNotNull('fechaproxima')                
          ->pluck('fechaproxima','id_juicio');
         
-//seleccionamos solo los valores de la base de datos que sean cocodi_suma y la fecha para imprimir en grafica las suma de los cocodi por año
-         $cocodi_cantidades_juicio_años= $juicios->map(function($item){
-            return[
-                'cocodi_suma'=>$item->cocodi_suma,
-                'clas_año'=>$item->clasificacion_año,
-            ];
-
-         });
-         
-         
-         
+         //dd($requerimientofecha)
+        
          $alertaproximafecha=[];
         $totalqueaproximados = 0;
          foreach ($requerimientofecha as $key=>$fecha) {
@@ -72,17 +65,24 @@ class table_juicios_controller extends Controller
              }
              
          }
-         
 
          $todoslosjuicios = juicio::count();
-         //agrupa los juicios por etapa y otorga el numero total de juicios con esa etapa 
-         $conteoPorEtapa2 = juicio::groupBy('etapa','cocodi_suma')
+         $conteoPorEtapa2 = juicio::groupBy('etapa')
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
 
-        $conteoPorEtapa22 = json_encode($conteoPorEtapa2);         
-                            
-        //dd($conteoPorEtapa);
+         $conteoPorEtapa22 = json_encode($conteoPorEtapa2);  
+                   
+         //seleccionamos solo los valores de la base de datos que sean cocodi_suma y la fecha para imprimir en grafica las suma de los cocodi por año
+         $cocodi_cantidades_juicio_años= $todos_juicios->map(function($item){
+            return[                
+                'cocodi_suma'=>$item->cocodi_suma,
+                'clas_año'=>$item->clasificacion_año,
+            ];
+         });
+          
+         
+        
 
         return view('admin.dashboard')->with([
          'requerimientofecha' => $requerimientofecha,  
@@ -91,7 +91,7 @@ class table_juicios_controller extends Controller
         'conteoPorEtapa'=>$conteoPorEtapa,
         'conteoPorEtapa22'=>$conteoPorEtapa22,
         'todoslosjuicios'=>$todoslosjuicios,
-        'cocodi_cantidades_juicio_años'=>$cocodi_cantidades_juicio_años,
+        
         
         ]);
     }

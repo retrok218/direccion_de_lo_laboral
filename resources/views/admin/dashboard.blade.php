@@ -99,11 +99,13 @@
 {{-- se requeiere que el arreglo que se rtae dese el controlados se transferido a js  --}}
 <script>    
     let nombteetapa= []; 
-    let todosloj ={{$todoslosjuicios}};    
+    let todosloj ={{$todoslosjuicios}};   
+    console.log(nombteetapa); 
 </script>
 @foreach ($conteoPorEtapa as $etapa)
     <script>
         nombteetapa['{{$etapa['etapa']}}'] = '{{$etapa['total']}}';    
+        
     </script>    
 @endforeach
 
@@ -113,7 +115,7 @@
 @include('admin/alertafechas')
 @include('layouts/scripts/scripts_dttb')
 
-{{-- Seagrega alerta de juicios proximo --}}
+{{-- Se agrega alerta de juicios proximo --}}
 @if($totalqueaproximados != 0)
     <script>
         let fechas = {{$totalqueaproximados}};
@@ -125,10 +127,7 @@
 @endif
 
 
-<script>
-    let cocodisuamyaños = {{$cocodi_cantidades_juicio_años}};
-    console.log(cocodisuamyaños);
-</script>
+
 
 @endsection
 

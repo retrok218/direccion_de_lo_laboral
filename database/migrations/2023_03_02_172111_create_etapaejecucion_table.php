@@ -22,11 +22,11 @@ class CreateEtapaejecucionTable extends Migration
             $table->date('vence')->nullable();
             $table->string('sentido',255)->nullable();
             $table->string('solicitadoarh')->nullable();
-            $table->integer('cantidad')->nullable();
+            $table->float('cantidad')->nullable();
             $table->string('folio',150)->nullable();
             $table->string('nodeintento')->nullable();
-            $table->string('fechaproxima',255)->nullable();
-            $table->string('cumplimiento',150)->nullable();
+            $table->date('fechaproxima')->nullable();
+            $table->text('cumplimiento')->nullable();
             $table->timestamps();
         });
     }
