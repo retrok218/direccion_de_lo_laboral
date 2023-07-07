@@ -13,16 +13,10 @@
          executeExample(mensaje);
      });  
     }                 
-
 </script>    
+
 @endif   
-
-@php
-    $log = is_null(Auth::user());
-   
-@endphp
 @include('juicios.headbar')
-
 <table class="table table-striped table-bordered" style="width:100%" id="juiciotabla" >
     <thead>
         <tr>
@@ -33,13 +27,11 @@
             <th>Expediente</th>
             <th>Accion</th>
             <th>Indemnizacion</th>                        
-            <th>Ejecucion/Dias restantes Para Requerimiento Fecha Proxima</th>
-            
+            <th>Ejecucion/Dias restantes Para Requerimiento Fecha Proxima</th>            
             <th>Editar</th>
         </tr>                
     </thead>    
 </table>    
-
 @endsection
 {{-- <script>
     let user = {!! json_encode((array)auth()->user()) !!};
