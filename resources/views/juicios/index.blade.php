@@ -12,17 +12,24 @@
         $(document).ready(function() {       
          executeExample(mensaje);
      });  
-    }             
+    }                 
+
 </script>    
 @endif   
+
+@php
+    $log = is_null(Auth::user());
+   
+@endphp
 @include('juicios.headbar')
+
 <table class="table table-striped table-bordered" style="width:100%" id="juiciotabla" >
     <thead>
         <tr>
             <th>Alerta</th>
             <th>Juicio</th>
             <th>Notificacion</th>
-            <th>Etapa</th>            
+            <th>Audiencia</th>            
             <th>Expediente</th>
             <th>Accion</th>
             <th>Indemnizacion</th>                        
@@ -32,6 +39,7 @@
         </tr>                
     </thead>    
 </table>    
+
 @endsection
 {{-- <script>
     let user = {!! json_encode((array)auth()->user()) !!};

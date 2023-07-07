@@ -104,7 +104,12 @@ class Juicios2Controller extends Controller
      */
     public function store(Request $request,SessionManager $sessionManager)
     {        
-        $juicio = new juicio;
+        $juiactual = Juicio::select('id_juicio')->latest()->pluck('id_juicio')->first()+1; //se requiuere el ultimo id_juicio que se tiene y se le sumara uno esto es por si se agregan datos mediante la base de datos 
+
+        
+
+        $juicio = new juicio; 
+        $juicio->id_juicio= $juiactual;     
         $juicio->noti_demanda = $request->input('notidemanda');
         $juicio->presentacion_de_demanda= $request->input('presentacion_de_demanda');
         $juicio->expediente= $request->input('expediente');
@@ -116,10 +121,13 @@ class Juicios2Controller extends Controller
         $juicio->id_sala=$request->input('juicio_sala_seleccionada');   
         $juicio->etapa=$request->input('etapa');
         $juicio->cocodi_suma=0;      
+        $juicio->created_at = now();
+        $juicio->updated_at = now();
         $juicio->save();
 
         $actor = new actor;
-        $actor->juicio_id = $juicio->id_juicio;
+        $actor->id_actores =$juiactual;
+        $actor->juicio_id = $juiactual;
         $actor->nombre_completo = $request->input('nombre_completo');
         $actor->adscripcion  = $request->input('adscripcion');
         $actor->ur  = $request->input('ur');
@@ -131,16 +139,21 @@ class Juicios2Controller extends Controller
         $actor->terminacion_rellab  = $request->input('juicio_term_rellaboral');    
         $actor->save();
         $laudo = new laudo;
-        $laudo-> laudo_id_juicio = $juicio->id_juicio;
+        $laudo->id_laudo = $juiactual;
+        $laudo-> laudo_id_juicio = $juiactual;
         $laudo->save();
         $amparo = new amparo;
-        $amparo-> id_amparo_juicio =  $juicio->id_juicio;
+        $amparo->id_amparo =  $juiactual;
+        $amparo-> id_amparo_juicio =  $juiactual;
         $amparo->save(); 
         $etapajuicios =new etapaejecucion;
-        $etapajuicios->id_etapaejecucion_juicio = $juicio->id_juicio;
+        $etapajuicios->id_etapaejecucion = $juiactual;
+        $etapajuicios->id_etapaejecucion_juicio = $juiactual;
         $etapajuicios->save();
         $concluido = new concluido;
-        $concluido->id_segobconclusion_juicio = $juicio->id_juicio;
+        $concluido->id_concluido = $juiactual;
+        $concluido->id_segobconclusion_juicio = $juiactual;
+
         $concluido->created_at = now();
         $concluido->updated_at = now();
         $concluido->save();
@@ -280,22 +293,25 @@ class Juicios2Controller extends Controller
 
     public function juiciosdatosajax(){
 
-       $status_us =is_null(Auth::user());    
-                   
-       $juicio_actor= juicio::with('actor')
-        ->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
-        ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
-        ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
-        ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
-        ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')
-        ->get();    
+
+      
+       $status_us =is_null(Auth::user());                       
+       $juicio_actor=DB::connection()
+       ->select("SELECT *
+       FROM juicios
+       JOIN actores ON juicios.id_juicio = actores.id_actores
+       JOIN laudo ON juicios.id_juicio = laudo.id_laudo
+       JOIN amparo ON juicios.id_juicio = amparo.id_amparo
+       JOIN etapaejecucion ON juicios.id_juicio = etapaejecucion.id_etapaejecucion
+       JOIN concluido ON juicios.id_juicio = concluido.id_concluido
+       ORDER BY CASE
+      WHEN actores.audiencia >= CURRENT_DATE THEN actores.audiencia - CURRENT_DATE -- Fechas futuras
+       ELSE NULL -- Fechas pasadas
+      END ASC NULLS LAST");
+      //ordena las tablas conforme las fechas de audiencia se acerca al dia actual las que ya pasaron las deja al fina igual las nulas
+    
         
-        
-        
-        $juicio_actor = $juicio_actor->map(function ($item) use ($status_us) {
-            $item->status_us = $status_us;
-            return $item;
-        });
+               
      
         return Datatables::of($juicio_actor)->toJson();
     }

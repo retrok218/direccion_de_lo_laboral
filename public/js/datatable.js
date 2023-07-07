@@ -52,20 +52,19 @@ function seacercan(fechas) {
 
 
 let table ;
-$(document).ready(function(){ 
-table = $('#juiciotabla').DataTable({
-    
-    "pageLength": 6,   
+$(document).ready(function(){
+    table = $('#juiciotabla').DataTable({    
+    "pageLength": 10,   
     "lengthChange": true,
     "searching": true,
     responsive: true,
     
     "info": true,
     // responsive: true,
-    "autoWidth": false,      
+    //"autoWidth": false,      
     //"language": idioma,
     "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
-    "order":[1 ,'desc'],
+    //"order":[0 ,'desc'],
     dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
     dom:'Bfrtip',
     deferRender:true, 
@@ -130,7 +129,13 @@ table = $('#juiciotabla').DataTable({
                             alignment: 'center',   
                         } 
                 },
-            }                                   
+            } ,
+            {
+                text: 'Ultimos agregados',
+                action: function () {
+                    table.order([[1, 'desc']]).draw();
+                }
+            },                                  
         ]
     },
     language: {
@@ -146,7 +151,7 @@ table = $('#juiciotabla').DataTable({
     "createdRow": function(row, data, dataIndex) {
        
         let actual_fecha = moment(); 
-        let f = moment(data.actor[0].audiencia);            
+        let f = moment(data.audiencia);            
         let diferenciafehas =f.diff(actual_fecha,'days');
         if (diferenciafehas > 1) {
             // verde si faltan mas de 2 dias            
@@ -168,9 +173,10 @@ table = $('#juiciotabla').DataTable({
     columns:[    
             
         { "mRender": function(data, type, row){  
-                                
+                 
+            
             let actual_fecha = moment(); 
-            let f = moment(row.actor[0].audiencia);  
+            let f = moment(row.audiencia);
             let fproxima = moment(row.fechaproxima);           
             let diferenciafehas =f.diff(actual_fecha,'days'); 
             let fproxdif  = fproxima.diff(actual_fecha,'days');                    
@@ -191,7 +197,7 @@ table = $('#juiciotabla').DataTable({
              return `<a  onclick="mostrar_modal_juicio(${ligajuicio},'${accionj}')" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
         },
         {data:'noti_demanda', name:'noti_demanda'},
-        {data:'etapa',name:'etapa'},        
+        {data:'audiencia',name:'audiencia'},        
         {data:'expediente',name:'expediente'},
         {data:'accion',name:'accion'},
         {data:'indemnizacion', name:'indemnizacion'},                
@@ -234,7 +240,17 @@ table = $('#juiciotabla').DataTable({
           }        
     ],
     });
+
+
+   // setInterval(table.ajax.reload(),5000);
 });
+//fin de datatable
+
+
+
+
+
+
 
 //modal desgloce de juicio 
 function mostrar_modal_juicio(data,accion) {    
