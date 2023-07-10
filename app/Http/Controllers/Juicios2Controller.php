@@ -295,9 +295,9 @@ class Juicios2Controller extends Controller
 
 
       
-        $status_us =is_null(Auth::user());
-       $juicio_actor=DB::connection()
-       ->select("SELECT *,$status_us AS status_us
+        $status_us =is_null(Auth::user()); 
+
+       $juicio_actor=DB::connection()->select("SELECT *,'$status_us' AS status_us
        FROM juicios
        JOIN actores ON juicios.id_juicio = actores.id_actores
        JOIN laudo ON juicios.id_juicio = laudo.id_laudo

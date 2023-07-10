@@ -128,12 +128,11 @@
         <!--begin: User Bar -->
        
         @guest
-        <div class="kt-header__topbar-item kt-header__topbar-item--user" >
-            
-                <div class="kt-header__topbar-user" id="btnClick">
-                    
-                       <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login </button>
-                    <ul class="dropdown-menu dropdown-menu-right">
+        
+        <div class="kt-header__topbar-item kt-header__topbar-item--user" >            
+            <div class="kt-header__topbar-user" id="btnClick">                    
+                <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login </button>
+                    <ul class="dropdown-menu dropdown-menu-right" >
                         <li class="p-3">
                             <form action="{{ url('login') }}" method="POST">
                                 @csrf

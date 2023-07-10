@@ -23,7 +23,7 @@
         <label for="juicio_sala_seleccionada">Sala/Jta</label>     
 
         <select class="custom-select" id="juicio_sala_seleccionada" name="juicio_sala_seleccionada" required>
-          <option selected value="0">Sala</option>        
+          <option selected value="0" disabled>Sala</option>        
           @foreach($salas as $sala)
           <option value="{{$sala->id_sala}}">{{$sala->nombre_sala}}</option>
           @endforeach

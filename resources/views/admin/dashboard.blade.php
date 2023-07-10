@@ -7,7 +7,7 @@
 @foreach ($conteoPorEtapa as $key => $totaletapa)
 
 
-<div class="col-xl-3">
+<div class="col-lg-3">
     <div class="kt-portlet kt-portlet--height-fluid kt-iconbox--animate-slow" style="background-color: #9d1f3e36;">
         <div class="kt-portlet__head kt-portlet__head--noborder " >
             <div class="kt-portlet__head-label">
@@ -99,13 +99,16 @@
 {{-- se requeiere que el arreglo que se rtae dese el controlados se transferido a js  --}}
 <script>    
     let nombteetapa= []; 
-    let todosloj ={{$todoslosjuicios}};   
-    console.log(nombteetapa); 
+    let todosloj ={{$todoslosjuicios}}; 
+
+    let dato = JSON.stringify($coco_suma_años_js);
+   console.log(dato);
+       
+
 </script>
 @foreach ($conteoPorEtapa as $etapa)
     <script>
-        nombteetapa['{{$etapa['etapa']}}'] = '{{$etapa['total']}}';    
-        
+        nombteetapa['{{$etapa['etapa']}}'] = '{{$etapa['total']}}';            
     </script>    
 @endforeach
 

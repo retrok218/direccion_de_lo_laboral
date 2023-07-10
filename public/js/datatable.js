@@ -60,8 +60,8 @@ $(document).ready(function(){
     responsive: true,
     
     "info": true,
-    // responsive: true,
-    //"autoWidth": false,      
+    
+    "autoWidth": true,      
     //"language": idioma,
     "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
     //"order":[0 ,'desc'],
@@ -135,7 +135,14 @@ $(document).ready(function(){
                 action: function () {
                     table.order([[1, 'desc']]).draw();
                 }
-            },                                  
+            },  
+            {
+                text: 'Acomodar Fecha Audiencia',
+                action: function () {
+                    table.order([[3, 'desc']]).draw();
+                }
+            }, 
+
         ]
     },
     language: {
@@ -167,7 +174,7 @@ $(document).ready(function(){
         else {
             //Gris vencidos 
             $(row).find('td').css('background-color', 'rgb(139 135 135 / 31%)');
-            $(row).find('td').css('color', 'rgb(60, 53, 53)');
+            $(row).find('td').css('color', 'rgb(80 80 80 / 50%)');
         }
     },    
     columns:[    
@@ -207,8 +214,7 @@ $(document).ready(function(){
             let fechaproximaalert;
             if (row.fechaproxima !== null ) {                
                  fechaproximaalert = f.diff(actual_fecha,'days') ;
-                 fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? 'Feacha Vencida':fechaproximaalert; 
-                    
+                 fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? ' Feacha Vencida '+row.fechaproxima:fechaproximaalert;                     
                  fechaproximaalert = f.diff(actual_fecha,'days') <=2 && f.diff(actual_fecha,'days') >=0 ? '<span class=" requerimiento fa-beat-fade"> Faltan '+f.diff(actual_fecha,'days')+'- Dias '+f.diff(actual_fecha,'hours')+'- Horas </span><br> <span class=" requerimiento fa-beat-fade" >Proxima Fecha: '+row.fechaproxima+'</span>':  fechaproximaalert;      
                }               
                else{
