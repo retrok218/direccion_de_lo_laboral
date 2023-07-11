@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-xl-12 col-lg-12 order-lg-12 order-xl-12">
             <div class="kt-portlet kt-portlet--height-fluid" >
                 <div class="kt-witdget14">
@@ -91,7 +91,7 @@
                 </div>            
             </div>    
         </div>
-    </div> --}}
+    </div> 
 
     
 </div>
@@ -99,13 +99,15 @@
 {{-- se requeiere que el arreglo que se rtae dese el controlados se transferido a js  --}}
 <script>    
     let nombteetapa= []; 
-    let todosloj ={{$todoslosjuicios}}; 
-
-    let dato = JSON.stringify($coco_suma_años_js);
-   console.log(dato);
-       
-
+    let todosloj ={{$todoslosjuicios}};     
+    let cocodisuma_an  ;
+    let cocoSumaAniosJS = {!! $coco_suma_años_js !!};      
+    //console.log(cocoSumaAniosJS);    
 </script>
+
+
+
+
 @foreach ($conteoPorEtapa as $etapa)
     <script>
         nombteetapa['{{$etapa['etapa']}}'] = '{{$etapa['total']}}';            
@@ -124,7 +126,8 @@
         let fechas = {{$totalqueaproximados}};
         $(function() {
             seacercan(fechas) ; 
-        });    
+        });   
+        console.log(cocodiareglo); 
     </script>    
     @else        
 @endif

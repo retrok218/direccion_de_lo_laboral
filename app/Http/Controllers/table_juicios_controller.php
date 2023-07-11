@@ -39,6 +39,7 @@ class table_juicios_controller extends Controller
         FROM juicios
         GROUP BY anio
         ORDER BY anio DESC "); 
+       // dd( $suma_coco_ano);
 
         $datos_arreglo_cocodisum = [];
         foreach ($suma_coco_ano as $resultado) {
@@ -49,12 +50,14 @@ class table_juicios_controller extends Controller
         $coco_suma_años_js = json_encode($datos_arreglo_cocodisum);
        
 
-       
+    
     
 //se requiere un count por cada etapa que se encuentre en los juicios que hay 
          $conteoPorEtapa = juicio::groupBy('etapa')
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
+
+         //dd( $conteoPorEtapa);
         
          $factual = Carbon::now();                          
          $requerimientofecha = juicio::select('id_juicio','fechaproxima')->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
@@ -81,6 +84,8 @@ class table_juicios_controller extends Controller
          $conteoPorEtapa2 = juicio::groupBy('etapa')
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
+
+
          $conteoPorEtapa22 = json_encode($conteoPorEtapa2);                     
          //seleccionamos solo los valores de la base de datos que sean cocodi_suma y la fecha para imprimir en grafica las suma de los cocodi por año
         //  $cocodi_cantidades_juicio_años= $todos_juicios->map(function($item){
@@ -88,7 +93,9 @@ class table_juicios_controller extends Controller
         //         'cocodi_suma'=>$item->cocodi_suma,
         //         'clas_año'=>$item->clasificacion_año,
         //     ];
-        //  });                          
+        //  });         
+        
+        
         return view('admin.dashboard')->with([
          'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,
@@ -96,6 +103,8 @@ class table_juicios_controller extends Controller
         'conteoPorEtapa'=>$conteoPorEtapa,
         'conteoPorEtapa22'=>$conteoPorEtapa22,
         'todoslosjuicios'=>$todoslosjuicios,
+        'suma_coco_ano'=>$suma_coco_ano ,
+        'coco_suma_años_js'=> $coco_suma_años_js,
             
         
         ]);

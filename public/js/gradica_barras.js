@@ -156,7 +156,7 @@ am5.ready(function() {
     categoryField: "category"
   }));
   
-  
+  console.log(longitud_arreglo_cocodisuma);
   // Set data
   // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
   series.data.setAll([
