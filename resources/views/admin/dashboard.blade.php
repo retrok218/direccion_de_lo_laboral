@@ -79,14 +79,15 @@
             <div class="kt-portlet kt-portlet--height-fluid" >
                 <div class="kt-witdget14">
                     <div class="kt-widget14__header">
-                        <h3>Grafica Juicios Por Etapa</h3>
-                        <span>Etapas </span>
+                        <h3>Grafica Cocodi Por Año</h3>
+                        
                     </div>
                     <div class="kt-widgeat14__content">                                                    
                         <div class="kt-widget14__chart">
-                            <div id="pas" style="height: 250px;"></div>
-                        </div>    
+                            <div id="chartdiv" style="height: 250px;"></div>
                             
+                        </div>    
+                        
                     </div>                        
                 </div>            
             </div>    
@@ -97,12 +98,21 @@
 </div>
 
 {{-- se requeiere que el arreglo que se rtae dese el controlados se transferido a js  --}}
+
 <script>    
+      
+    var json_suma_coco = {!! $json_suma_coco !!};
+    var sumaCocoAno = [];
+
+    for (var i = 0; i < json_suma_coco.length; i++) {
+        var anio = json_suma_coco[i].anio || "0";  // Utiliza "0" como valor predeterminado si anio es null
+        var sumacoco = json_suma_coco[i].sumacoco;
+        sumaCocoAno.push({ ano: anio, value: parseFloat(sumacoco)  });
+    }  
+    console.log(sumaCocoAno);        
     let nombteetapa= []; 
-    let todosloj ={{$todoslosjuicios}};     
-    let cocodisuma_an  ;
-    let cocoSumaAniosJS = {!! $coco_suma_años_js !!};      
-    //console.log(cocoSumaAniosJS);    
+    let todosloj ={{$todoslosjuicios}};
+        
 </script>
 
 
@@ -127,14 +137,10 @@
         $(function() {
             seacercan(fechas) ; 
         });   
-        console.log(cocodiareglo); 
+        
     </script>    
     @else        
 @endif
-
-
-
-
 @endsection
 
 

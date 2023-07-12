@@ -225,7 +225,7 @@ $(document).ready(function(){
         }},       
         { 
             "mRender": function(data, type, row){
-                console.log(row);
+               // console.log(row);
               var editUrl = url+"editar/" + row.id_juicio;
               var deleteUrl =url+"eliminar/" + row.id_juicio;                           
               var ligajuicio=row.id_juicio; 

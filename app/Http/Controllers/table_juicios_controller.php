@@ -31,27 +31,20 @@ class table_juicios_controller extends Controller
          ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
          ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
          ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
-         ->get();
-        //$todos_juicios = juicio::select('id_juicio','cocodi_suma','presentacion_de_demanda')->groupBy('presentacion_de_demanda');
-       $suma_coco_ano =DB::connection()
-       ->select("SELECT  EXTRACT(YEAR FROM presentacion_de_demanda) as anio,
-        sum(cocodi_suma) as sumacoco 
-        FROM juicios
-        GROUP BY anio
-        ORDER BY anio DESC "); 
-       // dd( $suma_coco_ano);
+         ->get();        
+       $suma_coco_ano =juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'))
+       ->selectRaw('SUM(cocodi_suma) as sumacoco')
+       ->groupBy('anio')
+       ->orderByDesc('anio')
+       ->get();                     
+        $json_suma_coco = json_encode($suma_coco_ano);
+        $anos_juicios = juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'))
+        ->groupBy('anio')->pluck('anio');
 
-        $datos_arreglo_cocodisum = [];
-        foreach ($suma_coco_ano as $resultado) {
-        $anio = $resultado->anio;
-        $sumacoco = $resultado->sumacoco;
-        $datos_arreglo_cocodisum[$anio] = $sumacoco;          
-        }   
-        $coco_suma_años_js = json_encode($datos_arreglo_cocodisum);
-       
-
+//dd($anos_juicios);
+        
     
-    
+  
 //se requiere un count por cada etapa que se encuentre en los juicios que hay 
          $conteoPorEtapa = juicio::groupBy('etapa')
          ->select('etapa', DB::raw('count(*) as total'))
@@ -86,16 +79,9 @@ class table_juicios_controller extends Controller
          ->get();
 
 
-         $conteoPorEtapa22 = json_encode($conteoPorEtapa2);                     
-         //seleccionamos solo los valores de la base de datos que sean cocodi_suma y la fecha para imprimir en grafica las suma de los cocodi por año
-        //  $cocodi_cantidades_juicio_años= $todos_juicios->map(function($item){
-        //     return[                
-        //         'cocodi_suma'=>$item->cocodi_suma,
-        //         'clas_año'=>$item->clasificacion_año,
-        //     ];
-        //  });         
-        
-        
+         $conteoPorEtapa22 = json_encode($conteoPorEtapa2);   
+         
+
         return view('admin.dashboard')->with([
          'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,
@@ -104,9 +90,7 @@ class table_juicios_controller extends Controller
         'conteoPorEtapa22'=>$conteoPorEtapa22,
         'todoslosjuicios'=>$todoslosjuicios,
         'suma_coco_ano'=>$suma_coco_ano ,
-        'coco_suma_años_js'=> $coco_suma_años_js,
-            
-        
+        'json_suma_coco'=>$json_suma_coco, 
         ]);
     }
 

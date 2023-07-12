@@ -126,68 +126,102 @@ am5.ready(function() {
   }); // end am5.ready()
   
   
-  
-  
+
+
+
   am5.ready(function() {
-  
-  // Create root element
-  // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-  var root = am5.Root.new("pas");
-  
-  
-  // Set themes
-  // https://www.amcharts.com/docs/v5/concepts/themes/
-  root.setThemes([
-    am5themes_Animated.new(root)
-  ]);
-  
-  
-  // Create chart
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
-  var chart = root.container.children.push(am5percent.PieChart.new(root, {
-    layout: root.verticalLayout
-  }));
-  
-  
-  // Create series
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
-  var series = chart.series.push(am5percent.PieSeries.new(root, {
-    valueField: "value",
-    categoryField: "category"
-  }));
-  
-  console.log(longitud_arreglo_cocodisuma);
-  // Set data
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
-  series.data.setAll([
+
+    // Create root element
+    // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+    var root = am5.Root.new("chartdiv");
     
-    { value: 0, category: "One" },
-    { value: 9, category: "Two" },
-    { value: 6, category: "Three" },
-    { value: 5, category: "Four" },
-    { value: 4, category: "Five" },
-    { value: 3, category: "Six" },
-    { value: 1, category: "Seven" },
-  ]);
-  
-  
-  // Create legend
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
-  var legend = chart.children.push(am5.Legend.new(root, {
-    centerX: am5.percent(50),
-    x: am5.percent(50),
-    marginTop: 15,
-    marginBottom: 15
-  }));
-  
-  legend.data.setAll(series.dataItems);
-  
-  
-  // Play initial series animation
-  // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
-  series.appear(1000, 100);
-  
-  }); // end am5.ready()
-  
-  
-  
+    
+    // Set themes
+    // https://www.amcharts.com/docs/v5/concepts/themes/
+    root.setThemes([
+      am5themes_Animated.new(root)
+    ]);
+    
+    
+    // Create chart
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/
+    var chart = root.container.children.push(am5xy.XYChart.new(root, {
+      panX: true,
+      panY: true,
+      wheelX: "panX",
+      wheelY: "zoomX",
+      pinchZoomX: true
+    }));
+    
+    // Add cursor
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+    var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+    cursor.lineY.set("visible", false);
+    
+    
+    // Create axes
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+    var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
+    xRenderer.labels.template.setAll({
+      rotation: -90,
+      centerY: am5.p50,
+      centerX: am5.p100,
+      paddingRight: 15
+    });
+    
+    xRenderer.grid.template.setAll({
+      location: 1
+    })
+    
+    var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+      maxDeviation: 0.3,
+      categoryField: "ano",
+      renderer: xRenderer,
+      tooltip: am5.Tooltip.new(root, {})
+    }));
+    
+    var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+      maxDeviation: 0.3,
+      renderer: am5xy.AxisRendererY.new(root, {
+        strokeOpacity: 0.1
+      })
+    }));
+    
+    
+    // Create series creando columnas
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+    var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+      name: "Series 1",
+      xAxis: xAxis,
+      yAxis: yAxis,
+      valueYField: "value",
+      sequencedInterpolation: true,
+      categoryXField: "ano",
+      tooltip: am5.Tooltip.new(root, {
+         labelText:"$ {valueY}"
+      })
+    }));
+    
+    series.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5, strokeOpacity: 0 });
+    series.columns.template.adapters.add("fill", function(fill, target) {
+      return chart.get("colors").getIndex(series.columns.indexOf(target));
+    });
+    
+    series.columns.template.adapters.add("stroke", function(stroke, target) {
+      return chart.get("colors").getIndex(series.columns.indexOf(target));
+    });
+    
+    
+    // Set data
+    
+    
+    xAxis.data.setAll(sumaCocoAno);
+    series.data.setAll(sumaCocoAno);
+    
+    
+    // Make stuff animate on load
+    // https://www.amcharts.com/docs/v5/concepts/animations/
+    series.appear(1000);
+    chart.appear(1000, 100);
+    
+    }); // end am5.ready()
