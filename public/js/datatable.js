@@ -49,11 +49,22 @@ function seacercan(fechas) {
       })
 }
 
+//funcion para filtro por columna
+function filterColumn(table, i) {
+    let filter = document.querySelector('#col' + i + '_filter');  
+    console.log(filter);
+    table.column(i).search(filter.value).draw();
+}
+ 
+
 
 
 let table ;
 $(document).ready(function(){
-    table = $('#juiciotabla').DataTable({    
+
+    table = $('#juiciotabla').DataTable({   
+        
+        
     "pageLength": 10,   
     "lengthChange": true,
     "searching": true,
@@ -145,6 +156,7 @@ $(document).ready(function(){
 
         ]
     },
+    
     language: {
         "url": url + "assets/vendors/general/datatables/Spanish.json",  
     },
@@ -156,7 +168,7 @@ $(document).ready(function(){
 
     // cambia el estilo de la fila dependiendo de id_juicio
     "createdRow": function(row, data, dataIndex) {
-       
+       console.log(data);
         let actual_fecha = moment(); 
         let f = moment(data.audiencia);            
         let diferenciafehas =f.diff(actual_fecha,'days');
@@ -203,7 +215,8 @@ $(document).ready(function(){
             var accionj=row.accion;                        
              return `<a  onclick="mostrar_modal_juicio(${ligajuicio},'${accionj}')" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
         },
-        {data:'noti_demanda', name:'noti_demanda'},
+       
+        {data:'nombre_completo', name:'nombre_completo'},
         {data:'audiencia',name:'audiencia'},        
         {data:'expediente',name:'expediente'},
         {data:'accion',name:'accion'},
@@ -225,16 +238,11 @@ $(document).ready(function(){
         }},       
         { 
             "mRender": function(data, type, row){
-               // console.log(row);
+               
               var editUrl = url+"editar/" + row.id_juicio;
               var deleteUrl =url+"eliminar/" + row.id_juicio;                           
               var ligajuicio=row.id_juicio; 
-              //console.log(row.status_us);                                                   
-            //   if (!user) {
-            //     console.log(user);
-            //     return `<button value="Editar" title="Actualizar" type="button" class="btn btn-outline-brand btn-icon" onclick="editarJuicio(${ligajuicio})" style="
-            //     display: none;> <i class="fa fa-pencil" ></i></button>`
-            //   }           
+                        
 
             if (row.status_us == true) {
                 return `<button type="button" class="btn btn-outline-brand btn-icon" disabled><i class="fa fa-pencil" title="Logueate para poder Editar"></i></button>`
@@ -247,16 +255,24 @@ $(document).ready(function(){
     ],
     });
 
+    
+    
+
+    
 
    // setInterval(table.ajax.reload(),5000);
 });
 //fin de datatable
 
-
-
-
-
-
+//se genera filtro por actoer y por expediente
+document.querySelectorAll('input.column_filter').forEach((el) => {
+    let tr = el.closest('tr');
+    let columnIndex = tr.getAttribute('data-column'); 
+    el.addEventListener(el.type === 'text' ? 'keyup' : 'change', () =>
+        filterColumn(table, columnIndex)
+    );
+});
+//fin del filtro
 
 //modal desgloce de juicio 
 function mostrar_modal_juicio(data,accion) {    
@@ -357,7 +373,7 @@ function mostrar_modal_juicio(data,accion) {
                         if (empezar_cocodi.checked) { //revisamos si el imput de cocodi nueva suma esta activado                    
                          let res_new_cocodi =  parseFloat(document.getElementById('indemnizacion_value').value) + parseFloat(document.getElementById('prestaciones_legales').innerHTML.replace(/,/g, ""));
                          n_cocodi.value = res_new_cocodi.toFixed(2);
-                         console.log(res_new_cocodi);                   
+                                            
                         }else{
                             n_cocodi.value = 0;
                         }   
@@ -382,7 +398,7 @@ function mostrar_modal_juicio(data,accion) {
                    if (empezar_cocodi.checked) { //revisamos si el imput de cocodi nueva suma esta activado                    
                     let res_new_cocodi =  parseFloat(document.getElementById('res_salarioscaidos').textContent) + parseFloat(document.getElementById('prestaciones_legales').innerHTML.replace(/,/g, ""));
                     n_cocodi.value = res_new_cocodi.toFixed(2);
-                    console.log(res_new_cocodi);                   
+                                      
                    }else{
                     n_cocodi.value = 0;
                    }   

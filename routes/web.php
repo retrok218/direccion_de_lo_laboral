@@ -20,8 +20,6 @@ use App\Models\Juicios2;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 // Auth::routes();
 
 Route::get('/',[table_juicios_controller::class, 'index']);
@@ -36,14 +34,10 @@ Route::put('juicios_update/{id}/{name}',[Juicios2Controller::class,'update_all_f
 Route::get('juicio_dowload/{name}',[Juicios2Controller::class,'dowload_juicio']);
 Route::get('juicio_delete_archivo/{narchivo}/{id}/{name}',[Juicios2Controller::class,'delete']);
 
-
-
-
 Route::get('data/juicios',[Juicios2Controller::class,'juiciosdatosajax']);
 
 Route::post('juicios_com/{id}',[Juicios2Controller::class,'comentario']);
 Route::post('juicios_coco/{id}',[Juicios2Controller::class,'guardarcocodi']);
-
 
 Route::post('juicios_upload/{id}',[Juicios2Controller::class,'upload']);
 
@@ -52,8 +46,8 @@ Route::get('edit_juicio/{id}',[Juicios2Controller::class,'edit']);
 
 Route::resource('sala', SalasController::class);
 
-
-
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/login',[LogController::class,'login']);
 Route::post('/logout',[LogController::class,'logout']);
+
+Route::get('/tabla_etapa_juicio/{etapa}',[table_juicios_controller::class, 'tablas_etapa']);

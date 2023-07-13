@@ -124,4 +124,15 @@ class table_juicios_controller extends Controller
     public function registro(){
         return view('Direccion_Laboral.registro_juicio');
     }
+
+    public function tablas_etapa($etapa){
+
+        $juicios_etapa = juicio::where('etapa',$etapa)->get();
+       // dd($juicios_etapa);
+
+        return ("Estamos en el desglode se ta tabla para la etapa " . $etapa );
+
+    }
+
+
 }

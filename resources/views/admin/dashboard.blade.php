@@ -8,10 +8,11 @@
 
 
 <div class="col-lg-3">
+    {{-- <a href="{{url('/tabla_etapa_juicio/'.$totaletapa['etapa'])}}"> --}}
     <div class="kt-portlet kt-portlet--height-fluid kt-iconbox--animate-slow" style="background-color: #9d1f3e36;">
         <div class="kt-portlet__head kt-portlet__head--noborder " >
             <div class="kt-portlet__head-label">
-                <h3 class="kt-portlet__head-title">
+                <h3 class="kt-portlet__head-title" >
                     {{$totaletapa['etapa']}}
                 </h3>
             </div>
@@ -28,7 +29,7 @@
                     <div class="kt-widget__content">
                         <div class="kt-widget__section">
                            <h3>
-                            <i class="fa fa-file-alt"></i>
+                            <i class="fa fa-file-alt" style="color:#a02744"></i>
                             {{$totaletapa['total']}}   
                            </h3>
                                                                                         
@@ -42,6 +43,7 @@
             <!--end::Widget -->
         </div>
     </div>
+{{-- </a> --}}
 </div>
 
 
@@ -132,7 +134,7 @@
 
 
 
-    console.log(Json_ano_mes_coco); 
+  
 
     let nombteetapa= []; 
     let todosloj ={{$todoslosjuicios}};

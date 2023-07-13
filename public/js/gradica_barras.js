@@ -266,7 +266,28 @@ am5.ready(function() {
       })
     );
     
-    var data = Json_ano_mes_coco
+    var data = [{
+      "year": "2021",
+      "europe": 2.5,
+      "namerica": 2.5,
+      "asia": 2.1,
+      "lamerica": 1,
+      "meast": 0.8,
+      "africa": 0.4
+    }, {
+      "year": "2022",
+      "europe": 2.6,
+      "namerica": 2.7,
+      "asia": 2.2,
+      "lamerica": 0.5,
+      "meast": 0.4,
+      "africa": 0.3
+    }, 
+    
+  
+  
+  
+  ]
     
     
     // Create axes
