@@ -93,6 +93,25 @@
             </div>    
         </div>
     </div> 
+    {{-- <div class="row">
+        <div class="col-xl-12 col-lg-12 order-lg-12 order-xl-12">
+            <div class="kt-portlet kt-portlet--height-fluid" >
+                <div class="kt-witdget14">
+                    <div class="kt-widget14__header">
+                        <h3>Grafica Cocodi Por Mes Año</h3>
+                        
+                    </div>
+                    <div class="kt-widgeat14__content">                                                    
+                        <div class="kt-widget14__chart">
+                            <div id="ano-mes-coco" style="height: 250px;"></div>
+                            
+                        </div>    
+                        
+                    </div>                        
+                </div>            
+            </div>    
+        </div>
+    </div>      ************construccion--}}   
 
     
 </div>
@@ -101,15 +120,20 @@
 
 <script>    
       
-    var json_suma_coco = {!! $json_suma_coco !!};
-    var sumaCocoAno = [];
+    let json_suma_coco = {!! $json_suma_coco !!};
+    let sumaCocoAno = [];
+    let Json_ano_mes_coco ={!!$Json_ano_mes_coco!!};
 
     for (var i = 0; i < json_suma_coco.length; i++) {
         var anio = json_suma_coco[i].anio || "0";  // Utiliza "0" como valor predeterminado si anio es null
         var sumacoco = json_suma_coco[i].sumacoco;
         sumaCocoAno.push({ ano: anio, value: parseFloat(sumacoco)  });
     }  
-    console.log(sumaCocoAno);        
+
+
+
+    console.log(Json_ano_mes_coco); 
+
     let nombteetapa= []; 
     let todosloj ={{$todoslosjuicios}};
         

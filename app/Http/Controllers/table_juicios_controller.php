@@ -27,21 +27,38 @@ class table_juicios_controller extends Controller
 {
 
     public function index(){
-       $juicios = juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
-         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
-         ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
-         ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
-         ->get();        
+        $juicios = juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
+            ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
+            ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
+            ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
+            ->get();        
        $suma_coco_ano =juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'))
        ->selectRaw('SUM(cocodi_suma) as sumacoco')
        ->groupBy('anio')
        ->orderByDesc('anio')
        ->get();                     
-        $json_suma_coco = json_encode($suma_coco_ano);
-        $anos_juicios = juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'))
-        ->groupBy('anio')->pluck('anio');
+       $json_suma_coco = json_encode($suma_coco_ano);
 
-//dd($anos_juicios);
+        $anos_mes_suma_coco = juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'),
+        DB::raw('EXTRACT(MONTH FROM presentacion_de_demanda) as mes'))
+        ->selectRaw('SUM(cocodi_suma) as sumacoco')
+        ->groupBy('anio','mes')
+        ->orderByDESC('anio')
+        ->get();
+        
+        $ano_mes_coco = $anos_mes_suma_coco
+        ->groupBy('anio')
+        ->map(function ($items) {
+            $arr =$items->pluck('sumacoco', 'mes')->toArray();
+            ksort($arr);
+            return  $arr;
+        })->toArray();
+
+        $Json_ano_mes_coco = json_encode($ano_mes_coco);
+
+    //dd(  $ano_mes_coco );
+        
+
         
     
   
@@ -50,7 +67,7 @@ class table_juicios_controller extends Controller
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
 
-         //dd( $conteoPorEtapa);
+         
         
          $factual = Carbon::now();                          
          $requerimientofecha = juicio::select('id_juicio','fechaproxima')->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
@@ -91,6 +108,8 @@ class table_juicios_controller extends Controller
         'todoslosjuicios'=>$todoslosjuicios,
         'suma_coco_ano'=>$suma_coco_ano ,
         'json_suma_coco'=>$json_suma_coco, 
+        'Json_ano_mes_coco'=>$Json_ano_mes_coco,
+        'ano_mes_coco'=>$ano_mes_coco,//prueva
         ]);
     }
 
