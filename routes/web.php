@@ -51,3 +51,5 @@ Route::post('/login',[LogController::class,'login']);
 Route::post('/logout',[LogController::class,'logout']);
 
 Route::get('/tabla_etapa_juicio/{etapa}',[table_juicios_controller::class, 'tablas_etapa']);
+Route::get('data/juicios_area/{etapa}',[table_juicios_controller::class,'data_tablas_etapa']);
+

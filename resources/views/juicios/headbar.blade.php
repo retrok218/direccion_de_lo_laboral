@@ -5,6 +5,7 @@
             <h3 class="kt-subheader__title">Juicios</h3>
 
             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            <h3 class="kt-subheader__title"> @isset($etapa2){{$etapa2}} @endisset </h3>
                                               
 
             <div class="kt-input-icon kt-input-icon--right kt-subheader__search kt-hidden">

@@ -41,6 +41,7 @@
 
 {{-- <script src="public/js/datatable.js"></script>   --}}
 <script src="{{URL::asset('js/datatable.js')}}"></script>  
+<script src="{{URL::asset('js/tabla_juicio_area.js')}}"></script> 
 <script src="{{ URL::asset('js/juicios.js')}}" type="text/javascript"></script>
 
 

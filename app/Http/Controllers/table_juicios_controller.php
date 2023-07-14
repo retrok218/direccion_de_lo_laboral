@@ -17,6 +17,8 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\DataTables;
+use Auth;
 
 
 
@@ -125,14 +127,33 @@ class table_juicios_controller extends Controller
         return view('Direccion_Laboral.registro_juicio');
     }
 
+
+
     public function tablas_etapa($etapa){
-
-        $juicios_etapa = juicio::where('etapa',$etapa)->get();
-       // dd($juicios_etapa);
-
-        return ("Estamos en el desglode se ta tabla para la etapa " . $etapa );
-
+        $etapa2 = $etapa;
+        // $juicios_etapa = juicio::where('etapa',$etapa)->get();       
+        return view('juicios.juicios_area')->with(['etapa2'=>$etapa2 ]);
     }
+
+    public function data_tablas_etapa($etapa){
+        $status_us =is_null(Auth::user());
+    $juicio_actor=DB::connection()->select("SELECT * ,'$status_us' AS status_us
+       FROM juicios
+       JOIN actores ON juicios.id_juicio = actores.id_actores
+       JOIN laudo ON juicios.id_juicio = laudo.id_laudo
+       JOIN amparo ON juicios.id_juicio = amparo.id_amparo
+       JOIN etapaejecucion ON juicios.id_juicio = etapaejecucion.id_etapaejecucion
+       JOIN concluido ON juicios.id_juicio = concluido.id_concluido
+       WHERE etapa = '$etapa'
+       ORDER BY CASE       
+       WHEN actores.audiencia >= CURRENT_DATE THEN actores.audiencia - CURRENT_DATE 
+       ELSE NULL 
+      END ASC NULLS LAST");   
+
+    return Datatables::of($juicio_actor)->toJson();
+    }
+
+    
 
 
 }

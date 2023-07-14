@@ -1,4 +1,3 @@
-
 function executeExample(mensaje) {        
     Swal.fire({
         title: mensaje,
@@ -50,19 +49,19 @@ function seacercan(fechas) {
 }
 
 //funcion para filtro por columna
-function filterColumn(table, i) {
+function filterColumn(table2, i) {
     let filter = document.querySelector('#col' + i + '_filter');  
     console.log(filter);
-    table.column(i).search(filter.value).draw();
+    table2.column(i).search(filter.value).draw();
 }
  
 
 
 
-let table ;
+let table2 ;
 $(document).ready(function(){
 
-    table = $('#juiciotabla').DataTable({   
+    table2 = $('#juiciotabla_area').DataTable({   
         
         
     "pageLength": 10,   
@@ -144,13 +143,13 @@ $(document).ready(function(){
             {
                 text: 'Ultimos agregados',
                 action: function () {
-                    table.order([[1, 'desc']]).draw();
+                    table2.order([[1, 'desc']]).draw();
                 }
             },  
             {
                 text: 'Acomodar Fecha Audiencia',
                 action: function () {
-                    table.order([[3, 'desc']]).draw();
+                    table2.order([[3, 'desc']]).draw();
                 }
             }, 
 
@@ -161,7 +160,8 @@ $(document).ready(function(){
         "url": url + "assets/vendors/general/datatables/Spanish.json",  
     },
     ajax: {
-        "url": url + "data/juicios",
+        "url": url + etapa,
+        cache: false,
         
     },
     
@@ -213,7 +213,7 @@ $(document).ready(function(){
         {"mRender": function(data, type, row){
             var ligajuicio=row.id_juicio;   
             var accionj=row.accion;                        
-             return `<a  onclick="mostrar_modal_juicio(${ligajuicio},'${accionj}')" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
+             return `<a  onclick="mostrar_modal_juicio(${ligajuicio},'${accionj}')" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;}
         },
        
         {data:'nombre_completo', name:'nombre_completo'},
@@ -269,7 +269,7 @@ document.querySelectorAll('input.column_filter').forEach((el) => {
     let tr = el.closest('tr');
     let columnIndex = tr.getAttribute('data-column'); 
     el.addEventListener(el.type === 'text' ? 'keyup' : 'change', () =>
-        filterColumn(table, columnIndex)
+        filterColumn(table2, columnIndex)
     );
 });
 //fin del filtro
@@ -462,7 +462,7 @@ function update_actualiza_datos_generales(id,formname){
         processData: false,    
         success: function(response) {
             
-            table.ajax.reload(); 
+            table2.ajax.reload(); 
             // Recargar el modal con los datos actualizados
             editarJuicio(id);
             // Cerrar el modal actual

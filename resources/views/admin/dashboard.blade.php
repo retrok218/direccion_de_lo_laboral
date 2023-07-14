@@ -8,42 +8,45 @@
 
 
 <div class="col-lg-3">
-    {{-- <a href="{{url('/tabla_etapa_juicio/'.$totaletapa['etapa'])}}"> --}}
-    <div class="kt-portlet kt-portlet--height-fluid kt-iconbox--animate-slow" style="background-color: #9d1f3e36;">
-        <div class="kt-portlet__head kt-portlet__head--noborder " >
-            <div class="kt-portlet__head-label">
-                <h3 class="kt-portlet__head-title" >
-                    {{$totaletapa['etapa']}}
-                </h3>
+    <a href="{{url('/tabla_etapa_juicio/'.$totaletapa['etapa'])}}">
+
+
+        <div class="item-wrapper">
+            <div class="line line-top"><span></span></div>
+            <div class="line line-right"><span></span> </div>
+            <div class="line line-bottom"><span></span> </div>
+            <div class="line line-left"><span></span> </div>
+
+        <div class="kt-portlet kt-portlet--height-fluid kt-iconbox--animate-slow" style="background-color: #9d1f3e36;">
+            <div class="kt-portlet__head kt-portlet__head--noborder " >
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title" >
+                        {{$totaletapa['etapa']}}
+                    </h3>
+                </div>
+            
             </div>
-           
-        </div>
-        <div class="kt-portlet__body kt-portlet__body--fit-y kt-margin-b-40">
-            <!--begin::Widget -->
-            <div class="kt-widget kt-widget--user-profile-4 " >
-                <div class="kt-widget__head">
-                    <div class="kt-widget__media ">
-                        
-                       
-                    </div>
-                    <div class="kt-widget__content">
-                        <div class="kt-widget__section">
-                           <h3>
-                            <i class="fa fa-file-alt" style="color:#a02744"></i>
-                            {{$totaletapa['total']}}   
-                           </h3>
-                                                                                        
-                            
-                            
-                            
+            <div class="kt-portlet__body kt-portlet__body--fit-y kt-margin-b-40">
+                <!--begin::Widget -->
+                <div class="kt-widget kt-widget--user-profile-4 " >
+                    <div class="kt-widget__head">
+                        <div class="kt-widget__media "></div>
+                        <div class="kt-widget__content">
+                            <div class="kt-widget__section">
+                            <h3>
+                                <i class="fa fa-file-alt" style="color:#a02744"></i>
+                                {{$totaletapa['total']}}   
+                            </h3> 
+                            </div>
                         </div>
-                    </div>
-                </div>            
+                    </div>            
+                </div>
+                <!--end::Widget -->
             </div>
-            <!--end::Widget -->
         </div>
     </div>
-{{-- </a> --}}
+
+    </a> 
 </div>
 
 

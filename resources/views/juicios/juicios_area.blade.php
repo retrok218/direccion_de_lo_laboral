@@ -1,5 +1,6 @@
-@extends('home') 
-@section('content')   
+@extends('home')
+@section('content')
+
 @if (Session::has('mensaje')) 
 <script> 
     let mensaje = '{{ Session::get('mensaje') }}';
@@ -12,15 +13,17 @@
         $(document).ready(function() {       
          executeExample(mensaje);
      });  
-    }                 
+    }            
+    
 </script>    
+@endif 
+<script>
+let etapa = 'data/juicios_area/{{$etapa2}}';
 
-@endif   
+
+</script>
+
 @include('juicios.headbar')
-@include('tablas_juicio.tabla_juicios')   
+@include('tablas_juicio/tabla_juicio_area')
+
 @endsection
-{{-- <script>
-    let user = {!! json_encode((array)auth()->user()) !!};
-    console.log(user.typeof );            
-</script> --}}
- 
