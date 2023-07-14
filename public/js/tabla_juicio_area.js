@@ -473,6 +473,8 @@ function update_actualiza_datos_generales(id,formname){
         }                    
     });
 
+    
+
 
 //    location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
