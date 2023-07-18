@@ -12,12 +12,13 @@
 
 
         <div class="item-wrapper">
+           
+
+        <div class="kt-portlet kt-portlet--height-fluid kt-iconbox--animate-slow" style="background-color: #9d1f3e36;">
             <div class="line line-top"><span></span></div>
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
-
-        <div class="kt-portlet kt-portlet--height-fluid kt-iconbox--animate-slow" style="background-color: #9d1f3e36;">
             <div class="kt-portlet__head kt-portlet__head--noborder " >
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title" >

@@ -601,41 +601,33 @@
                                           </div>                                                                                     
                                         </div> 
 
-                                        <div class="row"> 
-                                          <div class="row oculto"  id="trimestres">
+                                        
+                                          <div class="row "  id="trimestres">
                                             <div class="col-lg-12" >
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text">Trimestres :</span>
                                               </div>
-                                                  <div class="kt-checkbox-inline" id="chequeo">                                                          
-                                                      @php
-                                                      $saltrime = $juicio3[0]->salarioMen*3;
-                                                      $contador = 1 ;
-                                                          while ($contador <= $trimestres) {
-                                                            echo "<label class='kt-checkbox' id='trimestre' >";
-                                                            echo "<input type='checkbox' name='saltrime' id= tri$contador value=$saltrime >";
-                                                            echo "<span id ='contador'>$contador</span>";                                                            
-                                                            echo "</label>";                                                                                                                                    
-                                                            $contador++;
-                                                          }                                                      
-                                                      @endphp
-                                                </div>
-                                              </div>
                                             </div>
-                                        </div>
-                                        
+                                                                                                                                                                                                      
+                                              @for ($i = 1; $i <= $trimestres; $i++)                                                   
+                                              <div class="kt-checkbox-inline" id="chequeo"> 
+                                                <div class="input-group" id='trimestre'>
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">Trimestre: {{$i}}</span>
+                                                  </div>                                                          
+                                                  <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                      <label class="kt-checkbox kt-checkbox--single kt-checkbox--primary">
+                                                        <input type="checkbox" name='saltrime' id= tri$contador value={{$saltrime }}>
+                                                        <span></span>
+                                                      </label>
+                                                    </span>
+                                                  </div>							      	
+                                                </div>
+                                            </div>
+                                              @endfor
 
-
-
-
-
-
-
-
-
-
-
-
+                                              
 
                                     </div>
                                 </div>

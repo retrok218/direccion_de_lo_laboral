@@ -408,23 +408,15 @@ class Juicios2Controller extends Controller
             $informacionauto["Dias Transcurridos Relacion Laboral"]=  $diastranscurridos;                       
             $sueldo['sumaprestacioneslegales'] =  $sueldo['Aginaldo']+$sueldo['Vacaciones']+ $sueldo['Prima_Vacacional'];
 
-            // if ($accion_de_juicio == 'Indemnización'){
-            //     $sueldo['cocodi'] = $sueldo['Indemnizacion']+$sueldo['Prestaciones_legales'];
-            //     }
-            // elseif($accion_de_juicio == 'Reinstalación'){
-            //     $sueldo['cocodi']= 0 +$sueldo['Prestaciones_legales'];
-            //     }
-            // elseif($accion_de_juicio == 'Otros (prestaciones legales)'){
-            //     $sueldo['cocodi']=$sueldo['Prestaciones_legales'];             
-            //     }
-            // else{
-            //     $sueldo['cocodi'] =$sueldo['Salarios_Caidos']+$sueldo['Prestaciones_legales'];
-            //     }
-
          }                  
-         //se requiere saber cuantos trimestres son desde la fecha de separacion hasta la fecha actual         
+         //se requiere saber cuantos trimestres son desde la fecha de separacion hasta la fecha actual    
+         
+       
         $trimestres = floor($mesestranscurridosalcalidos/3);
-        $salarioportrimestre = $juicio3[0]->salarioMen*3;              
+        
+        $saltrime = $juicio3[0]->salarioMen*3;
+        
+       
         return view('juicios.modals.desgloce_juicio_vista')
          ->with(['juicio3'=>$juicio3,
          'nombreabogados'=>$nombreabogados,
@@ -436,8 +428,15 @@ class Juicios2Controller extends Controller
           "minfaltantes"=>$minfaltantes,
           "mesestranscurridosalcalidos"=>$mesestranscurridosalcalidos,
           "trimestres"=>$trimestres,
-          "sueldo" =>$sueldo]);
+          "sueldo" =>$sueldo,
+          
+          "saltrime"=>$saltrime,
+        ]);
     }
+
+
+
+
     public function comentario(Request $request,$id,SessionManager $sessionManager){ 
         $comentario =request()->only('comentario'); 
         Juicio::where('id_juicio','=',$id)->update($comentario);

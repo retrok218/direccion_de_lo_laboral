@@ -22,7 +22,7 @@ let etapa = 'data/juicios_area/{{$etapa2}}';
 
 
 </script>
-
+<script src="{{URL::asset('js/tabla_juicio_area.js')}}"></script> 
 @include('juicios.headbar')
 @include('tablas_juicio/tabla_juicio_area')
 
