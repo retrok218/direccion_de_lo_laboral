@@ -9,7 +9,7 @@
 }
 </style>
 
-<div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
+<div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed franjacdm">
     <!-- begin:: Header Menu -->
     <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i
             class="la la-close"></i></button>
@@ -132,20 +132,24 @@
         <div class="kt-header__topbar-item kt-header__topbar-item--user" >            
             <div class="kt-header__topbar-user" id="btnClick">                    
                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login </button>
-                    <ul class="dropdown-menu dropdown-menu-right" >
-                        <li class="p-3">
+
+                    <ul class="dropdown-menu dropdown-menu-left">
+                        
+                        <li class="p-3 login-box">
                             <form action="{{ url('login') }}" method="POST">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="emailInput">Email address</label>
-                                    <input type="email" class="form-control" id="emailInput" placeholder="email@example.com"  name="email" value="{{old('email')}}">
-                                    @error('email')<div style="color:red">{{$message}}</div>@enderror
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="passwordInput">Password</label>
-                                    <input type="password" class="form-control" id="passwordInput" placeholder="Password" name="password">
+                                <div class="user-box">                                    
+                                    <input type="text"  id="emailInput"  name="email" value="{{old('email')}}" required>
+                                    <label for="emailInput">Ingrese Su Correo</label>
+                                    @error('email')<div style="color:red">{{$message}}</div>@enderror                                                                       
+                                </div>
+                                  <div class="user-box">
+                                   
+                                    <input type="password" class="form-control" id="passwordInput" placeholder="Password" name="password" required>
+                                    <label for="passwordInput">Ingrese Su Contraseña</label>
                                     @error('password') <div style="color:red">{{$message}}</div>@enderror
                                   </div>
+
                                   <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  name="remember" id="rememberm">
                                     <label class="form-check-label" for="rememberm">
@@ -153,10 +157,12 @@
                                     </label>
                                   </div>
                                   <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                    
+                                    <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
                                 </div>                                  
                             </form>
                         </li>
+
                     </ul>
                                                                                                                       
                 </div>

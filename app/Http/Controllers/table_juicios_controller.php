@@ -29,6 +29,12 @@ class table_juicios_controller extends Controller
 {
 
     public function index(){
+      
+        
+
+
+
+
         $juicios = juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
             ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
             ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
@@ -56,21 +62,12 @@ class table_juicios_controller extends Controller
             return  $arr;
         })->toArray();
 
-        $Json_ano_mes_coco = json_encode($ano_mes_coco);
-
-    //dd(  $ano_mes_coco );
-        
-
-        
-    
-  
+        $Json_ano_mes_coco = json_encode($ano_mes_coco);            
+          
 //se requiere un count por cada etapa que se encuentre en los juicios que hay 
          $conteoPorEtapa = juicio::groupBy('etapa')
          ->select('etapa', DB::raw('count(*) as total'))
-         ->get();
-
-         
-        
+         ->get();                 
          $factual = Carbon::now();                          
          $requerimientofecha = juicio::select('id_juicio','fechaproxima')->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
          ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
@@ -78,8 +75,7 @@ class table_juicios_controller extends Controller
          ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
          ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')      
          ->whereNotNull('fechaproxima')                
-         ->pluck('fechaproxima','id_juicio');
-                        
+         ->pluck('fechaproxima','id_juicio');                        
         $alertaproximafecha=[];
         $totalqueaproximados = 0;
          foreach ($requerimientofecha as $key=>$fecha) {
@@ -89,18 +85,35 @@ class table_juicios_controller extends Controller
              if ($diferenciadias <=2 &&  $diferenciadias >= 0 ) {
                  $totalqueaproximados++;
                  $alertaproximafecha[$key]= $fecha;
-             }
-             
+             }             
          }
          $todoslosjuicios = juicio::count();
          $conteoPorEtapa2 = juicio::groupBy('etapa')
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
-
-
          $conteoPorEtapa22 = json_encode($conteoPorEtapa2);   
-         
 
+
+         $fechasactual = date('Y');
+         //se extraen los años de todos los juicios
+         $años_juicios = juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'))
+         ->groupBy('anio')
+         ->orderBy('anio','DESC')
+         ->get()
+         ->pluck('anio');
+         $años_meses_cantcocodi =[];
+         foreach ($años_juicios as $key => $año) {            
+            $años_meses_cantcocodi[$año] = juicio::where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)
+             
+            ->get() ; 
+         }
+                  
+           
+
+          
+         //dd($años_meses_cantcocodi);
+
+        
         return view('admin.dashboard')->with([
          'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,
@@ -114,6 +127,11 @@ class table_juicios_controller extends Controller
         'ano_mes_coco'=>$ano_mes_coco,//prueva
         ]);
     }
+
+
+
+
+
 
     public function desgloce_juicios(){
         return view('Direccion_Laboral.tabla_juicios');

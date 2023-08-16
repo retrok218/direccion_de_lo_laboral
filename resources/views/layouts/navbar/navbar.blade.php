@@ -1,10 +1,12 @@
 <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
    <!-- begin:: Aside -->
-   <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+   <div class="kt-aside__brand kt-grid__item franjacdm " id="kt_aside_brand">
+
       <div class="kt-aside__brand-logo">
+         <img alt="Logo" src="http://localhost/Direccion_De_Lo_Laboral/public/assets/media/company-logos/logo_m.png" style="width: 58%;margin: -7px -1px  -3px  22px;opacity: 38%;">
         
       </div>
-      <div class="kt-aside__brand-tools">
+      <div class="kt-aside__brand-tools ">
          <button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler">
             <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

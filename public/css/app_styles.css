@@ -124,3 +124,14 @@
     background-repeat: no-repeat;
     
 }
+
+.franjacdm{
+    background-image: url(../assets/media/bg/1.png) !important;
+    background-repeat: no-repeat;
+    /* border: 2px dashed #333; */
+    background-size: 117% 15%;
+    background-position: 9% -3%;
+    /* background-size: contain; */
+    background-attachment: fixed;
+}
+

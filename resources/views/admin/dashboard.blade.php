@@ -1,5 +1,5 @@
 @extends('home')
-<meta http-equiv="refresh" content="60"/>
+{{-- <meta http-equiv="refresh" content="60"/> --}}
 @section('content')
 <div class="row">
     

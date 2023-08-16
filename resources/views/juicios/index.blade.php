@@ -18,6 +18,7 @@
 @endif   
 @include('juicios.headbar')
 @include('tablas_juicio.tabla_juicios')   
+
 @endsection
 {{-- <script>
     let user = {!! json_encode((array)auth()->user()) !!};
