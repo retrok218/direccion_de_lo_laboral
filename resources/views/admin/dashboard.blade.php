@@ -19,22 +19,24 @@
             <div class="line line-right"><span></span> </div>
             <div class="line line-bottom"><span></span> </div>
             <div class="line line-left"><span></span> </div>
-            <div class="kt-portlet__head kt-portlet__head--noborder " >
-                <div class="kt-portlet__head-label">
-                    <h3 class="kt-portlet__head-title" >
+            <div class="kt-portlet__head kt-portlet__head--noborder " style="min-height: 40px;"  >
+               
+                    <h3 class="kt-portlet__head-title" style="font-size: 20px;
+                    color:  #0f4c42b3;
+                    font-weight: bold;">
                         {{$totaletapa['etapa']}}
                     </h3>
-                </div>
+              
             
             </div>
-            <div class="kt-portlet__body kt-portlet__body--fit-y kt-margin-b-40">
+            <div class="kt-portlet__body kt-portlet__body--fit-y kt-margin-b-25">
                 <!--begin::Widget -->
                 <div class="kt-widget kt-widget--user-profile-4 " >
                     <div class="kt-widget__head">
                         <div class="kt-widget__media "></div>
                         <div class="kt-widget__content">
                             <div class="kt-widget__section">
-                            <h3>
+                            <h3 style="text-shadow: 1px 1px 2px #e7d8bb, 0 0 25px #aa3f53, 0 0 5px #f1e9d9;">
                                 <i class="fa fa-file-alt" style="color:#a02744"></i>
                                 {{$totaletapa['total']}}   
                             </h3> 
@@ -62,11 +64,11 @@
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid"> <!--inicio de graficas y pag principal -->     
     
     <div class="row">
-        <div class="col-xl-12 col-lg-12 order-lg-12 order-xl-12">
+        <div class="col-xl-6 col-lg-6 order-lg-6 order-xl-6">
             <div class="kt-portlet kt-portlet--height-fluid" >
                 <div class="kt-witdget14">
                     <div class="kt-widget14__header">
-                        <h3>Grafica Juicios Por Etapa</h3>
+                        <h3>Juicios Por Etapa</h3>
                         <span>Etapas </span>
                     </div>
                     <div class="kt-widgeat14__content">                                                    
@@ -78,14 +80,14 @@
                 </div>            
             </div>    
         </div>
-    </div>
+   
 
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 order-lg-12 order-xl-12">
+    
+        <div class="col-xl-6 col-lg-6 order-lg-6 order-xl-6">
             <div class="kt-portlet kt-portlet--height-fluid" >
                 <div class="kt-witdget14">
                     <div class="kt-widget14__header">
-                        <h3>Grafica Cocodi Por Año</h3>
+                        <h3>Cocodi Por Año</h3>
                         
                     </div>
                     <div class="kt-widgeat14__content">                                                    
@@ -98,26 +100,43 @@
                 </div>            
             </div>    
         </div>
-    </div> 
-    {{-- <div class="row">
-        <div class="col-xl-12 col-lg-12 order-lg-12 order-xl-12">
+    </div>
+    <div class="row">
+        <div class="col-xl-5 col-lg-5 order-lg-5 order-xl-5">
             <div class="kt-portlet kt-portlet--height-fluid" >
                 <div class="kt-witdget14">
                     <div class="kt-widget14__header">
-                        <h3>Grafica Cocodi Por Mes Año</h3>
-                        
+                        <h3>Juicio/Año</h3>                        
                     </div>
                     <div class="kt-widgeat14__content">                                                    
                         <div class="kt-widget14__chart">
-                            <div id="ano-mes-coco" style="height: 250px;"></div>
-                            
-                        </div>    
+                            <div id="juicio_año" style="height: 250px;"></div> 
+                                                        
+                        </div>                                                  
+                    </div>                        
+                </div> 
+                           
+            </div>    
+        </div>
+        <div class="col-xl-7 col-lg-7 order-lg-7 order-xl-7">
+            <div class="kt-portlet kt-portlet--height-fluid" >
+                <div class="kt-witdget14">
+                    <div class="kt-widget14__header">
+                        <h3>Juicio/Año/Porciento</h3>
                         
+                    </div>
+                    <div class="kt-widgeat14__content">                                                    
+                        <div class="kt-widget14__chart">                             
+                            <div id="grafica_animada_de_dona" style="height:250px;"></div>                             
+                        </div>                                                  
                     </div>                        
                 </div>            
             </div>    
         </div>
-    </div>      ************construccion--}}   
+        
+    </div>  
+    
+    
 
     
 </div>
@@ -129,6 +148,10 @@
     let json_suma_coco = {!! $json_suma_coco !!};
     let sumaCocoAno = [];
     let Json_ano_mes_coco ={!!$Json_ano_mes_coco!!};
+    const añojuicioData =   @json($juicios_por_año_individual);
+      
+
+    
 
     for (var i = 0; i < json_suma_coco.length; i++) {
         var anio = json_suma_coco[i].anio || "0";  // Utiliza "0" como valor predeterminado si anio es null

@@ -29,12 +29,7 @@ class table_juicios_controller extends Controller
 {
 
     public function index(){
-      
-        
-
-
-
-
+              
         $juicios = juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
             ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
             ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
@@ -93,29 +88,39 @@ class table_juicios_controller extends Controller
          ->get();
          $conteoPorEtapa22 = json_encode($conteoPorEtapa2);   
 
+        
+         //se extraen los años de todos los juicios COALESCE si el balor del año obtenido es nulo lo regresa como 0
+        
+         $años_juicios = juicio::selectRaw('COALESCE(EXTRACT(YEAR FROM presentacion_de_demanda), 0) as anio')
+        ->groupBy('anio')
+        ->orderBy('anio', 'DESC')
+        ->get()
+        ->pluck('anio');
 
-         $fechasactual = date('Y');
-         //se extraen los años de todos los juicios
-         $años_juicios = juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'))
-         ->groupBy('anio')
-         ->orderBy('anio','DESC')
-         ->get()
-         ->pluck('anio');
+         $juicios_por_año_individual =[];
+         foreach ($años_juicios as $key => $año) {                   
+            $juicios_por_año_individual[] = (object)[
+                
+                'anio' => $año,                
+                'cantidad' => juicio::where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)
+                ->count()
+            ];
+         }
+         //$json_juicios_por_año_individual = json_encode($juicios_por_año_individual) ;
+         
+
+
+
+         //se crea $años_meses_cantcocodi contienr los juicios completos dependiendo el año 
          $años_meses_cantcocodi =[];
          foreach ($años_juicios as $key => $año) {            
-            $años_meses_cantcocodi[$año] = juicio::where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)
-             
+            $años_meses_cantcocodi[$año] = juicio::where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)                         
             ->get() ; 
          }
-                  
-           
-
-          
-         //dd($años_meses_cantcocodi);
-
-        
+                                    
+        //dd($juicios_por_año_individual);        
         return view('admin.dashboard')->with([
-         'requerimientofecha' => $requerimientofecha,  
+        'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,
         'alertaproximafecha'=>$alertaproximafecha, 
         'conteoPorEtapa'=>$conteoPorEtapa,
@@ -125,6 +130,7 @@ class table_juicios_controller extends Controller
         'json_suma_coco'=>$json_suma_coco, 
         'Json_ano_mes_coco'=>$Json_ano_mes_coco,
         'ano_mes_coco'=>$ano_mes_coco,//prueva
+        'juicios_por_año_individual'=>$juicios_por_año_individual,
         ]);
     }
 
