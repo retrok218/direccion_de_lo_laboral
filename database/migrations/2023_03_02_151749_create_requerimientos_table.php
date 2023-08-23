@@ -18,6 +18,7 @@ class CreateRequerimientosTable extends Migration
             $table->integer('no_de_intentos')->nullable();
             $table->date('fechaprox')->nullable();
             $table->string('cumplimiento',150)->nullable();
+            
             $table->timestamps();
         });
     }

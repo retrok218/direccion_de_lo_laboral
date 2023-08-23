@@ -14,8 +14,9 @@
      });  
     }                 
 </script>    
-
 @endif   
+ 
+ 
 @include('juicios.headbar')
 @include('tablas_juicio.tabla_juicios')   
 

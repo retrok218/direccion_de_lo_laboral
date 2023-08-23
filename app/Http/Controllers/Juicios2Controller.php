@@ -297,7 +297,7 @@ class Juicios2Controller extends Controller
       
         $status_us =is_null(Auth::user()); 
 
-       $juicio_actor=DB::connection()->select("SELECT *,'$status_us' AS status_us
+       $juicio_actor=DB::connection()->select("SELECT INITCAP(actores.nombre_completo) as nombrecompleto,*,'$status_us' AS status_us
        FROM juicios
        JOIN actores ON juicios.id_juicio = actores.id_actores
        JOIN laudo ON juicios.id_juicio = laudo.id_laudo
@@ -309,6 +309,10 @@ class Juicios2Controller extends Controller
        ELSE NULL -- Fechas pasadas
       END ASC NULLS LAST");
       //ordena las tablas conforme las fechas de audiencia se acerca al dia actual las que ya pasaron las deja al fina igual las nulas
+       
+      
+
+
     //dd( $juicio_actor);
         
     //   $juicio_actor = $juicio_actor->map(function ($item) use ($status_us) {

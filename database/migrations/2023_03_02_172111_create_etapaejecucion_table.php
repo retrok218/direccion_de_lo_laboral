@@ -27,6 +27,8 @@ class CreateEtapaejecucionTable extends Migration
             $table->string('nodeintento')->nullable();
             $table->date('fechaproxima')->nullable();
             $table->text('cumplimiento')->nullable();
+            $table->string('estatus_de_ejecucion',100)->nullable();
+            $table->string('faltantes_de_ejecucion',200)->nullable();
             $table->timestamps();
         });
     }

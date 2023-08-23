@@ -8,6 +8,10 @@
             <td>Filtro Por Expediente</td>
             <td align="center"><input type="number" class="column_filter" id="col4_filter"></td>            
         </tr>
+        <tr id="filter_col6" data-column="5">
+            <td>Filtro Por Accion</td>
+            <td align="center"><input type="text" class="column_filter" id="col5_filter"></td>            
+        </tr>
     </tbody>
 </table> 
 <table class="table table-striped table-bordered" style="width:100%" id="juiciotabla" >
@@ -19,7 +23,7 @@
             <th>Audiencia</th>            
             <th>Expediente</th>
             <th>Accion</th>
-            <th>Indemnizacion</th>                        
+            <th>Adscripcion</th>                        
             <th>Ejecucion/Dias restantes Para Requerimiento Fecha Proxima</th>            
             <th>Editar</th>
         </tr>                

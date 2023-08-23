@@ -61,17 +61,12 @@ function filterColumn(table, i) {
 
 let table ;
 $(document).ready(function(){
-
-    table = $('#juiciotabla').DataTable({   
-        
-        
+    table = $('#juiciotabla').DataTable({                   
     "pageLength": 10,   
     "lengthChange": true,
     "searching": true,
-    responsive: true,
-    
-    "info": true,
-    
+    responsive: true,    
+    "info": true,    
     "autoWidth": true,      
     //"language": idioma,
     "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
@@ -79,10 +74,7 @@ $(document).ready(function(){
     dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
     dom:'Bfrtip',
     deferRender:true, 
-    "columnDefs": [ {
-          "visible": true,
-          "targets": -1
-      } ],
+    columnDefs: [{ width: '8%', targets:1 },{ width: '15%', targets: 2},{ width: '8%', targets:4 },{ width: '5%', targets: 5}],
 
 
     "search": {
@@ -176,11 +168,11 @@ $(document).ready(function(){
             // verde si faltan mas de 2 dias            
             $(row).find('td').css('color', 'rgb(60, 53, 53)');            
             $(row).css('background', 'rgba(7, 232, 0, 0.14)');                        
-            $(row).css('box-shadow', '2px 1px 8px rgba(0, 255, 40)');                                    
+            //$(row).css('box-shadow', '2px 1px 8px rgba(0, 255, 40)');                                    
         } else if (diferenciafehas <= 1 & diferenciafehas > -1) {
             //rojo 0 dias o menos de 0 dias
             $(row).css('background', 'rgba(255, 1, 1, 0.38)');
-            $(row).css('box-shadow', 'rgb(255, 0, 0) 2px 1px 8px');           
+            //$(row).css('box-shadow', 'rgb(255, 0, 0) 2px 1px 8px');           
             $(row).find('td').css('color', 'rgb(60, 53, 53)');
         }        
         else {
@@ -211,16 +203,21 @@ $(document).ready(function(){
             return estatusRegla;
         }},               
         {"mRender": function(data, type, row){
-            var ligajuicio=row.id_juicio;   
-            var accionj=row.accion;                        
-             return `<a  onclick="mostrar_modal_juicio(${ligajuicio},'${accionj}')" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} <span> </button></a>`;                                   }
+                var ligajuicio=row.id_juicio;   
+                var accionj=row.accion;                        
+                return `<a  onclick="mostrar_modal_juicio(${ligajuicio},'${accionj}')" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} </span> </button></a>`;                                   
+            }
         },
        
-        {data:'nombre_completo', name:'nombre_completo'},
+        {"mRender":function(data,type,row){
+            return `${row.nombrecompleto}`
+            }
+        },
+        //{data:'nombre_completo', name:'nombre_completo'},
         {data:'audiencia',name:'audiencia'},        
         {data:'expediente',name:'expediente'},
         {data:'accion',name:'accion'},
-        {data:'indemnizacion', name:'indemnizacion'},                
+        {data:'adscripcion', name:'adscripcion'},                
         {"mRender":function(data,type,row){
             let actual_fecha = moment(); 
             let f = moment(row.fechaproxima);            
@@ -254,12 +251,7 @@ $(document).ready(function(){
           }        
     ],
     });
-
-    
-    
-
-    
-
+            
    // setInterval(table.ajax.reload(),5000);
 });
 //fin de datatable
@@ -392,7 +384,7 @@ function mostrar_modal_juicio(data,accion) {
                                 }) 
                                 .get()                            
                             });
-            //creadndo nueva suma para cocodi
+            //creando nueva suma para cocodi
                let empezar_cocodi= document.getElementById('empezar_cocodi');    
                empezar_cocodi.addEventListener('change',() =>{
                    if (empezar_cocodi.checked) { //revisamos si el imput de cocodi nueva suma esta activado                    
