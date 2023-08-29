@@ -471,21 +471,7 @@
                                           <div class="col-lg-12" >
                                             <label class="kt-option">                                                                
                                             <span class="kt-option__label">                                                                                           
-                                              <form action="{{url('/juicios_coco/'.$juicio3[0]->id_juicio)}}" method="POST" id="guardarcocodi">  
-                                                @csrf                                                   
-                                                  <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">                                                  
-                                                      <div class="input-group-text">
-                                                        <input type="checkbox" aria-label="Checkbox for following text input"  id="empezar_cocodi" name="cheket_coco" >
-                                                      </div>
-                                                      <span class="input-group-text">$</span>
-                                                    </div>
-                                                    <input  name="cocodi_suma" value='0' type="text" class="form-control" aria-label="Text input with checkbox"  id="n_cocodi" readonly >
-                                                    <div class="input-group-append">
-                                                      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Guardar / Actualizar Cocodi</button>
-                                                    </div>
-                                                  </div>
-                                              </form>
+                                              
                                                                                           
 
                                               <hr width="100%" style="border-color: black">                                               
@@ -595,37 +581,59 @@
                                                     <div class="input-group-prepend"><span class="input-group-text">Salario por Trimestre $</span></div>
                                                     <input  class="form-control" type="text" id="Salarios_Caidos" placeholder="Salario no Ingresado" value={{ $juicio3[0]->salarioMen*3}} readonly>
                                                   </div>
-                                                </div>                                                                                                                                                 
+                                                </div>
+                                                         
+                                                
+
+                                                <label class="kt-option">
+                                                  <div class="row "  id="trimestres">
+                                                    <div class="col-lg-12" >
+                                                      <div class="input-group-prepend">
+                                                        <span class="input-group-text">Trimestres :</span>
+                                                      </div>
+                                                    </div>
+                                                                                                                                                                                                              
+                                                      @for ($i = 1; $i <= $trimestres; $i++)                                                   
+                                                      <div class="kt-checkbox-inline" id="chequeo"> 
+                                                        <div class="input-group" id='trimestre'>
+                                                          <div class="input-group-prepend">
+                                                            <span class="input-group-text">Trimestre: {{$i}}</span>
+                                                          </div>                                                          
+                                                          <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                              <label class="kt-checkbox kt-checkbox--single kt-checkbox--primary">
+                                                                <input type="checkbox" name='saltrime' id= tri$contador value={{$saltrime }}>
+                                                                <span></span>
+                                                              </label>
+                                                            </span>
+                                                          </div>							      	
+                                                        </div>
+                                                    </div>
+                                                      @endfor
+                                                </label>
+
+                                                    <form action="{{url('/juicios_coco/'.$juicio3[0]->id_juicio)}}" method="POST" id="guardarcocodi">  
+                                                      @csrf                                                   
+                                                        <div class="input-group mb-3">
+                                                          <div class="input-group-prepend">                                                  
+                                                            <div class="input-group-text">
+                                                              <input type="checkbox" aria-label="Checkbox for following text input"  id="empezar_cocodi" name="cheket_coco" >
+                                                            </div>
+                                                            <span class="input-group-text">$</span>
+                                                          </div>
+                                                          <input  name="cocodi_suma" value='0' type="text" class="form-control" aria-label="Text input with checkbox"  id="n_cocodi" readonly >
+                                                          <div class="input-group-append">
+                                                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Guardar / Actualizar Cocodi</button>
+                                                          </div>
+                                                        </div>
+                                                    </form>
                                             </span>	                                                                                                                                      
                                             </label> 
                                           </div>                                                                                     
                                         </div> 
 
                                         
-                                          <div class="row "  id="trimestres">
-                                            <div class="col-lg-12" >
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text">Trimestres :</span>
-                                              </div>
-                                            </div>
-                                                                                                                                                                                                      
-                                              @for ($i = 1; $i <= $trimestres; $i++)                                                   
-                                              <div class="kt-checkbox-inline" id="chequeo"> 
-                                                <div class="input-group" id='trimestre'>
-                                                  <div class="input-group-prepend">
-                                                    <span class="input-group-text">Trimestre: {{$i}}</span>
-                                                  </div>                                                          
-                                                  <div class="input-group-append">
-                                                    <span class="input-group-text">
-                                                      <label class="kt-checkbox kt-checkbox--single kt-checkbox--primary">
-                                                        <input type="checkbox" name='saltrime' id= tri$contador value={{$saltrime }}>
-                                                        <span></span>
-                                                      </label>
-                                                    </span>
-                                                  </div>							      	
-                                                </div>
-                                            </div>
-                                              @endfor
+                                          
 
                                               
 

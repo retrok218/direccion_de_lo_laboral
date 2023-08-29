@@ -110,7 +110,8 @@ am5.ready(function() {
   }, {
     country: "Cancelado",
     value:parseFloat(nombteetapa['Cancelado']) 
-  }];
+  }
+];
   
   xAxis.data.setAll(data);
   series.data.setAll(data);

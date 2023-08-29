@@ -62,6 +62,7 @@ class Juicios2Controller extends Controller
             }
             
         }       
+        
        return view('juicios.index')->with([
         'juicio_actor' => $juicio_actor,
         'totalqueaproximados' => $totalqueaproximados,
@@ -304,6 +305,7 @@ class Juicios2Controller extends Controller
        JOIN amparo ON juicios.id_juicio = amparo.id_amparo
        JOIN etapaejecucion ON juicios.id_juicio = etapaejecucion.id_etapaejecucion
        JOIN concluido ON juicios.id_juicio = concluido.id_concluido
+       JOIN salas ON juicios.id_sala = salas.id_sala
        ORDER BY CASE
       WHEN actores.audiencia >= CURRENT_DATE THEN actores.audiencia - CURRENT_DATE -- Fechas futuras
        ELSE NULL -- Fechas pasadas
@@ -313,7 +315,7 @@ class Juicios2Controller extends Controller
       
 
 
-    //dd( $juicio_actor);
+   // dd( $juicio_actor);
         
     //   $juicio_actor = $juicio_actor->map(function ($item) use ($status_us) {
     //     $item->status_us = $status_us;

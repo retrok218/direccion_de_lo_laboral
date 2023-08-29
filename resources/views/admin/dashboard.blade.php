@@ -148,6 +148,7 @@
     let json_suma_coco = {!! $json_suma_coco !!};
     let sumaCocoAno = [];
     let Json_ano_mes_coco ={!!$Json_ano_mes_coco!!};
+    console.log(Json_ano_mes_coco);
     const añojuicioData =   @json($juicios_por_año_individual);
       
 

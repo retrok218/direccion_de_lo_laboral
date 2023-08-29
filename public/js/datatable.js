@@ -52,7 +52,7 @@ function seacercan(fechas) {
 //funcion para filtro por columna
 function filterColumn(table, i) {
     let filter = document.querySelector('#col' + i + '_filter');  
-    console.log(filter);
+    console.log(i);
     table.column(i).search(filter.value).draw();
 }
  
@@ -65,7 +65,8 @@ $(document).ready(function(){
     "pageLength": 10,   
     "lengthChange": true,
     "searching": true,
-    responsive: true,    
+    responsive: true, 
+    
     "info": true,    
     "autoWidth": true,      
     //"language": idioma,
@@ -74,7 +75,7 @@ $(document).ready(function(){
     dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
     dom:'Bfrtip',
     deferRender:true, 
-    columnDefs: [{ width: '8%', targets:1 },{ width: '15%', targets: 2},{ width: '8%', targets:4 },{ width: '5%', targets: 5}],
+    columnDefs: [{ width: '3%', targets:0 },{ width: '8%', targets:1 },{ width: '3%', targets: 2},{ width: '8%', targets:4 },{ width: '5%', targets: 5},{width:'15%' ,targets:6},{width:'15%' ,targets:7},{width:'5%',targets:8}],
 
 
     "search": {
@@ -124,7 +125,7 @@ $(document).ready(function(){
                     doc.styles['td:nth-child(2)'] = {
                             width: '100px',
                             'max-width': '100px',
-                            margin: [0, 0, 0, 12],
+                            margin: [0, 0, 0, 12 ],
                         },
                         doc.styles.tableHeader = {
                             fillColor: '#114627',
@@ -145,6 +146,8 @@ $(document).ready(function(){
                     table.order([[3, 'desc']]).draw();
                 }
             }, 
+
+            
 
         ]
     },
@@ -209,46 +212,79 @@ $(document).ready(function(){
             }
         },
        
-        {"mRender":function(data,type,row){
-            return `${row.nombrecompleto}`
-            }
-        },
-        //{data:'nombre_completo', name:'nombre_completo'},
-        {data:'audiencia',name:'audiencia'},        
-        {data:'expediente',name:'expediente'},
-        {data:'accion',name:'accion'},
-        {data:'adscripcion', name:'adscripcion'},                
-        {"mRender":function(data,type,row){
-            let actual_fecha = moment(); 
-            let f = moment(row.fechaproxima);            
-            let fechaproximaalert;
-            if (row.fechaproxima !== null ) {                
-                 fechaproximaalert = f.diff(actual_fecha,'days') ;
-                 fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? ' Feacha Vencida '+row.fechaproxima:fechaproximaalert;                     
-                 fechaproximaalert = f.diff(actual_fecha,'days') <=2 && f.diff(actual_fecha,'days') >=0 ? '<span class=" requerimiento fa-beat-fade"> Faltan '+f.diff(actual_fecha,'days')+'- Dias '+f.diff(actual_fecha,'hours')+'- Horas </span><br> <span class=" requerimiento fa-beat-fade" >Proxima Fecha: '+row.fechaproxima+'</span>':  fechaproximaalert;      
-               }               
-               else{
-                fechaproximaalert = 'Sin Fecha';
-               }            
-                return fechaproximaalert
+        // {"mRender":function(data,type,row){
+        //     return `${row.nombrecompleto}`
+        //     }
+        // },
+        // //{data:'nombre_completo', name:'nombre_completo'},
+        // {data:'audiencia',name:'audiencia'},        
+        // {data:'expediente',name:'expediente'},
+        // {data:'accion',name:'accion'},
+        // {data:'adscripcion', name:'adscripcion'},                
+        // {"mRender":function(data,type,row){
+        //     let actual_fecha = moment(); 
+        //     let f = moment(row.fechaproxima);            
+        //     let fechaproximaalert;
+        //     if (row.fechaproxima !== null ) {                
+        //          fechaproximaalert = f.diff(actual_fecha,'days') ;
+        //          fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? ' Feacha Vencida '+row.fechaproxima:fechaproximaalert;                     
+        //          fechaproximaalert = f.diff(actual_fecha,'days') <=2 && f.diff(actual_fecha,'days') >=0 ? '<span class=" requerimiento fa-beat-fade"> Faltan '+f.diff(actual_fecha,'days')+'- Dias '+f.diff(actual_fecha,'hours')+'- Horas </span><br> <span class=" requerimiento fa-beat-fade" >Proxima Fecha: '+row.fechaproxima+'</span>':  fechaproximaalert;      
+        //        }               
+        //        else{
+        //         fechaproximaalert = 'Sin Fecha';
+        //        }            
+        //         return fechaproximaalert
                        
-        }},       
-        { 
-            "mRender": function(data, type, row){
-               
-              var editUrl = url+"editar/" + row.id_juicio;
-              var deleteUrl =url+"eliminar/" + row.id_juicio;                           
-              var ligajuicio=row.id_juicio; 
-                        
+        // }},  
 
-            if (row.status_us == true) {
-                return `<button type="button" class="btn btn-outline-brand btn-icon" disabled><i class="fa fa-pencil" title="Logueate para poder Editar"></i></button>`
-            }
+        // { 
+        //     "mRender": function(data, type, row){               
+        //       var editUrl = url+"editar/" + row.id_juicio;
+        //       var deleteUrl =url+"eliminar/" + row.id_juicio;                           
+        //       var ligajuicio=row.id_juicio;                         
+        //     if (row.status_us == true) {
+        //         return `<button type="button" class="btn btn-outline-brand btn-icon" disabled><i class="fa fa-pencil" title="Logueate para poder Editar"></i></button>`
+        //     }
+        //     return `<button value="Editar" title="Editar" type="button" class="btn btn-outline-brand btn-icon" onclick="editarJuicio(${ligajuicio})" ><i class="fa fa-pencil" ></i></button>`                            
+        //     }
+        // }     
 
-            return `<button value="Editar" title="Editar" type="button" class="btn btn-outline-brand btn-icon" onclick="editarJuicio(${ligajuicio})" ><i class="fa fa-pencil" ></i></button>`
-                            
-            }
-          }        
+        {data:'noti_demanda',name:'noti_demanda'}, 
+        {data:'presentacion_de_demanda',name:'presentacion_de_demanda'},
+        {data:'nombre_sala', name:'nombre_sala'},
+        {"mRender": function(data,type,row){
+            return `${row.expediente} - ${row.año_juicio} ` 
+        }},
+        {data:'clasificacion_año', name:'clasificacion_año'},
+        {data:'clasificacion_exp', name:'clasificacion_exp'},
+        {data:'tipo', name:'tipo'},
+        {data:'accion', name:'accion'},  
+        {data:'nombre_completo', name:'nombre_completo'},   
+        {data:'adscripcion', name:'adscripcion'},
+        {data:'ur', name:'ur'},
+        {data:'denominacion', name:'denominacion'},
+        {data:'puesto' , name:'puesto'},
+        {data:'nivel' , name:'nivel'},
+        {data:'salarioMen' , name:'salarioMen'},
+        {data:'inicio_rellab' , name:'inicio_rellab'},
+        {data:'terminacion_rellab' , name:'terminacion_rellab'},
+        {data:'exp_personal_rh_solicitud' , name:'exp_personal_rh_solicitud'},
+        {data:'exp_personal_rh_devolucion' , name:'exp_personal_rh_devolucion'},
+        {data:'fojas' , name:'fojas'},
+        {data:'exp_adscripcion_solicitud' , name:'exp_adscripcion_solicitud'},
+        {data:'exp_adscripcion_devolucion' , name:'exp_adscripcion_devolucion'},
+        
+
+
+        
+
+
+        
+        
+
+
+
+
     ],
     });
             
@@ -256,7 +292,7 @@ $(document).ready(function(){
 });
 //fin de datatable
 
-//se genera filtro por actoer y por expediente
+//se genera filtro por actor y por expediente
 document.querySelectorAll('input.column_filter').forEach((el) => {
     let tr = el.closest('tr');
     let columnIndex = tr.getAttribute('data-column'); 
@@ -289,7 +325,7 @@ function mostrar_modal_juicio(data,accion) {
                                            
              });
 
-// agregando mi js 
+// agregando  js propio 
              let hrasextra = $('#horas_extra')[0];             
              let caracteres = /^[0-9.]+$/;   
              let prestaciones_1 = document.getElementById('prestaciones_legales');

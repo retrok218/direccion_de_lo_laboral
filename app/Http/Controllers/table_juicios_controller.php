@@ -56,7 +56,7 @@ class table_juicios_controller extends Controller
             ksort($arr);
             return  $arr;
         })->toArray();
-
+//dd($anos_mes_suma_coco);
         $Json_ano_mes_coco = json_encode($ano_mes_coco);            
           
 //se requiere un count por cada etapa que se encuentre en los juicios que hay 
