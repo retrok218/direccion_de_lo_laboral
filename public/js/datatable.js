@@ -52,7 +52,7 @@ function seacercan(fechas) {
 //funcion para filtro por columna
 function filterColumn(table, i) {
     let filter = document.querySelector('#col' + i + '_filter');  
-    console.log(i);
+    console.log(filter);
     table.column(i).search(filter.value).draw();
 }
  
@@ -292,7 +292,7 @@ $(document).ready(function(){
 });
 //fin de datatable
 
-//se genera filtro por actor y por expediente
+//se genera filtro por actoer y por expediente
 document.querySelectorAll('input.column_filter').forEach((el) => {
     let tr = el.closest('tr');
     let columnIndex = tr.getAttribute('data-column'); 
@@ -300,6 +300,17 @@ document.querySelectorAll('input.column_filter').forEach((el) => {
         filterColumn(table, columnIndex)
     );
 });
+
+//filtro experimental
+document.querySelectorAll('input.form-control').forEach((el) =>{
+    let label = el.closest('label');
+    let indicecolum = label.getAttribute('data-column');
+    
+})
+
+
+
+
 //fin del filtro
 
 //modal desgloce de juicio 
