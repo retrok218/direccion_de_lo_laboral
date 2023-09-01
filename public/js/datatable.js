@@ -51,62 +51,58 @@ function seacercan(fechas) {
 
 //funcion para filtro por columna
 function filterColumn(table, i) {
-    let filter = document.querySelector('#col' + i + '_filter');  
-    console.log(filter);
+    let filter = document.querySelector('#col' + i + '_filter');     
     table.column(i).search(filter.value).draw();
 }
  
 
-
-
 let table ;
 $(document).ready(function(){
-    table = $('#juiciotabla').DataTable({                   
+    table = $('#juiciotabla').DataTable({      
+                 
     "pageLength": 10,   
-    "lengthChange": true,
+    //"lengthChange": true,
     "searching": true,
-    responsive: true, 
-    
+    responsive: true,        
     "info": true,    
-    "autoWidth": true,      
-    //"language": idioma,
-    "lengthMenu": [[10,20, -1],[10,20,"Mostrar Todo"]],
-    //"order":[0 ,'desc'],
+   "autoWidth": true,             
     dom:'Bfrtip<"col-md-6 inline"i> <"col-md-6 inline"p>',
-    dom:'Bfrtip',
+    dom:'Bfrtip',       
     deferRender:true, 
-    columnDefs: [{ width: '3%', targets:0 },{ width: '8%', targets:1 },{ width: '3%', targets: 2},{ width: '8%', targets:4 },{ width: '5%', targets: 5},{width:'15%' ,targets:6},{width:'15%' ,targets:7},{width:'5%',targets:8}],
-
-
+    //columnDefs: [{ width: '3%', targets:0 },{ width: '5%', targets:1 },{ width: '1%', targets: 2},{ width: '5%', targets:3 },{ width: '5%', targets:4 },{ width: '5%', targets: 5},{width:'5%' ,targets:6},{width:'5%' ,targets:7},{width:'5%',targets:8},
+    // {width:'5%',targets:9},{width:'20%',targets:10}
+    //],
     "search": {
       "regex": true,
       "caseInsensitive": false,
     },
+    language: {
+        buttons: {
+          colvisRestore: "now changed",
+            
+        }
+      },
 
     buttons: {
         
-        dom: {
-            container: {
-                tag: 'div',
-            },
-            buttonLiner: {
-                tag: null
-            }
-        },
+      
         buttons: [
+            
             {
                 extend: 'excelHtml5',
+                className: 'botones_table',
                 text: '<i class="fas fa-file-excel"></i> Exel',                
                 titleAttr: 'Excel',
-                className: 'btn btn-app export excel',
+                //className: 'btn btn-app export excel',
                 exportOptions: {                   
                 },
             },
             {
                 extend: 'print',
+                className: 'botones_table',
                 text: '<i class="fa fa-print"></i>Imprimir',                
                 titleAttr: 'Imprimir',
-                className: 'btn btn-app export imprimir',
+                //className: 'btn btn-app export imprimir',
                 exportOptions: {                    
                 }
             },
@@ -115,7 +111,8 @@ $(document).ready(function(){
                 text: '<i class="fas fa-file-pdf"></i>PDF',                
                 titleAttr: 'PDF',               
                 orientation: 'landscape',
-                pageSize: 'TABLOID',               
+                pageSize: 'TABLOID',        
+                className: 'botones_table',       
                 customize: function (doc) {
                     doc.styles.title = {
                         color: '#114627',
@@ -136,19 +133,30 @@ $(document).ready(function(){
             } ,
             {
                 text: 'Ultimos agregados',
+                className: 'botones_table',
                 action: function () {
                     table.order([[1, 'desc']]).draw();
                 }
             },  
             {
                 text: 'Acomodar Fecha Audiencia',
+                className: 'botones_table',
                 action: function () {
                     table.order([[3, 'desc']]).draw();
                 }
-            }, 
-
-            
-
+            },      
+            {
+                extend: 'colvis',
+                 postfixButtons: [{extend:'colvisRestore', text:'RESTAURAR COLUMNAS'}],
+                 text: 'Columnas',
+                 className: 'btn-custom-colvis',  // se agregamos una clase de css para agregar scrol y darle tamaño al colvis 
+            },       
+        ],
+        columnDefs: [
+            {
+                targets: -1,
+                visible: false,                
+            }
         ]
     },
     
@@ -286,32 +294,90 @@ $(document).ready(function(){
 
 
     ],
+//filtro arriba de las columnas por fila
+//     initComplete: function() {
+//         this.api().columns([2,9]).every(function() {
+//             var column = this;
+
+//             var select = $('<select><option value=""></option></select>')
+//                 .appendTo($(column.header()))
+//                 .on('change', function() {
+//                     var val = $.fn.dataTable.util.escapeRegex(
+//                         $(this).val()
+//                     );
+                     
+//                         column
+//                         .search(val ? '^' + val + '$' : '', true, false)
+//                         .draw();
+                    
+                    
+//                 });
+//                 //Este codigo sirve para que no se active el ordenamiento junto con el filtro
+//             $(select).click(function(e) {
+//                 e.stopPropagation();
+//             });
+//             //===================
+
+//             column.data().unique().sort().each(function(d, j) {
+//                 // select.append('<option value="' + d + '">' + d + '</option>')
+               
+//                     select.append('<option value="' + d + '">' + d + '</option>')
+                
+//             });
+
+            
+
+//         });
+//     },
+//     "aoColumnDefs": [
+//      { "bSearchable": false, "aTargets": [ 1 ] }
+//    ] 
     });
+
+
+    
             
    // setInterval(table.ajax.reload(),5000);
 });
 //fin de datatable
 
+
+
+
+
+
+
 //se genera filtro por actoer y por expediente
-document.querySelectorAll('input.column_filter').forEach((el) => {
-    let tr = el.closest('tr');
-    let columnIndex = tr.getAttribute('data-column'); 
+// document.querySelectorAll('input.column_filter').forEach((el) => {
+//     let tr = el.closest('tr');
+//     let columnIndex = tr.getAttribute('data-column'); 
+//     el.addEventListener(el.type === 'text' ? 'keyup' : 'change', () =>
+//         filterColumn(table, columnIndex)
+//     );
+// });
+
+//filtro experimental **********
+document.querySelectorAll('input.filtro').forEach((el) =>{
+    let label = el.previousElementSibling;    
+    let indicecolum = label.getAttribute('data-column');
     el.addEventListener(el.type === 'text' ? 'keyup' : 'change', () =>
-        filterColumn(table, columnIndex)
+         filterColumn(table, indicecolum)
     );
+    
 });
 
-//filtro experimental
-document.querySelectorAll('input.form-control').forEach((el) =>{
-    let label = el.closest('label');
-    let indicecolum = label.getAttribute('data-column');
-    
-})
-
-
-
-
-//fin del filtro
+ let filtro_looco = document.getElementById('filtrox');
+ let fila_filtro = document.getElementById('filtro_completo');
+ let filaseleccionada = fila_filtro.value ;
+ fila_filtro.addEventListener('change',()=>{
+    return filaseleccionada =  fila_filtro.value;
+ }) 
+ filtro_looco.addEventListener('change', () => {    
+    console.log(filaseleccionada);
+    table.column(filaseleccionada).search(filtro_looco.value).draw();
+ });
+  
+//fin del filtro ****************
 
 //modal desgloce de juicio 
 function mostrar_modal_juicio(data,accion) {    
