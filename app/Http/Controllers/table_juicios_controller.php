@@ -34,7 +34,8 @@ class table_juicios_controller extends Controller
             ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
             ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
             ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
-            ->get();        
+            ->get();      
+
        $suma_coco_ano =juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'))
        ->selectRaw('SUM(cocodi_suma) as sumacoco')
        ->groupBy('anio')
@@ -64,11 +65,7 @@ class table_juicios_controller extends Controller
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();                 
          $factual = Carbon::now();                          
-         $requerimientofecha = juicio::select('id_juicio','fechaproxima')->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
-         ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
-         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
-         ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
-         ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')      
+         $requerimientofecha = $juicios     
          ->whereNotNull('fechaproxima')                
          ->pluck('fechaproxima','id_juicio');                        
         $alertaproximafecha=[];
@@ -87,7 +84,6 @@ class table_juicios_controller extends Controller
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
          $conteoPorEtapa22 = json_encode($conteoPorEtapa2);   
-
         
          //se extraen los años de todos los juicios COALESCE si el balor del año obtenido es nulo lo regresa como 0
         
@@ -99,8 +95,7 @@ class table_juicios_controller extends Controller
 
          $juicios_por_año_individual =[];
          foreach ($años_juicios as $key => $año) {                   
-            $juicios_por_año_individual[] = (object)[
-                
+            $juicios_por_año_individual[] = (object)[                
                 'anio' => $año,                
                 'cantidad' => juicio::where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)
                 ->count()
@@ -109,16 +104,19 @@ class table_juicios_controller extends Controller
          //$json_juicios_por_año_individual = json_encode($juicios_por_año_individual) ;
          
 
-
-
          //se crea $años_meses_cantcocodi contienr los juicios completos dependiendo el año 
          $años_meses_cantcocodi =[];
          foreach ($años_juicios as $key => $año) {            
             $años_meses_cantcocodi[$año] = juicio::where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)                         
             ->get() ; 
-         }
+         }         
+        $meses_juicio =[];
+        foreach ($años_juicios as $año) {
+            $juicios
+        }
+
                                     
-        //dd($juicios_por_año_individual);        
+             
         return view('admin.dashboard')->with([
         'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,

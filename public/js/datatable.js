@@ -370,12 +370,33 @@ document.querySelectorAll('input.filtro').forEach((el) =>{
  let fila_filtro = document.getElementById('filtro_completo');
  let filaseleccionada = fila_filtro.value ;
  fila_filtro.addEventListener('change',()=>{
-    return filaseleccionada =  fila_filtro.value;
+     filaseleccionada =  fila_filtro.value;
+     filtro_seleccion(filaseleccionada);
  }) 
- filtro_looco.addEventListener('change', () => {    
-    console.log(filaseleccionada);
-    table.column(filaseleccionada).search(filtro_looco.value).draw();
- });
+ function filtro_seleccion(filaseleccionada) {
+    filtro_looco.addEventListener('change', () => {    
+       // console.log(filaseleccionada);
+        table.column(filaseleccionada).search(filtro_looco.value).draw();
+     });
+ }
+
+ // filtro por seleccion de los elemntos dentro de la columna
+//  let filtro_accion_auto = document.addEventListener('click' , () => {
+//     let select = $('#por_accion');
+//     //let seleccion = document.getElementById('por_accion');
+//     let option_unica = new Set();
+//   table.column(9).data().each(function (value) {
+//    if (!option_unica.has(value)) {
+//         select.append($('<option>', {
+//             value: value,
+//             text: value
+//         }));    
+//    }  
+//    option_unica.add(value);   
+//   });
+ 
+//  });
+ 
   
 //fin del filtro ****************
 
