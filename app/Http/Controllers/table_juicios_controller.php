@@ -34,8 +34,7 @@ class table_juicios_controller extends Controller
             ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
             ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
             ->join('concluido','juicios.id_juicio','=','concluido.id_segobconclusion_juicio')
-            ->get();      
-
+            ->get();        
        $suma_coco_ano =juicio::select(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda) as anio'))
        ->selectRaw('SUM(cocodi_suma) as sumacoco')
        ->groupBy('anio')
@@ -65,7 +64,11 @@ class table_juicios_controller extends Controller
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();                 
          $factual = Carbon::now();                          
-         $requerimientofecha = $juicios     
+         $requerimientofecha = juicio::select('id_juicio','fechaproxima')->join('actores', 'juicios.id_juicio', '=', 'actores.juicio_id')
+         ->join('laudo','juicios.id_juicio','=','laudo.id_laudo')
+         ->join('amparo','juicios.id_juicio','=','amparo.id_amparo')
+         ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion')
+         ->join('concluido','juicios.id_juicio','=','concluido.id_concluido')      
          ->whereNotNull('fechaproxima')                
          ->pluck('fechaproxima','id_juicio');                        
         $alertaproximafecha=[];
@@ -84,6 +87,7 @@ class table_juicios_controller extends Controller
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
          $conteoPorEtapa22 = json_encode($conteoPorEtapa2);   
+
         
          //se extraen los años de todos los juicios COALESCE si el balor del año obtenido es nulo lo regresa como 0
         
@@ -95,28 +99,48 @@ class table_juicios_controller extends Controller
 
          $juicios_por_año_individual =[];
          foreach ($años_juicios as $key => $año) {                   
-            $juicios_por_año_individual[] = (object)[                
+            $juicios_por_año_individual[] = (object)[
+                
                 'anio' => $año,                
                 'cantidad' => juicio::where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)
                 ->count()
             ];
          }
-         //$json_juicios_por_año_individual = json_encode($juicios_por_año_individual) ;
-         
-
+         //$json_juicios_por_año_individual = json_encode($juicios_por_año_individual) ;         
          //se crea $años_meses_cantcocodi contienr los juicios completos dependiendo el año 
          $años_meses_cantcocodi =[];
+         $cocodi_trimestre_años = [];
          foreach ($años_juicios as $key => $año) {            
             $años_meses_cantcocodi[$año] = juicio::where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)                         
             ->get() ; 
-         }         
-        $meses_juicio =[];
-        foreach ($años_juicios as $año) {
-            $juicios
-        }
+            $cocodi_trimestre_años[$año] = juicio::select('id_juicio', 'presentacion_de_demanda','año_juicio','cocodi_suma',DB::raw('EXTRACT(MONTH FROM presentacion_de_demanda) as mes') )->where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)                             
+            ->get() ;           
+         }
 
-                                    
-             
+        $por_cuatrimestre_año = [];
+        foreach ($cocodi_trimestre_años as $año => $cocodi_trimestre_meses) {                                              
+            foreach ($cocodi_trimestre_meses as $key => $value) {                                                 
+                // $por_cuatrimestre_año[$año]['mes'][]=$value->mes;
+                       
+                // if (isset($value[0]->mes)) {                                    
+                    if ($value->mes < 4 & $value->mes > 0) {
+                        $por_cuatrimestre_año[$año]['Primer Cuatrimestre '.$año][$value->mes]= $value->cocodi_suma;
+                        //  $por_cuatrimestre[$key][$n." er cuatrimestre"] = $value[0]->id_juicio;
+                    }elseif ($value->mes < 7 & $value->mes > 3) {
+                        $por_cuatrimestre_año[$año]['Segundo Cuatrimestre '.$año][$value->mes]=$value->cocodi_suma;
+                        //  $por_cuatrimestre[$key][$n." er cuatrimestre"] = $value[0]->id_juicio;
+                    }elseif ($value->mes < 10 & $value->mes > 6) {    
+                        $por_cuatrimestre_año[$año]['Tercero Cuatrimestre '.$año][$value->mes]=$value->cocodi_suma;           
+                        //  $por_cuatrimestre[$key][$n." er cuatrimestre"] = $value[0]->id_juicio;
+                    }elseif ($value->mes < 13 & $value->mes > 9) {
+                        $por_cuatrimestre_año[$año]['Cuarto Cuatrimestre '.$año][$value->mes]=$value->cocodi_suma;
+                        //  $por_cuatrimestre[$key][$n." er cuatrimestre"] = $value[0]->id_juicio;
+                    }                           
+                // }                       
+            }                                                                      
+         }
+        dd($por_cuatrimestre_año);
+        
         return view('admin.dashboard')->with([
         'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,
