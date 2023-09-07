@@ -37,7 +37,7 @@
                                         <div class="kt-widget__content">
                                             <div class="kt-widget__section">
                                                 <h3
-                                                    style="text-shadow: 1px 1px 2px #e7d8bb, 0 0 25px #aa3f53, 0 0 5px #f1e9d9;">
+                                                    style="text-shadow: 1px 1px 2px #e7d8bb, 0 0 25px #aa3f53, 0 0 5px #f1e9d9; color: black;font-weight: 600;">
                                                     <i class="fa fa-file-alt" style="color:#a02744"></i>
                                                     {{ $totaletapa['total'] }}
                                                 </h3>
@@ -130,6 +130,22 @@
                 </div>
             </div>
 
+            <div class="col-xl-7 col-lg-7 order-lg-7 order-xl-7">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-witdget14">
+                        <div class="kt-widget14__header">
+                            <h3>Juicio/Trimestre/Cocodi</h3>
+
+                        </div>
+                        <div class="kt-widgeat14__content">
+                            <div class="kt-widget14__chart">
+                                <div id="grafica_trimestre_cocodi" style="height:250px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
@@ -143,8 +159,10 @@
         let json_suma_coco = {!! $json_suma_coco !!};
         let sumaCocoAno = [];
         let Json_ano_mes_coco = {!! $Json_ano_mes_coco !!};
-        console.log(Json_ano_mes_coco);
+        let cocodi_cuatri_años = {!!$cocodi_año_cuatri!!};
+       
         const añojuicioData = @json($juicios_por_año_individual);
+        console.log(cocodi_cuatri_años);
 
         for (var i = 0; i < json_suma_coco.length; i++) {
             var anio = json_suma_coco[i].anio || "0"; // Utiliza "0" como valor predeterminado si anio es null

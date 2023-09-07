@@ -88,6 +88,7 @@
                          <option value="21">Fojas</option>
                          <option value="22">Solicitud</option>
                          <option value="23">Devolución</option>
+                         
                      </select>
                  </div>
 
@@ -145,6 +146,7 @@
                  <th>FOJAS</th>
                  <th>SOLICITUD</th>
                  <th>DEVOLUCIÓN</th>
+                 <th>Editar</th>
              </tr>
          </thead>
      </table>

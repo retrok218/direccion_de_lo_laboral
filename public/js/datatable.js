@@ -245,17 +245,7 @@ $(document).ready(function(){
                        
         // }},  
 
-        // { 
-        //     "mRender": function(data, type, row){               
-        //       var editUrl = url+"editar/" + row.id_juicio;
-        //       var deleteUrl =url+"eliminar/" + row.id_juicio;                           
-        //       var ligajuicio=row.id_juicio;                         
-        //     if (row.status_us == true) {
-        //         return `<button type="button" class="btn btn-outline-brand btn-icon" disabled><i class="fa fa-pencil" title="Logueate para poder Editar"></i></button>`
-        //     }
-        //     return `<button value="Editar" title="Editar" type="button" class="btn btn-outline-brand btn-icon" onclick="editarJuicio(${ligajuicio})" ><i class="fa fa-pencil" ></i></button>`                            
-        //     }
-        // }     
+             
 
         {data:'noti_demanda',name:'noti_demanda'}, 
         {data:'presentacion_de_demanda',name:'presentacion_de_demanda'},
@@ -281,16 +271,18 @@ $(document).ready(function(){
         {data:'fojas' , name:'fojas'},
         {data:'exp_adscripcion_solicitud' , name:'exp_adscripcion_solicitud'},
         {data:'exp_adscripcion_devolucion' , name:'exp_adscripcion_devolucion'},
+        { 
+            "mRender": function(data, type, row){               
+              var editUrl = url+"editar/" + row.id_juicio;
+              var deleteUrl =url+"eliminar/" + row.id_juicio;                           
+              var ligajuicio=row.id_juicio;                         
+            if (row.status_us == true) {
+                return `<button type="button" class="btn btn-outline-brand btn-icon" disabled><i class="fa fa-pencil" title="Logueate para poder Editar"></i></button>`
+            }
+            return `<button value="Editar" title="Editar" type="button" class="btn btn-outline-success btn-sm btn-icon btn-circle" onclick="editarJuicio(${ligajuicio})" ><i class="fa fa-pencil" ></i></button>`                            
+            }
+        },
         
-
-
-        
-
-
-        
-        
-
-
 
 
     ],

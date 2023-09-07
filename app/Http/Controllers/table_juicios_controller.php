@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\abogado;
 use App\Models\salas;
-
 use App\Models\actor;
 use App\Models\juicio;
 use App\Models\amparo;
@@ -19,17 +17,13 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 use Auth;
+use PHPUnit\Framework\Constraint\IsEmpty;
 
-
-
-
-
+use function PHPUnit\Framework\isEmpty;
 
 class table_juicios_controller extends Controller
 {
-
-    public function index(){
-              
+    public function index(){              
         $juicios = juicio::join('laudo','juicios.id_juicio','=', 'laudo.laudo_id_juicio')
             ->join('amparo','juicios.id_juicio','=','amparo.id_amparo_juicio')
             ->join('etapaejecucion','juicios.id_juicio','=','etapaejecucion.id_etapaejecucion_juicio')
@@ -56,7 +50,6 @@ class table_juicios_controller extends Controller
             ksort($arr);
             return  $arr;
         })->toArray();
-//dd($anos_mes_suma_coco);
         $Json_ano_mes_coco = json_encode($ano_mes_coco);            
           
 //se requiere un count por cada etapa que se encuentre en los juicios que hay 
@@ -87,7 +80,6 @@ class table_juicios_controller extends Controller
          ->select('etapa', DB::raw('count(*) as total'))
          ->get();
          $conteoPorEtapa22 = json_encode($conteoPorEtapa2);   
-
         
          //se extraen los años de todos los juicios COALESCE si el balor del año obtenido es nulo lo regresa como 0
         
@@ -106,7 +98,7 @@ class table_juicios_controller extends Controller
                 ->count()
             ];
          }
-         //$json_juicios_por_año_individual = json_encode($juicios_por_año_individual) ;         
+                 
          //se crea $años_meses_cantcocodi contienr los juicios completos dependiendo el año 
          $años_meses_cantcocodi =[];
          $cocodi_trimestre_años = [];
@@ -117,30 +109,42 @@ class table_juicios_controller extends Controller
             ->get() ;           
          }
 
-        $por_cuatrimestre_año = [];
+        $por_Trimestre_año = [];
         foreach ($cocodi_trimestre_años as $año => $cocodi_trimestre_meses) {                                              
-            foreach ($cocodi_trimestre_meses as $key => $value) {                                                 
-                // $por_cuatrimestre_año[$año]['mes'][]=$value->mes;
-                       
-                // if (isset($value[0]->mes)) {                                    
+            foreach ($cocodi_trimestre_meses as $key => $value) {                                                                                                     
                     if ($value->mes < 4 & $value->mes > 0) {
-                        $por_cuatrimestre_año[$año]['Primer Cuatrimestre '.$año][$value->mes]= $value->cocodi_suma;
-                        //  $por_cuatrimestre[$key][$n." er cuatrimestre"] = $value[0]->id_juicio;
+                        $por_Trimestre_año[$año]['Primer Trimestre '.$año][] =  intval($value->cocodi_suma); 
+                       
                     }elseif ($value->mes < 7 & $value->mes > 3) {
-                        $por_cuatrimestre_año[$año]['Segundo Cuatrimestre '.$año][$value->mes]=$value->cocodi_suma;
-                        //  $por_cuatrimestre[$key][$n." er cuatrimestre"] = $value[0]->id_juicio;
+                        $por_Trimestre_año[$año]['Segundo Trimestre '.$año][] = intval($value->cocodi_suma) ;
+                        
                     }elseif ($value->mes < 10 & $value->mes > 6) {    
-                        $por_cuatrimestre_año[$año]['Tercero Cuatrimestre '.$año][$value->mes]=$value->cocodi_suma;           
-                        //  $por_cuatrimestre[$key][$n." er cuatrimestre"] = $value[0]->id_juicio;
+                        $por_Trimestre_año[$año]['Tercero Trimestre '.$año][]= intval($value->cocodi_suma);                                  
                     }elseif ($value->mes < 13 & $value->mes > 9) {
-                        $por_cuatrimestre_año[$año]['Cuarto Cuatrimestre '.$año][$value->mes]=$value->cocodi_suma;
-                        //  $por_cuatrimestre[$key][$n." er cuatrimestre"] = $value[0]->id_juicio;
-                    }                           
-                // }                       
-            }                                                                      
-         }
-        dd($por_cuatrimestre_año);
-        
+                        $por_Trimestre_año[$año]['Cuarto Trimestre '.$año][] = intval($value->cocodi_suma);                        
+                    } 
+
+            }                
+                if ($año == 0){continue;}
+                if (isset($por_Trimestre_año[$año]['Primer Trimestre '.$año])) {
+                    $por_Trimestre_año[$año]['Suma_Primer_Trimestre'] = array_sum($por_Trimestre_año[$año]['Primer Trimestre '.$año]); 
+                }
+                if (isset($por_Trimestre_año[$año]['Segundo Trimestre '.$año])) {
+                    $por_Trimestre_año[$año]['Suma_Segundo_Trimestre'] = array_sum($por_Trimestre_año[$año]['Segundo Trimestre '.$año]); 
+                }
+                if (isset($por_Trimestre_año[$año]['Tercero Trimestre '.$año])) {
+                    $por_Trimestre_año[$año]['Suma_Tercero_Trimestre'] = array_sum($por_Trimestre_año[$año]['Tercero Trimestre '.$año]); 
+                }
+               if (isset($por_Trimestre_año[$año]['Cuarto Trimestre '.$año])) {
+                    $por_Trimestre_año[$año]['Suma_Cuarto_Trimestre'] = array_sum($por_Trimestre_año[$año]['Cuarto Trimestre '.$año]); 
+                }
+            
+
+        }
+        //dd( $por_Trimestre_año);
+        //var_dump($por_Trimestre_año); exit();
+        $cocodi_año_cuatri=json_encode($por_Trimestre_año);
+              
         return view('admin.dashboard')->with([
         'requerimientofecha' => $requerimientofecha,  
         'totalqueaproximados' => $totalqueaproximados,
@@ -153,6 +157,7 @@ class table_juicios_controller extends Controller
         'Json_ano_mes_coco'=>$Json_ano_mes_coco,
         'ano_mes_coco'=>$ano_mes_coco,//prueva
         'juicios_por_año_individual'=>$juicios_por_año_individual,
+        'cocodi_año_cuatri'=>$cocodi_año_cuatri,
         ]);
     }
 
@@ -172,8 +177,6 @@ class table_juicios_controller extends Controller
     public function registro(){
         return view('Direccion_Laboral.registro_juicio');
     }
-
-
 
     public function tablas_etapa($etapa){
         $etapa2 = $etapa;
