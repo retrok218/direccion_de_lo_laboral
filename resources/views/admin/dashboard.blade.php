@@ -1,61 +1,74 @@
 @extends('home')
 {{-- <meta http-equiv="refresh" content="60"/> --}}
 @section('content')
+@include('juicios.headbar')
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="fa-solid fa-chart-simple fa-flip fa-sm" style="color: #9d203f; animation-duration: 5s;"></i>
+                
+            </span>
+            <h3 class="kt-portlet__head-title">
+                Juicios Dashboard
+            </h3>
+        </div>
+    </div>
 
-<div class="kt-portlet__head kt-portlet__head--lg">
-    <div class="row">
-        @foreach ($conteoPorEtapa as $key => $totaletapa)
-            <div class="col-lg-3">
-                <a href="{{ url('/tabla_etapa_juicio/' . $totaletapa['etapa']) }}">
-
-
-                    <div class="item-wrapper">
-
-
-                        <div class="kt-portlet kt-portlet--height-fluid kt-iconbox--animate-slow"
-                            style="background-color: #9d1f3e36;">
-                            <div class="line line-top"><span></span></div>
-                            <div class="line line-right"><span></span> </div>
-                            <div class="line line-bottom"><span></span> </div>
-                            <div class="line line-left"><span></span> </div>
-                            <div class="kt-portlet__head kt-portlet__head--noborder " style="min-height: 40px;">
-
-                                <h3 class="kt-portlet__head-title"
-                                    style="font-size: 20px;
-                    color:  #0f4c42b3;
-                    font-weight: bold;">
-                                    {{ $totaletapa['etapa'] }}
-                                </h3>
-
-
-                            </div>
-                            <div class="kt-portlet__body kt-portlet__body--fit-y kt-margin-b-25">
-                                <!--begin::Widget -->
-                                <div class="kt-widget kt-widget--user-profile-4 ">
-                                    <div class="kt-widget__head">
-                                        <div class="kt-widget__media "></div>
-                                        <div class="kt-widget__content">
-                                            <div class="kt-widget__section">
-                                                <h3
-                                                    style="text-shadow: 1px 1px 2px #e7d8bb, 0 0 25px #aa3f53, 0 0 5px #f1e9d9; color: black;font-weight: 600;">
-                                                    <i class="fa fa-file-alt" style="color:#a02744"></i>
-                                                    {{ $totaletapa['total'] }}
-                                                </h3>
+    <div class="kt-portlet__body">
+        <div class="row">
+            @foreach ($conteoPorEtapa as $key => $totaletapa)
+                <div class="col-lg-3">
+                    <a href="{{ url('/tabla_etapa_juicio/' . $totaletapa['etapa']) }}">
+                        <div class="item-wrapper">
+    
+    
+                            <div class="kt-portlet kt-portlet--height-fluid kt-iconbox--animate-slow"
+                                style="background-color: #9d1f3e36;">
+                                <div class="line line-top"><span></span></div>
+                                <div class="line line-right"><span></span> </div>
+                                <div class="line line-bottom"><span></span> </div>
+                                <div class="line line-left"><span></span> </div>
+                                <div class="kt-portlet__head kt-portlet__head--noborder " style="min-height: 40px;">
+    
+                                    <h3 class="kt-portlet__head-title"
+                                        style="font-size: 20px;
+                        color:  #0f4c42b3;
+                        font-weight: bold;">
+                                        {{ $totaletapa['etapa'] }}
+                                    </h3>
+    
+    
+                                </div>
+                                <div class="kt-portlet__body kt-portlet__body--fit-y kt-margin-b-25">
+                                    <!--begin::Widget -->
+                                    <div class="kt-widget kt-widget--user-profile-4 ">
+                                        <div class="kt-widget__head">
+                                            <div class="kt-widget__media "></div>
+                                            <div class="kt-widget__content">
+                                                <div class="kt-widget__section">
+                                                    <h3
+                                                        style="text-shadow: 1px 1px 2px #e7d8bb, 0 0 25px #aa3f53, 0 0 5px #f1e9d9; color: black;font-weight: 600;">
+                                                        <i class="fa fa-file-alt" style="color:#a02744"></i>
+                                                        {{ $totaletapa['total'] }}
+                                                    </h3>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!--end::Widget -->
                                 </div>
-                                <!--end::Widget -->
                             </div>
                         </div>
-                    </div>
-
-                </a>
-            </div>
-        @endforeach
-    </div>
+    
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>    
 </div>
-<div class="kt-portlet__body">
+
+<div class="kt-portlet">
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
         <!--inicio de graficas y pag principal -->
 
@@ -159,10 +172,12 @@
         let json_suma_coco = {!! $json_suma_coco !!};
         let sumaCocoAno = [];
         let Json_ano_mes_coco = {!! $Json_ano_mes_coco !!};
-        let cocodi_cuatri_años = {!!$cocodi_año_cuatri!!};
-       
+        let cocodi_cuatri_años = @json($por_Trimestre_año);               
         const añojuicioData = @json($juicios_por_año_individual);
-        console.log(cocodi_cuatri_años);
+        
+        let dd = Object.values(cocodi_cuatri_años);
+    
+        console.log( dd);
 
         for (var i = 0; i < json_suma_coco.length; i++) {
             var anio = json_suma_coco[i].anio || "0"; // Utiliza "0" como valor predeterminado si anio es null

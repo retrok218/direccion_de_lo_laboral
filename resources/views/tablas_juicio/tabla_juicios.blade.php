@@ -7,16 +7,21 @@
              Juicios
          </h3>
      </div>
-     <p style="margin-top: 1rem">
-         <a class="btn btn-primary" data-toggle="collapse" href="#filtro_por_nombre" role="button" aria-expanded="false"
-             aria-controls="filtro_por_nombre">
-             Filtros Individuales
-         </a>
-         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#filtro_por_seleccion"
-             aria-expanded="false" aria-controls="filtro_por_seleccion">
-             Filtro Por Seleccion
-         </button>
-     </p>
+
+     <div class="m-portlet__nav">
+        <p style="margin-top: 1rem">            
+            <a class="btn btn-primary" data-toggle="collapse" href="#filtro_por_nombre" role="button" aria-expanded="false"
+                aria-controls="filtro_por_nombre">
+                Filtros Individuales
+                
+            </a>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#filtro_por_seleccion"
+                aria-expanded="false" aria-controls="filtro_por_seleccion">
+                Filtro Por Seleccion
+            </button>        
+        </p>
+    </div>
+
  </div>
  <div class="kt-portlet__body">
      <div class="collapse" id="filtro_por_nombre">

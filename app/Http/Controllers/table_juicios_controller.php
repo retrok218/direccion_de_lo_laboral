@@ -108,7 +108,6 @@ class table_juicios_controller extends Controller
             $cocodi_trimestre_años[$año] = juicio::select('id_juicio', 'presentacion_de_demanda','año_juicio','cocodi_suma',DB::raw('EXTRACT(MONTH FROM presentacion_de_demanda) as mes') )->where(DB::raw('EXTRACT(YEAR FROM presentacion_de_demanda)'), $año)                             
             ->get() ;           
          }
-
         $por_Trimestre_año = [];
         foreach ($cocodi_trimestre_años as $año => $cocodi_trimestre_meses) {                                              
             foreach ($cocodi_trimestre_meses as $key => $value) {                                                                                                     
@@ -127,23 +126,32 @@ class table_juicios_controller extends Controller
             }                
                 if ($año == 0){continue;}
                 if (isset($por_Trimestre_año[$año]['Primer Trimestre '.$año])) {
-                    $por_Trimestre_año[$año]['Suma_Primer_Trimestre'] = array_sum($por_Trimestre_año[$año]['Primer Trimestre '.$año]); 
+                    $por_Trimestre_año[$año]['S_Primer_Trimestre'] = array_sum($por_Trimestre_año[$año]['Primer Trimestre '.$año]); 
+                }else {
+                    $por_Trimestre_año[$año]['S_Primer_Trimestre'] = 0;
                 }
                 if (isset($por_Trimestre_año[$año]['Segundo Trimestre '.$año])) {
-                    $por_Trimestre_año[$año]['Suma_Segundo_Trimestre'] = array_sum($por_Trimestre_año[$año]['Segundo Trimestre '.$año]); 
+                    $por_Trimestre_año[$año]['S_Segundo_Trimestre'] = array_sum($por_Trimestre_año[$año]['Segundo Trimestre '.$año]); 
+                }else {
+                    $por_Trimestre_año[$año]['S_Segundo_Trimestre'] = 0;
                 }
                 if (isset($por_Trimestre_año[$año]['Tercero Trimestre '.$año])) {
-                    $por_Trimestre_año[$año]['Suma_Tercero_Trimestre'] = array_sum($por_Trimestre_año[$año]['Tercero Trimestre '.$año]); 
+                    $por_Trimestre_año[$año]['S_Tercero_Trimestre'] = array_sum($por_Trimestre_año[$año]['Tercero Trimestre '.$año]); 
+                }else {
+                    $por_Trimestre_año[$año]['S_Tercero_Trimestre'] = 0;
                 }
                if (isset($por_Trimestre_año[$año]['Cuarto Trimestre '.$año])) {
-                    $por_Trimestre_año[$año]['Suma_Cuarto_Trimestre'] = array_sum($por_Trimestre_año[$año]['Cuarto Trimestre '.$año]); 
-                }
-            
-
+                    $por_Trimestre_año[$año]['S_Cuarto_Trimestre'] = array_sum($por_Trimestre_año[$año]['Cuarto Trimestre '.$año]); 
+                } else {
+                    $por_Trimestre_año[$año]['S_Cuarto_Trimestre'] = 0;
+                }           
+                $por_Trimestre_año[$año]['Año'] = $año;
         }
-        //dd( $por_Trimestre_año);
-        //var_dump($por_Trimestre_año); exit();
-        $cocodi_año_cuatri=json_encode($por_Trimestre_año);
+       $etapa2 =  "Juicio Dashboard" ;
+      // $cocodi_año_cuatri=json_encode($por_Trimestre_año);
+
+
+       
               
         return view('admin.dashboard')->with([
         'requerimientofecha' => $requerimientofecha,  
@@ -157,7 +165,8 @@ class table_juicios_controller extends Controller
         'Json_ano_mes_coco'=>$Json_ano_mes_coco,
         'ano_mes_coco'=>$ano_mes_coco,//prueva
         'juicios_por_año_individual'=>$juicios_por_año_individual,
-        'cocodi_año_cuatri'=>$cocodi_año_cuatri,
+        'por_Trimestre_año'=>$por_Trimestre_año,
+        'etapa2'=>$etapa2,
         ]);
     }
 

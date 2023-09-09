@@ -440,6 +440,8 @@ am5.ready(function () {
     })
   );
 
+ 
+
   // var data = [{
   //   "year": "2021",
   //   "europe": 2.5,
@@ -465,7 +467,7 @@ am5.ready(function () {
   //   "meast": 0.9,
   //   "africa": 0.5
   // }]
-var data = cocodi_cuatri_años;
+var data = dd;
 
   // Create axes
   // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
@@ -475,9 +477,11 @@ var data = cocodi_cuatri_años;
   })
 
   var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
-    categoryField: "year",
+    maxDeviation: 0.3,
+    categoryField: "Año",
     renderer: xRenderer,
-    tooltip: am5.Tooltip.new(root, {})
+    tooltip: am5.Tooltip.new(root, {})    
+       
   }));
 
   xRenderer.grid.template.setAll({
@@ -501,11 +505,11 @@ var data = cocodi_cuatri_años;
       xAxis: xAxis,
       yAxis: yAxis,
       valueYField: fieldName,
-      categoryXField: "year"
+      categoryXField: "Año"
     }));
 
     series.columns.template.setAll({
-      tooltipText: "{name}, {categoryX}:{valueY}",
+      tooltipText: "{name}:{valueY}",
       width: am5.percent(90),
       tooltipY: 0,
       strokeOpacity: 0
@@ -533,12 +537,11 @@ var data = cocodi_cuatri_años;
     legend.data.push(series);
   }
 
-  makeSeries("Europe", "europe");
-  makeSeries("North America", "namerica");
-  makeSeries("Asia", "asia");
-  makeSeries("Latin America", "lamerica");
-  makeSeries("Middle East", "meast");
-  makeSeries("Africa", "africa");
+  makeSeries("Primer Trimestre", "S_Primer_Trimestre" );
+  makeSeries("Segundo Trimestre", "S_Segundo_Trimestre");
+  makeSeries("Tercero Trimestre" , "S_Tercero_Trimestre" );
+  makeSeries("Cuarto Trimestre","S_Cuarto_Trimestre");
+  
 
 
   // Make stuff animate on load

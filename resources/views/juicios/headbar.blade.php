@@ -19,15 +19,19 @@
                 </span>
             </div>
         </div>
-      @auth
-        <div class="kt-subheader__toolbar">
-            <div class="kt-subheader__wrapper">
-                <a href="{{URL::asset('juicios/create')}}" class="btn btn-label-success btn-bold">
-                    <i class="fa-solid fa-circle-plus fa-beat" style="margin: 3px 2px 0px 0px;"></i> Agregar Juicio  
-                </a>                                                
-            </div>
+    @auth    
+    @if(request()->is('*juicios'))
+    <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+            <a href="{{ URL::asset('juicios/create') }}" class="btn btn-label-success btn-bold">
+                <i class="fa-solid fa-circle-plus fa-beat" style="margin: 3px 2px 0px 0px;"></i> Agregar Juicio  
+            </a>                                                
         </div>
-      @endauth
+    </div> 
+    @else
+           
+    @endif      
+    @endauth
                 
         
         

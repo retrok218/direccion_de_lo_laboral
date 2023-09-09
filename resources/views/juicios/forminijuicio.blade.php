@@ -1,11 +1,19 @@
-<div class="form-row">
- 
-
-    <div class="col-md-3 mb-3">
+<div class="m-portlet__head">
+  <div class="m-portlet__head-caption">
+    <div class="m-portlet__head-title">
+      <h3 class="m-portlet__head-text">
+        Juicio
+      </h3>
+    </div>
+  </div>
+</div>
+<div class="m-portlet m-portlet--head-sm">
+  <div class="form-row"> 
+    {{-- <div class="col-md-3 mb-3">
         <label for="abogados_asignados">Abogados Asignados a la Sala</label>                        
         <input  class="form-control" type="text"  id="abogados_asignados" placeholder="Seleccione la Sala"  readonly  required>
-      </div>
-
+      </div> --}}
+      
       <div class="col-md-3 mb-3">
         <label for="notidemanda">Notificacion de Demanda</label>
         <input type="date"   class="form-control"  {{--min="2016-01-01"--}} id="notidemanda" value="Mark"  name="notidemanda" required> 
@@ -16,24 +24,26 @@
 
         <input type="date" class="form-control" id="presentacion_de_demanda" name="presentacion_de_demanda" value="Otto"  required>
       </div>
-    </div>
-
-    <div class="form-row">
       <div class="col-md-3 mb-3">
         <label for="juicio_sala_seleccionada">Sala/Jta</label>     
 
         <select class="custom-select" id="juicio_sala_seleccionada" name="juicio_sala_seleccionada" required>
-          <option selected value="0" disabled>Sala</option>        
+          <option selected disabled value="">Sala</option>        
           @foreach($salas as $sala)
           <option value="{{$sala->id_sala}}">{{$sala->nombre_sala}}</option>
           @endforeach
         </select>
       </div>
-     
       <div class="col-md-3 mb-3">
         <label for="expediente">Expediente</label>
         <input type="text" class="form-control" id="expediente" name="expediente" placeholder="Ingrese el Numero de Expediente" >
       </div>
+</div>
+
+    <div class="form-row">
+      
+     
+      
   
       <div class="col-md-2 mb-3">
           <label for="año_juicio">Año</label>
@@ -58,13 +68,9 @@
           <label for="clasificacion_exp">Clasificacion/EXP</label>
           <input type="number" class="form-control" id="clasificacion_exp" name="clasificacion_exp" placeholder="----" >
       </div>
-  
-    </div>
-  
-    <div class="form-row">    
       <div class="col-md-3 mb-3">
         <label for="tipo">Tipo</label>      
-        <select class="custom-select" id="tipo" name="tipo" >
+        <select class="custom-select" id="tipo" name="tipo"  required>
           <option selected disabled value="">Tipo</option>
           <option>CESE</option>    
           <option>COLECTIVO</option> 
@@ -73,6 +79,11 @@
           <option>DEMANDA SEGOB</option>                         
         </select>
       </div>
+  
+    </div>
+
+    <div class="form-row">    
+     
       <div class="col-md-3 mb-3">
         <label for="accion">Accion</label>      
         <select class="custom-select" id="accion" name="accion" >
@@ -88,6 +99,11 @@
         </select>
       </div>
     </div>
+
+</div>
+
+  
+   
     <hr>
     <h2>Datos de la Relacion Laboral </h2>
   

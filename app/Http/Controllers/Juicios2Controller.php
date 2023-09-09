@@ -80,6 +80,7 @@ class Juicios2Controller extends Controller
         $añoactual = date('Y');
         $abogados=abogado::all();
         $salas=salas::all(); 
+        $etapa2 = "Crear Juicio";
 
         $añosseleccionables=[];
         while($añoactual >= 1950){
@@ -92,7 +93,8 @@ class Juicios2Controller extends Controller
            'añoactual'=> $añoactual,
            'añosseleccionables'=>$añosseleccionables,
            'abogados'=> $abogados,
-           'salas'=>$salas
+           'salas'=>$salas,
+           'etapa2'=> $etapa2,
         ]) ;
 
     }

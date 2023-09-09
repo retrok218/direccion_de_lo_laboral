@@ -70,7 +70,7 @@
                               <div class="card-body">
                                 <div class="row  row-cols-1 row-cols-md-3">                                                       
                                   <div class="card-deck"> 
-                                  <div class="col-sm-4">
+                                  {{-- <div class="col-sm-4">
                                       <div class="card">
                                         <div class="card-body">
                         
@@ -82,7 +82,7 @@
                                                                               
                                         </div>
                                       </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-sm-4">
                                       <div class="card">
@@ -470,7 +470,7 @@
                                           
                                           <div class="col-lg-12" >
                                             <label class="kt-option">                                                                
-                                            <span class="kt-option__label">                                                                                           
+                                            <span class="kt-option__label" id="guardarcocodi">                                                                                           
                                               
                                                                                           
 
@@ -586,7 +586,7 @@
                                                 
 
                                                 <label class="kt-option">
-                                                  <div class="row "  id="trimestres">
+                                                  <div class="row "  id="trimestres" >
                                                     <div class="col-lg-12" >
                                                       <div class="input-group-prepend">
                                                         <span class="input-group-text">Trimestres :</span>
@@ -612,7 +612,7 @@
                                                       @endfor
                                                 </label>
 
-                                                    <form action="{{url('/juicios_coco/'.$juicio3[0]->id_juicio)}}" method="POST" id="guardarcocodi">  
+                                                    <form action="{{url('/juicios_coco/'.$juicio3[0]->id_juicio)}}" method="POST" >  
                                                       @csrf                                                   
                                                         <div class="input-group mb-3">
                                                           <div class="input-group-prepend">                                                  
