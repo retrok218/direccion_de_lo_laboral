@@ -453,16 +453,16 @@
                                         </div>
 
                                         <div class="row" >
-
+                                          
                                           <div class="col-lg-12" id="cocodi">
                                             <span class="kt-option__head">
                                                
                                               <span class="kt-option__title juiciotext">                                                    
                                                 <div class="input-group-prepend">
                                                   <span class="input-group-text" style="color: black" >
-                                                    COCODI : $  
-                                                    <span id="cocodi_value">{{$juicio3[0]->cocodi_suma}}</span>
+                                                    COCODI : $ <span id="cocodi_value">{{$juicio3[0]->cocodi_suma}}</span>
                                                   </span>
+                                                  {{-- <button class="btn-outline-secondary"onclick="mostrar_modal_cocodi_tabla({{$juicio3[0]->id_juicio}})">Modal Cococdi </button> --}}
                                                 </div>  		
                                               </span>                                                                												 
                                             </span>
@@ -629,7 +629,12 @@
                                                     </form>
                                             </span>	                                                                                                                                      
                                             </label> 
-                                          </div>                                                                                     
+                                          </div> 
+
+                                         
+                                          
+                                          
+
                                         </div> 
 
                                         

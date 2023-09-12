@@ -138,13 +138,13 @@ $(document).ready(function(){
                     table.order([[1, 'desc']]).draw();
                 }
             },  
-            {
-                text: 'Acomodar Fecha Audiencia',
-                className: 'botones_table',
-                action: function () {
-                    table.order([[3, 'desc']]).draw();
-                }
-            },      
+            // {
+            //     text: 'Acomodar Fecha Audiencia',
+            //     className: 'botones_table',
+            //     action: function () {
+            //         table.order([[3, 'desc']]).draw();
+            //     }
+            // },      
             {
                 extend: 'colvis',
                  postfixButtons: [{extend:'colvisRestore', text:'RESTAURAR COLUMNAS'}],
@@ -218,36 +218,9 @@ $(document).ready(function(){
                 var accionj=row.accion;                        
                 return `<a  onclick="mostrar_modal_juicio(${ligajuicio},'${accionj}')" title="Desglose de Juicio" ;><button class="button2"> <span> ${row.id_juicio} </span> </button></a>`;                                   
             }
-        },
-       
-        // {"mRender":function(data,type,row){
-        //     return `${row.nombrecompleto}`
-        //     }
-        // },
-        // //{data:'nombre_completo', name:'nombre_completo'},
-        // {data:'audiencia',name:'audiencia'},        
-        // {data:'expediente',name:'expediente'},
-        // {data:'accion',name:'accion'},
-        // {data:'adscripcion', name:'adscripcion'},                
-        // {"mRender":function(data,type,row){
-        //     let actual_fecha = moment(); 
-        //     let f = moment(row.fechaproxima);            
-        //     let fechaproximaalert;
-        //     if (row.fechaproxima !== null ) {                
-        //          fechaproximaalert = f.diff(actual_fecha,'days') ;
-        //          fechaproximaalert = f.diff(actual_fecha,'days') <= 0 ? ' Feacha Vencida '+row.fechaproxima:fechaproximaalert;                     
-        //          fechaproximaalert = f.diff(actual_fecha,'days') <=2 && f.diff(actual_fecha,'days') >=0 ? '<span class=" requerimiento fa-beat-fade"> Faltan '+f.diff(actual_fecha,'days')+'- Dias '+f.diff(actual_fecha,'hours')+'- Horas </span><br> <span class=" requerimiento fa-beat-fade" >Proxima Fecha: '+row.fechaproxima+'</span>':  fechaproximaalert;      
-        //        }               
-        //        else{
-        //         fechaproximaalert = 'Sin Fecha';
-        //        }            
-        //         return fechaproximaalert
-                       
-        // }},  
+        },               
 
-             
-
-        {data:'noti_demanda',name:'noti_demanda'}, 
+       {data:'noti_demanda',name:'noti_demanda'}, 
         {data:'presentacion_de_demanda',name:'presentacion_de_demanda'},
         {data:'nombre_sala', name:'nombre_sala'},
         {"mRender": function(data,type,row){
@@ -589,12 +562,49 @@ function update_actualiza_datos_generales(id,formname){
         error: function(respuesta) {
             Swal.fire('¡Alerta!', 'Error de conectividad de red USR-03', 'warning');
         }                    
-    });
-
-
-    
-
+    });    
 //    location.reload(); // recarga la pagina al cuncluir la edicion dentro del modal               
 }
 
+
+
+
+
+
+
+
+function mostrar_modal_cocodi_tabla(data,accion) {    
+    let segment =location.href.split('/');
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url : url +"juicio_cocodi/"+data,
+        dataType: 'html',
+        success: function(resp_success) {
+            var modal = resp_success;
+            $(modal).modal().on('shown.bs.modal', function() {
+            $("[class='make-switch']").bootstrapSwitch('animate', true);
+            $('.select2').select2({dropdownParent: $("#modal-juicio")});
+          
+            let archivo = $('#archivo')[0];           
+            archivo.addEventListener('change', () => {            
+                document.querySelector('#docn').innerText = archivo.files[0].name;
+                document.querySelector('#docn').classList.remove('textanime')
+                document.querySelector('#docn').classList.add('textanime')
+                                           
+             });          
+             // js propio 
+
+            }).on           
+        },
+        error: function(respuesta) {
+            Swal.fire('¡Alerta!','Error de conectividad de red USR-03','warning');
+        }
+    });   
+};
+
+new DataTable('#tabla_cocodi', {
+    order: [[3, 'desc']]
+});
 

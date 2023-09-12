@@ -34,14 +34,14 @@ Route::put('juicios_update/{id}/{name}',[Juicios2Controller::class,'update_all_f
 Route::get('juicio_dowload/{name}',[Juicios2Controller::class,'dowload_juicio']);
 Route::get('juicio_delete_archivo/{narchivo}/{id}/{name}',[Juicios2Controller::class,'delete']);
 
-Route::get('data/juicios',[Juicios2Controller::class,'juiciosdatosajax']);
+Route::get('data/juicios',[Juicios2Controller::class,'juiciosdatosajax']); // datos para la datatable
 
 Route::post('juicios_com/{id}',[Juicios2Controller::class,'comentario']);
 Route::post('juicios_coco/{id}',[Juicios2Controller::class,'guardarcocodi']);
 
 Route::post('juicios_upload/{id}',[Juicios2Controller::class,'upload']);
 
-Route::get('desgloce_juicio/{id}',[Juicios2Controller::class,'desglocejuicio'])->name('desgloce.juicio');
+Route::get('desgloce_juicio/{id}',[Juicios2Controller::class,'desglocejuicio'])->name('desgloce.juicio'); // Ruta data para el modal de desgloce de juicios 
 Route::get('edit_juicio/{id}',[Juicios2Controller::class,'edit']);
 
 Route::resource('sala', SalasController::class);
@@ -52,4 +52,6 @@ Route::post('/logout',[LogController::class,'logout']);
 
 Route::get('/tabla_etapa_juicio/{etapa}',[table_juicios_controller::class, 'tablas_etapa']);
 Route::get('data/juicios_area/{etapa}',[table_juicios_controller::class,'data_tablas_etapa']);
+
+Route::get('juicio_cocodi/{id}',[Juicios2Controller::class,'trimestre_cocodi'])->name('trimestr_cocodi'); // Ruta para el desgloce de el trimestre de cocodi    
 

@@ -423,12 +423,18 @@ am5.ready(function () {
   // Create chart
   // https://www.amcharts.com/docs/v5/charts/xy-chart/
   var chart = root.container.children.push(am5xy.XYChart.new(root, {
-    panX: false,
-    panY: false,
+    panX: true,
+    panY: true,
     wheelX: "panX",
     wheelY: "zoomX",
+    pinchZoomX: true,
     layout: root.verticalLayout
   }));
+
+  // Add cursor
+  // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+  var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+  cursor.lineY.set("visible", false);
 
 
   // Add legend
